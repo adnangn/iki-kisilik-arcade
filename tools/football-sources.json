@@ -1,0 +1,390 @@
+{
+  "dogrulamaTarihi": "2026-10-08",
+  "sezon": "2026-2027",
+  "kartSayisi": 100,
+  "kulupSayisi": 10,
+  "tarihAciklamasi": "Doğrulama tarihi kaynaklara erişim tarihidir; yayın veya kadronun son güncelleme tarihi değildir. Tarihsiz A takım sayfalarında sezon bilgisi uydurulmamıştır. Lig üyeliği ve sezon TFF'nin 2026-2027 fikstürüyle doğrulanmıştır.",
+  "etiketAciklamasi": "KL: Kaleci, DF: Defans, OF: Orta saha, FV: Forvet/Hücum. Oyuncular kaynaklarının pozisyon gruplarına göre etiketlenmiştir.",
+  "kaynaklar": [
+    {
+      "kulup": null,
+      "url": "https://www.tff.org/default.aspx?pageID=198",
+      "baslik": "Trendyol Süper Lig 2026-2027 fikstürü ve puan cetveli",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": "2026-2027",
+      "erisimi": "Canlı resmî sayfa",
+      "kartIdleri": [],
+      "not": "Seçilen on kulüp 2026-2027 Süper Lig fikstüründe yer alıyor. Fikstürde 9-12 Ekim 2026 karşılaşmaları gösteriliyor."
+    },
+    {
+      "kulup": "Galatasaray",
+      "url": "https://www.galatasaray.org/pl/futbol-takim-kadrosu/9",
+      "baslik": "Galatasaray futbol takım kadrosu",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        55
+      ],
+      "not": "Sayfa sezon veya kadro güncelleme tarihi belirtmiyor. Listelenen oyuncular ve pozisyonları sayfada doğrulandı. Gabriel Davi Gomes Sara, Leroy Aziz Sané gibi tam adlar kartlarda bilinen kısa adlarına çevrildi. Mauro Icardi bu kadro sayfasında görünmediği için eklenmedi."
+    },
+    {
+      "kulup": "Beşiktaş",
+      "url": "https://bjk.com.tr/tr/takim/1/takim.html",
+      "baslik": "Beşiktaş futbol A takım kadrosu",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        51,
+        52,
+        53,
+        54
+      ],
+      "not": "Sayfa sezon veya kadro güncelleme tarihi belirtmiyor. Milot Rashica ve Václav Černý sayfanın Orta Saha grubunda olduğundan OF kullanıldı. Wilfred Onyinye Ndidi kartta Wilfred Ndidi olarak kısaltıldı."
+    },
+    {
+      "kulup": "Fenerbahçe",
+      "url": "https://www.uefa.com/uefachampionsleague/clubs/52692--fenerbahce/squad/",
+      "baslik": "Fenerbahçe SK Squad UEFA Champions League 2026/27",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": "2026-2027",
+      "erisimi": "Canlı resmî UEFA kadro sayfası",
+      "kartIdleri": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        56,
+        57,
+        58,
+        59
+      ],
+      "not": "Kulübün resmî sitesi erişimde 403 verdiği için UEFA'nın açıkça 2026/27 başlıklı resmî kadrosu kullanıldı. Oğuz Aydın UEFA'da midfielders grubunda olduğundan OF kullanıldı. Bu kaynak UEFA kaydını gösterir; tüm yerel lisanslı kadroyu temsil etmesi gerekmez."
+    },
+    {
+      "kulup": "Trabzonspor",
+      "url": "https://www.trabzonspor.org.tr/tr/mac-merkezi?branch=Football&season=2026%2F2027&team=a-takimi-5",
+      "baslik": "Trabzonspor A takımı maç merkezi ve kadro",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": "2026-2027",
+      "erisimi": "Canlı resmî 2026/2027 A takım sayfası",
+      "kartIdleri": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        60,
+        61,
+        62
+      ],
+      "not": "Sayfada sezon açıkça 2026/2027 olarak seçili. Kadrodaki Ebere Paul Onuachu kartta Paul Onuachu olarak kısaltıldı. Sayfada 7 Ekim 2026 tarihli takım haberleri de bulunuyor."
+    },
+    {
+      "kulup": "Samsunspor",
+      "url": "https://www.samsunspor.com.tr/a-team",
+      "baslik": "Samsunspor A team",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Resmî kulüp sayfasının arama motorunda bugün taranmış kadro metni",
+      "kartIdleri": [
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "not": "Doğrudan sayfa erişimi 502 hatası verdi. Arama indeksinin resmî sayfadan aktardığı A takım metninde beş oyuncunun tamamı ve pozisyon grupları yer alıyor. Oyuncu kulübü resmî transfer haberleri/TFF ile ayrıca desteklendi. Bu kaynak doğrudan canlı sayfa erişimi olarak sunulmamıştır."
+    },
+    {
+      "kulup": "Samsunspor",
+      "url": "https://samsunspor.com.tr/ailemize-hos-geldin-strahinja-erakovic",
+      "baslik": "Ailemize hoş geldin Strahinja Eraković",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": "2026-2027",
+      "erisimi": "Resmî transfer haberinin arama indeksindeki metni",
+      "kartIdleri": [
+        40
+      ],
+      "not": "Resmî duyuru 2026-2027 sezonunun sonuna kadar bir yıllık kiralık anlaşmayı bildiriyor. Canlı sayfa erişimi 502 verdi."
+    },
+    {
+      "kulup": "Samsunspor",
+      "url": "https://samsunspor.com.tr/ailemize-hos-geldin-mohamed-bayo",
+      "baslik": "Ailemize hoş geldin Mohamed Bayo",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Resmî transfer haberinin arama indeksindeki metni",
+      "kartIdleri": [
+        37
+      ],
+      "not": "Kulüp duyurusu Mohamed Bayo ile 4+1 yıllık anlaşmayı bildiriyor. Sayfanın gerçek yayın tarihi erişilen metinde belirlenemedi; uydurulmadı."
+    },
+    {
+      "kulup": "Samsunspor",
+      "url": "https://samsunspor.com.tr/emre-kilinc-en",
+      "baslik": "Emre Kılınç contract extension",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Resmî oyuncu haberinin arama indeksindeki metni",
+      "kartIdleri": [
+        38
+      ],
+      "not": "Kulüp metni sözleşmenin 2028'e uzatıldığını bildiriyor. Güncel üyelik için ana A takım listesinin yanında destek olarak kullanıldı."
+    },
+    {
+      "kulup": "Samsunspor",
+      "url": "https://www.tff.org/Default.aspx?kisiId=977639&pageId=526",
+      "baslik": "TFF Okan Kocuk futbolcu bilgileri",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Resmî TFF futbolcu sayfasının arama indeksindeki metni",
+      "kartIdleri": [
+        41
+      ],
+      "not": "Futbolcu kaydı kulübü SAMSUNSPOR A.Ş. olarak gösteriyor."
+    },
+    {
+      "kulup": "Göztepe",
+      "url": "https://www.goztepe.org.tr/Futbol/erkek-a-takim/sporcular",
+      "baslik": "Göztepe erkek A takım sporcuları",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "not": "Sayfa sezon veya kadro güncelleme tarihi belirtmiyor. Juan, Efkan Bekiroğlu, Taha Altıkardeş, Malcom Bokele ve Luka Gugeshashvili sayfada ilgili pozisyon gruplarında yer alıyor."
+    },
+    {
+      "kulup": "Göztepe",
+      "url": "https://www.goztepe.org.tr/futbol/haberler",
+      "baslik": "Göztepe futbol haberleri",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî haber sayfası",
+      "kartIdleri": [],
+      "not": "Kulüp sitesindeki güncel futbol haberleri arasında 7 Ekim 2026 tarihli haberler görüldü. Kadro sayfası için bir güncelleme tarihi olarak kullanılmadı."
+    },
+    {
+      "kulup": "Çaykur Rizespor",
+      "url": "https://www.caykurrizespor.org.tr/a-takimimiz",
+      "baslik": "Çaykur Rizespor A takımımız",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "not": "Sayfa sezon veya kadro güncelleme tarihi belirtmiyor. Ali Sowe ve Ahmed Kutucu Hücum grubunda olduğundan FV; Dal Varešanović Orta Saha, Attila Mocsi Defans olarak etiketlendi."
+    },
+    {
+      "kulup": "Çaykur Rizespor",
+      "url": "https://www.caykurrizespor.org.tr/haberler",
+      "baslik": "Çaykur Rizespor haberleri",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî haber sayfası",
+      "kartIdleri": [
+        50
+      ],
+      "not": "6 Ekim 2026 tarihli Attila Mocsi basın toplantısı ve 10 Ekim 2026 Fenerbahçe maçı bilgisi güncel takım bağlamını destekliyor. Ana kadro sayfasının güncelleme tarihi olarak kullanılmadı."
+    },
+    {
+      "kulup": "Amed FK",
+      "url": "https://www.amedspor.com.tr/teams/football-men",
+      "baslik": "Amedspor resmî Futbol A Takımı kadrosu",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "not": "Dia Saba resmî kadroda Diaa Sabi’a adıyla yer alıyor. Kulübün Süper Lig üyeliği TFF fikstüründe doğrulandı. Kısa bilinen isimler kullanıldı."
+    },
+    {
+      "kulup": "Başakşehir",
+      "url": "https://ibfk.com.tr/a-takim",
+      "baslik": "Başakşehir resmî A takım kadrosu",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "not": "Resmî kadro pozisyon grupları kullanıldı."
+    },
+    {
+      "kulup": "Kocaelispor",
+      "url": "https://kocaelispor.com.tr/takim",
+      "baslik": "Kocaelispor resmî A takım kadrosu",
+      "dogrulamaTarihi": "2026-10-08",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "not": "Kulübün güncel A takım listesi kullanıldı."
+    },
+    {
+      "kulup": "Galatasaray",
+      "url": "https://www.galatasaray.org/pl/futbol-takim-kadrosu/9",
+      "baslik": "Galatasaray futbol A takım kadrosu",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86
+      ],
+      "not": "Yeni altı oyuncu resmî kadroda kendi pozisyon gruplarında yer alıyor. Mario Rene Junior Lemina ve Wilfried Stephane Singo kartlarda bilinen kısa adlarıyla kullanıldı. Sayfa sezon veya kadronun son güncelleme tarihini belirtmiyor."
+    },
+    {
+      "kulup": "Beşiktaş",
+      "url": "https://bjk.com.tr/tr/takim/1/takim.html",
+      "baslik": "Beşiktaş futbol A takım kadrosu",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        87,
+        88,
+        89,
+        90
+      ],
+      "not": "Tiago Djalo ve Emmanuel Agbadou Defans; Salih Özcan Orta Saha; Mustafa Erhan Hekimoğlu Forvet grubunda. Karttaki Tiago Djaló yazımı bilinen adının aksanlı biçimi. Sayfa sezon veya güncelleme tarihi belirtmiyor."
+    },
+    {
+      "kulup": "Fenerbahçe",
+      "url": "https://www.uefa.com/uefachampionsleague/clubs/52692--fenerbahce/squad/",
+      "baslik": "Fenerbahçe SK Squad UEFA Champions League 2026/27",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": "2026-2027",
+      "erisimi": "Canlı resmî UEFA 2026/27 kadro sayfası",
+      "kartIdleri": [
+        91,
+        92,
+        93
+      ],
+      "not": "İrfan Can Kahveci Midfielders, Mert Müldür Defenders, Mert Günok Goalkeepers grubunda. Kaynak UEFA kaydını gösterir; tüm yerel lisanslı kadroyu temsil etmesi gerekmez."
+    },
+    {
+      "kulup": "Trabzonspor",
+      "url": "https://www.trabzonspor.org.tr/tr/mac-merkezi?branch=Football&season=2026%2F2027&team=a-takimi-5",
+      "baslik": "Trabzonspor 2026/2027 futbol A takımı maç merkezi",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": "2026-2027",
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        94,
+        95,
+        96
+      ],
+      "not": "Sayfada 2026/2027 sezonu açıkça seçili. Ruslan Malinovskyi ve Batista Mendy Orta Saha, Umut Nayir Forvet olarak listeleniyor. Sayfada 8 Ekim 2026 tarihli takım haberi de yer alıyor; bu kadronun güncelleme tarihi olarak kullanılmadı."
+    },
+    {
+      "kulup": "Göztepe",
+      "url": "https://www.goztepe.org.tr/Futbol/erkek-a-takim/sporcular",
+      "baslik": "Göztepe erkek A takım sporcuları",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        97,
+        98
+      ],
+      "not": "Tino Anjorin ve Novatus Miroshi resmî A takım listesinin Orta Saha grubunda yer alıyor. Sayfa sezon veya kadronun son güncelleme tarihini belirtmiyor."
+    },
+    {
+      "kulup": "Çaykur Rizespor",
+      "url": "https://www.caykurrizespor.org.tr/a-takimimiz",
+      "baslik": "Çaykur Rizespor A takımımız",
+      "dogrulamaTarihi": "2026-10-09",
+      "sezon": null,
+      "erisimi": "Canlı resmî A takım sayfası",
+      "kartIdleri": [
+        99,
+        100
+      ],
+      "not": "Taylan Antalyalı Orta Saha grubunda. Ibrahım Olawoyın Olasunkanmı adıyla listelenen oyuncu kartta Ibrahim Olawoyin olarak kısaltıldı; resmî sayfanın Hücum grubuna göre FV kullanıldı. Sayfa sezon veya güncelleme tarihi belirtmiyor."
+    }
+  ],
+  "sonEklemelerDogrulamaTarihi": "2026-10-09",
+  "sonEklemelerKartIdleri": [
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "sonEklemelerTarihAciklamasi": "81–100 kimlikli yeni kartların erişim/doğrulama tarihi 9 Ekim 2026; önceki 80 kartın 8 Ekim kayıtları aynen korunmuştur. Erişim tarihi, kaynağın yayın veya kadro güncelleme tarihi değildir."
+}

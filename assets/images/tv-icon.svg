@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" role="img" aria-label="Piksel televizyon">
+  <path fill="#527566" d="M4 0h1v2h2v1H5V2H4zm7 0h1v2h-1v1H9V2h2zM1 4h14v10H1zM3 14h2v2H3zm8 0h2v2h-2z"/>
+  <path fill="#ebd2a4" d="M2 5h9v8H2z"/>
+  <path fill="#83b1aa" d="M3 6h7v6H3z"/>
+  <path fill="#d3e4c5" d="M4 7h2v1H4zM8 7h1v4H8z"/>
+  <path fill="#ebd2a4" d="M12 6h2v2h-2zm0 4h2v1h-2z"/>
+</svg>

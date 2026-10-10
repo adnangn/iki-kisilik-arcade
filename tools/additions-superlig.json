@@ -1,0 +1,162 @@
+[
+  {
+    "id": 81,
+    "isim": "Günay Güvenç",
+    "gorsel": "assets/images/superlig/gunay-guvenc.svg",
+    "etiket": "KL",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 82,
+    "isim": "Eren Elmalı",
+    "gorsel": "assets/images/superlig/eren-elmali.svg",
+    "etiket": "DF",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 83,
+    "isim": "Kaan Ayhan",
+    "gorsel": "assets/images/superlig/kaan-ayhan.svg",
+    "etiket": "DF",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 84,
+    "isim": "Mario Lemina",
+    "gorsel": "assets/images/superlig/mario-lemina.svg",
+    "etiket": "OF",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 85,
+    "isim": "Roland Sallai",
+    "gorsel": "assets/images/superlig/roland-sallai.svg",
+    "etiket": "FV",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 86,
+    "isim": "Wilfried Singo",
+    "gorsel": "assets/images/superlig/wilfried-singo.svg",
+    "etiket": "DF",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 87,
+    "isim": "Tiago Djaló",
+    "gorsel": "assets/images/superlig/tiago-djalo.svg",
+    "etiket": "DF",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 88,
+    "isim": "Emmanuel Agbadou",
+    "gorsel": "assets/images/superlig/emmanuel-agbadou.svg",
+    "etiket": "DF",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 89,
+    "isim": "Salih Özcan",
+    "gorsel": "assets/images/superlig/salih-ozcan.svg",
+    "etiket": "OF",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 90,
+    "isim": "Mustafa Erhan Hekimoğlu",
+    "gorsel": "assets/images/superlig/mustafa-erhan-hekimoglu.svg",
+    "etiket": "FV",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 91,
+    "isim": "İrfan Can Kahveci",
+    "gorsel": "assets/images/superlig/irfan-can-kahveci.svg",
+    "etiket": "OF",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 92,
+    "isim": "Mert Müldür",
+    "gorsel": "assets/images/superlig/mert-muldur.svg",
+    "etiket": "DF",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 93,
+    "isim": "Mert Günok",
+    "gorsel": "assets/images/superlig/mert-gunok.svg",
+    "etiket": "KL",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 94,
+    "isim": "Ruslan Malinovskyi",
+    "gorsel": "assets/images/superlig/ruslan-malinovskyi.svg",
+    "etiket": "OF",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 95,
+    "isim": "Batista Mendy",
+    "gorsel": "assets/images/superlig/batista-mendy.svg",
+    "etiket": "OF",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 96,
+    "isim": "Umut Nayir",
+    "gorsel": "assets/images/superlig/umut-nayir.svg",
+    "etiket": "FV",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 97,
+    "isim": "Tino Anjorin",
+    "gorsel": "assets/images/superlig/tino-anjorin.svg",
+    "etiket": "OF",
+    "takim": "Göztepe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 98,
+    "isim": "Novatus Miroshi",
+    "gorsel": "assets/images/superlig/novatus-miroshi.svg",
+    "etiket": "OF",
+    "takim": "Göztepe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 99,
+    "isim": "Taylan Antalyalı",
+    "gorsel": "assets/images/superlig/taylan-antalyali.svg",
+    "etiket": "OF",
+    "takim": "Çaykur Rizespor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 100,
+    "isim": "Ibrahim Olawoyin",
+    "gorsel": "assets/images/superlig/ibrahim-olawoyin.svg",
+    "etiket": "FV",
+    "takim": "Çaykur Rizespor",
+    "takimTuru": "kulup"
+  }
+]

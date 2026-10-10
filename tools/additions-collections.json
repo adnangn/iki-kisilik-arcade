@@ -1,0 +1,490 @@
+{
+  "tatli": [
+    {
+      "id": 31,
+      "isim": "Lokma",
+      "gorsel": "assets/images/desserts/lokma.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 32,
+      "isim": "Halka Tatlısı",
+      "gorsel": "assets/images/desserts/halka-tatlisi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 33,
+      "isim": "Şambali",
+      "gorsel": "assets/images/desserts/sambali.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 34,
+      "isim": "Kalburabastı",
+      "gorsel": "assets/images/desserts/kalburabasti.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 35,
+      "isim": "Kabak Tatlısı",
+      "gorsel": "assets/images/desserts/kabak-tatlisi.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 36,
+      "isim": "Ayva Tatlısı",
+      "gorsel": "assets/images/desserts/ayva-tatlisi.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 37,
+      "isim": "Cevizli Sucuk",
+      "gorsel": "assets/images/desserts/cevizli-sucuk.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 38,
+      "isim": "Pişmaniye",
+      "gorsel": "assets/images/desserts/pismaniye.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 39,
+      "isim": "Tahin Helvası",
+      "gorsel": "assets/images/desserts/tahin-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 40,
+      "isim": "Fıstıklı Sarma",
+      "gorsel": "assets/images/desserts/fistikli-sarma.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 41,
+      "isim": "Burma Tatlısı",
+      "gorsel": "assets/images/desserts/burma-tatlisi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 42,
+      "isim": "Kestane Şekeri",
+      "gorsel": "assets/images/desserts/kestane-sekeri.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 43,
+      "isim": "Çikolatalı Kurabiye",
+      "gorsel": "assets/images/desserts/cikolatali-kurabiye.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 44,
+      "isim": "Mozaik Pasta",
+      "gorsel": "assets/images/desserts/mozaik-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 45,
+      "isim": "Rulo Pasta",
+      "gorsel": "assets/images/desserts/rulo-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 46,
+      "isim": "Limonlu Kek",
+      "gorsel": "assets/images/desserts/limonlu-kek.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 47,
+      "isim": "San Sebastian Cheesecake",
+      "gorsel": "assets/images/desserts/san-sebastian-cheesecake.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 48,
+      "isim": "Panna Cotta",
+      "gorsel": "assets/images/desserts/panna-cotta.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 49,
+      "isim": "Crème Brûlée",
+      "gorsel": "assets/images/desserts/creme-brulee.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 50,
+      "isim": "Churros",
+      "gorsel": "assets/images/desserts/churros.svg",
+      "etiket": "Hamur Tatlısı"
+    }
+  ],
+  "yemek": [
+    {
+      "id": 37,
+      "isim": "Mercimek Çorbası",
+      "gorsel": "assets/images/meals/mercimek-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 38,
+      "isim": "Ezogelin Çorbası",
+      "gorsel": "assets/images/meals/ezogelin-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 39,
+      "isim": "Yayla Çorbası",
+      "gorsel": "assets/images/meals/yayla-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 40,
+      "isim": "Menemen",
+      "gorsel": "assets/images/meals/menemen.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 41,
+      "isim": "Çılbır",
+      "gorsel": "assets/images/meals/cilbir.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 42,
+      "isim": "Kaşarlı Tost",
+      "gorsel": "assets/images/meals/kasarli-tost.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 43,
+      "isim": "Su Böreği",
+      "gorsel": "assets/images/meals/su-boregi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 44,
+      "isim": "Patatesli Gözleme",
+      "gorsel": "assets/images/meals/patatesli-gozleme.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 45,
+      "isim": "Arnavut Ciğeri",
+      "gorsel": "assets/images/meals/arnavut-cigeri.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 46,
+      "isim": "Ali Nazik",
+      "gorsel": "assets/images/meals/ali-nazik.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 47,
+      "isim": "Et Sote",
+      "gorsel": "assets/images/meals/et-sote.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 48,
+      "isim": "Tavuk Sote",
+      "gorsel": "assets/images/meals/tavuk-sote.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 49,
+      "isim": "Kadınbudu Köfte",
+      "gorsel": "assets/images/meals/kadinbudu-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 50,
+      "isim": "İzmir Köfte",
+      "gorsel": "assets/images/meals/izmir-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 51,
+      "isim": "Mücver",
+      "gorsel": "assets/images/meals/mucver.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 52,
+      "isim": "Zeytinyağlı Enginar",
+      "gorsel": "assets/images/meals/zeytinyagli-enginar.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 53,
+      "isim": "Midye Dolma",
+      "gorsel": "assets/images/meals/midye-dolma.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 54,
+      "isim": "Hamsi Tava",
+      "gorsel": "assets/images/meals/hamsi-tava.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 55,
+      "isim": "Spagetti Bolonez",
+      "gorsel": "assets/images/meals/spagetti-bolonez.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 56,
+      "isim": "Pad Thai",
+      "gorsel": "assets/images/meals/pad-thai.svg",
+      "etiket": "Tayland"
+    }
+  ],
+  "dizi": [
+    {
+      "id": 31,
+      "isim": "Prison Break",
+      "gorsel": "assets/images/series/prison-break.svg",
+      "etiket": "Aksiyon"
+    },
+    {
+      "id": 32,
+      "isim": "La Casa de Papel",
+      "gorsel": "assets/images/series/la-casa-de-papel.svg",
+      "etiket": "Suç"
+    },
+    {
+      "id": 33,
+      "isim": "Narcos",
+      "gorsel": "assets/images/series/narcos.svg",
+      "etiket": "Suç"
+    },
+    {
+      "id": 34,
+      "isim": "Dexter",
+      "gorsel": "assets/images/series/dexter.svg",
+      "etiket": "Suç"
+    },
+    {
+      "id": 35,
+      "isim": "Vikings",
+      "gorsel": "assets/images/series/vikings.svg",
+      "etiket": "Tarihi"
+    },
+    {
+      "id": 36,
+      "isim": "The Walking Dead",
+      "gorsel": "assets/images/series/the-walking-dead.svg",
+      "etiket": "Korku"
+    },
+    {
+      "id": 37,
+      "isim": "Chernobyl",
+      "gorsel": "assets/images/series/chernobyl.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 38,
+      "isim": "Fargo",
+      "gorsel": "assets/images/series/fargo.svg",
+      "etiket": "Suç"
+    },
+    {
+      "id": 39,
+      "isim": "Modern Family",
+      "gorsel": "assets/images/series/modern-family.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 40,
+      "isim": "Brooklyn Nine-Nine",
+      "gorsel": "assets/images/series/brooklyn-nine-nine.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 41,
+      "isim": "The Big Bang Theory",
+      "gorsel": "assets/images/series/the-big-bang-theory.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 42,
+      "isim": "House",
+      "gorsel": "assets/images/series/house.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 43,
+      "isim": "Squid Game",
+      "gorsel": "assets/images/series/squid-game.svg",
+      "etiket": "Gerilim"
+    },
+    {
+      "id": 44,
+      "isim": "Wednesday",
+      "gorsel": "assets/images/series/wednesday.svg",
+      "etiket": "Fantastik"
+    },
+    {
+      "id": 45,
+      "isim": "The Mandalorian",
+      "gorsel": "assets/images/series/the-mandalorian.svg",
+      "etiket": "Bilim Kurgu"
+    },
+    {
+      "id": 46,
+      "isim": "House of the Dragon",
+      "gorsel": "assets/images/series/house-of-the-dragon.svg",
+      "etiket": "Fantastik"
+    },
+    {
+      "id": 47,
+      "isim": "Masum",
+      "gorsel": "assets/images/series/masum.svg",
+      "etiket": "Polisiye"
+    },
+    {
+      "id": 48,
+      "isim": "Kuzey Güney",
+      "gorsel": "assets/images/series/kuzey-guney.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 49,
+      "isim": "Süper Baba",
+      "gorsel": "assets/images/series/super-baba.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 50,
+      "isim": "Seksenler",
+      "gorsel": "assets/images/series/seksenler.svg",
+      "etiket": "Komedi"
+    }
+  ],
+  "film": [
+    {
+      "id": 31,
+      "isim": "Yeşil Yol",
+      "gorsel": "assets/images/movies/yesil-yol.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 32,
+      "isim": "Er Ryan’ı Kurtarmak",
+      "gorsel": "assets/images/movies/er-ryani-kurtarmak.svg",
+      "etiket": "Savaş"
+    },
+    {
+      "id": 33,
+      "isim": "İyi, Kötü ve Çirkin",
+      "gorsel": "assets/images/movies/iyi-kotu-ve-cirkin.svg",
+      "etiket": "Western"
+    },
+    {
+      "id": 34,
+      "isim": "Schindler’in Listesi",
+      "gorsel": "assets/images/movies/schindlerin-listesi.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 35,
+      "isim": "12 Öfkeli Adam",
+      "gorsel": "assets/images/movies/12-ofkeli-adam.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 36,
+      "isim": "Dune",
+      "gorsel": "assets/images/movies/dune.svg",
+      "etiket": "Bilim Kurgu"
+    },
+    {
+      "id": 37,
+      "isim": "Avatar",
+      "gorsel": "assets/images/movies/avatar.svg",
+      "etiket": "Bilim Kurgu"
+    },
+    {
+      "id": 38,
+      "isim": "Terminator 2: Mahşer Günü",
+      "gorsel": "assets/images/movies/terminator-2-mahser-gunu.svg",
+      "etiket": "Bilim Kurgu"
+    },
+    {
+      "id": 39,
+      "isim": "Alien",
+      "gorsel": "assets/images/movies/alien.svg",
+      "etiket": "Korku"
+    },
+    {
+      "id": 40,
+      "isim": "Yenilmezler: Son Oyun",
+      "gorsel": "assets/images/movies/yenilmezler-son-oyun.svg",
+      "etiket": "Aksiyon"
+    },
+    {
+      "id": 41,
+      "isim": "Örümcek-Adam: Örümcek Evreninde",
+      "gorsel": "assets/images/movies/orumcek-adam-orumcek-evreninde.svg",
+      "etiket": "Animasyon"
+    },
+    {
+      "id": 42,
+      "isim": "Oyuncak Hikâyesi",
+      "gorsel": "assets/images/movies/oyuncak-hikayesi.svg",
+      "etiket": "Animasyon"
+    },
+    {
+      "id": 43,
+      "isim": "WALL·E",
+      "gorsel": "assets/images/movies/wall-e.svg",
+      "etiket": "Animasyon"
+    },
+    {
+      "id": 44,
+      "isim": "Yukarı Bak",
+      "gorsel": "assets/images/movies/yukari-bak.svg",
+      "etiket": "Animasyon"
+    },
+    {
+      "id": 45,
+      "isim": "Neşeli Günler",
+      "gorsel": "assets/images/movies/neseli-gunler.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 46,
+      "isim": "Aile Şerefi",
+      "gorsel": "assets/images/movies/aile-serefi.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 47,
+      "isim": "Ayla",
+      "gorsel": "assets/images/movies/ayla.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 48,
+      "isim": "Nefes: Vatan Sağ Olsun",
+      "gorsel": "assets/images/movies/nefes-vatan-sag-olsun.svg",
+      "etiket": "Savaş"
+    },
+    {
+      "id": 49,
+      "isim": "7. Koğuştaki Mucize",
+      "gorsel": "assets/images/movies/7-kogustaki-mucize.svg",
+      "etiket": "Dram"
+    },
+    {
+      "id": 50,
+      "isim": "Kelebeğin Rüyası",
+      "gorsel": "assets/images/movies/kelebegin-ruyasi.svg",
+      "etiket": "Dram"
+    }
+  ]
+}

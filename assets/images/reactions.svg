@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <symbol id="laugh" viewBox="0 0 16 16">
+    <path fill="#eebd52" d="M4 1h8v1h2v2h1v8h-1v2h-2v1H4v-1H2v-2H1V4h1V2h2z"/>
+    <path fill="#714e34" d="M3 5h1V4h2v1h1v1H3zm6 0h1V4h2v1h1v1H9zM4 8h8v4h-1v1H5v-1H4z"/>
+    <path fill="#fff4d5" d="M5 8h6v2H5z"/>
+    <path fill="#d76d57" d="M6 12h4v1H6z"/>
+    <path fill="#e9956e" d="M2 7h2v2H2zm10 0h2v2h-2z"/>
+  </symbol>
+  <symbol id="angry" viewBox="0 0 16 16">
+    <path fill="#de7c67" d="M4 1h8v1h2v2h1v8h-1v2h-2v1H4v-1H2v-2H1V4h1V2h2z"/>
+    <path fill="#633f37" d="M3 4h2v1h2v2H5V6H3zm8 0h2v2h-2v1H9V5h2zM4 7h2v2H4zm6 0h2v2h-2zM5 11h6v1h1v1h-2v-1H6v1H4v-1h1z"/>
+    <path fill="#ffe4b6" d="M11 1h1v2h2v1h-2v2h-1V4H9V3h2z"/>
+  </symbol>
+  <symbol id="womp" viewBox="0 0 16 16">
+    <path fill="#779ca5" d="M2 7h4V5h3V3h2v10H9v-2H6V9H2z"/>
+    <path fill="#ead096" d="M9 5h1v6H9zM2 7h3v1H2z"/>
+    <path fill="#779ca5" d="M5 9h2v4H6v1H4v-1h1z"/>
+    <path fill="#bb6f57" d="M12 5h1v1h1v4h-1v1h-1V9h1V7h-1zm2-3h1v2h-1zm0 10h1v2h-1z"/>
+  </symbol>
+  <symbol id="heart" viewBox="0 0 16 16">
+    <path fill="#c86679" d="M2 2h4v1h1v1h2V3h1V2h4v1h1v5h-1v2h-2v2h-2v2H6v-2H4v-2H2V8H1V3h1z"/>
+    <path fill="#f7b6ac" d="M3 4h3v1H4v2H3z"/>
+    <path fill="#a95068" d="M12 8h2v2h-2v2h-2v2H6v-1h3v-2h2V9h1z"/>
+  </symbol>
+</svg>

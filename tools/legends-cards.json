@@ -1,0 +1,852 @@
+[
+  {
+    "id": 1,
+    "isim": "Lionel Messi",
+    "gorsel": "assets/images/legends/messi.svg",
+    "etiket": "FV",
+    "takim": "Arjantin",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 2,
+    "isim": "Cristiano Ronaldo",
+    "gorsel": "assets/images/legends/cristiano-ronaldo.svg",
+    "etiket": "FV",
+    "takim": "Portekiz",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 3,
+    "isim": "Pelé",
+    "gorsel": "assets/images/legends/pele.svg",
+    "etiket": "FV",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 4,
+    "isim": "Diego Maradona",
+    "gorsel": "assets/images/legends/maradona.svg",
+    "etiket": "OF",
+    "takim": "Arjantin",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 5,
+    "isim": "Zinédine Zidane",
+    "gorsel": "assets/images/legends/zidane.svg",
+    "etiket": "OF",
+    "takim": "Fransa",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 6,
+    "isim": "Ronaldinho",
+    "gorsel": "assets/images/legends/ronaldinho.svg",
+    "etiket": "OF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 7,
+    "isim": "Ronaldo Nazário",
+    "gorsel": "assets/images/legends/ronaldo-nazario.svg",
+    "etiket": "FV",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 8,
+    "isim": "Johan Cruyff",
+    "gorsel": "assets/images/legends/cruyff.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 9,
+    "isim": "Franz Beckenbauer",
+    "gorsel": "assets/images/legends/beckenbauer.svg",
+    "etiket": "DF",
+    "takim": "Almanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 10,
+    "isim": "Paolo Maldini",
+    "gorsel": "assets/images/legends/maldini.svg",
+    "etiket": "DF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 11,
+    "isim": "Michel Platini",
+    "gorsel": "assets/images/legends/platini.svg",
+    "etiket": "OF",
+    "takim": "Fransa",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 12,
+    "isim": "Eusébio",
+    "gorsel": "assets/images/legends/eusebio.svg",
+    "etiket": "FV",
+    "takim": "Portekiz",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 13,
+    "isim": "Ferenc Puskás",
+    "gorsel": "assets/images/legends/puskas.svg",
+    "etiket": "FV",
+    "takim": "Macaristan",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 14,
+    "isim": "Gerd Müller",
+    "gorsel": "assets/images/legends/gerd-muller.svg",
+    "etiket": "FV",
+    "takim": "Almanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 15,
+    "isim": "Romário",
+    "gorsel": "assets/images/legends/romario.svg",
+    "etiket": "FV",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 16,
+    "isim": "Marco van Basten",
+    "gorsel": "assets/images/legends/van-basten.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 17,
+    "isim": "Roberto Baggio",
+    "gorsel": "assets/images/legends/baggio.svg",
+    "etiket": "OF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 18,
+    "isim": "Zico",
+    "gorsel": "assets/images/legends/zico.svg",
+    "etiket": "OF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 19,
+    "isim": "Ruud Gullit",
+    "gorsel": "assets/images/legends/gullit.svg",
+    "etiket": "OF",
+    "takim": "Hollanda",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 20,
+    "isim": "Lothar Matthäus",
+    "gorsel": "assets/images/legends/matthaus.svg",
+    "etiket": "OF",
+    "takim": "Almanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 21,
+    "isim": "Xavi Hernández",
+    "gorsel": "assets/images/legends/xavi.svg",
+    "etiket": "OF",
+    "takim": "İspanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 22,
+    "isim": "Andrés Iniesta",
+    "gorsel": "assets/images/legends/iniesta.svg",
+    "etiket": "OF",
+    "takim": "İspanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 23,
+    "isim": "Andrea Pirlo",
+    "gorsel": "assets/images/legends/pirlo.svg",
+    "etiket": "OF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 24,
+    "isim": "Kaká",
+    "gorsel": "assets/images/legends/kaka.svg",
+    "etiket": "OF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 25,
+    "isim": "Rivaldo",
+    "gorsel": "assets/images/legends/rivaldo.svg",
+    "etiket": "OF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 26,
+    "isim": "Luís Figo",
+    "gorsel": "assets/images/legends/figo.svg",
+    "etiket": "OF",
+    "takim": "Portekiz",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 27,
+    "isim": "Thierry Henry",
+    "gorsel": "assets/images/legends/henry.svg",
+    "etiket": "FV",
+    "takim": "Fransa",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 28,
+    "isim": "Dennis Bergkamp",
+    "gorsel": "assets/images/legends/bergkamp.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 29,
+    "isim": "Gabriel Batistuta",
+    "gorsel": "assets/images/legends/batistuta.svg",
+    "etiket": "FV",
+    "takim": "Arjantin",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 30,
+    "isim": "Raúl",
+    "gorsel": "assets/images/legends/raul.svg",
+    "etiket": "FV",
+    "takim": "İspanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 31,
+    "isim": "Zlatan Ibrahimović",
+    "gorsel": "assets/images/legends/ibrahimovic.svg",
+    "etiket": "FV",
+    "takim": "İsveç",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 32,
+    "isim": "Didier Drogba",
+    "gorsel": "assets/images/legends/drogba.svg",
+    "etiket": "FV",
+    "takim": "Fildişi Sahili",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 33,
+    "isim": "Samuel Eto’o",
+    "gorsel": "assets/images/legends/etoo.svg",
+    "etiket": "FV",
+    "takim": "Kamerun",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 34,
+    "isim": "George Weah",
+    "gorsel": "assets/images/legends/george-weah.svg",
+    "etiket": "FV",
+    "takim": "Liberya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 35,
+    "isim": "George Best",
+    "gorsel": "assets/images/legends/george-best.svg",
+    "etiket": "FV",
+    "takim": "Kuzey İrlanda",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 36,
+    "isim": "Bobby Charlton",
+    "gorsel": "assets/images/legends/bobby-charlton.svg",
+    "etiket": "OF",
+    "takim": "İngiltere",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 37,
+    "isim": "David Beckham",
+    "gorsel": "assets/images/legends/beckham.svg",
+    "etiket": "OF",
+    "takim": "İngiltere",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 38,
+    "isim": "Luka Modrić",
+    "gorsel": "assets/images/legends/modric.svg",
+    "etiket": "OF",
+    "takim": "Hırvatistan",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 39,
+    "isim": "Franco Baresi",
+    "gorsel": "assets/images/legends/baresi.svg",
+    "etiket": "DF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 40,
+    "isim": "Fabio Cannavaro",
+    "gorsel": "assets/images/legends/cannavaro.svg",
+    "etiket": "DF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 41,
+    "isim": "Alessandro Nesta",
+    "gorsel": "assets/images/legends/nesta.svg",
+    "etiket": "DF",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 42,
+    "isim": "Bobby Moore",
+    "gorsel": "assets/images/legends/bobby-moore.svg",
+    "etiket": "DF",
+    "takim": "İngiltere",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 43,
+    "isim": "Cafu",
+    "gorsel": "assets/images/legends/cafu.svg",
+    "etiket": "DF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 44,
+    "isim": "Roberto Carlos",
+    "gorsel": "assets/images/legends/roberto-carlos.svg",
+    "etiket": "DF",
+    "takim": "Brezilya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 45,
+    "isim": "Carles Puyol",
+    "gorsel": "assets/images/legends/puyol.svg",
+    "etiket": "DF",
+    "takim": "İspanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 46,
+    "isim": "Javier Zanetti",
+    "gorsel": "assets/images/legends/zanetti.svg",
+    "etiket": "DF",
+    "takim": "Arjantin",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 47,
+    "isim": "Lev Yashin",
+    "gorsel": "assets/images/legends/yashin.svg",
+    "etiket": "KL",
+    "takim": "Sovyetler Birliği",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 48,
+    "isim": "Gianluigi Buffon",
+    "gorsel": "assets/images/legends/buffon.svg",
+    "etiket": "KL",
+    "takim": "İtalya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 49,
+    "isim": "Iker Casillas",
+    "gorsel": "assets/images/legends/casillas.svg",
+    "etiket": "KL",
+    "takim": "İspanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 50,
+    "isim": "Oliver Kahn",
+    "gorsel": "assets/images/legends/kahn.svg",
+    "etiket": "KL",
+    "takim": "Almanya",
+    "takimTuru": "milli"
+  },
+  {
+    "id": 51,
+    "isim": "Steven Gerrard",
+    "gorsel": "assets/images/legends/gerrard.svg",
+    "etiket": "OF",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 52,
+    "isim": "Frank Lampard",
+    "gorsel": "assets/images/legends/lampard.svg",
+    "etiket": "OF",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 53,
+    "isim": "Paul Scholes",
+    "gorsel": "assets/images/legends/scholes.svg",
+    "etiket": "OF",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 54,
+    "isim": "Wayne Rooney",
+    "gorsel": "assets/images/legends/rooney.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 55,
+    "isim": "Francesco Totti",
+    "gorsel": "assets/images/legends/totti.svg",
+    "etiket": "OF",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 56,
+    "isim": "Alessandro Del Piero",
+    "gorsel": "assets/images/legends/del-piero.svg",
+    "etiket": "FV",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 57,
+    "isim": "Andriy Shevchenko",
+    "gorsel": "assets/images/legends/shevchenko.svg",
+    "etiket": "FV",
+    "takim": "Ukrayna",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 58,
+    "isim": "Clarence Seedorf",
+    "gorsel": "assets/images/legends/seedorf.svg",
+    "etiket": "OF",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 59,
+    "isim": "Patrick Vieira",
+    "gorsel": "assets/images/legends/vieira.svg",
+    "etiket": "OF",
+    "takim": "Fransa",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 60,
+    "isim": "Michael Ballack",
+    "gorsel": "assets/images/legends/ballack.svg",
+    "etiket": "OF",
+    "takim": "Almanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 61,
+    "isim": "Bastian Schweinsteiger",
+    "gorsel": "assets/images/legends/schweinsteiger.svg",
+    "etiket": "OF",
+    "takim": "Almanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 62,
+    "isim": "Pavel Nedvěd",
+    "gorsel": "assets/images/legends/nedved.svg",
+    "etiket": "OF",
+    "takim": "Çekya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 63,
+    "isim": "Michael Owen",
+    "gorsel": "assets/images/legends/owen.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 64,
+    "isim": "Fernando Torres",
+    "gorsel": "assets/images/legends/torres.svg",
+    "etiket": "FV",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 65,
+    "isim": "Ruud van Nistelrooy",
+    "gorsel": "assets/images/legends/van-nistelrooy.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 66,
+    "isim": "Robin van Persie",
+    "gorsel": "assets/images/legends/van-persie.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 67,
+    "isim": "Miroslav Klose",
+    "gorsel": "assets/images/legends/klose.svg",
+    "etiket": "FV",
+    "takim": "Almanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 68,
+    "isim": "Peter Schmeichel",
+    "gorsel": "assets/images/legends/schmeichel.svg",
+    "etiket": "KL",
+    "takim": "Danimarka",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 69,
+    "isim": "Petr Čech",
+    "gorsel": "assets/images/legends/cech.svg",
+    "etiket": "KL",
+    "takim": "Çekya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 70,
+    "isim": "Dida",
+    "gorsel": "assets/images/legends/dida.svg",
+    "etiket": "KL",
+    "takim": "Brezilya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 71,
+    "isim": "Sergio Ramos",
+    "gorsel": "assets/images/legends/sergio-ramos.svg",
+    "etiket": "DF",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 72,
+    "isim": "Rio Ferdinand",
+    "gorsel": "assets/images/legends/ferdinand.svg",
+    "etiket": "DF",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 73,
+    "isim": "Nemanja Vidić",
+    "gorsel": "assets/images/legends/vidic.svg",
+    "etiket": "DF",
+    "takim": "Sırbistan",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 74,
+    "isim": "Luis Suárez",
+    "gorsel": "assets/images/legends/luis-suarez.svg",
+    "etiket": "FV",
+    "takim": "Uruguay",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 75,
+    "isim": "Neymar",
+    "gorsel": "assets/images/legends/neymar.svg",
+    "etiket": "FV",
+    "takim": "Brezilya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 76,
+    "isim": "Gheorghe Hagi",
+    "gorsel": "assets/images/legends/hagi.svg",
+    "etiket": "OF",
+    "takim": "Romanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 77,
+    "isim": "Alex de Souza",
+    "gorsel": "assets/images/legends/alex-de-souza.svg",
+    "etiket": "OF",
+    "takim": "Brezilya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 78,
+    "isim": "Arjen Robben",
+    "gorsel": "assets/images/legends/robben.svg",
+    "etiket": "FV",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 79,
+    "isim": "Wesley Sneijder",
+    "gorsel": "assets/images/legends/sneijder.svg",
+    "etiket": "OF",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 80,
+    "isim": "Claude Makélélé",
+    "gorsel": "assets/images/legends/makelele.svg",
+    "etiket": "OF",
+    "takim": "Fransa",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 81,
+    "isim": "Juan Román Riquelme",
+    "gorsel": "assets/images/legends/riquelme.svg",
+    "etiket": "OF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 82,
+    "isim": "Juan Sebastián Verón",
+    "gorsel": "assets/images/legends/veron.svg",
+    "etiket": "OF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 83,
+    "isim": "Rui Costa",
+    "gorsel": "assets/images/legends/rui-costa.svg",
+    "etiket": "OF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 84,
+    "isim": "Deco",
+    "gorsel": "assets/images/legends/deco.svg",
+    "etiket": "OF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 85,
+    "isim": "Guti",
+    "gorsel": "assets/images/legends/guti.svg",
+    "etiket": "OF",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 86,
+    "isim": "Michael Laudrup",
+    "gorsel": "assets/images/legends/michael-laudrup.svg",
+    "etiket": "OF",
+    "takim": "Danimarka",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 87,
+    "isim": "Brian Laudrup",
+    "gorsel": "assets/images/legends/brian-laudrup.svg",
+    "etiket": "FV",
+    "takim": "Danimarka",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 88,
+    "isim": "Jay-Jay Okocha",
+    "gorsel": "assets/images/legends/okocha.svg",
+    "etiket": "OF",
+    "takim": "Nijerya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 89,
+    "isim": "Abedi Pelé",
+    "gorsel": "assets/images/legends/abedi-pele.svg",
+    "etiket": "OF",
+    "takim": "Gana",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 90,
+    "isim": "Iván Zamorano",
+    "gorsel": "assets/images/legends/zamorano.svg",
+    "etiket": "FV",
+    "takim": "Şili",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 91,
+    "isim": "Robbie Fowler",
+    "gorsel": "assets/images/legends/fowler.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 92,
+    "isim": "Andy Cole",
+    "gorsel": "assets/images/legends/andy-cole.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 93,
+    "isim": "David Villa",
+    "gorsel": "assets/images/legends/david-villa.svg",
+    "etiket": "FV",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 94,
+    "isim": "Filippo Inzaghi",
+    "gorsel": "assets/images/legends/inzaghi.svg",
+    "etiket": "FV",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 95,
+    "isim": "David Trezeguet",
+    "gorsel": "assets/images/legends/trezeguet.svg",
+    "etiket": "FV",
+    "takim": "Fransa",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 96,
+    "isim": "Christian Vieri",
+    "gorsel": "assets/images/legends/vieri.svg",
+    "etiket": "FV",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 97,
+    "isim": "Hernán Crespo",
+    "gorsel": "assets/images/legends/crespo.svg",
+    "etiket": "FV",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 98,
+    "isim": "Roberto Ayala",
+    "gorsel": "assets/images/legends/ayala.svg",
+    "etiket": "DF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 99,
+    "isim": "Ricardo Carvalho",
+    "gorsel": "assets/images/legends/ricardo-carvalho.svg",
+    "etiket": "DF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 100,
+    "isim": "Edwin van der Sar",
+    "gorsel": "assets/images/legends/van-der-sar.svg",
+    "etiket": "KL",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  }
+]

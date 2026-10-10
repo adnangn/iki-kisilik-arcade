@@ -1,0 +1,242 @@
+[
+  {
+    "id": 51,
+    "isim": "Dušan Vlahović",
+    "gorsel": "assets/images/superlig/dusan-vlahovic.svg",
+    "etiket": "FV",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 52,
+    "isim": "Leandro Trossard",
+    "gorsel": "assets/images/superlig/leandro-trossard.svg",
+    "etiket": "OF",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 53,
+    "isim": "Alexander Nübel",
+    "gorsel": "assets/images/superlig/alexander-nubel.svg",
+    "etiket": "KL",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 54,
+    "isim": "Fabio Miretti",
+    "gorsel": "assets/images/superlig/fabio-miretti.svg",
+    "etiket": "OF",
+    "takim": "Beşiktaş",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 55,
+    "isim": "Rafael Leão",
+    "gorsel": "assets/images/superlig/rafael-leao.svg",
+    "etiket": "FV",
+    "takim": "Galatasaray",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 56,
+    "isim": "Mason Greenwood",
+    "gorsel": "assets/images/superlig/mason-greenwood.svg",
+    "etiket": "FV",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 57,
+    "isim": "Romelu Lukaku",
+    "gorsel": "assets/images/superlig/romelu-lukaku.svg",
+    "etiket": "FV",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 58,
+    "isim": "Nathan Aké",
+    "gorsel": "assets/images/superlig/nathan-ake.svg",
+    "etiket": "DF",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 59,
+    "isim": "Vedat Muriqi",
+    "gorsel": "assets/images/superlig/vedat-muriqi.svg",
+    "etiket": "FV",
+    "takim": "Fenerbahçe",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 60,
+    "isim": "Mohamed Salah",
+    "gorsel": "assets/images/superlig/mohamed-salah.svg",
+    "etiket": "FV",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 61,
+    "isim": "Fabinho",
+    "gorsel": "assets/images/superlig/fabinho.svg",
+    "etiket": "OF",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 62,
+    "isim": "Franculino Dju",
+    "gorsel": "assets/images/superlig/franculino-dju.svg",
+    "etiket": "FV",
+    "takim": "Trabzonspor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 63,
+    "isim": "Dia Saba",
+    "gorsel": "assets/images/superlig/dia-saba.svg",
+    "etiket": "OF",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 64,
+    "isim": "Gift Orban",
+    "gorsel": "assets/images/superlig/gift-orban.svg",
+    "etiket": "FV",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 65,
+    "isim": "Mbaye Diagne",
+    "gorsel": "assets/images/superlig/mbaye-diagne.svg",
+    "etiket": "FV",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 66,
+    "isim": "Samuel Ballet",
+    "gorsel": "assets/images/superlig/samuel-ballet.svg",
+    "etiket": "OF",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 67,
+    "isim": "Yira Sor",
+    "gorsel": "assets/images/superlig/yira-sor.svg",
+    "etiket": "OF",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 68,
+    "isim": "Rayan Raveloson",
+    "gorsel": "assets/images/superlig/rayan-raveloson.svg",
+    "etiket": "OF",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 69,
+    "isim": "Umut Meraş",
+    "gorsel": "assets/images/superlig/umut-meras.svg",
+    "etiket": "DF",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 70,
+    "isim": "Alban Lafont",
+    "gorsel": "assets/images/superlig/alban-lafont.svg",
+    "etiket": "KL",
+    "takim": "Amed FK",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 71,
+    "isim": "Eldor Shomurodov",
+    "gorsel": "assets/images/superlig/eldor-shomurodov.svg",
+    "etiket": "FV",
+    "takim": "Başakşehir",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 72,
+    "isim": "Davie Selke",
+    "gorsel": "assets/images/superlig/davie-selke.svg",
+    "etiket": "FV",
+    "takim": "Başakşehir",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 73,
+    "isim": "Edin Višća",
+    "gorsel": "assets/images/superlig/edin-visca.svg",
+    "etiket": "OF",
+    "takim": "Başakşehir",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 74,
+    "isim": "Yusuf Sarı",
+    "gorsel": "assets/images/superlig/yusuf-sari.svg",
+    "etiket": "OF",
+    "takim": "Başakşehir",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 75,
+    "isim": "Abbosbek Fayzullaev",
+    "gorsel": "assets/images/superlig/abbosbek-fayzullaev.svg",
+    "etiket": "OF",
+    "takim": "Başakşehir",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 76,
+    "isim": "Bruno Petković",
+    "gorsel": "assets/images/superlig/bruno-petkovic.svg",
+    "etiket": "FV",
+    "takim": "Kocaelispor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 77,
+    "isim": "Dan Agyei",
+    "gorsel": "assets/images/superlig/dan-agyei.svg",
+    "etiket": "FV",
+    "takim": "Kocaelispor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 78,
+    "isim": "Berkan Kutlu",
+    "gorsel": "assets/images/superlig/berkan-kutlu.svg",
+    "etiket": "OF",
+    "takim": "Kocaelispor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 79,
+    "isim": "Tobias Gulliksen",
+    "gorsel": "assets/images/superlig/tobias-gulliksen.svg",
+    "etiket": "OF",
+    "takim": "Kocaelispor",
+    "takimTuru": "kulup"
+  },
+  {
+    "id": 80,
+    "isim": "Aleksandar Jovanović",
+    "gorsel": "assets/images/superlig/aleksandar-jovanovic.svg",
+    "etiket": "KL",
+    "takim": "Kocaelispor",
+    "takimTuru": "kulup"
+  }
+]

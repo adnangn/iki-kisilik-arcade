@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" role="img" aria-label="Piksel pasta dilimi">
+  <path fill="#e6b96e" d="M3 7h10v7H3z"/>
+  <path fill="#f2dfad" d="M3 9h10v2H3z"/>
+  <path fill="#c66f74" d="M3 5h10v3h-2V7H9v2H7V7H5v2H3z"/>
+  <path fill="#f8e7c5" d="M4 4h8v1H4z"/>
+  <path fill="#78a48a" d="M7 2h2v2H7z"/>
+  <path fill="#e9b54f" d="M7 0h2v1H7z"/>
+  <path fill="#7b6555" d="M1 14h14v1H1z"/>
+</svg>

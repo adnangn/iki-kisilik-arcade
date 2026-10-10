@@ -1,0 +1,182 @@
+[
+  {
+    "id": 81,
+    "isim": "Juan Román Riquelme",
+    "gorsel": "assets/images/legends/riquelme.svg",
+    "etiket": "OF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 82,
+    "isim": "Juan Sebastián Verón",
+    "gorsel": "assets/images/legends/veron.svg",
+    "etiket": "OF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 83,
+    "isim": "Rui Costa",
+    "gorsel": "assets/images/legends/rui-costa.svg",
+    "etiket": "OF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 84,
+    "isim": "Deco",
+    "gorsel": "assets/images/legends/deco.svg",
+    "etiket": "OF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 85,
+    "isim": "Guti",
+    "gorsel": "assets/images/legends/guti.svg",
+    "etiket": "OF",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 86,
+    "isim": "Michael Laudrup",
+    "gorsel": "assets/images/legends/michael-laudrup.svg",
+    "etiket": "OF",
+    "takim": "Danimarka",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 87,
+    "isim": "Brian Laudrup",
+    "gorsel": "assets/images/legends/brian-laudrup.svg",
+    "etiket": "FV",
+    "takim": "Danimarka",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 88,
+    "isim": "Jay-Jay Okocha",
+    "gorsel": "assets/images/legends/okocha.svg",
+    "etiket": "OF",
+    "takim": "Nijerya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 89,
+    "isim": "Abedi Pelé",
+    "gorsel": "assets/images/legends/abedi-pele.svg",
+    "etiket": "OF",
+    "takim": "Gana",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 90,
+    "isim": "Iván Zamorano",
+    "gorsel": "assets/images/legends/zamorano.svg",
+    "etiket": "FV",
+    "takim": "Şili",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 91,
+    "isim": "Robbie Fowler",
+    "gorsel": "assets/images/legends/fowler.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 92,
+    "isim": "Andy Cole",
+    "gorsel": "assets/images/legends/andy-cole.svg",
+    "etiket": "FV",
+    "takim": "İngiltere",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 93,
+    "isim": "David Villa",
+    "gorsel": "assets/images/legends/david-villa.svg",
+    "etiket": "FV",
+    "takim": "İspanya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 94,
+    "isim": "Filippo Inzaghi",
+    "gorsel": "assets/images/legends/inzaghi.svg",
+    "etiket": "FV",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 95,
+    "isim": "David Trezeguet",
+    "gorsel": "assets/images/legends/trezeguet.svg",
+    "etiket": "FV",
+    "takim": "Fransa",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 96,
+    "isim": "Christian Vieri",
+    "gorsel": "assets/images/legends/vieri.svg",
+    "etiket": "FV",
+    "takim": "İtalya",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 97,
+    "isim": "Hernán Crespo",
+    "gorsel": "assets/images/legends/crespo.svg",
+    "etiket": "FV",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 98,
+    "isim": "Roberto Ayala",
+    "gorsel": "assets/images/legends/ayala.svg",
+    "etiket": "DF",
+    "takim": "Arjantin",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 99,
+    "isim": "Ricardo Carvalho",
+    "gorsel": "assets/images/legends/ricardo-carvalho.svg",
+    "etiket": "DF",
+    "takim": "Portekiz",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  },
+  {
+    "id": 100,
+    "isim": "Edwin van der Sar",
+    "gorsel": "assets/images/legends/van-der-sar.svg",
+    "etiket": "KL",
+    "takim": "Hollanda",
+    "takimTuru": "milli",
+    "donem": "1990–2015"
+  }
+]

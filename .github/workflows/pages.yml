@@ -1,0 +1,66 @@
+# Official actions and Pages workflow:
+# https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+name: Check and publish GitHub Pages
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      require_online:
+        description: Require filled Firebase settings for multiplayer
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      # The project uses Node built-ins and has no npm dependencies to install.
+      - name: Test game rules
+        run: npm test
+      - name: Check local assets and all game modes
+        run: npm run check
+      - name: Check multiplayer settings when requested
+        if: github.event_name == 'workflow_dispatch' && inputs.require_online
+        run: npm run check:online
+      - name: Package runtime files
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: artifacts/site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Publish static artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

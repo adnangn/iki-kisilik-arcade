@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f8f1df">
+    <meta name="robots" content="noindex">
+    <title>Metin Atölyesi — İki Kişilik</title>
+    <link rel="preload" href="./assets/fonts/PressStart2P-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/VT323-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./editor.css">
+    <script type="module" src="./js/text-editor.js"></script>
+  </head>
+  <body class="editor-body">
+    <div class="editor-shell">
+      <header class="editor-header">
+        <a class="editor-brand" href="./" aria-label="Oyuna dön"><span class="editor-pixel-icon" aria-hidden="true">▦</span><span>İKİ KİŞİLİK<span class="brand-dot">.</span></span></a>
+        <a class="editor-back" href="./">Oyuna dön <span aria-hidden="true">↗</span></a>
+      </header>
+      <main id="editor-main">
+        <section class="editor-intro" aria-labelledby="editor-title">
+          <p class="eyebrow">KELİMELERİNLE OYNA</p>
+          <h1 id="editor-title">Metin Atölyesi</h1>
+          <p>Butonları, başlıkları ve oyun cümlelerini kendi dilinle yaz. Kodları açmana gerek yok.</p>
+        </section>
+
+        <section class="editor-toolbar panel" aria-label="Metin düzenleme araçları">
+          <div class="editor-filters">
+            <div><label class="field-label" for="editor-search">METİN ARA</label><input id="editor-search" type="search" placeholder="Örn. oda kur, rövanş, başlık…" autocomplete="off" spellcheck="false" aria-controls="editor-fields"></div>
+            <div><label class="field-label" for="editor-group">BÖLÜM</label><select id="editor-group" aria-controls="editor-fields"><option value="">Bütün bölümler</option></select></div>
+          </div>
+          <div class="editor-actions">
+            <button id="editor-preview" class="editor-button editor-button-primary" type="button" disabled>Önizlemeyi aç <span aria-hidden="true">↗</span></button>
+            <button id="editor-download" class="editor-button editor-button-mint" type="button" disabled>Metinleri indir <span aria-hidden="true">↓</span></button>
+            <label class="editor-button editor-file-label" for="editor-import">Dosyadan yükle <span aria-hidden="true">↑</span><input id="editor-import" class="sr-only" type="file" accept=".json,application/json" disabled></label>
+          </div>
+          <div class="editor-status-row"><p id="editor-change-count">Metinler yükleniyor…</p><p id="editor-save-status" role="status" aria-live="polite" aria-atomic="true">Birazdan hazır.</p></div>
+          <p id="editor-error" class="editor-error" role="alert" hidden></p>
+        </section>
+
+        <aside class="editor-note" aria-label="Değişiklikler nasıl yayımlanır?">
+          <span class="editor-note-icon" aria-hidden="true">i</span>
+          <div><strong>Önce dene, sonra paylaş.</strong><p>Taslağın bu tarayıcıda otomatik saklanır. Önizleme yalnız bu cihazdaki tarayıcı için geçerlidir. Herkesin görmesi için indirdiğin <strong>metinler.json</strong> dosyasını GitHub’daki aynı dosyanın yerine yükle ve site yayınının tamamlanmasını bekle.</p><p>Bu araç oda verilerini veya Firebase ayarlarını değiştirmez. Özel giriş gerekmez.</p></div>
+        </aside>
+
+        <div id="editor-preview-note" class="editor-preview-note" hidden><p><span class="editor-led" aria-hidden="true"></span> Bu tarayıcıda metin önizlemesi açık. Açık oyun sayfasını yenileyerek son kaydedilen geçerli taslağı görebilirsin.</p><button id="editor-stop-preview" class="editor-small-button" type="button">Önizlemeyi kapat</button></div>
+        <p id="editor-results" class="editor-results" role="status" aria-live="polite"></p>
+        <div id="editor-fields" class="editor-fields" aria-busy="true"></div>
+        <div id="editor-empty" class="editor-empty panel" hidden><span aria-hidden="true">▦</span><h2>Bu aramada metin bulunamadı.</h2><p>Başka bir kelime yaz veya bölüm filtresini değiştir.</p></div>
+
+        <section class="editor-reset-panel panel" aria-label="Varsayılan metinler">
+          <div><h2>İlk kelimelere dön.</h2><p>Bütün alanları oyunun varsayılan metinlerine döndürebilirsin.</p></div>
+          <button id="editor-reset" class="editor-small-button" type="button" disabled>Tümünü varsayılana döndür</button>
+          <div id="editor-reset-confirm" class="editor-reset-confirm" hidden><p>Bu tarayıcıdaki taslak değişecek. İstersen önce mevcut metinleri indirip sakla.</p><div><button id="editor-reset-yes" class="editor-small-button editor-danger-button" type="button">Evet, varsayılana dön</button><button id="editor-reset-no" class="editor-small-button" type="button">Vazgeç</button></div></div>
+        </section>
+      </main>
+      <footer class="editor-footer"><span>AZ KOD. BOL KARAKTER.</span><a href="./">Oyun seni bekliyor ↗</a></footer>
+    </div>
+  </body>
+</html>
