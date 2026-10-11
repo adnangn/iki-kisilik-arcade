@@ -1,4 +1,24 @@
 {
   "version": 1,
-  "texts": {}
+  "texts": {
+    "site.description": "Akıyoruz",
+    "site.title": "Adoapp",
+    "static.003": "AdoApp",
+    "site.name": "Adoapp",
+    "site.tagline": "Kim kimi koparırsa",
+    "lobby.hero.first": "Hadi",
+    "lobby.hero.second": "Bakalım",
+    "lobby.hero.accent": "Yeğenim",
+    "lobby.hero.description-end": "Eski usul",
+    "static.021": "Başla Yeğenim !",
+    "static.031": "20 TL var en iyi kadroyu kur !",
+    "static.037": "Güncellenecek",
+    "static.041": "Örn. AdoBaba",
+    "static.053": "!",
+    "static.054": "!",
+    "static.055": "!",
+    "static.056": "reaksiyon",
+    "static.109": "XD",
+    "static.110": "Kudurdum"
+  }
 }
