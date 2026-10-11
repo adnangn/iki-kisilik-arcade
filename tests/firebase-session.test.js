@@ -17,18 +17,20 @@ function deferred() {
   return { promise, release };
 }
 
-function sdkFixture(initialUser = { uid: 'session-user' }) {
+function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = false } = {}) {
   const events = [];
   const records = new Map();
   const disconnectRemovals = new Set();
   const dbListeners = new Set();
   const authListeners = new Set();
   const apps = [];
+  const readErrors = new Map();
   const auth = { currentUser: initialUser, async authStateReady() { events.push({ type: 'auth-ready' }); } };
   const db = {};
   let connected = true;
   let nextDisconnectGate = null;
   let nextTransactionRetryGate = null;
+  let nextRoomValueGate = null;
 
   function emitAuth(user) {
     auth.currentUser = user;
@@ -75,17 +77,26 @@ function sdkFixture(initialUser = { uid: 'session-user' }) {
     serverTimestamp: () => ({ '.sv': 'timestamp' }),
     goOnline(target) { assert.equal(target, db); events.push({ type: 'go-online' }); emitConnection(true); },
     goOffline(target) { assert.equal(target, db); events.push({ type: 'go-offline' }); emitConnection(false); },
+    // Like the SDK, a completed get() does not retain an unwatched room cache.
     async get(reference) { return snapshot(records.get(reference.path)); },
-    onValue(reference, callback) {
-      const listener = { path: reference.path, callback }; dbListeners.add(listener);
-      queueMicrotask(() => {
-        if (dbListeners.has(listener)) callback(snapshot(reference.path === '.info/connected' ? connected : records.get(reference.path)));
+    onValue(reference, callback, onError) {
+      const listener = { path: reference.path, callback, ready: false }; dbListeners.add(listener);
+      const gate = reference.path.startsWith('rooms/') ? nextRoomValueGate : null;
+      if (gate) nextRoomValueGate = null;
+      queueMicrotask(async () => {
+        if (gate) await gate.promise;
+        if (!dbListeners.has(listener)) return;
+        if (readErrors.has(reference.path)) { onError?.(readErrors.get(reference.path)); return; }
+        listener.ready = true;
+        callback(snapshot(reference.path === '.info/connected' ? connected : records.get(reference.path)));
       });
       return () => dbListeners.delete(listener);
     },
     async runTransaction(reference, reducer, options) {
       assert.equal(options?.applyLocally, false);
-      let proposed = reducer(clone(records.get(reference.path)));
+      const retained = !coldRoomCache || !reference.path.startsWith('rooms/') ||
+        [...dbListeners].some(listener => listener.path === reference.path && listener.ready);
+      let proposed = reducer(retained ? clone(records.get(reference.path)) : null);
       const retryGate = nextTransactionRetryGate; nextTransactionRetryGate = null;
       if (retryGate) {
         await retryGate.promise;
@@ -115,9 +126,11 @@ function sdkFixture(initialUser = { uid: 'session-user' }) {
   };
   return {
     loadSDK: async () => [appSDK, authSDK, dbSDK],
-    events, records, auth, emitAuth, emitConnection,
+    events, records, auth, emitAuth, emitConnection, readErrors,
     holdNextDisconnect() { const gate = deferred(); nextDisconnectGate = gate; return gate; },
     retryNextTransaction() { const gate = deferred(); nextTransactionRetryGate = gate; return gate; },
+    holdNextRoomValue() { const gate = deferred(); nextRoomValueGate = gate; return gate; },
+    subscriberCount(path) { return [...dbListeners].filter(item => item.path === path).length; },
     get connectionSubscriberCount() { return [...dbListeners].filter(item => item.path === '.info/connected').length; },
     get authSubscriberCount() { return authListeners.size; },
   };
@@ -200,6 +213,91 @@ test('same-UID auth refresh retains the connection and valid player mutations', 
   await state.service.react('123456', 'laugh');
   await state.service.react('123456', 'heart');
   assert.equal(state.fixture.records.get(`reactions/123456/${state.service.uid}`).seq, 2);
+});
+
+test('joining retains a cold room cache through its transaction and releases temporary listeners on every exit', async t => {
+  const fixture = sdkFixture({ uid: 'guest' }, { coldRoomCache: true });
+  const { service } = await openFixture(t, fixture);
+  const path = 'rooms/957722';
+  const waiting = { code: '957722', status: 'waiting', revision: 0, players: { p1: { uid: 'owner', name: 'Ado' } } };
+  fixture.records.set(path, waiting);
+  const [, , dbSDK] = await fixture.loadSDK();
+  assert.deepEqual((await dbSDK.get({ path })).val(), waiting);
+  const cold = await dbSDK.runTransaction({ path }, current => {
+    assert.equal(current, null, 'An unwatched get must not mask the real SDK cold cache.');
+    return undefined;
+  }, { applyLocally: false });
+  assert.equal(cold.committed, false);
+
+  const retryGate = fixture.retryNextTransaction();
+  const joining = service.joinRoom('957722', 'Can');
+  await flush();
+  assert.equal(fixture.subscriberCount(path), 1, 'The cache listener must survive until the transaction settles.');
+  retryGate.release();
+  const joined = await joining;
+  assert.deepEqual(joined.players.p1, waiting.players.p1);
+  assert.deepEqual(joined.players.p2, { uid: 'guest', name: 'Can' });
+  assert.equal(joined.revision, 1);
+  assert.equal(fixture.subscriberCount(path), 0);
+
+  const writes = fixture.events.filter(event => event.type === 'transaction').length;
+  assert.deepEqual(await service.joinRoom('957722', 'New name'), joined);
+  assert.equal(fixture.events.filter(event => event.type === 'transaction').length, writes);
+  assert.equal(fixture.subscriberCount(path), 0);
+  await assert.rejects(service.joinRoom('123456', 'Can'), /Bu kodla bir oda bulunamadı/);
+  assert.equal(fixture.subscriberCount('rooms/123456'), 0);
+
+  fixture.records.set(path, { ...joined, players: { ...joined.players, p2: { uid: 'other-guest', name: 'Other' } } });
+  await assert.rejects(service.joinRoom('957722', 'Can'), /Bu oda dolu veya oyun başladı/);
+  assert.equal(fixture.subscriberCount(path), 0);
+
+  fixture.records.set(path, waiting);
+  const competitorGate = fixture.retryNextTransaction();
+  const competingJoin = service.joinRoom('957722', 'Can');
+  const refusedCompetitor = assert.rejects(competingJoin, /Bu oda dolu veya oyun başladı/);
+  await flush();
+  const competitor = { ...joined, players: { ...joined.players, p2: { uid: 'other-guest', name: 'Other' } } };
+  fixture.records.set(path, competitor);
+  competitorGate.release();
+  await refusedCompetitor;
+  assert.deepEqual(fixture.records.get(path), competitor, 'A losing join must preserve the winner of the seat race.');
+  assert.equal(fixture.subscriberCount(path), 0);
+
+  fixture.records.set(path, waiting);
+  const sameUidGate = fixture.retryNextTransaction();
+  const sameUidJoin = service.joinRoom('957722', 'Can');
+  await flush();
+  fixture.records.set(path, joined);
+  sameUidGate.release();
+  assert.deepEqual(await sameUidJoin, joined);
+  assert.equal(fixture.subscriberCount(path), 0);
+
+  const denied = Object.assign(new Error('permission denied'), { code: 'PERMISSION_DENIED' });
+  fixture.readErrors.set(path, denied);
+  await assert.rejects(service.joinRoom('957722', 'Can'), error => error === denied);
+  assert.equal(fixture.subscriberCount(path), 0);
+  fixture.readErrors.delete(path);
+
+  const gate = fixture.holdNextRoomValue();
+  const pending = service.joinRoom('957722', 'Can');
+  const rejected = assert.rejects(pending, /Oyuncu oturumu kapandı/);
+  fixture.emitAuth({ uid: 'replacement' }); await flush();
+  assert.equal(fixture.subscriberCount(path), 0);
+  gate.release();
+  await rejected;
+  assert.deepEqual(fixture.records.get(path), joined);
+
+  const disposedFixture = sdkFixture({ uid: 'guest' }, { coldRoomCache: true });
+  const { service: disposedService } = await openFixture(t, disposedFixture);
+  disposedFixture.records.set(path, waiting);
+  const disposedGate = disposedFixture.holdNextRoomValue();
+  const pendingDispose = disposedService.joinRoom('957722', 'Can');
+  const rejectedDispose = assert.rejects(pendingDispose, /Oyuncu oturumu kapandı/);
+  disposedService.dispose();
+  assert.equal(disposedFixture.subscriberCount(path), 0);
+  disposedGate.release();
+  await rejectedDispose;
+  assert.equal(disposedFixture.events.filter(event => event.type === 'transaction').length, 0);
 });
 
 test('presence is published only after disconnect cleanup registration, including reconnect', async t => {

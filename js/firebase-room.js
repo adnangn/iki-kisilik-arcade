@@ -22,7 +22,12 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   let connected = false;
   let disposed = false;
   const presenceStops = new Set();
+  const joinStops = new Set();
   const connectionListeners = new Set();
+  const cancelJoins = () => {
+    for (const stop of joinStops) stop(new RoomError('Oyuncu oturumu kapandı. Yeni bir oturum açın.'));
+    joinStops.clear();
+  };
   dbSDK.goOnline(db);
   const unwatchConnection = onValue(ref(db, '.info/connected'), snapshot => {
     if (disposed) return;
@@ -33,7 +38,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   const unwatchAuth = authSDK.onAuthStateChanged(auth, current => {
     if (disposed || current?.uid === user.uid) return;
     disposed = true; connected = false;
-    unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear();
+    unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
     dbSDK.goOffline(db);
     onSessionEnded();
   });
@@ -85,19 +90,44 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     },
     async joinRoom(code, name) {
       assertOnline();
-      // Prime the cache; a transaction may first receive null before fetching.
-      const snapshot = await get(ref(db, `rooms/${code}`));
-      if (seatFor(snapshot.val(), user.uid)) return snapshot.val();
-      try { return await transact(`rooms/${code}`, current => {
+      const roomRef = ref(db, `rooms/${code}`);
+      let unsubscribe = () => {};
+      let rejectRead = () => {};
+      const stop = error => {
+        unsubscribe(); unsubscribe = () => {};
+        if (error) rejectRead(error);
+      };
+      joinStops.add(stop);
+      try {
+        // get() releases its temporary cache before returning. Keep a real
+        // listener through the transaction so an existing room cannot look
+        // absent in its first callback. The first value is fully synchronized.
+        const snapshot = await new Promise((resolve, reject) => {
+          rejectRead = reject;
+          unsubscribe = onValue(roomRef, resolve, reject);
+        });
+        assertOnline();
+        const current = snapshot.val();
         if (!current) throw new RoomError('Bu kodla bir oda bulunamadı.');
-        if (seatFor(current, user.uid)) throw new RoomError('ALREADY_MEMBER');
-        if (current.status !== 'waiting' || current.players.p2) throw new RoomError('Bu oda dolu veya oyun başladı.');
-        return { ...current, revision: current.revision + 1,
-          players: { ...current.players, p2: { uid: user.uid, name } } };
-      }); } catch (error) {
-        // A second tab may have claimed this same anonymous identity meanwhile.
-        if (error.message === 'ALREADY_MEMBER') return (await get(ref(db, `rooms/${code}`))).val();
-        throw error;
+        if (seatFor(current, user.uid)) return current;
+        try { return await transact(`rooms/${code}`, value => {
+          if (!value) throw new RoomError('Bu kodla bir oda bulunamadı.');
+          if (seatFor(value, user.uid)) throw new RoomError('ALREADY_MEMBER');
+          if (value.status !== 'waiting' || value.players.p2) throw new RoomError('Bu oda dolu veya oyun başladı.');
+          return { ...value, revision: value.revision + 1,
+            players: { ...value.players, p2: { uid: user.uid, name } } };
+        }); } catch (error) {
+          // A second tab may have claimed this same anonymous identity meanwhile.
+          if (error.message === 'ALREADY_MEMBER') {
+            const latest = await get(roomRef);
+            assertOnline();
+            return latest.val();
+          }
+          throw error;
+        }
+      } finally {
+        joinStops.delete(stop);
+        stop();
       }
     },
     mutateRoom(code, reducer) { return transact(`rooms/${code}`, reducer); },
@@ -156,7 +186,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     },
     dispose() {
       disposed = true; connected = false;
-      unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear();
+      unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
       dbSDK.goOffline(db);
     }
   };
