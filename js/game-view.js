@@ -1,4 +1,5 @@
 import { t } from './texts.js';
+import { assetUrl } from './assets.js';
 export const ROUND_NAMES = [];
 Object.defineProperty(ROUND_NAMES, 0, { enumerable: true, get: () => t('runtime.copy.son_16') });
 Object.defineProperty(ROUND_NAMES, 1, { enumerable: true, get: () => t('runtime.copy.ceyrek_final') });
@@ -6,12 +7,12 @@ Object.defineProperty(ROUND_NAMES, 2, { enumerable: true, get: () => t('runtime.
 Object.defineProperty(ROUND_NAMES, 3, { enumerable: true, get: () => t('runtime.copy.final') });
 export const ROLE_NAMES = { get start() { return t('runtime.copy.start'); }, get bench() { return t('runtime.copy.bench'); }, get cut() { return t('runtime.copy.cut'); } };
 const cardImage = card => {
-  const img = document.createElement('img'); img.src = './' + (card?.gorsel || 'assets/images/placeholder.svg'); img.alt = ''; img.width = 96; img.height = 96; return img;
+  const img = document.createElement('img'); img.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg'); img.alt = ''; img.width = 96; img.height = 96; return img;
 };
 const detailFor = card => card?.takim ? t('runtime.common.card_details', { team: card.takim, tag: card.etiket }) : card?.etiket || '';
 
 export function fillCard(prefix, card) {
-  const image = document.getElementById(prefix + '-image'); image.src = './' + (card?.gorsel || 'assets/images/placeholder.svg'); image.alt = card?.isim || t('runtime.common.card');
+  const image = document.getElementById(prefix + '-image'); image.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg'); image.alt = card?.isim || t('runtime.common.card');
   document.getElementById(prefix + '-name').textContent = card?.isim || t('runtime.common.card');
   document.getElementById(prefix + '-tag').textContent = card?.etiket || '—';
   const affiliation = document.getElementById(prefix + '-affiliation'); affiliation.textContent = card?.takim || ''; affiliation.hidden = !card?.takim;

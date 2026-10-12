@@ -181,6 +181,8 @@ npm run build
 
 İç yollar `./styles.css`, `./app.js`, `./veri.json` ve `./assets/images/...` biçimindedir. URL yönlendirme/history routing yoktur; ekran değişimleri DOM ile yapılır, böylece yenileme 404'e yol açmaz. Firebase SDK'sı resmi CDN'den sabit 13.0.0 sürümüyle gerektiğinde yüklenir; internet bağlantısı gerekir. Yerel `tools/serve.mjs` canlı ortamda çalıştırılmaz.
 
+Paketleme, çalışma dosyalarının içeriğinden ortak bir sürüm özeti üretir. HTML/CSS/JS içindeki yerel modül, stil, veri ve statik görsel adreslerine aynı `?v=` değeri eklenir; `js/assets.js` oyun kartlarının görsellerini de aynı sürümle açar. Böylece GitHub Pages'in eski modül veya portre önbelleği yeni yayına taşınmaz. `veri.json` kart kimlikleri/görsel yolları ve Firebase'in sabit CDN adresleri değiştirilmez. Bu davranışın beş regresyon kontrolüyle güncel birim testi toplamı **125/125** oldu. Veriler yüklenirken erken kategori seçildiğinde kart sayaçları gerçek sayılarla yeniden çizilir ve seçilmiş volüm korunur.
+
 ## Veri formatı
 
 `veri.json` içinde 22 kart havuzu aynı kart sözleşmesini kullanır. Sekiz ana kategori Futbolcular, Yemekler ve İçecekler, Diziler ve Filmler, Yerli Müzik, Şehirler ve Ülkeler, Nostalji, Oyun Karakterleri ve Oyunlar'dır. Lobide 21 koleksiyon seçilebilir; eski birleşik `oyun-evreni` havuzu yalnız mevcut odaların devamı için korunur ve yeni oda seçimi olarak gösterilmez. Seçilen havuz oda kurarken kaydedilir; bot, katılan oyuncu ve rövanş aynı havuzu kullanır. Ana kategoriye geri dönünce o kategorinin son alt seçimi hatırlanır. Kart galerisi isim, takım veya etiketle aranabilir.

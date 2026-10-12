@@ -12,6 +12,7 @@ import { chooseBotMove } from './js/demo-bot.js';
 import { changeRoom, seatFor, otherSeat, hasOptionalSpectator, rematchStarter, RoomError } from './js/room-state.js';
 import { connectFirebase } from './js/firebase-room.js';
 import { DATASET_GROUPS, DATASET_NAMES, resolveDatasetId } from './js/datasets.js';
+import { assetUrl } from './js/assets.js';
 
 const $ = id => document.getElementById(id);
 const SESSION_KEY = 'iki-kisilik.room.v1';
@@ -149,7 +150,7 @@ function renderCollection() {
   $('collection-empty').hidden = !!matching.length;
   $('collection-grid').replaceChildren(...matching.map(card => {
     const item = document.createElement('div'); item.className = 'collection-card';
-    const image = document.createElement('img'); image.src = './' + card.gorsel; image.alt = ''; image.loading = 'lazy'; image.width = 96; image.height = 96;
+    const image = document.createElement('img'); image.src = assetUrl(card.gorsel); image.alt = ''; image.loading = 'lazy'; image.width = 96; image.height = 96;
     const name = document.createElement('strong'); name.textContent = card.isim;
     const detail = document.createElement('span'); detail.textContent = card.takim || card.evren || card.etiket;
     item.append(image, name, detail); return item;
@@ -161,10 +162,10 @@ function renderDatasetPreview() {
   const id = selectedDatasetId();
   const familyId = DATASET_GROUPS[category].families?.find(family => family.sets.includes(id))?.id || null;
   if (renderedCategory !== category || renderedFamily !== familyId) renderCollectionOptions(category);
-  $('dataset-icon-image').src = `./assets/images/${DATASET_GROUPS[category].icon}-icon.svg`;
+  $('dataset-icon-image').src = assetUrl(`assets/images/${DATASET_GROUPS[category].icon}-icon.svg`);
   const cards = datasets[id] || [];
   $('dataset-preview-images').replaceChildren(...cards.slice(0, 4).map(card => {
-    const img = document.createElement('img'); img.src = './' + card.gorsel; img.alt = ''; return img;
+    const img = document.createElement('img'); img.src = assetUrl(card.gorsel); img.alt = ''; return img;
   }));
   $('dataset-preview-label').textContent = cards.length ? t('runtime.collection.preview', { count: cards.length, dataset: DATASET_NAMES[id] }) : t('runtime.copy.kartlar_yukleniyor');
   const collection = DATASET_GROUPS[category].sets.find(set => set.id === id);
@@ -291,7 +292,7 @@ function renderRoster(element, entries = []) {
   for (const entry of entries) {
     const card = getCard(entry.id);
     const item = document.createElement('li'); item.className = 'roster-item';
-    const img = document.createElement('img'); img.className = 'card-mini'; img.alt = ''; img.src = './' + (card?.gorsel || 'assets/images/placeholder.svg');
+    const img = document.createElement('img'); img.className = 'card-mini'; img.alt = ''; img.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg');
     const label = document.createElement('span'); label.textContent = card?.isim || t('runtime.common.card');
     if (card?.takim) { const team = document.createElement('small'); team.textContent = card.takim; label.append(team); }
     const price = document.createElement('span'); price.className = 'price'; price.textContent = t('runtime.common.money', { amount: entry.price });
@@ -379,7 +380,7 @@ function render() {
   if (lastVisualState?.cardKey !== cardKey) animateOnce(document.querySelector('.auction-card'), 'card-reveal');
   else if (lastVisualState?.bid !== game.highestBid) { animateOnce($('highest-bid'), 'bid-bump'); beep('bid'); }
   const card = getCard(game.currentCardId);
-  $('card-image').src = './' + (card?.gorsel || 'assets/images/placeholder.svg');
+  $('card-image').src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg');
   $('card-image').alt = card?.isim || t('runtime.copy.acik_artirma_karti');
   $('card-name').textContent = card?.isim || t('runtime.common.card');
   $('card-affiliation').textContent = card?.takim || '';
@@ -450,7 +451,7 @@ function renderBlind(connected, bothOnline) {
   $('blind-role').textContent = isActive ? t('runtime.copy.sen_siraliyorsun') : t('runtime.copy.izleyici_modu');
   $('blind-role').classList.toggle('is-viewer', !isActive);
   $('blind-active-name').textContent = nameFor(game.activeSeat);
-  $('blind-card-image').src = './' + (card?.gorsel || 'assets/images/placeholder.svg');
+  $('blind-card-image').src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg');
   $('blind-card-image').alt = card?.isim || t('runtime.copy.siradaki_kart');
   $('blind-card-name').textContent = card?.isim || t('runtime.copy.siradaki_kart');
   $('blind-card-tag').textContent = card?.etiket || '—';
@@ -589,7 +590,7 @@ function animateAward(seat, cardId, originRect, target) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const from = originRect || source.getBoundingClientRect(), to = destination.getBoundingClientRect();
   const ghost = source.cloneNode(); ghost.removeAttribute('id'); ghost.alt = ''; ghost.className = 'award-ghost';
-  ghost.src = './' + (getCard(cardId)?.gorsel || 'assets/images/placeholder.svg');
+  ghost.src = assetUrl(getCard(cardId)?.gorsel || 'assets/images/placeholder.svg');
   Object.assign(ghost.style, { position: 'fixed', left: `${from.left}px`, top: `${from.top}px`, width: `${from.width}px`, height: `${from.height}px`, zIndex: '40', pointerEvents: 'none' });
   document.body.append(ghost);
   const animation = ghost.animate([{ transform: 'translate(0,0) scale(1)', opacity: 0.8 }, { transform: `translate(${to.left + to.width / 2 - from.left - from.width / 2}px,${to.top - from.top}px) scale(.25)`, opacity: 0 }], { duration: 600, easing: 'steps(10)' });
@@ -619,7 +620,7 @@ function showReaction(type, sender) {
   const item = document.createElement('div'); item.className = `reaction-pop reaction-${type}`;
   const glyph = document.createElement('span');
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); icon.setAttribute('viewBox', '0 0 16 16'); icon.setAttribute('aria-hidden', 'true');
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use'); use.setAttribute('href', `./assets/images/reactions.svg#${REACTIONS[type] ? type : 'laugh'}`);
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use'); use.setAttribute('href', assetUrl(`assets/images/reactions.svg#${REACTIONS[type] ? type : 'laugh'}`));
   icon.append(use); glyph.append(icon);
   const text = document.createElement('strong'); text.textContent = t('runtime.reaction.notification', { player: sender, reaction: label });
   item.append(glyph, text); $('reaction-stage').append(item);

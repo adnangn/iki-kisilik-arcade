@@ -1,4 +1,5 @@
 import { t } from './texts.js';
+import { assetUrl } from './assets.js';
 // Shared numbered list for the live view and the final ranking.
 // Update individual rows so connection updates do not restart placement effects.
 export function renderRankingList(element, slots, cardFor, highlightSlot = 0) {
@@ -21,7 +22,7 @@ export function renderRankingList(element, slots, cardFor, highlightSlot = 0) {
       const number = document.createElement('span'); number.className = 'rank-number'; number.textContent = String(slot);
       if (id !== undefined) {
         const card = cardFor(id);
-        const image = document.createElement('img'); image.className = 'rank-image'; image.src = './' + (card?.gorsel || 'assets/images/placeholder.svg'); image.alt = ''; image.width = 96; image.height = 96;
+        const image = document.createElement('img'); image.className = 'rank-image'; image.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg'); image.alt = ''; image.width = 96; image.height = 96;
         const info = document.createElement('div'); info.className = 'rank-info';
         const name = document.createElement('strong'); name.textContent = card?.isim || t('runtime.common.card'); name.title = name.textContent;
         const detail = document.createElement('small'); detail.textContent = card?.takim ? t('runtime.common.card_details', { team: card.takim, tag: card.etiket }) : card?.etiket || '';
