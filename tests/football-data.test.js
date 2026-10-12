@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
 import { DATASET_GROUPS, DATASET_NAMES, LEGACY_DATASET_IDS, resolveDatasetId } from '../js/datasets.js';
 import { createAuction, passTurn } from '../js/auction.js';
+import { changeRoom } from '../js/room-state.js';
+import { draftTriplets } from '../js/game-setup.js';
 
 const root = new URL('../', import.meta.url);
 const datasets = JSON.parse(await readFile(new URL('veri.json', root), 'utf8'));
@@ -61,7 +63,7 @@ test('familiar food volumes reuse complete card records and local images from th
   ]);
 });
 
-for (const [key, count] of Object.entries({ 'cocukluk-cizgifilmleri': 60, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35, 'turkiye-sehirleri': 81, 'oyun-karakterleri': 60, oyunlar: 40, 'oyun-evreni': 100, ulkeler: 80 })) {
+for (const [key, count] of Object.entries({ 'cocukluk-cizgifilmleri': 60, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35, 'turkiye-sehirleri': 81, 'oyun-karakterleri': 60, oyunlar: 40, 'oyun-evreni': 100, 'valorant-ajanlari': 29, 'lol-sampiyonlari': 173, ulkeler: 80 })) {
   test(`${key}: exactly ${count} unique cards with safe local SVG images`, async () => verifyCards(datasets[key], count));
 }
 
@@ -105,6 +107,78 @@ test('characters and games are exclusive pools that preserve the archived mixed 
   }
   for (const name of ['Minecraft', 'Grand Theft Auto V', 'PES 2013', 'Counter-Strike 2', 'Tetris', 'League of Legends', 'Valorant']) {
     assert.ok(games.some(card => card.isim === name), name);
+  }
+});
+
+test('Valorant and League of Legends use separate complete character pools with stable feed identities', async () => {
+  const expectations = [
+    ['valorant-ajanlari', 'Valorant', 'valorant-agents.json', 17001, 29,
+      ['Jett', 'Reyna', 'Sage', 'Phoenix', 'Miks', 'Veto']],
+    ['lol-sampiyonlari', 'League of Legends', 'lol-champions.json', 18001, 173,
+      ['Ahri', 'Ashe', 'Jinx', 'Yasuo', 'Lux', 'Locke', 'Yunara', 'Zaahen']]
+  ];
+  const gameIds = new Set([...datasets['oyun-karakterleri'], ...datasets.oyunlar].map(card => card.id));
+  for (const [key, universe, filename, firstId, count, requested] of expectations) {
+    const cards = datasets[key];
+    const feed = JSON.parse(await readFile(new URL(`tools/${filename}`, root), 'utf8'));
+    assert.deepEqual(cards, feed[key], `${key}: all published records must match the reproducible source feed`);
+    assert.equal(cards.length, count);
+    assert.ok(cards.every(card => card.tip === 'karakter' && card.evren === universe), key);
+    assert.deepEqual(cards.map(card => card.id).sort((a, b) => a - b), Array.from({ length: count }, (_, index) => firstId + index));
+    assert.ok(cards.every(card => !gameIds.has(card.id)), `${key}: new IDs must not collide with the existing game decks`);
+    for (const name of requested) assert.ok(cards.some(card => card.isim === name), `${key}: ${name}`);
+    assert.ok(new Set(cards.map(card => card.etiket)).size >= 4, `${key}: classes/roles should remain available to draft matching trios`);
+  }
+  assert.deepEqual([...new Set(datasets['valorant-ajanlari'].map(card => card.etiket))].sort(),
+    ['Düellocu', 'Kontrol Uzmanı', 'Gözcü', 'Öncü'].sort());
+  const riotClasses = { Fighter: 'Dövüşçü', Mage: 'Büyücü', Marksman: 'Nişancı', Assassin: 'Suikastçı', Tank: 'Tank', Support: 'Destek' };
+  assert.equal(new Set(datasets['lol-sampiyonlari'].map(card => card.riotId)).size, 173);
+  for (const card of datasets['lol-sampiyonlari']) {
+    assert.ok(card.riotId && Array.isArray(card.riotSiniflar) && card.riotSiniflar.length >= 1, card.isim);
+    assert.equal(card.etiket, riotClasses[card.riotSiniflar[0]], `${card.isim}: draft classes must use the official first class`);
+  }
+  const valorantNames = new Set(datasets['valorant-ajanlari'].map(card => card.isim));
+  assert.ok(datasets['lol-sampiyonlari'].every(card => !valorantNames.has(card.isim)), 'League of Legends champions must not be mixed with Valorant agents.');
+});
+
+test('each of the four Oyun collections finishes every mode and rematches without mixing its cards', () => {
+  for (const datasetId of ['oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari']) {
+    const cards = datasets[datasetId];
+    const ids = new Set(cards.map(card => card.id));
+    const deck = cards.map(card => card.id);
+    const triplets = draftTriplets(cards, () => 0);
+    for (const mode of ['auction', 'blind-ranking', 'bracket', 'team-draft']) {
+      const payload = mode === 'team-draft' ? { triplets } : { deck };
+      let room = { code: '918002', ownerUid: 'p1', datasetId, mode, status: 'waiting', round: 1,
+        starterSeat: 'p1', revision: 0, players: { p1: { uid: 'p1', name: 'Alice' }, p2: { uid: 'p2', name: 'Bob' } } };
+      room = changeRoom(room, 'p1', room.revision, 'start', payload);
+      if (mode === 'team-draft') {
+        for (const triplet of room.game.triplets) assert.ok(triplet.cards.every(id => ids.has(id)));
+      } else assert.ok(room.game.deck.every(id => ids.has(id)));
+      let rank = 1;
+      while (room.status === 'playing') {
+        if (mode === 'auction') room = changeRoom(room, room.game.turnSeat, room.revision, 'pass');
+        else if (mode === 'blind-ranking') room = changeRoom(room, 'p1', room.revision, 'rank', { slot: rank++ });
+        else if (mode === 'bracket') room = changeRoom(room, 'p1', room.revision, 'choose', { cardId: room.game.currentPair.left });
+        else {
+          const seat = ['p1', 'p2'].find(seat => !room.game.players[seat].done);
+          const player = room.game.players[seat];
+          const role = ['start', 'bench', 'cut'].find(role => !player.pending?.[role]);
+          const cardId = room.game.triplets[player.roundIndex].cards.find(id => !Object.values(player.pending || {}).includes(id));
+          room = changeRoom(room, seat, room.revision, 'assign', { role, cardId });
+        }
+      }
+      assert.equal(room.status, 'finished', `${datasetId}/${mode}`);
+      const rematch = changeRoom(room, 'p2', room.revision, 'rematch', payload);
+      assert.equal(rematch.code, room.code);
+      assert.equal(rematch.datasetId, datasetId);
+      assert.equal(rematch.mode, mode);
+      assert.equal(rematch.round, 2);
+      assert.equal(rematch.starterSeat, 'p2');
+      assert.equal(rematch.status, 'playing');
+      if (mode === 'team-draft') assert.equal(rematch.game.assignmentCount, 0);
+      else assert.ok(rematch.game.deck.every(id => ids.has(id)));
+    }
   }
 });
 
@@ -205,10 +279,10 @@ test('requested current stars use their verified club and every club card has a 
   }
 });
 
-test('eight categories resolve to twenty-one visible pools with one archived mixed deck', () => {
+test('seven categories resolve to twenty-three visible pools with four distinct Oyun choices and one archived deck', async () => {
   assert.deepEqual(Object.keys(DATASET_NAMES).sort(), Object.keys(datasets).sort());
-  assert.equal(Object.keys(DATASET_GROUPS).length, 8);
-  assert.equal(Object.keys(DATASET_NAMES).length, 22);
+  assert.equal(Object.keys(DATASET_GROUPS).length, 7);
+  assert.equal(Object.keys(DATASET_NAMES).length, 24);
   assert.equal(resolveDatasetId('futbol', 'superlig'), 'superlig');
   assert.equal(resolveDatasetId('yemek', 'tatli'), 'tatli');
   assert.equal(resolveDatasetId('yemek', 'yemek'), 'yemek');
@@ -230,21 +304,25 @@ test('eight categories resolve to twenty-one visible pools with one archived mix
   assert.equal(resolveDatasetId('ankara', 'ulkeler'), 'ulkeler');
   assert.equal(resolveDatasetId('nostalji', 'kantin-bakkal'), 'kantin-bakkal');
   assert.equal(resolveDatasetId('nostalji', 'doksanlar-nostalji'), 'doksanlar-nostalji');
-  assert.equal(resolveDatasetId('oyun', 'futbol'), 'oyun-karakterleri');
-  assert.equal(resolveDatasetId('oyun', 'oyunlar'), 'oyun-karakterleri');
-  assert.equal(resolveDatasetId('oyun', 'oyun-evreni'), 'oyun-karakterleri');
-  assert.equal(resolveDatasetId('video-oyunlari', 'futbol'), 'oyunlar');
-  assert.equal(resolveDatasetId('video-oyunlari', 'oyun-karakterleri'), 'oyunlar');
-  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 5, 2, 1, 4, 3, 1, 1]);
+  assert.equal(resolveDatasetId('oyun', 'futbol'), 'oyunlar');
+  assert.equal(resolveDatasetId('oyun', 'oyun-evreni'), 'oyunlar');
+  for (const id of ['oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari']) assert.equal(resolveDatasetId('oyun', id), id);
+  assert.ok(!Object.hasOwn(DATASET_GROUPS, 'video-oyunlari'));
+  assert.throws(() => resolveDatasetId('video-oyunlari', 'futbol'));
+  assert.deepEqual(DATASET_GROUPS.oyun.sets.map(set => set.id), ['oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari']);
+  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 5, 2, 1, 4, 3, 4]);
   const visibleIds = Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id));
-  assert.equal(visibleIds.length, 21);
-  assert.equal(new Set(visibleIds).size, 21);
+  assert.equal(visibleIds.length, 23);
+  assert.equal(new Set(visibleIds).size, 23);
+  const html = await readFile(new URL('index.html', root), 'utf8');
+  assert.equal((html.match(/<option\b[^>]*value="oyun"/g) || []).length, 1, 'The lobby must provide one Oyun parent category.');
+  assert.doesNotMatch(html, /<option\b[^>]*value="video-oyunlari"/);
   for (const group of Object.values(DATASET_GROUPS)) {
     for (const set of group.sets) assert.ok(Object.hasOwn(TEXT_CATALOG, set.searchKey), set.id);
   }
 });
 
-test('all twenty-two pools open and award through an auction, including volume and archived decks', () => {
+test('all twenty-four pools open and award through an auction, including volume and archived decks', () => {
   for (const cards of Object.values(datasets)) {
     const game = createAuction(cards.map(card => card.id), 'p1');
     assert.equal(game.highestBid, 1);

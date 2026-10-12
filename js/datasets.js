@@ -44,11 +44,11 @@ export const DATASET_GROUPS = {
     collection('doksanlar-nostalji', 'runtime.expansion.nineties.title', '▦', 'runtime.expansion.nineties.description', 'runtime.expansion.nineties.note', 'runtime.expansion.search.nostalgia'),
     collection('kantin-bakkal', 'runtime.expansion.snacks.title', '♥', 'runtime.expansion.snacks.description', 'runtime.expansion.snacks.note', 'runtime.expansion.search.nostalgia')
   ] },
-  oyun: { get label() { return t('runtime.category.oyun.label'); }, get heading() { return t('runtime.characters.heading'); }, icon: 'controller', sets: [
-    collection('oyun-karakterleri', 'runtime.characters.title', '✚', 'runtime.characters.description', 'runtime.characters.note', 'runtime.characters.search')
-  ] },
-  'video-oyunlari': { get label() { return t('runtime.category.video-games.label'); }, get heading() { return t('runtime.video-games.heading'); }, icon: 'controller', sets: [
-    collection('oyunlar', 'runtime.video-games.title', '▣', 'runtime.video-games.description', 'runtime.video-games.note', 'runtime.video-games.search')
+  oyun: { get label() { return t('runtime.category.oyun.label'); }, get heading() { return t('runtime.expansion.games.heading'); }, icon: 'controller', sets: [
+    collection('oyunlar', 'runtime.video-games.title', '▣', 'runtime.video-games.description', 'runtime.video-games.note', 'runtime.video-games.search'),
+    collection('oyun-karakterleri', 'runtime.characters.title', '✚', 'runtime.characters.description', 'runtime.characters.note', 'runtime.characters.search'),
+    collection('valorant-ajanlari', 'runtime.valorant.title', '⌖', 'runtime.valorant.description', 'runtime.valorant.note', 'runtime.valorant.search'),
+    collection('lol-sampiyonlari', 'runtime.lol.title', '♜', 'runtime.lol.description', 'runtime.lol.note', 'runtime.lol.search')
   ] }
 };
 

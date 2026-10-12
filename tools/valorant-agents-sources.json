@@ -1,0 +1,279 @@
+{
+  "verifiedAt": "2026-10-12",
+  "dataset": "valorant-ajanlari",
+  "count": 29,
+  "notes": [
+    "Riot Games resmi ajan dizini 29 ajan içeriyor; adlar ve dört rol her ajanın resmi profilinde doğrulandı.",
+    "29 resmi profilin masthead görseli bir kontrol montajında incelendi. Yeni Miks ve Veto portreleri varsayılan eski bilgilerle değil bu güncel resmi çizimlerle kontrol edildi.",
+    "Türkçe etiketler resmi Controller/Initiator/Duelist/Sentinel rollerinin Kontrol Uzmanı/Öncü/Düellocu/Gözcü karşılıklarıdır.",
+    "Uygulama görselleri özgün temsili 96×96 piksel SVG çizimlerdir; Riot görselleri yalnızca geliştirme sırasında referans olarak incelendi, uygulamaya kopyalanmadı ve uzaktan yüklenmez.",
+    "Bu dosya bir popülerlik sıralaması veya Riot Games onayı iddiası içermez."
+  ],
+  "roster": {
+    "title": "Riot Games — VALORANT Agents",
+    "url": "https://playvalorant.com/en-us/agents/"
+  },
+  "agents": [
+    {
+      "id": 17001,
+      "name": "Astra",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/astra/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c46c9b84f2cc977e984fe23ec3757470ac01a271-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Koyu ten, örgülü koyu saç, mor kıyafet ve altın kol ayrıntısı."
+    },
+    {
+      "id": 17002,
+      "name": "Breach",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/breach/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/39d339b3de35f47fb0bc4bb295a9dc4aa07eeb55-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Bakır kızıl uzun saç ve sakal, yeşil yelek, biyonik kollar."
+    },
+    {
+      "id": 17003,
+      "name": "Brimstone",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/brimstone/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/28db4af74acd1d78ddba82ed127a99731261b9c8-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Turuncu bere, kısa sakal, gri taktik yelek."
+    },
+    {
+      "id": 17004,
+      "name": "Chamber",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/chamber/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e0411bbb14b69f7ce3d18b56fcf33649fdcc6a4b-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kahverengi kısa saç, gözlük, beyaz gömlek, mavi yelek ve kravat."
+    },
+    {
+      "id": 17005,
+      "name": "Clove",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/clove/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/9b7acd6a5e06ac50039e4c8ec4e0c30e8dba7f5c-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu saç, pembe-mor ceket, kelebek çağrışımı."
+    },
+    {
+      "id": 17006,
+      "name": "Cypher",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/cypher/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/c5fc45f615ff1f0ca2ea71a69510316639c49ad7-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Geniş açık renk şapka, koyu tam yüz maskesi ve mavi göz ışıkları."
+    },
+    {
+      "id": 17007,
+      "name": "Deadlock",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/deadlock/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/806fdea778ca34a6afe8ec5d7a074e36a09b0036-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa sarı saç, açık renk ceket, mekanik kol ve yeşil ayrıntılar."
+    },
+    {
+      "id": 17008,
+      "name": "Fade",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/fade/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/ded0162c660c1b1f5f1667d040c80bb4140f6c4c-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Siyah-beyaz saç, koyu göz makyajı, mavi-gri kıyafet."
+    },
+    {
+      "id": 17009,
+      "name": "Gekko",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/gekko/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/eaea442872157b1108ae8a5483de2d9fd3de40ad-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa açık yeşil saç, yeşil yelek, dövmeli kollar ve yaratık arkadaşı."
+    },
+    {
+      "id": 17010,
+      "name": "Harbor",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/harbor/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/a5f673b653fc9f09f01f1be6f5c669e5af42e958-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Koyu uzun saç ve sakal, yeşil-mavi kıyafet, su halkası/kol aparatı."
+    },
+    {
+      "id": 17011,
+      "name": "Iso",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/iso/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/95a070badaa024eead9138d3e9255d8bcb155caa-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu saç, gri-mor kıyafet, enerji kalkanı."
+    },
+    {
+      "id": 17012,
+      "name": "Jett",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/jett/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/74075835ddc4e8457fb30f7fe560d2aff6d51702-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Beyaz topuz, mavi kıyafet, çıplak kollar ve rüzgâr."
+    },
+    {
+      "id": 17013,
+      "name": "KAY/O",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/kay-o/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/41354c181dc03318b79c77c5b99fee141e53cd20-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Robot gövdesi, koyu vizör, mor-mavi yüz ve göğüs ışıkları."
+    },
+    {
+      "id": 17014,
+      "name": "Killjoy",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/killjoy/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/d1a10ef502d13649e803119b02b7c9917bfc860c-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Yeşil bere, büyük gözlük, sarı ceket ve koyu saç."
+    },
+    {
+      "id": 17015,
+      "name": "Miks",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/miks/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d72334e00e79a7231635f1ae4c99f3e14b580e73-2048x852.png?accountingTag=VAL",
+      "visualReferenceNotes": "Yeşil-mor kapüşon, kısa koyu saç, turuncu kolsuz üst, ses aygıtı."
+    },
+    {
+      "id": 17016,
+      "name": "Neon",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/neon/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/911b0e61672512310b4f280a7ee65950544fee2a-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Mavi iki kuyruk saç ve sarı ışık uçları, mavi taktik kıyafet."
+    },
+    {
+      "id": 17017,
+      "name": "Omen",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/omen/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/dc30d112789cbf1ccd04bcce306b6059d7bca132-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Mor-gri kapüşon, karanlık yüz ve üç mavi ışık çizgisi."
+    },
+    {
+      "id": 17018,
+      "name": "Phoenix",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/phoenix/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/ecdb26df5c69c4a1adcae5cf5ec31e7b0e252e66-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu sivri saç ve altın ayrıntılar, açık renk ceket ve ateş."
+    },
+    {
+      "id": 17019,
+      "name": "Raze",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/raze/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/b4f9209f59915785278b06ff6a065f83cd4af8cc-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Turuncu şapka, kulaklık, haki kolsuz kıyafet ve patlayıcılar."
+    },
+    {
+      "id": 17020,
+      "name": "Reyna",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/reyna/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/285726b9f66a2ab65a4f7f51f2acb8c6a33ec915-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Uzun koyu mor saç, mor gözler ve koyu mor kıyafet."
+    },
+    {
+      "id": 17021,
+      "name": "Sage",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/sage/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/ded53d6f127a00074675eb79fde95437f2c2f521-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Siyah yüksek at kuyruğu, beyaz/turkuaz kıyafet ve yeşil küre."
+    },
+    {
+      "id": 17022,
+      "name": "Skye",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/skye/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/c73f832e9448cec260412368f8992420b8224819-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kızıl örgülü saç, yeşil saç bandı, yeşil kolsuz kıyafet ve hayvan motifi."
+    },
+    {
+      "id": 17023,
+      "name": "Sova",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/sova/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/14331d268e545efd4f74c443e9a855f85c779aa4-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Uzun sarı saç, mavi kıyafet, açık renk kürk yakası ve ışıklı göz."
+    },
+    {
+      "id": 17024,
+      "name": "Tejo",
+      "role": "Initiator",
+      "etiket": "Öncü",
+      "url": "https://playvalorant.com/en-us/agents/tejo/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/9d3724800f451f0d2f5e83277aa567b388c941e1-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu saç, sakal, sarı camlı gözlük ve bej/sarı ceket."
+    },
+    {
+      "id": 17025,
+      "name": "Veto",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/veto/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/f1a49f1ba67e2ec108b372810aa1f2135216836f-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu saç, kısa sakal, gri ceket, açık renk tişört ve turkuaz mutasyonlu kol."
+    },
+    {
+      "id": 17026,
+      "name": "Viper",
+      "role": "Controller",
+      "etiket": "Kontrol Uzmanı",
+      "url": "https://playvalorant.com/en-us/agents/viper/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/9f3940cdddc20db52bade0f791763ca959dcebc6-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa koyu saç, solunum maskesi, koyu yeşil/siyah kıyafet."
+    },
+    {
+      "id": 17027,
+      "name": "Vyse",
+      "role": "Sentinel",
+      "etiket": "Gözcü",
+      "url": "https://playvalorant.com/en-us/agents/vyse/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/baa1f0d6255d92329812f6a689193536b4093db4-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Gümüş/mor yüz maskesi ve zırh, sivri baş silueti, mor gözler."
+    },
+    {
+      "id": 17028,
+      "name": "Waylay",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/waylay/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/302cbe09faf2d4ae4221315a065f015984635d85-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Kısa açık renk saç ve turkuaz uçlar, sarı ceket ve prizmalar."
+    },
+    {
+      "id": 17029,
+      "name": "Yoru",
+      "role": "Duelist",
+      "etiket": "Düellocu",
+      "url": "https://playvalorant.com/en-us/agents/yoru/",
+      "officialArtworkReference": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data/0336d9a53f3d051ca731d578b74f93b118854471-5120x1772.png?accountingTag=VAL",
+      "visualReferenceNotes": "Sivri mavi saç, mavi ceket, turuncu maske ayrıntısı ve yarık motifi."
+    }
+  ]
+}

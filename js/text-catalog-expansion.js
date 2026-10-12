@@ -4,7 +4,7 @@ export const EXPANSION_TEXT_CATALOG = {
   'runtime.category.muzik.label': field('Müzik kategorisi adı', 'Yerli Müzik'),
   'runtime.category.ankara.label': field('Şehirler kategorisi adı', 'Şehirler ve Ülkeler'),
   'runtime.category.nostalji.label': field('Nostalji kategorisi adı', 'Nostalji'),
-  'runtime.category.oyun.label': field('Oyun karakterleri kategorisi adı', 'Oyun Karakterleri'),
+  'runtime.category.oyun.label': field('Oyun ana kategorisi adı', 'Oyun'),
   'runtime.category.video-games.label': field('Video oyunları kategorisi adı', 'Oyunlar'),
   'runtime.expansion.music.heading': field('Müzik koleksiyonu başlığı', 'SAHNENİ SEÇ'),
   'runtime.expansion.ankara.heading': field('Şehir koleksiyonu başlığı', 'NEREYE GİDİYORUZ?'),
@@ -75,6 +75,14 @@ export const EXPANSION_TEXT_CATALOG = {
   'runtime.video-games.description': field('Oyun koleksiyonu kısa açıklaması', 'GTA, Minecraft, PES, Counter-Strike ve klasikler.'),
   'runtime.video-games.note': field('Oyun koleksiyonu notu', '40 tanıdık oyun · Favori oyununu seç.'),
   'runtime.video-games.search': field('Video oyunu arama alanı', 'Oyun veya tür ara'),
+  'runtime.valorant.title': field('Valorant koleksiyonu adı', 'Valorant Ajanları'),
+  'runtime.valorant.description': field('Valorant kısa açıklaması', 'Jett, Reyna, Sage ve bütün ajanlar.'),
+  'runtime.valorant.note': field('Valorant koleksiyon notu', '29 ajan · Düellocu, öncü, gözcü ve kontrol uzmanları.'),
+  'runtime.valorant.search': field('Valorant arama alanı', 'Ajan veya rol ara'),
+  'runtime.lol.title': field('LoL koleksiyonu adı', 'LoL Şampiyonları'),
+  'runtime.lol.description': field('LoL kısa açıklaması', 'Yasuo, Ahri, Jinx ve bütün şampiyonlar.'),
+  'runtime.lol.note': field('LoL koleksiyon notu', '173 şampiyon · Runeterra’nın kahramanlarını sırala.'),
+  'runtime.lol.search': field('LoL arama alanı', 'Şampiyon veya sınıf ara'),
   'runtime.room.optional_spectator_hint': { group: 'Oda ve bağlantı', label: 'İzleyici beklemeden başlatma açıklaması', value: 'Tek başına başlayabilirsin. Arkadaşın bu kodla daha sonra izleyici olarak katılabilir.' },
   'runtime.room.optional_spectator_label': { group: 'Oda ve bağlantı', label: 'Tek oyuncu bekleme başlığı', value: 'SAHNE SENİN · İZLEYİCİ İSTEĞE BAĞLI' }
 };

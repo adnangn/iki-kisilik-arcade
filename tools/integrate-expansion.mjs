@@ -33,7 +33,7 @@ for (const old of data['turkiye-efsaneleri']) {
 }
 data['turkiye-efsaneleri'] = turkeyIcons;
 
-for (const filename of ['world-stars-extra.json', 'culture-extra.json', 'nostalgia-sets.json', 'games-geo.json']) {
+for (const filename of ['world-stars-extra.json', 'culture-extra.json', 'nostalgia-sets.json', 'games-geo.json', 'valorant-agents.json', 'lol-champions.json']) {
   const feed = JSON.parse(await readFile(new URL(`tools/${filename}`, root), 'utf8'));
   for (const [datasetId, additions] of Object.entries(feed)) {
     const pool = data[datasetId] ||= [];
@@ -70,7 +70,8 @@ const expected = { futbol: 100, superlig: 100, tatli: 100, yemek: 100, dizi: 50,
   'turkiye-efsaneleri': 120, 'dunya-yildizlari': 100, 'yerli-sanatcilar': 100, 'ankara-ilceleri': 25, icecek: 50, 'istanbul-ilceleri': 39,
   'cocukluk-cizgifilmleri': 60, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35,
   'turkiye-sehirleri': 81, 'oyun-evreni': 100, ulkeler: 80,
-  'tatli-vol1': 35, 'yemek-vol1': 50, 'oyun-karakterleri': 60, oyunlar: 40 };
+  'tatli-vol1': 35, 'yemek-vol1': 50, 'oyun-karakterleri': 60, oyunlar: 40,
+  'valorant-ajanlari': 29, 'lol-sampiyonlari': 173 };
 assert.deepEqual(Object.keys(data).sort(), Object.keys(expected).sort());
 for (const [key, count] of Object.entries(expected)) {
   assert.equal(data[key].length, count, key);
@@ -83,4 +84,4 @@ const rules = JSON.parse(await readFile(rulesUrl, 'utf8'));
 const allowedDatasets = Object.keys(data).map(id => `newData.val() === '${id}'`).join(' || ');
 rules.rules.rooms.$code.datasetId['.validate'] = `(${allowedDatasets}) && (!data.exists() || newData.val() === data.val())`;
 await writeFile(rulesUrl, JSON.stringify(rules, null, 2) + '\n', 'utf8');
-console.log(`${Object.keys(data).length} veri havuzu (21 lobi seçimi + eski odalar için 1 arşiv havuzu) tek veri.json dosyasına birleştirildi.`);
+console.log(`${Object.keys(data).length} veri havuzu (23 lobi seçimi + eski odalar için 1 arşiv havuzu) tek veri.json dosyasına birleştirildi.`);

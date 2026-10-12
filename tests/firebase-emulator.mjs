@@ -8,6 +8,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { changeRoom, seatFor } from '../js/room-state.js';
 import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from '../js/team-command.js';
+import { draftTriplets } from '../js/game-setup.js';
 
 const ORIGIN = 'http://127.0.0.1:9000';
 const PROJECT = 'demo-iki-kisilik';
@@ -174,7 +175,8 @@ try {
       const forbiddenCollections = new Set([datasetId === 'film' ? 'dizi' : 'film',
         'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
         'turkiye-sehirleri', 'oyun-evreni', 'ulkeler',
-        'tatli-vol1', 'yemek-vol1', 'oyun-karakterleri', 'oyunlar']);
+        'tatli-vol1', 'yemek-vol1', 'oyun-karakterleri', 'oyunlar',
+        'valorant-ajanlari', 'lol-sampiyonlari']);
       for (const changedId of forbiddenCollections) {
         if (changedId === datasetId) continue;
         const changed = changeRoom(current, 'p2', current.revision, 'bid', { amount: 2 });
@@ -184,6 +186,44 @@ try {
       assert.deepEqual(expectStatus(await readRoom(categoryCode), 200), current,
         'Rejected collection changes must leave the entire room and game untouched.');
       expectStatus(await request(`rooms/${categoryCode}`, { method: 'DELETE', admin: true }), 200);
+    }
+  });
+
+  await check('the four Oyun collections start and synchronize an isolated first move in every mode', async () => {
+    const categoryCode = TEST_CODES[1];
+    for (const datasetId of ['oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari']) {
+      const cards = DATASETS[datasetId];
+      const ids = new Set(cards.map(card => card.id));
+      for (const mode of ['auction', 'blind-ranking', 'bracket', 'team-draft']) {
+        expectStatus(await writeRoom(initialRoom(categoryCode, datasetId, mode), 'p1'), 200, `${datasetId}/${mode}`);
+        let current = expectStatus(await readRoom(categoryCode), 200);
+        const optionalSpectator = mode === 'blind-ranking' || mode === 'bracket';
+        if (!optionalSpectator) current = await join(categoryCode);
+        const triplets = mode === 'team-draft' ? draftTriplets(cards, () => 0) : null;
+        current = await command(current, 'p1', 'start', triplets ? { triplets } : { deck: cards.map(card => card.id) });
+        assert.equal(current.datasetId, datasetId);
+        assert.equal(current.mode, mode);
+        if (triplets) assert.ok(current.game.triplets.every(triplet => triplet.cards.every(id => ids.has(id))));
+        else assert.ok(current.game.deck.every(id => ids.has(id)));
+        if (mode === 'auction') current = await command(current, 'p2', 'bid', { amount: 2 });
+        else if (mode === 'blind-ranking') current = await command(current, 'p1', 'rank', { slot: 1 });
+        else if (mode === 'bracket') current = await command(current, 'p1', 'choose', { cardId: current.game.currentPair.left });
+        else current = await command(current, 'p1', 'assign', { role: 'start', cardId: triplets[0].cards[0] });
+        if (optionalSpectator) {
+          const beforeJoin = structuredClone(current);
+          await joinSpectator(categoryCode);
+          current = expectStatus(await readRoom(categoryCode), 200);
+          assert.equal(current.revision, beforeJoin.revision, 'Late viewers must not increment the game revision.');
+          assert.deepEqual(current.game, beforeJoin.game, 'Late viewers must receive the exact progressed game.');
+          assert.throws(() => changeRoom(current, 'p2', current.revision,
+            mode === 'blind-ranking' ? 'rank' : 'choose',
+            mode === 'blind-ranking' ? { slot: 2 } : { cardId: current.game.currentPair.left }));
+        }
+        const recovered = expectStatus(await readRoom(categoryCode, 'p2'), 200);
+        assert.equal(recovered.datasetId, datasetId);
+        assert.deepEqual(recovered.game, current.game, `${datasetId}/${mode}: both clients must see the same first committed choice.`);
+        expectStatus(await request(`rooms/${categoryCode}`, { method: 'DELETE', admin: true }), 200);
+      }
     }
   });
 

@@ -11111,5 +11111,2447 @@
       "tip": "oyun",
       "evren": "Final Fantasy"
     }
+  ],
+  "valorant-ajanlari": [
+    {
+      "id": 17001,
+      "isim": "Astra",
+      "gorsel": "assets/images/valorant/astra.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17002,
+      "isim": "Breach",
+      "gorsel": "assets/images/valorant/breach.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17003,
+      "isim": "Brimstone",
+      "gorsel": "assets/images/valorant/brimstone.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17004,
+      "isim": "Chamber",
+      "gorsel": "assets/images/valorant/chamber.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17005,
+      "isim": "Clove",
+      "gorsel": "assets/images/valorant/clove.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17006,
+      "isim": "Cypher",
+      "gorsel": "assets/images/valorant/cypher.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17007,
+      "isim": "Deadlock",
+      "gorsel": "assets/images/valorant/deadlock.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17008,
+      "isim": "Fade",
+      "gorsel": "assets/images/valorant/fade.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17009,
+      "isim": "Gekko",
+      "gorsel": "assets/images/valorant/gekko.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17010,
+      "isim": "Harbor",
+      "gorsel": "assets/images/valorant/harbor.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17011,
+      "isim": "Iso",
+      "gorsel": "assets/images/valorant/iso.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17012,
+      "isim": "Jett",
+      "gorsel": "assets/images/valorant/jett.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17013,
+      "isim": "KAY/O",
+      "gorsel": "assets/images/valorant/kay-o.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17014,
+      "isim": "Killjoy",
+      "gorsel": "assets/images/valorant/killjoy.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17015,
+      "isim": "Miks",
+      "gorsel": "assets/images/valorant/miks.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17016,
+      "isim": "Neon",
+      "gorsel": "assets/images/valorant/neon.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17017,
+      "isim": "Omen",
+      "gorsel": "assets/images/valorant/omen.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17018,
+      "isim": "Phoenix",
+      "gorsel": "assets/images/valorant/phoenix.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17019,
+      "isim": "Raze",
+      "gorsel": "assets/images/valorant/raze.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17020,
+      "isim": "Reyna",
+      "gorsel": "assets/images/valorant/reyna.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17021,
+      "isim": "Sage",
+      "gorsel": "assets/images/valorant/sage.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17022,
+      "isim": "Skye",
+      "gorsel": "assets/images/valorant/skye.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17023,
+      "isim": "Sova",
+      "gorsel": "assets/images/valorant/sova.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17024,
+      "isim": "Tejo",
+      "gorsel": "assets/images/valorant/tejo.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17025,
+      "isim": "Veto",
+      "gorsel": "assets/images/valorant/veto.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17026,
+      "isim": "Viper",
+      "gorsel": "assets/images/valorant/viper.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17027,
+      "isim": "Vyse",
+      "gorsel": "assets/images/valorant/vyse.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17028,
+      "isim": "Waylay",
+      "gorsel": "assets/images/valorant/waylay.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17029,
+      "isim": "Yoru",
+      "gorsel": "assets/images/valorant/yoru.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    }
+  ],
+  "lol-sampiyonlari": [
+    {
+      "id": 18001,
+      "isim": "Aatrox",
+      "gorsel": "assets/images/lol/aatrox.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Aatrox",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18002,
+      "isim": "Ahri",
+      "gorsel": "assets/images/lol/ahri.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ahri",
+      "riotSiniflar": [
+        "Mage",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18003,
+      "isim": "Akali",
+      "gorsel": "assets/images/lol/akali.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Akali",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18004,
+      "isim": "Akshan",
+      "gorsel": "assets/images/lol/akshan.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Akshan",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18005,
+      "isim": "Alistar",
+      "gorsel": "assets/images/lol/alistar.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Alistar",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18006,
+      "isim": "Ambessa",
+      "gorsel": "assets/images/lol/ambessa.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ambessa",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18007,
+      "isim": "Amumu",
+      "gorsel": "assets/images/lol/amumu.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Amumu",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18008,
+      "isim": "Anivia",
+      "gorsel": "assets/images/lol/anivia.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Anivia",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18009,
+      "isim": "Annie",
+      "gorsel": "assets/images/lol/annie.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Annie",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18010,
+      "isim": "Aphelios",
+      "gorsel": "assets/images/lol/aphelios.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Aphelios",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18011,
+      "isim": "Ashe",
+      "gorsel": "assets/images/lol/ashe.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ashe",
+      "riotSiniflar": [
+        "Marksman",
+        "Support"
+      ]
+    },
+    {
+      "id": 18012,
+      "isim": "Aurelion Sol",
+      "gorsel": "assets/images/lol/aurelion-sol.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "AurelionSol",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18013,
+      "isim": "Aurora",
+      "gorsel": "assets/images/lol/aurora.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Aurora",
+      "riotSiniflar": [
+        "Mage",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18014,
+      "isim": "Azir",
+      "gorsel": "assets/images/lol/azir.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Azir",
+      "riotSiniflar": [
+        "Mage",
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18015,
+      "isim": "Bard",
+      "gorsel": "assets/images/lol/bard.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Bard",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18016,
+      "isim": "Bel'Veth",
+      "gorsel": "assets/images/lol/bel-veth.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Belveth",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18017,
+      "isim": "Blitzcrank",
+      "gorsel": "assets/images/lol/blitzcrank.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Blitzcrank",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18018,
+      "isim": "Brand",
+      "gorsel": "assets/images/lol/brand.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Brand",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18019,
+      "isim": "Braum",
+      "gorsel": "assets/images/lol/braum.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Braum",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18020,
+      "isim": "Briar",
+      "gorsel": "assets/images/lol/briar.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Briar",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18021,
+      "isim": "Caitlyn",
+      "gorsel": "assets/images/lol/caitlyn.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Caitlyn",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18022,
+      "isim": "Camille",
+      "gorsel": "assets/images/lol/camille.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Camille",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18023,
+      "isim": "Cassiopeia",
+      "gorsel": "assets/images/lol/cassiopeia.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Cassiopeia",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18024,
+      "isim": "Cho'Gath",
+      "gorsel": "assets/images/lol/cho-gath.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Chogath",
+      "riotSiniflar": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18025,
+      "isim": "Corki",
+      "gorsel": "assets/images/lol/corki.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Corki",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18026,
+      "isim": "Darius",
+      "gorsel": "assets/images/lol/darius.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Darius",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18027,
+      "isim": "Diana",
+      "gorsel": "assets/images/lol/diana.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Diana",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18028,
+      "isim": "Draven",
+      "gorsel": "assets/images/lol/draven.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Draven",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18029,
+      "isim": "Dr. Mundo",
+      "gorsel": "assets/images/lol/dr-mundo.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "DrMundo",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18030,
+      "isim": "Ekko",
+      "gorsel": "assets/images/lol/ekko.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ekko",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18031,
+      "isim": "Elise",
+      "gorsel": "assets/images/lol/elise.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Elise",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18032,
+      "isim": "Evelynn",
+      "gorsel": "assets/images/lol/evelynn.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Evelynn",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18033,
+      "isim": "Ezreal",
+      "gorsel": "assets/images/lol/ezreal.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ezreal",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18034,
+      "isim": "Fiddlesticks",
+      "gorsel": "assets/images/lol/fiddlesticks.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Fiddlesticks",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18035,
+      "isim": "Fiora",
+      "gorsel": "assets/images/lol/fiora.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Fiora",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18036,
+      "isim": "Fizz",
+      "gorsel": "assets/images/lol/fizz.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Fizz",
+      "riotSiniflar": [
+        "Assassin",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18037,
+      "isim": "Galio",
+      "gorsel": "assets/images/lol/galio.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Galio",
+      "riotSiniflar": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18038,
+      "isim": "Gangplank",
+      "gorsel": "assets/images/lol/gangplank.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Gangplank",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18039,
+      "isim": "Garen",
+      "gorsel": "assets/images/lol/garen.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Garen",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18040,
+      "isim": "Gnar",
+      "gorsel": "assets/images/lol/gnar.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Gnar",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18041,
+      "isim": "Gragas",
+      "gorsel": "assets/images/lol/gragas.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Gragas",
+      "riotSiniflar": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18042,
+      "isim": "Graves",
+      "gorsel": "assets/images/lol/graves.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Graves",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18043,
+      "isim": "Gwen",
+      "gorsel": "assets/images/lol/gwen.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Gwen",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18044,
+      "isim": "Hecarim",
+      "gorsel": "assets/images/lol/hecarim.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Hecarim",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18045,
+      "isim": "Heimerdinger",
+      "gorsel": "assets/images/lol/heimerdinger.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Heimerdinger",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18046,
+      "isim": "Hwei",
+      "gorsel": "assets/images/lol/hwei.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Hwei",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18047,
+      "isim": "Illaoi",
+      "gorsel": "assets/images/lol/illaoi.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Illaoi",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18048,
+      "isim": "Irelia",
+      "gorsel": "assets/images/lol/irelia.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Irelia",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18049,
+      "isim": "Ivern",
+      "gorsel": "assets/images/lol/ivern.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ivern",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18050,
+      "isim": "Janna",
+      "gorsel": "assets/images/lol/janna.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Janna",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18051,
+      "isim": "Jarvan IV",
+      "gorsel": "assets/images/lol/jarvan-iv.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "JarvanIV",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18052,
+      "isim": "Jax",
+      "gorsel": "assets/images/lol/jax.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Jax",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18053,
+      "isim": "Jayce",
+      "gorsel": "assets/images/lol/jayce.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Jayce",
+      "riotSiniflar": [
+        "Fighter",
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18054,
+      "isim": "Jhin",
+      "gorsel": "assets/images/lol/jhin.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Jhin",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18055,
+      "isim": "Jinx",
+      "gorsel": "assets/images/lol/jinx.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Jinx",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18056,
+      "isim": "Kai'Sa",
+      "gorsel": "assets/images/lol/kai-sa.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kaisa",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18057,
+      "isim": "Kalista",
+      "gorsel": "assets/images/lol/kalista.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kalista",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18058,
+      "isim": "Karma",
+      "gorsel": "assets/images/lol/karma.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Karma",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18059,
+      "isim": "Karthus",
+      "gorsel": "assets/images/lol/karthus.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Karthus",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18060,
+      "isim": "Kassadin",
+      "gorsel": "assets/images/lol/kassadin.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kassadin",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18061,
+      "isim": "Katarina",
+      "gorsel": "assets/images/lol/katarina.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Katarina",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18062,
+      "isim": "Kayle",
+      "gorsel": "assets/images/lol/kayle.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kayle",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18063,
+      "isim": "Kayn",
+      "gorsel": "assets/images/lol/kayn.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kayn",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18064,
+      "isim": "Kennen",
+      "gorsel": "assets/images/lol/kennen.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kennen",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18065,
+      "isim": "Kha'Zix",
+      "gorsel": "assets/images/lol/kha-zix.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Khazix",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18066,
+      "isim": "Kindred",
+      "gorsel": "assets/images/lol/kindred.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kindred",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18067,
+      "isim": "Kled",
+      "gorsel": "assets/images/lol/kled.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Kled",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18068,
+      "isim": "Kog'Maw",
+      "gorsel": "assets/images/lol/kog-maw.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "KogMaw",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18069,
+      "isim": "K'Sante",
+      "gorsel": "assets/images/lol/k-sante.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "KSante",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18070,
+      "isim": "LeBlanc",
+      "gorsel": "assets/images/lol/leblanc.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Leblanc",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18071,
+      "isim": "Lee Sin",
+      "gorsel": "assets/images/lol/lee-sin.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "LeeSin",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18072,
+      "isim": "Leona",
+      "gorsel": "assets/images/lol/leona.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Leona",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18073,
+      "isim": "Lillia",
+      "gorsel": "assets/images/lol/lillia.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Lillia",
+      "riotSiniflar": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18074,
+      "isim": "Lissandra",
+      "gorsel": "assets/images/lol/lissandra.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Lissandra",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18075,
+      "isim": "Locke",
+      "gorsel": "assets/images/lol/locke.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Locke",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18076,
+      "isim": "Lucian",
+      "gorsel": "assets/images/lol/lucian.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Lucian",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18077,
+      "isim": "Lulu",
+      "gorsel": "assets/images/lol/lulu.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Lulu",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18078,
+      "isim": "Lux",
+      "gorsel": "assets/images/lol/lux.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Lux",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18079,
+      "isim": "Malphite",
+      "gorsel": "assets/images/lol/malphite.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Malphite",
+      "riotSiniflar": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18080,
+      "isim": "Malzahar",
+      "gorsel": "assets/images/lol/malzahar.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Malzahar",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18081,
+      "isim": "Maokai",
+      "gorsel": "assets/images/lol/maokai.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Maokai",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18082,
+      "isim": "Master Yi",
+      "gorsel": "assets/images/lol/master-yi.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "MasterYi",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18083,
+      "isim": "Mel",
+      "gorsel": "assets/images/lol/mel.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Mel",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18084,
+      "isim": "Milio",
+      "gorsel": "assets/images/lol/milio.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Milio",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18085,
+      "isim": "Miss Fortune",
+      "gorsel": "assets/images/lol/miss-fortune.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "MissFortune",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18086,
+      "isim": "Mordekaiser",
+      "gorsel": "assets/images/lol/mordekaiser.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Mordekaiser",
+      "riotSiniflar": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18087,
+      "isim": "Morgana",
+      "gorsel": "assets/images/lol/morgana.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Morgana",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18088,
+      "isim": "Naafiri",
+      "gorsel": "assets/images/lol/naafiri.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Naafiri",
+      "riotSiniflar": [
+        "Assassin",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18089,
+      "isim": "Nami",
+      "gorsel": "assets/images/lol/nami.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nami",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18090,
+      "isim": "Nasus",
+      "gorsel": "assets/images/lol/nasus.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nasus",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18091,
+      "isim": "Nautilus",
+      "gorsel": "assets/images/lol/nautilus.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nautilus",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18092,
+      "isim": "Neeko",
+      "gorsel": "assets/images/lol/neeko.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Neeko",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18093,
+      "isim": "Nidalee",
+      "gorsel": "assets/images/lol/nidalee.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nidalee",
+      "riotSiniflar": [
+        "Assassin",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18094,
+      "isim": "Nilah",
+      "gorsel": "assets/images/lol/nilah.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nilah",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18095,
+      "isim": "Nocturne",
+      "gorsel": "assets/images/lol/nocturne.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nocturne",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18096,
+      "isim": "Nunu & Willump",
+      "gorsel": "assets/images/lol/nunu-willump.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Nunu",
+      "riotSiniflar": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18097,
+      "isim": "Olaf",
+      "gorsel": "assets/images/lol/olaf.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Olaf",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18098,
+      "isim": "Orianna",
+      "gorsel": "assets/images/lol/orianna.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Orianna",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18099,
+      "isim": "Ornn",
+      "gorsel": "assets/images/lol/ornn.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ornn",
+      "riotSiniflar": [
+        "Tank"
+      ]
+    },
+    {
+      "id": 18100,
+      "isim": "Pantheon",
+      "gorsel": "assets/images/lol/pantheon.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Pantheon",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18101,
+      "isim": "Poppy",
+      "gorsel": "assets/images/lol/poppy.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Poppy",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18102,
+      "isim": "Pyke",
+      "gorsel": "assets/images/lol/pyke.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Pyke",
+      "riotSiniflar": [
+        "Support",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18103,
+      "isim": "Qiyana",
+      "gorsel": "assets/images/lol/qiyana.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Qiyana",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18104,
+      "isim": "Quinn",
+      "gorsel": "assets/images/lol/quinn.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Quinn",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18105,
+      "isim": "Rakan",
+      "gorsel": "assets/images/lol/rakan.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Rakan",
+      "riotSiniflar": [
+        "Support"
+      ]
+    },
+    {
+      "id": 18106,
+      "isim": "Rammus",
+      "gorsel": "assets/images/lol/rammus.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Rammus",
+      "riotSiniflar": [
+        "Tank"
+      ]
+    },
+    {
+      "id": 18107,
+      "isim": "Rek'Sai",
+      "gorsel": "assets/images/lol/rek-sai.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "RekSai",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18108,
+      "isim": "Rell",
+      "gorsel": "assets/images/lol/rell.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Rell",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18109,
+      "isim": "Renata Glasc",
+      "gorsel": "assets/images/lol/renata-glasc.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Renata",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18110,
+      "isim": "Renekton",
+      "gorsel": "assets/images/lol/renekton.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Renekton",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18111,
+      "isim": "Rengar",
+      "gorsel": "assets/images/lol/rengar.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Rengar",
+      "riotSiniflar": [
+        "Assassin",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18112,
+      "isim": "Riven",
+      "gorsel": "assets/images/lol/riven.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Riven",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18113,
+      "isim": "Rumble",
+      "gorsel": "assets/images/lol/rumble.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Rumble",
+      "riotSiniflar": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18114,
+      "isim": "Ryze",
+      "gorsel": "assets/images/lol/ryze.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ryze",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18115,
+      "isim": "Samira",
+      "gorsel": "assets/images/lol/samira.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Samira",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18116,
+      "isim": "Sejuani",
+      "gorsel": "assets/images/lol/sejuani.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sejuani",
+      "riotSiniflar": [
+        "Tank"
+      ]
+    },
+    {
+      "id": 18117,
+      "isim": "Senna",
+      "gorsel": "assets/images/lol/senna.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Senna",
+      "riotSiniflar": [
+        "Support",
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18118,
+      "isim": "Seraphine",
+      "gorsel": "assets/images/lol/seraphine.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Seraphine",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18119,
+      "isim": "Sett",
+      "gorsel": "assets/images/lol/sett.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sett",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18120,
+      "isim": "Shaco",
+      "gorsel": "assets/images/lol/shaco.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Shaco",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18121,
+      "isim": "Shen",
+      "gorsel": "assets/images/lol/shen.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Shen",
+      "riotSiniflar": [
+        "Tank"
+      ]
+    },
+    {
+      "id": 18122,
+      "isim": "Shyvana",
+      "gorsel": "assets/images/lol/shyvana.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Shyvana",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18123,
+      "isim": "Singed",
+      "gorsel": "assets/images/lol/singed.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Singed",
+      "riotSiniflar": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18124,
+      "isim": "Sion",
+      "gorsel": "assets/images/lol/sion.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sion",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18125,
+      "isim": "Sivir",
+      "gorsel": "assets/images/lol/sivir.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sivir",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18126,
+      "isim": "Skarner",
+      "gorsel": "assets/images/lol/skarner.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Skarner",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18127,
+      "isim": "Smolder",
+      "gorsel": "assets/images/lol/smolder.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Smolder",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18128,
+      "isim": "Sona",
+      "gorsel": "assets/images/lol/sona.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sona",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18129,
+      "isim": "Soraka",
+      "gorsel": "assets/images/lol/soraka.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Soraka",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18130,
+      "isim": "Swain",
+      "gorsel": "assets/images/lol/swain.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Swain",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18131,
+      "isim": "Sylas",
+      "gorsel": "assets/images/lol/sylas.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Sylas",
+      "riotSiniflar": [
+        "Mage",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18132,
+      "isim": "Syndra",
+      "gorsel": "assets/images/lol/syndra.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Syndra",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18133,
+      "isim": "Tahm Kench",
+      "gorsel": "assets/images/lol/tahm-kench.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "TahmKench",
+      "riotSiniflar": [
+        "Tank",
+        "Support"
+      ]
+    },
+    {
+      "id": 18134,
+      "isim": "Taliyah",
+      "gorsel": "assets/images/lol/taliyah.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Taliyah",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18135,
+      "isim": "Talon",
+      "gorsel": "assets/images/lol/talon.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Talon",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18136,
+      "isim": "Taric",
+      "gorsel": "assets/images/lol/taric.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Taric",
+      "riotSiniflar": [
+        "Support",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18137,
+      "isim": "Teemo",
+      "gorsel": "assets/images/lol/teemo.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Teemo",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18138,
+      "isim": "Thresh",
+      "gorsel": "assets/images/lol/thresh.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Thresh",
+      "riotSiniflar": [
+        "Support",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18139,
+      "isim": "Tristana",
+      "gorsel": "assets/images/lol/tristana.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Tristana",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18140,
+      "isim": "Trundle",
+      "gorsel": "assets/images/lol/trundle.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Trundle",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18141,
+      "isim": "Tryndamere",
+      "gorsel": "assets/images/lol/tryndamere.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Tryndamere",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18142,
+      "isim": "Twisted Fate",
+      "gorsel": "assets/images/lol/twisted-fate.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "TwistedFate",
+      "riotSiniflar": [
+        "Mage",
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18143,
+      "isim": "Twitch",
+      "gorsel": "assets/images/lol/twitch.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Twitch",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18144,
+      "isim": "Udyr",
+      "gorsel": "assets/images/lol/udyr.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Udyr",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18145,
+      "isim": "Urgot",
+      "gorsel": "assets/images/lol/urgot.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Urgot",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18146,
+      "isim": "Varus",
+      "gorsel": "assets/images/lol/varus.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Varus",
+      "riotSiniflar": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18147,
+      "isim": "Vayne",
+      "gorsel": "assets/images/lol/vayne.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Vayne",
+      "riotSiniflar": [
+        "Marksman",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18148,
+      "isim": "Veigar",
+      "gorsel": "assets/images/lol/veigar.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Veigar",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18149,
+      "isim": "Vel'Koz",
+      "gorsel": "assets/images/lol/vel-koz.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Velkoz",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18150,
+      "isim": "Vex",
+      "gorsel": "assets/images/lol/vex.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Vex",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18151,
+      "isim": "Vi",
+      "gorsel": "assets/images/lol/vi.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Vi",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18152,
+      "isim": "Viego",
+      "gorsel": "assets/images/lol/viego.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Viego",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18153,
+      "isim": "Viktor",
+      "gorsel": "assets/images/lol/viktor.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Viktor",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18154,
+      "isim": "Vladimir",
+      "gorsel": "assets/images/lol/vladimir.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Vladimir",
+      "riotSiniflar": [
+        "Mage",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18155,
+      "isim": "Volibear",
+      "gorsel": "assets/images/lol/volibear.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Volibear",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18156,
+      "isim": "Warwick",
+      "gorsel": "assets/images/lol/warwick.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Warwick",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18157,
+      "isim": "Wukong",
+      "gorsel": "assets/images/lol/wukong.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "MonkeyKing",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18158,
+      "isim": "Xayah",
+      "gorsel": "assets/images/lol/xayah.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Xayah",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18159,
+      "isim": "Xerath",
+      "gorsel": "assets/images/lol/xerath.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Xerath",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    },
+    {
+      "id": 18160,
+      "isim": "Xin Zhao",
+      "gorsel": "assets/images/lol/xin-zhao.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "XinZhao",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18161,
+      "isim": "Yasuo",
+      "gorsel": "assets/images/lol/yasuo.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Yasuo",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18162,
+      "isim": "Yone",
+      "gorsel": "assets/images/lol/yone.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Yone",
+      "riotSiniflar": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18163,
+      "isim": "Yorick",
+      "gorsel": "assets/images/lol/yorick.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Yorick",
+      "riotSiniflar": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    {
+      "id": 18164,
+      "isim": "Yunara",
+      "gorsel": "assets/images/lol/yunara.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Yunara",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18165,
+      "isim": "Yuumi",
+      "gorsel": "assets/images/lol/yuumi.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Yuumi",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18166,
+      "isim": "Zaahen",
+      "gorsel": "assets/images/lol/zaahen.svg",
+      "etiket": "Dövüşçü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zaahen",
+      "riotSiniflar": [
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18167,
+      "isim": "Zac",
+      "gorsel": "assets/images/lol/zac.svg",
+      "etiket": "Tank",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zac",
+      "riotSiniflar": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    {
+      "id": 18168,
+      "isim": "Zed",
+      "gorsel": "assets/images/lol/zed.svg",
+      "etiket": "Suikastçı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zed",
+      "riotSiniflar": [
+        "Assassin"
+      ]
+    },
+    {
+      "id": 18169,
+      "isim": "Zeri",
+      "gorsel": "assets/images/lol/zeri.svg",
+      "etiket": "Nişancı",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zeri",
+      "riotSiniflar": [
+        "Marksman"
+      ]
+    },
+    {
+      "id": 18170,
+      "isim": "Ziggs",
+      "gorsel": "assets/images/lol/ziggs.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Ziggs",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18171,
+      "isim": "Zilean",
+      "gorsel": "assets/images/lol/zilean.svg",
+      "etiket": "Destek",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zilean",
+      "riotSiniflar": [
+        "Support",
+        "Mage"
+      ]
+    },
+    {
+      "id": 18172,
+      "isim": "Zoe",
+      "gorsel": "assets/images/lol/zoe.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zoe",
+      "riotSiniflar": [
+        "Mage"
+      ]
+    },
+    {
+      "id": 18173,
+      "isim": "Zyra",
+      "gorsel": "assets/images/lol/zyra.svg",
+      "etiket": "Büyücü",
+      "evren": "League of Legends",
+      "tip": "karakter",
+      "riotId": "Zyra",
+      "riotSiniflar": [
+        "Mage",
+        "Support"
+      ]
+    }
   ]
 }

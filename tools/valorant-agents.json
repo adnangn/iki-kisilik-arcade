@@ -1,0 +1,236 @@
+{
+  "valorant-ajanlari": [
+    {
+      "id": 17001,
+      "isim": "Astra",
+      "gorsel": "assets/images/valorant/astra.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17002,
+      "isim": "Breach",
+      "gorsel": "assets/images/valorant/breach.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17003,
+      "isim": "Brimstone",
+      "gorsel": "assets/images/valorant/brimstone.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17004,
+      "isim": "Chamber",
+      "gorsel": "assets/images/valorant/chamber.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17005,
+      "isim": "Clove",
+      "gorsel": "assets/images/valorant/clove.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17006,
+      "isim": "Cypher",
+      "gorsel": "assets/images/valorant/cypher.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17007,
+      "isim": "Deadlock",
+      "gorsel": "assets/images/valorant/deadlock.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17008,
+      "isim": "Fade",
+      "gorsel": "assets/images/valorant/fade.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17009,
+      "isim": "Gekko",
+      "gorsel": "assets/images/valorant/gekko.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17010,
+      "isim": "Harbor",
+      "gorsel": "assets/images/valorant/harbor.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17011,
+      "isim": "Iso",
+      "gorsel": "assets/images/valorant/iso.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17012,
+      "isim": "Jett",
+      "gorsel": "assets/images/valorant/jett.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17013,
+      "isim": "KAY/O",
+      "gorsel": "assets/images/valorant/kay-o.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17014,
+      "isim": "Killjoy",
+      "gorsel": "assets/images/valorant/killjoy.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17015,
+      "isim": "Miks",
+      "gorsel": "assets/images/valorant/miks.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17016,
+      "isim": "Neon",
+      "gorsel": "assets/images/valorant/neon.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17017,
+      "isim": "Omen",
+      "gorsel": "assets/images/valorant/omen.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17018,
+      "isim": "Phoenix",
+      "gorsel": "assets/images/valorant/phoenix.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17019,
+      "isim": "Raze",
+      "gorsel": "assets/images/valorant/raze.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17020,
+      "isim": "Reyna",
+      "gorsel": "assets/images/valorant/reyna.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17021,
+      "isim": "Sage",
+      "gorsel": "assets/images/valorant/sage.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17022,
+      "isim": "Skye",
+      "gorsel": "assets/images/valorant/skye.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17023,
+      "isim": "Sova",
+      "gorsel": "assets/images/valorant/sova.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17024,
+      "isim": "Tejo",
+      "gorsel": "assets/images/valorant/tejo.svg",
+      "etiket": "Öncü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17025,
+      "isim": "Veto",
+      "gorsel": "assets/images/valorant/veto.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17026,
+      "isim": "Viper",
+      "gorsel": "assets/images/valorant/viper.svg",
+      "etiket": "Kontrol Uzmanı",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17027,
+      "isim": "Vyse",
+      "gorsel": "assets/images/valorant/vyse.svg",
+      "etiket": "Gözcü",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17028,
+      "isim": "Waylay",
+      "gorsel": "assets/images/valorant/waylay.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    },
+    {
+      "id": 17029,
+      "isim": "Yoru",
+      "gorsel": "assets/images/valorant/yoru.svg",
+      "etiket": "Düellocu",
+      "evren": "Valorant",
+      "tip": "karakter"
+    }
+  ]
+}
