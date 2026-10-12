@@ -963,6 +963,9 @@ async function boot() {
       }
     }
     if (Object.keys(DATASET_NAMES).some(key => !datasets[key])) throw new Error(t('runtime.copy.efsaneler_super_lig_tatli_ana_yemek_dizi_ve_film_ver'));
+    // A category can be selected while veri.json is still loading. Rebuild
+    // its options once with the real counts, retaining the selected dataset.
+    renderedCategory = null;
     renderDatasetPreview(); render();
     if (!isFirebaseConfigured()) {
       $('setup-notice').hidden = false;
