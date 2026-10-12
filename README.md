@@ -1,6 +1,6 @@
 # İKİ KİŞİLİK
 
-HTML, CSS ve Vanilla JavaScript ile geliştirilen, GitHub Pages üzerinde klasör altından çalışabilen nostaljik mini oyun SPA'sı. Yedi ana kategoride 18 koleksiyon ve 1.300 kart bulunur. Çevrimiçi odalar Firebase Authentication ve Realtime Database kullanır. Kör Sıralama ve O mu, Bu mu? izleyici beklemeden başlayabilir; arkadaş aynı kodla sonradan katılabilir. Uygulama sunucusu, build adımı veya bir framework gerekmez.
+HTML, CSS ve Vanilla JavaScript ile geliştirilen, GitHub Pages üzerinde klasör altından çalışabilen nostaljik mini oyun SPA'sı. Sekiz ana kategoride 21 seçilebilir koleksiyon ve 1.325 farklı kart görseli bulunur. Vol. 1 seçkileri mevcut kartların kopyalarını kullanır; Vol. 2 tam havuzları içerir. Çevrimiçi odalar Firebase Authentication ve Realtime Database kullanır. Kör Sıralama ve O mu, Bu mu? izleyici beklemeden başlayabilir; arkadaş aynı kodla sonradan katılabilir. Uygulama sunucusu, build adımı veya bir framework gerekmez.
 
 ## Klasör mimarisi
 
@@ -24,10 +24,10 @@ oyun/
 │   ├── game-view.js       # Turnuva geçmişi, aday kartlar ve takım/saha görünümü
 │   ├── ranking-view.js    # Canlı ve sonuç ekranlarının ortak sıralama görünümü
 │   ├── demo-bot.js        # Yalnız kendi sırasında teklif/pas yapan demo botu
-│   ├── datasets.js        # Yedi ana kategori, 18 koleksiyon ve seçim eşleştirmesi
+│   ├── datasets.js        # Sekiz kategori, 21 seçim ve eski odalar için arşiv
 │   ├── texts.js           # Metin yükleme, güvenli şablonlar ve yerel önizleme
 │   ├── text-catalog.js    # Düzenleyici alanları ve varsayılan metin kataloğu
-│   ├── text-catalog-expansion.js # Kategori/koleksiyonlar ve tek oyuncu akışının 52 metin alanı
+│   ├── text-catalog-expansion.js # Kategori/koleksiyonlar ve tek oyuncu akışının 76 metin alanı
 │   ├── text-editor.js     # Taslak, arama, önizleme ve JSON aktarımı
 │   ├── room-state.js      # Üyelik, sürüm kontrolü, tur ve rövanş geçişleri
 │   └── firebase-room.js   # Kalıcı kimlik, transaction, dinleyiciler, presence
@@ -45,7 +45,7 @@ oyun/
 │   │   ├── artists/       # 100 yerli sanatçı ve grubun temsili piksel çizimleri
 │   │   ├── ankara/        # 25 ilçenin temsili mimari/doğa çizimleri
 │   │   ├── istanbul/      # 39 ilçenin temsili mimari/doğa çizimleri
-│   │   ├── cartoons/      # 35 çocukluk çizgi filmi için temsili piksel sahneleri
+│   │   ├── cartoons/      # 60 çocukluk çizgi filmi ve karakterinin piksel çizimleri
 │   │   ├── nostalgia/     # 35 okul/mahalle/teknoloji hatırasının piksel çizimleri
 │   │   ├── snacks/        # 35 kantin/bakkal kartının temsili ürün çizimleri
 │   │   ├── turkiye-cities/ # Türkiye'nin 81 ilinin temsili piksel manzaraları
@@ -68,7 +68,7 @@ oyun/
 │   └── firebase-emulator.mjs # Yerel RTDB kuralları ve eşzamanlı yazma testi
 ├── tools/
 │   ├── serve.mjs          # Sadece bilgisayarda geliştirme önizlemesi
-│   ├── preflight.mjs      # 18 havuz, dört mod, yerel yollar ve çevrimiçi ayarlar
+│   ├── preflight.mjs      # 22 veri havuzu, dört mod, yerel yollar ve çevrimiçi ayarlar
 │   ├── build-site.mjs     # Yalnız çalışma dosyalarını artifacts/site içine kopyalar
 │   ├── expansion-*.json  # Futbol/menü/kültür ek kartları ve kaynak kayıtları
 │   ├── generate-expansion-*.mjs # İlk 12 Ekim genişlemesindeki 325 SVG'nin üreteçleri
@@ -78,11 +78,12 @@ oyun/
 │   ├── world-stars-extra.json / world-stars-extra-sources.json # Ek kartlar ve kaynakları
 │   ├── generate-culture-extra.mjs # 50 sanatçı ve 39 İstanbul ilçesinin çizimleri
 │   ├── culture-extra.json / culture-extra-sources.json # Ek kartlar ve kaynakları
-│   ├── generate-nostalgia-sets.mjs # Üç nostalji setindeki 105 özgün SVG
+│   ├── generate-nostalgia-sets.mjs # Üç nostalji setindeki 130 SVG
 │   ├── nostalgia-sets.json / nostalgia-sets-sources.json # Kartlar ve kaynak notları
 │   ├── generate-games-geo.mjs # 81 şehir, 100 oyun kartı ve 80 ülke bayrağı
 │   ├── games-geo.json / games-geo-sources.json # Kartlar, kaynaklar ve bayrak lisansı
-│   └── integrate-expansion.mjs # Kimlikleri koruyarak 18 havuzu tek veri.json dosyasına birleştirir
+│   ├── collection-volumes.json # Vol. 1 için mevcut tatlı/yemek kartı ID seçkileri
+│   └── integrate-expansion.mjs # 22 havuzu veri.json'a birleştirir ve RTDB koleksiyon listesini üretir
 ├── .github/workflows/pages.yml # Kontrol, test ve statik Pages yayını
 ├── package.json           # Önizleme ve test komutları; runtime bağımlılığı yok
 ├── .nojekyll              # GitHub Pages için
@@ -97,15 +98,15 @@ Lobinin altındaki **Metin Atölyesi** bağlantısını açın. Başlık, slogan
 
 **Metinleri indir** bir `metinler.json` dosyası üretir. Herkesin değişiklikleri görmesi için depodaki aynı dosyayı bununla değiştirin ve GitHub Pages yayınının tamamlanmasını bekleyin. Daha sonra bu dosyayı **Dosyadan yükle** ile tekrar düzenleyebilirsiniz. GitHub Pages statik olduğu için düzenleyicideki taslak kaydı doğrudan GitHub'a dosya yazmaz.
 
-Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js` ve `js/text-catalog-expansion.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **399 alan** sunar; genişleme kataloğunun 52 alanı yeni kategori/koleksiyonları ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
+Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js` ve `js/text-catalog-expansion.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **423 alan** sunar; genişleme kataloğunun 76 alanı yeni kategori/koleksiyonları, Vol. 1/Vol. 2 seçimini ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
 
 ## Oynanabilir modlar
 
-Lobi, 6 rakamlı kodla oda kurma/katılma, bekleme ekranı, dört oyun modu ve aynı kodla rövanş hazırdır. 18 koleksiyonun tamamı dört modla kullanılabilir. Açık Artırma ve Start, Bench, Cut iki aktif oyuncu bağlanınca başlar. Kör Sıralama ve O mu, Bu mu? odasını kuran oyuncu izleyici gelmeden **Oyunu Başlat** diyebilir ve tek başına devam edebilir; boş ikinci koltuğa aynı kodla sonradan katılan kişi oyunun o anki durumunu izler. Bu katılım oyunu yeniden başlatmaz.
+Lobi, 6 rakamlı kodla oda kurma/katılma, bekleme ekranı, dört oyun modu ve aynı kodla rövanş hazırdır. 21 seçilebilir koleksiyonun tamamı dört modla kullanılabilir. Açık Artırma ve Start, Bench, Cut iki aktif oyuncu bağlanınca başlar. Kör Sıralama ve O mu, Bu mu? odasını kuran oyuncu izleyici gelmeden **Oyunu Başlat** diyebilir ve tek başına devam edebilir; boş ikinci koltuğa aynı kodla sonradan katılan kişi oyunun o anki durumunu izler. Bu katılım oyunu yeniden başlatmaz.
 
 Her oyuncu 20 TL ve beş kartlık kontenjanla başlar. Açılış teklifini sistem 1 TL olarak yapar, hamle diğer oyuncuya geçer. Tam sayı teklif mevcut fiyattan büyük ve oyuncunun bütçesi içinde olmalıdır. Pas, son teklif sahibine kartı verir ve yalnızca kazananın bütçesini düşürür. Yeni kartta açılış sırası değişir. Açılış ve fiyat artırma kart satın almaz; bütçe yalnızca gerçek bir Pas hamlesiyle kapanan açık artırmada düşer. Her Pas en fazla bir kart verir. Bir oyuncunun bütçesi veya kontenjanı dolsa bile sonraki kartlar otomatik dağıtılmaz; o oyuncu sırası geldiğinde Pas diyerek kartı son teklif sahibine bırakır. Teklif veremeyen oyuncunun açılış sırası, açılış yapabilen rakibine geçer. İki oyuncu da kart alamayınca veya deste bitince sonuç ekranı açılır. Puanlama ölçütü tanımlanmadığı için sonuç ekranı kadroları ve kalan bütçeyi karşılaştırır.
 
-Kör Sıralama, aynı 18 koleksiyonun kartlarını ve yerel görsellerini kullanır. Karıştırılan havuzdan 10 kart seçilir; ekranda yalnızca mevcut kart gösterilir. Aktif oyuncu kartı 1–10 arasındaki boş bir sıraya yerleştirir (1 en iyi, 10 en alt); dolu sıra kilitlenir, sonraki kart açılır. İzleyicide seçim düğmeleri gizlenir, mevcut kart ve sıralama anlık güncellenir; reaksiyonlar kullanılabilir. Onuncu seçimde tam liste sonuç ekranında gösterilir. Rövanş oda kodunu korur ve yeni 10 kart seçer. İkinci oyuncu varsa sıralayan/izleyen rolleri değişir; henüz kimse katılmadıysa oda sahibi aktif kalır.
+Kör Sıralama, aynı 21 seçilebilir koleksiyonun kartlarını ve yerel görsellerini kullanır. Karıştırılan havuzdan 10 kart seçilir; ekranda yalnızca mevcut kart gösterilir. Aktif oyuncu kartı 1–10 arasındaki boş bir sıraya yerleştirir (1 en iyi, 10 en alt); dolu sıra kilitlenir, sonraki kart açılır. İzleyicide seçim düğmeleri gizlenir, mevcut kart ve sıralama anlık güncellenir; reaksiyonlar kullanılabilir. Onuncu seçimde tam liste sonuç ekranında gösterilir. Rövanş oda kodunu korur ve yeni 10 kart seçer. İkinci oyuncu varsa sıralayan/izleyen rolleri değişir; henüz kimse katılmadıysa oda sahibi aktif kalır.
 
 **O mu, Bu mu?** aynı havuzdan 16 benzersiz kartla başlar. Aktif oyuncu her eşleşmede iki karttan birini seçer; kazananlar son 16, çeyrek final, yarı final ve final sırasıyla üst tura çıkar. 15 seçim sonunda tek şampiyon ve dört turluk şampiyonluk yolu gösterilir. İzleyici kartları ve tur geçmişini görür, seçim yapamaz. Rövanşta ikinci oyuncu varsa aktif oyuncu değişir; izleyici katılmadıysa oda sahibi aktif kalır. Demoda bot turnuvayı oynarken izlersin.
 
@@ -113,7 +114,7 @@ Kör Sıralama, aynı 18 koleksiyonun kartlarını ve yerel görsellerini kullan
 
 Üçlü üretiminde aynı etiketten en az üç kart içeren gruplar kullanılır. Her üçlüde üç farklı kart bulunur. Mevcut uygun havuzdan artık üçlü çıkmıyorsa havuz yeniden karıştırılır; bu nedenle küçük koleksiyonlarda bir kart farklı turlarda tekrar aday olabilir ve farklı Start seçimlerinde yeniden bulunabilir. Bu kural `reusePolicy: 'pool-reset'` olarak odada saklanır; rövanş yeni 11 üçlüyle başlar.
 
-Yeni bir veri setinin dört modda da kullanılabilmesi için 16–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Sadece Kör Sıralama motorunun alt sınırı 10'dur. Hazırlık kontrolü mevcut 18 koleksiyonu bu koşullara göre denetler.
+Yeni bir veri setinin dört modda da kullanılabilmesi için 16–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Sadece Kör Sıralama motorunun alt sınırı 10'dur. Hazırlık kontrolü 21 seçilebilir koleksiyonu ve eski odalar için korunan bir arşiv havuzunu bu koşullara göre denetler.
 
 ## Yerel önizleme
 
@@ -176,13 +177,15 @@ npm run check:online
 npm run build
 ```
 
-`check`, 18 havuzda dört motoru sonuna kadar oynatır; kart/görsel dosyalarını, göreli yolları ve dosya adlarının harf büyüklüğünü doğrular. `check:online` ayrıca beş Firebase alanının doluluğunu, HTTPS databaseURL ve kapalı emulator ayarını kontrol eder; Firebase'e bağlanıp hesabın veya yayımlanmış kuralların çalıştığını kanıtlamaz. Adoapp yapılandırması bu alanları içerir; eksik alan, HTTPS olmayan veya yerel bir veritabanı adresi ya da açık emulator ayarı kontrolü durdurur. `build` yalnız yerel `artifacts/site/` paketini yeniler, GitHub'a dosya göndermez.
+`check`, 22 havuzda dört motoru sonuna kadar oynatır; kart/görsel dosyalarını, göreli yolları ve dosya adlarının harf büyüklüğünü doğrular. Bunların 21'i lobi seçimi, biri eski odaları sürdüren arşiv havuzudur. `check:online` ayrıca beş Firebase alanının doluluğunu, HTTPS databaseURL ve kapalı emulator ayarını kontrol eder; Firebase'e bağlanıp hesabın veya yayımlanmış kuralların çalıştığını kanıtlamaz. Adoapp yapılandırması bu alanları içerir; eksik alan, HTTPS olmayan veya yerel bir veritabanı adresi ya da açık emulator ayarı kontrolü durdurur. `build` yalnız yerel `artifacts/site/` paketini yeniler, GitHub'a dosya göndermez.
 
 İç yollar `./styles.css`, `./app.js`, `./veri.json` ve `./assets/images/...` biçimindedir. URL yönlendirme/history routing yoktur; ekran değişimleri DOM ile yapılır, böylece yenileme 404'e yol açmaz. Firebase SDK'sı resmi CDN'den sabit 13.0.0 sürümüyle gerektiğinde yüklenir; internet bağlantısı gerekir. Yerel `tools/serve.mjs` canlı ortamda çalıştırılmaz.
 
 ## Veri formatı
 
-`veri.json` içinde 18 kart havuzu aynı kart sözleşmesini kullanır. Yedi ana kategori Futbolcular, Yemekler ve İçecekler, Diziler ve Filmler, Yerli Müzik, Şehirler ve Ülkeler, Nostalji ve Oyun Dünyası'dır. Seçilen havuz oda kurarken kaydedilir; bot, katılan oyuncu ve rövanş aynı havuzu kullanır. Ana kategoriye geri dönünce o kategorinin son alt seçimi hatırlanır. Kart galerisi isim, takım veya etiketle aranabilir.
+`veri.json` içinde 22 kart havuzu aynı kart sözleşmesini kullanır. Sekiz ana kategori Futbolcular, Yemekler ve İçecekler, Diziler ve Filmler, Yerli Müzik, Şehirler ve Ülkeler, Nostalji, Oyun Karakterleri ve Oyunlar'dır. Lobide 21 koleksiyon seçilebilir; eski birleşik `oyun-evreni` havuzu yalnız mevcut odaların devamı için korunur ve yeni oda seçimi olarak gösterilmez. Seçilen havuz oda kurarken kaydedilir; bot, katılan oyuncu ve rövanş aynı havuzu kullanır. Ana kategoriye geri dönünce o kategorinin son alt seçimi hatırlanır. Kart galerisi isim, takım veya etiketle aranabilir.
+
+Yemekler ve İçecekler içinde önce **Tatlılar**, **Ana Yemekler** veya **İçecekler** seçilir. Tatlılar ve Ana Yemekler ikinci aşamada **Vol. 1 — Bilindikler** ile **Vol. 2 — Tam Koleksiyon** seçeneklerini açar; her ailenin son seçimi hatırlanır. Vol. 1 tatlılarda 35, ana yemeklerde 50 mevcut kartın birebir kopyasını kullanır. ID, isim, etiket ve görsel yolu yeniden üretilmez; Vol. 2 havuzlarının 100'er kartı değişmeden kalır. Bilindikler seçkisi editoryal bir tercihtir, ölçülmüş bilinirlik sıralaması değildir.
 
 | Ana kategori | Koleksiyon | JSON anahtarı | Kart |
 | --- | --- | --- | ---: |
@@ -190,8 +193,10 @@ npm run build
 | Futbolcular | Türkiye Süper Lig | `superlig` | 100 |
 | Futbolcular | Türkiye Efsaneleri | `turkiye-efsaneleri` | 120 |
 | Futbolcular | Güncel Dünya Yıldızları | `dunya-yildizlari` | 100 |
-| Yemekler ve İçecekler | Tatlılar | `tatli` | 100 |
-| Yemekler ve İçecekler | Ana Yemekler | `yemek` | 100 |
+| Yemekler ve İçecekler | Tatlılar · Vol. 1 — Bilindikler | `tatli-vol1` | 35 |
+| Yemekler ve İçecekler | Tatlılar · Vol. 2 — Tam Koleksiyon | `tatli` | 100 |
+| Yemekler ve İçecekler | Ana Yemekler · Vol. 1 — Bilindikler | `yemek-vol1` | 50 |
+| Yemekler ve İçecekler | Ana Yemekler · Vol. 2 — Tam Koleksiyon | `yemek` | 100 |
 | Yemekler ve İçecekler | İçecekler | `icecek` | 50 |
 | Diziler ve Filmler | Diziler | `dizi` | 50 |
 | Diziler ve Filmler | Filmler | `film` | 50 |
@@ -200,10 +205,13 @@ npm run build
 | Şehirler ve Ülkeler | İstanbul İlçeleri | `istanbul-ilceleri` | 39 |
 | Şehirler ve Ülkeler | Türkiye Şehirleri | `turkiye-sehirleri` | 81 |
 | Şehirler ve Ülkeler | Ülkeler | `ulkeler` | 80 |
-| Nostalji | Çocukluk Çizgi Filmleri | `cocukluk-cizgifilmleri` | 35 |
+| Nostalji | Çocukluk Çizgi Filmleri | `cocukluk-cizgifilmleri` | 60 |
 | Nostalji | 90'lar Nostaljisi | `doksanlar-nostalji` | 35 |
 | Nostalji | Kantin ve Bakkal | `kantin-bakkal` | 35 |
-| Oyun Dünyası | Oyun Karakterleri ve Oyunlar | `oyun-evreni` | 100 |
+| Oyun Karakterleri | Oyun Karakterleri | `oyun-karakterleri` | 60 |
+| Oyunlar | Oyunlar | `oyunlar` | 40 |
+
+Tablo yalnız lobideki 21 seçeneği gösterir. Arşivdeki `oyun-evreni` 100 kartlık eski birleşik havuzdur; yeni Oyun Karakterleri ve Oyunlar havuzları onun kartlarını `tip` alanına göre ayrı ayrı kopyalar. Yeni oyunlarda bir karakter ile bir oyun eşleştirilmez; eski odalar kendi kayıtlı birleşik destelerini tamamlayabilir.
 
 ```json
 {
@@ -213,7 +221,9 @@ npm run build
   "superlig": [],
   "turkiye-efsaneleri": [],
   "dunya-yildizlari": [],
+  "tatli-vol1": [],
   "tatli": [],
+  "yemek-vol1": [],
   "yemek": [],
   "icecek": [],
   "dizi": [],
@@ -226,11 +236,13 @@ npm run build
   "cocukluk-cizgifilmleri": [],
   "doksanlar-nostalji": [],
   "kantin-bakkal": [],
+  "oyun-karakterleri": [],
+  "oyunlar": [],
   "oyun-evreni": []
 }
 ```
 
-Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Dört modun tamamıyla kullanmak için yukarıdaki 16 kart ve etiket koşulu geçerlidir. Toplam **1.300 kart** vardır. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre, sanatçılarda geniş müzik türü, ilçelerde Ankara veya İstanbul, illerde coğrafi bölge, ülkelerde geniş kıta grubu, nostalji ve oyun kartlarında geniş konu/tür grupları kullanılır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını, sanatçı kartlarındaki `tip` ise `sanatci`/`grup` ayrımını saklar. Oyun havuzunda `tip`, `karakter` veya `oyun`; coğrafya kartlarında `il` veya `ulke` değeridir. `plaka`, `iso2`, `evren` ve `marka` gibi ek bilgiler ilgili kartın kimliğini açıklar; temel oyun sözleşmesini değiştirmez. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
+Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Dört modun tamamıyla kullanmak için yukarıdaki 16 kart ve etiket koşulu geçerlidir. Toplam **1.325 farklı yerel kart görseli** vardır. Vol. 1 seçkileri ve iki ayrı oyun havuzu mevcut kartları kullandığı için 22 JSON havuzundaki kayıt sayısı **1.510**'dur; bu sayı 185 yeni kart veya yeni görsel anlamına gelmez. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre, sanatçılarda geniş müzik türü, ilçelerde Ankara veya İstanbul, illerde coğrafi bölge, ülkelerde geniş kıta grubu, nostalji ve oyun kartlarında geniş konu/tür grupları kullanılır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını, sanatçı kartlarındaki `tip` ise `sanatci`/`grup` ayrımını saklar. Oyun havuzlarında `tip`, `karakter` veya `oyun`; coğrafya kartlarında `il` veya `ulke` değeridir. `plaka`, `iso2`, `evren` ve `marka` gibi ek bilgiler ilgili kartın kimliğini açıklar; temel oyun sözleşmesini değiştirmez. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
 
 Efsaneler, başarı ve geniş bilinirlik gözetilerek hazırlanmış editoryal bir seçkidir; ölçülmüş taraftar sayısı sıralaması değildir. Aktif ve emekli isimler birlikte bulunur. İkonik milli takım renkleriyle gösterilir; ülke bilgisi güncel kulüp iddiası taşımaz. Süper Lig portrelerinde doğrulanmış kulübün renkleri kullanılır. Her futbolcu için farklı saç, ten, sakal ve forma ayrıntıları olan özgün 96×96 SVG vardır.
 
@@ -248,17 +260,19 @@ Süper Lig seçkisinde ilk 50 kart korunarak 30 yeni oyuncu eklendi. On kulüp t
 
 Aynı günkü **ikinci genişlemede 209 yeni kart ve 209 yeni SVG** eklendi: Türkiye Efsaneleri'ne 70, Güncel Dünya Yıldızları'na 50, Yerli Müzik'e 50 kart ve İstanbul'un 39 ilçesi. O aşamada katalog beş kategoride 12 koleksiyon ve 934 karta ulaştı. Türkiye Efsaneleri Türkiye'de oynamış **120 kulüp ikonunu** kapsar; Alex, Hagi, Drogba ve Yattara gibi yabancı oyuncular da dahildir. İlk 50 Türkiye kartının ID, isim, görsel yolu ve etiketi korunmuştur; kulüp metadata'sı ve aynı görsel yolundaki forma çizimi tarihî Türkiye kulüplerine göre bilerek güncellenmiştir. Gösterilen kulüp oyuncunun Türkiye kariyerine aittir ve güncel takım iddiası değildir. Güncel Dünya Yıldızları **100 aktif profesyonel oyuncudan** oluşur; ülke ve temsili milli forma renkleri kullanılır, güncel kulüp veya transfer tahmini saklanmaz. Sakatlıktan dönen profesyonellerin dahil olması, o gün oynayabilecekleri veya son milli kadroya seçildikleri anlamına gelmez.
 
-Yerli Müzik **100 solo sanatçı ve grup** içerir; Pop, Rock, Türk Sanat Müziği, Arabesk, Halk ve Rap etiketleri aynı türden üçlüler üretmek için geniş oyun gruplarıdır. Şehirler ve Ülkeler kategorisinde Ankara'nın **25**, İstanbul'un **39** ilçesi, Türkiye'nin **81 ili** ve **80 ülke** yer alır. İl/ilçe çizimleri temsili mimari/doğa motifleridir; kesin harita veya coğrafi sınır göstermez. Ülkeler BM üyesi ülkelerden oluşturulmuş bir seçkidir; bütün dünya ülkelerinin eksiksiz listesi değildir. Menüde **100 tatlı, 100 ana yemek ve 50 içecek** vardır; içeceklerin **42'si alkolsüz, 8'i alkollüdür**.
+Yerli Müzik **100 solo sanatçı ve grup** içerir; Pop, Rock, Türk Sanat Müziği, Arabesk, Halk ve Rap etiketleri aynı türden üçlüler üretmek için geniş oyun gruplarıdır. Şehirler ve Ülkeler kategorisinde Ankara'nın **25**, İstanbul'un **39** ilçesi, Türkiye'nin **81 ili** ve **80 ülke** yer alır. İl/ilçe çizimleri temsili mimari/doğa motifleridir; kesin harita veya coğrafi sınır göstermez. Ülkeler BM üyesi ülkelerden oluşturulmuş bir seçkidir; bütün dünya ülkelerinin eksiksiz listesi değildir. Tam menü havuzlarında **100 tatlı, 100 ana yemek ve 50 içecek** vardır; Vol. 1 seçkileri bu tatlıların 35'ini ve ana yemeklerin 50'sini ayrıca sunar. İçeceklerin **42'si alkolsüz, 8'i alkollüdür**.
 
-**Üçüncü genişleme 366 yeni kart ve 366 yerel SVG dosyası** ekler: 35 Çocukluk Çizgi Filmi, 35 90'lar Nostaljisi, 35 Kantin ve Bakkal, 81 Türkiye Şehri, 100 Oyun Karakteri/Oyun ve 80 Ülke. Böylece güncel katalog yedi kategoride 18 koleksiyon ve 1.300 kart içerir. Çizgi filmlerde Heidi, Pepee, Rafadan Tayfa, Kaptan Tsubasa ve Pokémon; hatıralarda Tamagotchi, sakız kartları, kaset ve Tetris el oyunu; kantin havuzunda Tadelle, Metro ve Ülker Çokokrem bulunur. Oyun Dünyası havuzunun **60 kartı karakter, 40 kartı oyun** kimliğini taşır; Mario, Sonic, Kratos ve tanınan konsol/PC serileri ağırlıktadır. Seçki ölçülmüş popülerlik veya satış sıralaması değildir.
+**Üçüncü genişleme 366 yeni kart ve 366 yerel SVG dosyası** ekledi: 35 Çocukluk Çizgi Filmi, 35 90'lar Nostaljisi, 35 Kantin ve Bakkal, 81 Türkiye Şehri, 100 Oyun Karakteri/Oyun ve 80 Ülke. O aşamadaki katalog yedi kategoride 18 koleksiyon ve 1.300 kart içeriyordu. Çizgi filmlerde Heidi, Pepee, Rafadan Tayfa, Kaptan Tsubasa ve Pokémon; hatıralarda Tamagotchi, sakız kartları, kaset ve Tetris el oyunu; kantin havuzunda Tadelle, Metro ve Ülker Çokokrem bulunuyordu. Eski Oyun Dünyası havuzunun **60 kartı karakter, 40 kartı oyun** kimliğini taşır; Mario, Sonic, Kratos ve tanınan konsol/PC serileri ağırlıktadır. Seçki ölçülmüş popülerlik veya satış sıralaması değildir.
+
+**Son koleksiyon revizesi** Çocukluk Çizgi Filmleri'ni **60 karta** çıkardı. Looney Tunes tek seri kartı olarak seçilmez; Bugs Bunny, Daffy Duck, Tweety ve diğerleri dahil **15 karakter ayrı karttır**. Eski Looney Tunes kartının `11011` kimliği açık revizyonla Bugs Bunny'ye dönüştürüldü; diğer mevcut kart ID'leri korunur. Oyun Karakterleri **60**, Oyunlar **40** kartla iki ayrı ana kategoridir. Tatlılar ve Ana Yemekler, mevcut içerikleri tekrar çizmeden Vol. 1 seçkileri ve 100'er kartlık Vol. 2 havuzları sunar. Yattara'nın portresi kısa parlak sarı saç ve sakalsız yüzle, Nwakaeme'ninki kel baş ve sakalsız yüzle düzeltildi. Sonuçta sekiz ana kategori, 21 lobi koleksiyonu ve eski odalar için bir arşiv havuzu vardır.
 
 Cin Ali, resmî vakıf açıklamasında okuma kitaplarının çizgi karakteridir: **Cin Ali Kitapları** 90'lar Nostaljisi havuzundadır. Kantin/bakkal havuzunda üreticinin doğruladığı **ETİ Cin** bisküvisi kullanılır; Cin Ali adında bir gıda markası varsayılmaz. Nostalji ve kantin seçkileri farklı dönemlerin çocukluk çağrışımlarını kapsar; tüm kartların 1990–1999'da icat edildiği, ürünlerin bugün satışta olduğu veya çizimlerin tarihî ambalajları aynen gösterdiği ileri sürülmez.
 
 İlk genişlemenin geliştirme kaynakları `tools/expansion-football.json`, `tools/expansion-menu.json` ve `tools/expansion-culture.json` içindedir. Üç `tools/generate-expansion-*.mjs` aracı o ilk ek kartları ve yerel SVG dosyalarını üretir. İkinci genişleme için `tools/generate-turkey-icons.mjs`, `tools/generate-world-stars-extra.mjs` ve `tools/generate-culture-extra.mjs` kullanılır; çıktıları sırasıyla Türkiye'nin tam 120 kartlık listesi `tools/turkey-icons.json`, 50 yeni dünya yıldızı `tools/world-stars-extra.json` ve 50 sanatçı ile 39 İstanbul ilçesi `tools/culture-extra.json` dosyalarıdır. Türkiye için ilk üreteçteki milli formaları yeniden üretmek yerine güncel kulüp ikonu üretecini kullanın.
 
-Üçüncü genişlemenin araçları `tools/generate-nostalgia-sets.mjs` ve `tools/generate-games-geo.mjs` dosyalarıdır. Birincisi 105 nostalji kartını `tools/nostalgia-sets.json` içinde, ikincisi 261 şehir/oyun/ülke kartını `tools/games-geo.json` içinde üretir. Ülke bayrakları [flag-icons](https://github.com/lipis/flag-icons) **v7.3.2** sürümünden alınır ve yerel kart çerçevesine yerleştirilir; tam MIT lisans bildirimi ve kaynak URL'si her bayrak SVG'sinde ve `tools/games-geo-sources.json` içinde korunur. Tarayıcı bayrakları da yerel dosyalardan okur.
+Üçüncü genişlemenin araçları `tools/generate-nostalgia-sets.mjs` ve `tools/generate-games-geo.mjs` dosyalarıdır. Birincisi ilk halinde 105, son revizede **130 nostalji kartını** `tools/nostalgia-sets.json` içinde; ikincisi 261 şehir/oyun/ülke kartını `tools/games-geo.json` içinde üretir. `tools/collection-volumes.json` yalnızca Vol. 1 seçkilerinin kaynak havuzunu ve mevcut kart ID'lerini saklar; yeni görsel üretmez. Ülke bayrakları [flag-icons](https://github.com/lipis/flag-icons) **v7.3.2** sürümünden alınır ve yerel kart çerçevesine yerleştirilir; tam MIT lisans bildirimi ve kaynak URL'si her bayrak SVG'sinde ve `tools/games-geo-sources.json` içinde korunur. Tarayıcı bayrakları da yerel dosyalardan okur.
 
-`node tools/integrate-expansion.mjs`, eski ve yeni geliştirme beslemelerini tek `veri.json` dosyasına birleştirir. Türkiye kartlarının kulüp metadata'sı güncellemesi tek açık istisnadır: var olan ID, isim, görsel yolu ve etiketin aynı kaldığını doğruladıktan sonra tam Türkiye listesini uygular. Diğer havuzlarda aynı ID'nin içeriğinin değiştirilmesini reddeder. İsim ve ID tekrarlarını engeller; tekrar çalıştırıldığında sayı artmaz. Tarayıcı bu geliştirme listelerini okumaz.
+`node tools/integrate-expansion.mjs`, eski ve yeni geliştirme beslemelerini tek `veri.json` dosyasına birleştirir. Türkiye kartlarının kulüp metadata'sı güncellemesinde var olan ID, isim, görsel yolu ve etiketin aynı kaldığını doğruladıktan sonra tam Türkiye listesini uygular. Çizgi film revizesi için yalnız `11011` Looney Tunes → Bugs Bunny dönüşümü ve Looney Tunes karakterlerinin `evren` arama metadata'sı açık istisnalardır. Diğer havuzlarda aynı ID'nin içeriğinin değiştirilmesini reddeder. Vol. 1 havuzlarını seçili mevcut kartlardan, iki ayrı oyun havuzunu eski birleşik havuzun `tip` alanından kopyalar. Havuz içindeki isim ve ID tekrarlarını engeller; tekrar çalıştırıldığında sayı artmaz. 22 havuzu ve RTDB'nin koleksiyon izin listesini birlikte günceller. Tarayıcı bu geliştirme listelerini okumaz.
 
 İlk 12 Ekim futbol seçkisinin TFF, FIFA ve resmi kulüp/yarışma kaynakları `tools/expansion-football-sources.json`; Ankara ilçe listesi, motifler ve müzik kaynakları `tools/expansion-culture-sources.json` içinde erişim tarihleriyle saklanır. İkinci genişlemenin kayıtları `tools/turkey-icons-sources.json`, `tools/world-stars-extra-sources.json` ve `tools/culture-extra-sources.json` içindedir. Türkiye kaynakları tarihî Türkiye kulüp bağlantılarını, dünya kaynakları aktif profesyonellik ve ülke bağlantısını, kültür kaynakları müzik seçkisi ve resmî İstanbul ilçe listesini destekler. Üçüncü genişlemenin eser/üretici kaynakları ve Cin Ali ayrımı `tools/nostalgia-sets-sources.json`; [İçişleri Bakanlığının il listesi](https://www.icisleri.gov.tr/valilikler), [BM ülke listesi](https://www.un.org/about-us/member-states), [BM M49 gruplaması](https://unstats.un.org/unsd/methodology/m49/), oyun yayıncıları ve bayrak kaynak/lisans kayıtları `tools/games-geo-sources.json` içinde saklanır. Eski Süper Lig kaynak tarihleri bu genişlemede yeniden kontrol edilmiş gibi gösterilmez.
 
@@ -302,9 +316,11 @@ Bu sürüm güvenilir arkadaşlar arasında oyun için hazırlanmıştır. İste
 npm test
 ```
 
-12 Ekim 2026 son revizesinde **114/114 test geçti**. Hazırlık kontrolü 18 koleksiyonun **1.300 kartını ve 1.300 yerel görselini**, dört motorun tamamını, 67 göreli başvuruyu ve çevrimiçi ayarları doğruladı. Statik paket 1.358 çalışma dosyası içerir. Yayımlanmış önceki 725 kartın kimlikleri korunur; Türkiye kartlarının tarihî kulüp metadata/forma güncellemesi açık istisnadır. Nostalji, şehir, ülke, oyun ve yeni kültür havuzlarının 455 SVG'si raster olarak açıldı; her havuzdaki çizimler birbirinden farklıydı.
+12 Ekim 2026 **son koleksiyon revizesinde 120/120 test geçti**. Hazırlık kontrolü 21 lobi seçimi ile bir arşiv havuzunu, toplam **1.510 JSON kaydını ve 1.325 farklı yerel kart görselini**, dört motorun tamamını, 67 göreli başvuruyu ve çevrimiçi ayarları doğruladı. Vol. 1 kopyalarının kaynak kartlarla aynı olması, oyunların ve karakterlerin ayrı havuzlarda kalması ve çizgi film revizesi veri testleriyle denetlenir. Güncel RTDB kuralları resmi Database Emulator 4.11.2'de **68/68 kontrolü sıfır atlamayla geçti**; koleksiyon izinleri ve oda ayarlarının değişmezliği 22 havuzla kontrol edildi. Bu yerel kontroller yeni GitHub Pages dağıtımının veya Firebase Console kural yayınının tamamlandığına dair bir kayıt değildir.
 
-Güncel kurallar resmi Database Emulator 4.11.2'de **68 kontrolü, sıfır atlamayla geçti**. Solo başlatma, izleyici olmadan ilerleme/rövanş, bekleyen/oynanan/bitmiş odaya yalnız boş izleyici koltuğundan katılma, yarışan hamlede oyun durumunun korunması ve üçüncü kişi müdahalesinin reddi kapsanır. 18 koleksiyondaki geçerli odaların altı yeni koleksiyona izinsiz geçirilmesi ayrıca reddedildi; tüm koleksiyonların değişmezlik koşulu aynı doğrulama kapsamındadır. Bu içerik Adoapp Realtime Database kurallarına da uygulandı.
+12 Ekim 2026'daki **üçüncü genişlemenin tarihsel doğrulamasında 114/114 test geçti**. O aşamadaki hazırlık kontrolü 18 koleksiyonun **1.300 kartını ve 1.300 yerel görselini**, dört motorun tamamını, 67 göreli başvuruyu ve çevrimiçi ayarları doğruladı. Statik paket 1.358 çalışma dosyası içeriyordu. Yayımlanmış önceki 725 kartın kimlikleri korunmuştu; Türkiye kartlarının tarihî kulüp metadata/forma güncellemesi açık istisnaydı. Nostalji, şehir, ülke, oyun ve yeni kültür havuzlarının 455 SVG'si raster olarak açıldı; her havuzdaki çizimler birbirinden farklıydı.
+
+Üçüncü genişlemedeki kurallar resmi Database Emulator 4.11.2'de **68 kontrolü, sıfır atlamayla geçti**. Solo başlatma, izleyici olmadan ilerleme/rövanş, bekleyen/oynanan/bitmiş odaya yalnız boş izleyici koltuğundan katılma, yarışan hamlede oyun durumunun korunması ve üçüncü kişi müdahalesinin reddi kapsanır. O aşamadaki 18 koleksiyondaki geçerli odaların altı yeni koleksiyona izinsiz geçirilmesi ayrıca reddedildi; tüm koleksiyonların değişmezlik koşulu aynı doğrulama kapsamındaydı. Bu tarihsel kural içeriği Adoapp Realtime Database'e de uygulanmıştı.
 
 Gerçek Firebase bulutunda iki ayrı yerel tarayıcı kökeni ve iki anonim kimlikle kontrol yapıldı. `452807` kodlu Çocukluk Çizgi Filmleri / Kör Sıralama odası tek oyuncuyla başladı; üç seçimden sonra katılan izleyici aynı seçimleri gördü, seçim düğmeleri gizlendi ve on seçim sonunda iki ekranın sonuçları aynıydı. Aynı kodla rövanşta izleyici aktif oyuncuya döndü. `972712` kodlu Ülkeler / O mu, Bu mu? odası tek başına 15 seçimle tamamlandı; bitmiş odaya katılan izleyici aynı Nijerya şampiyonunu gördü. Rövanşta izleyici seçmeye başladı, diğer oyuncunun adayları kapandı ve izleyici ayrılınca aktif oyuncu devam etti. İki istemcinin hata/uyarı kayıtları boştu. Bu kontrol fiziksel iki ayrı cihaz testi değildir; GitHub Pages yayını ayrı doğrulanır.
 

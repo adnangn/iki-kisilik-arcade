@@ -39,15 +39,38 @@ for (const filename of ['world-stars-extra.json', 'culture-extra.json', 'nostalg
     const pool = data[datasetId] ||= [];
     for (const card of additions) {
       const existing = pool.find(value => value.id === card.id);
-      if (existing) assert.deepEqual(existing, card, `${datasetId}/${card.id}: eski kart değiştirilemez.`);
+      if (existing && datasetId === 'cocukluk-cizgifilmleri' && card.id === 11011 && existing.isim === 'Looney Tunes') {
+        // The requested series-to-character revision keeps its original ID.
+        assert.equal(card.isim, 'Bugs Bunny');
+        pool[pool.indexOf(existing)] = card;
+      } else if (existing && datasetId === 'cocukluk-cizgifilmleri' && card.evren === 'Looney Tunes') {
+        const { evren: oldSeries, ...oldIdentity } = existing;
+        const { evren: newSeries, ...newIdentity } = card;
+        assert.deepEqual(oldIdentity, newIdentity, `${datasetId}/${card.id}: yalnız seri arama metadata alanı eklenebilir.`);
+        pool[pool.indexOf(existing)] = card;
+      } else if (existing) assert.deepEqual(existing, card, `${datasetId}/${card.id}: eski kart değiştirilemez.`);
       else pool.push(card);
     }
   }
 }
+const volumes = JSON.parse(await readFile(new URL('tools/collection-volumes.json', root), 'utf8'));
+for (const [datasetId, volume] of Object.entries(volumes)) {
+  assert.equal(new Set(volume.ids).size, volume.ids.length, `${datasetId}: tekrar eden seçim.`);
+  data[datasetId] = volume.ids.map(id => {
+    const original = data[volume.source].find(card => card.id === id);
+    assert.ok(original, `${datasetId}: ana koleksiyonda olmayan kart ${id}`);
+    return { ...original };
+  });
+}
+// Keep the old mixed pool for rooms created before this release. The lobby
+// only exposes the two typed copies; card IDs and image paths stay unchanged.
+data['oyun-karakterleri'] = data['oyun-evreni'].filter(card => card.tip === 'karakter').map(card => ({ ...card }));
+data.oyunlar = data['oyun-evreni'].filter(card => card.tip === 'oyun').map(card => ({ ...card }));
 const expected = { futbol: 100, superlig: 100, tatli: 100, yemek: 100, dizi: 50, film: 50,
   'turkiye-efsaneleri': 120, 'dunya-yildizlari': 100, 'yerli-sanatcilar': 100, 'ankara-ilceleri': 25, icecek: 50, 'istanbul-ilceleri': 39,
-  'cocukluk-cizgifilmleri': 35, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35,
-  'turkiye-sehirleri': 81, 'oyun-evreni': 100, ulkeler: 80 };
+  'cocukluk-cizgifilmleri': 60, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35,
+  'turkiye-sehirleri': 81, 'oyun-evreni': 100, ulkeler: 80,
+  'tatli-vol1': 35, 'yemek-vol1': 50, 'oyun-karakterleri': 60, oyunlar: 40 };
 assert.deepEqual(Object.keys(data).sort(), Object.keys(expected).sort());
 for (const [key, count] of Object.entries(expected)) {
   assert.equal(data[key].length, count, key);
@@ -55,4 +78,9 @@ for (const [key, count] of Object.entries(expected)) {
   assert.equal(new Set(data[key].map(card => canonicalName(card.isim))).size, count, `${key}: tekrar eden isim.`);
 }
 await writeFile(new URL('veri.json', root), JSON.stringify(data, null, 2) + '\n', 'utf8');
-console.log('18 koleksiyon ve 1300 kart tek veri.json dosyasına birleştirildi.');
+const rulesUrl = new URL('firebase.rules.json', root);
+const rules = JSON.parse(await readFile(rulesUrl, 'utf8'));
+const allowedDatasets = Object.keys(data).map(id => `newData.val() === '${id}'`).join(' || ');
+rules.rules.rooms.$code.datasetId['.validate'] = `(${allowedDatasets}) && (!data.exists() || newData.val() === data.val())`;
+await writeFile(rulesUrl, JSON.stringify(rules, null, 2) + '\n', 'utf8');
+console.log(`${Object.keys(data).length} veri havuzu (21 lobi seçimi + eski odalar için 1 arşiv havuzu) tek veri.json dosyasına birleştirildi.`);

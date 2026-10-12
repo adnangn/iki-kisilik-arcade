@@ -62,9 +62,10 @@
     },
     {
       "id": 11011,
-      "isim": "Looney Tunes",
-      "gorsel": "assets/images/cartoons/looney-tunes.svg",
-      "etiket": "Klasikler"
+      "isim": "Bugs Bunny",
+      "gorsel": "assets/images/cartoons/bugs-bunny.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
     },
     {
       "id": 11012,
@@ -209,6 +210,170 @@
       "isim": "Winnie the Pooh",
       "gorsel": "assets/images/cartoons/winnie-the-pooh.svg",
       "etiket": "Klasikler"
+    },
+    {
+      "id": 11036,
+      "isim": "Daffy Duck",
+      "gorsel": "assets/images/cartoons/daffy-duck.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11037,
+      "isim": "Tweety",
+      "gorsel": "assets/images/cartoons/tweety.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11038,
+      "isim": "Sylvester",
+      "gorsel": "assets/images/cartoons/sylvester.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11039,
+      "isim": "Taz",
+      "gorsel": "assets/images/cartoons/taz.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11040,
+      "isim": "Road Runner",
+      "gorsel": "assets/images/cartoons/road-runner.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11041,
+      "isim": "Wile E. Coyote",
+      "gorsel": "assets/images/cartoons/wile-e-coyote.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11042,
+      "isim": "Porky Pig",
+      "gorsel": "assets/images/cartoons/porky-pig.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11043,
+      "isim": "Speedy Gonzales",
+      "gorsel": "assets/images/cartoons/speedy-gonzales.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11044,
+      "isim": "Elmer Fudd",
+      "gorsel": "assets/images/cartoons/elmer-fudd.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11045,
+      "isim": "Yosemite Sam",
+      "gorsel": "assets/images/cartoons/yosemite-sam.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11046,
+      "isim": "Foghorn Leghorn",
+      "gorsel": "assets/images/cartoons/foghorn-leghorn.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11047,
+      "isim": "Marvin the Martian",
+      "gorsel": "assets/images/cartoons/marvin-the-martian.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11048,
+      "isim": "Pepé Le Pew",
+      "gorsel": "assets/images/cartoons/pepe-le-pew.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11049,
+      "isim": "Lola Bunny",
+      "gorsel": "assets/images/cartoons/lola-bunny.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11050,
+      "isim": "Mickey Mouse",
+      "gorsel": "assets/images/cartoons/mickey-mouse.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11051,
+      "isim": "Minnie Mouse",
+      "gorsel": "assets/images/cartoons/minnie-mouse.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11052,
+      "isim": "Donald Duck",
+      "gorsel": "assets/images/cartoons/donald-duck.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11053,
+      "isim": "Goofy",
+      "gorsel": "assets/images/cartoons/goofy.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11054,
+      "isim": "Pluto",
+      "gorsel": "assets/images/cartoons/pluto.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11055,
+      "isim": "Pembe Panter",
+      "gorsel": "assets/images/cartoons/pembe-panter.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11056,
+      "isim": "Müfettiş Gadget",
+      "gorsel": "assets/images/cartoons/mufettis-gadget.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11057,
+      "isim": "Garfield",
+      "gorsel": "assets/images/cartoons/garfield.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11058,
+      "isim": "Gumball",
+      "gorsel": "assets/images/cartoons/gumball.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11059,
+      "isim": "Darwin",
+      "gorsel": "assets/images/cartoons/darwin.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11060,
+      "isim": "Finn",
+      "gorsel": "assets/images/cartoons/finn.svg",
+      "etiket": "Macera"
     }
   ],
   "doksanlar-nostalji": [

@@ -6850,9 +6850,10 @@
     },
     {
       "id": 11011,
-      "isim": "Looney Tunes",
-      "gorsel": "assets/images/cartoons/looney-tunes.svg",
-      "etiket": "Klasikler"
+      "isim": "Bugs Bunny",
+      "gorsel": "assets/images/cartoons/bugs-bunny.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
     },
     {
       "id": 11012,
@@ -6997,6 +6998,170 @@
       "isim": "Winnie the Pooh",
       "gorsel": "assets/images/cartoons/winnie-the-pooh.svg",
       "etiket": "Klasikler"
+    },
+    {
+      "id": 11036,
+      "isim": "Daffy Duck",
+      "gorsel": "assets/images/cartoons/daffy-duck.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11037,
+      "isim": "Tweety",
+      "gorsel": "assets/images/cartoons/tweety.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11038,
+      "isim": "Sylvester",
+      "gorsel": "assets/images/cartoons/sylvester.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11039,
+      "isim": "Taz",
+      "gorsel": "assets/images/cartoons/taz.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11040,
+      "isim": "Road Runner",
+      "gorsel": "assets/images/cartoons/road-runner.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11041,
+      "isim": "Wile E. Coyote",
+      "gorsel": "assets/images/cartoons/wile-e-coyote.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11042,
+      "isim": "Porky Pig",
+      "gorsel": "assets/images/cartoons/porky-pig.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11043,
+      "isim": "Speedy Gonzales",
+      "gorsel": "assets/images/cartoons/speedy-gonzales.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11044,
+      "isim": "Elmer Fudd",
+      "gorsel": "assets/images/cartoons/elmer-fudd.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11045,
+      "isim": "Yosemite Sam",
+      "gorsel": "assets/images/cartoons/yosemite-sam.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11046,
+      "isim": "Foghorn Leghorn",
+      "gorsel": "assets/images/cartoons/foghorn-leghorn.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11047,
+      "isim": "Marvin the Martian",
+      "gorsel": "assets/images/cartoons/marvin-the-martian.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11048,
+      "isim": "Pepé Le Pew",
+      "gorsel": "assets/images/cartoons/pepe-le-pew.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11049,
+      "isim": "Lola Bunny",
+      "gorsel": "assets/images/cartoons/lola-bunny.svg",
+      "etiket": "Klasikler",
+      "evren": "Looney Tunes"
+    },
+    {
+      "id": 11050,
+      "isim": "Mickey Mouse",
+      "gorsel": "assets/images/cartoons/mickey-mouse.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11051,
+      "isim": "Minnie Mouse",
+      "gorsel": "assets/images/cartoons/minnie-mouse.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11052,
+      "isim": "Donald Duck",
+      "gorsel": "assets/images/cartoons/donald-duck.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11053,
+      "isim": "Goofy",
+      "gorsel": "assets/images/cartoons/goofy.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11054,
+      "isim": "Pluto",
+      "gorsel": "assets/images/cartoons/pluto.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11055,
+      "isim": "Pembe Panter",
+      "gorsel": "assets/images/cartoons/pembe-panter.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11056,
+      "isim": "Müfettiş Gadget",
+      "gorsel": "assets/images/cartoons/mufettis-gadget.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11057,
+      "isim": "Garfield",
+      "gorsel": "assets/images/cartoons/garfield.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11058,
+      "isim": "Gumball",
+      "gorsel": "assets/images/cartoons/gumball.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11059,
+      "isim": "Darwin",
+      "gorsel": "assets/images/cartoons/darwin.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11060,
+      "isim": "Finn",
+      "gorsel": "assets/images/cartoons/finn.svg",
+      "etiket": "Macera"
     }
   ],
   "doksanlar-nostalji": [
@@ -9627,6 +9792,1324 @@
       "etiket": "Okyanusya",
       "tip": "ulke",
       "iso2": "NZ"
+    }
+  ],
+  "tatli-vol1": [
+    {
+      "id": 1,
+      "isim": "Baklava",
+      "gorsel": "assets/images/baklava.svg",
+      "etiket": "Tatlı"
+    },
+    {
+      "id": 2,
+      "isim": "Künefe",
+      "gorsel": "assets/images/kunefe.svg",
+      "etiket": "Tatlı"
+    },
+    {
+      "id": 3,
+      "isim": "Sütlaç",
+      "gorsel": "assets/images/sutlac.svg",
+      "etiket": "Tatlı"
+    },
+    {
+      "id": 4,
+      "isim": "Kazandibi",
+      "gorsel": "assets/images/kazandibi.svg",
+      "etiket": "Tatlı"
+    },
+    {
+      "id": 5,
+      "isim": "Revani",
+      "gorsel": "assets/images/desserts/revani.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 6,
+      "isim": "Şekerpare",
+      "gorsel": "assets/images/desserts/sekerpare.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 7,
+      "isim": "Tulumba",
+      "gorsel": "assets/images/desserts/tulumba.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 8,
+      "isim": "İrmik Helvası",
+      "gorsel": "assets/images/desserts/irmik-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 9,
+      "isim": "Un Helvası",
+      "gorsel": "assets/images/desserts/un-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 10,
+      "isim": "Aşure",
+      "gorsel": "assets/images/desserts/asure.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 11,
+      "isim": "Trileçe",
+      "gorsel": "assets/images/desserts/trilece.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 12,
+      "isim": "Profiterol",
+      "gorsel": "assets/images/desserts/profiterol.svg",
+      "etiket": "Çikolatalı"
+    },
+    {
+      "id": 13,
+      "isim": "Ekler",
+      "gorsel": "assets/images/desserts/ekler.svg",
+      "etiket": "Çikolatalı"
+    },
+    {
+      "id": 14,
+      "isim": "Supangle",
+      "gorsel": "assets/images/desserts/supangle.svg",
+      "etiket": "Çikolatalı"
+    },
+    {
+      "id": 15,
+      "isim": "Magnolia",
+      "gorsel": "assets/images/desserts/magnolia.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 16,
+      "isim": "Tavuk Göğsü",
+      "gorsel": "assets/images/desserts/tavuk-gogsu.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 17,
+      "isim": "Kemalpaşa",
+      "gorsel": "assets/images/desserts/kemalpasa.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 18,
+      "isim": "Güllaç",
+      "gorsel": "assets/images/desserts/gullac.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 19,
+      "isim": "Katmer",
+      "gorsel": "assets/images/desserts/katmer.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 20,
+      "isim": "Dondurma",
+      "gorsel": "assets/images/desserts/dondurma.svg",
+      "etiket": "Soğuk"
+    },
+    {
+      "id": 21,
+      "isim": "Cheesecake",
+      "gorsel": "assets/images/desserts/cheesecake.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 22,
+      "isim": "Tiramisu",
+      "gorsel": "assets/images/desserts/tiramisu.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 23,
+      "isim": "Brownie",
+      "gorsel": "assets/images/desserts/brownie.svg",
+      "etiket": "Çikolatalı"
+    },
+    {
+      "id": 24,
+      "isim": "Sufle",
+      "gorsel": "assets/images/desserts/sufle.svg",
+      "etiket": "Çikolatalı"
+    },
+    {
+      "id": 25,
+      "isim": "Waffle",
+      "gorsel": "assets/images/desserts/waffle.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 27,
+      "isim": "Donut",
+      "gorsel": "assets/images/desserts/donut.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 29,
+      "isim": "Çikolatalı Pasta",
+      "gorsel": "assets/images/desserts/cikolatali-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 31,
+      "isim": "Lokma",
+      "gorsel": "assets/images/desserts/lokma.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 32,
+      "isim": "Halka Tatlısı",
+      "gorsel": "assets/images/desserts/halka-tatlisi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 35,
+      "isim": "Kabak Tatlısı",
+      "gorsel": "assets/images/desserts/kabak-tatlisi.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 36,
+      "isim": "Ayva Tatlısı",
+      "gorsel": "assets/images/desserts/ayva-tatlisi.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 38,
+      "isim": "Pişmaniye",
+      "gorsel": "assets/images/desserts/pismaniye.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 39,
+      "isim": "Tahin Helvası",
+      "gorsel": "assets/images/desserts/tahin-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 44,
+      "isim": "Mozaik Pasta",
+      "gorsel": "assets/images/desserts/mozaik-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1072,
+      "isim": "Muhallebi",
+      "gorsel": "assets/images/desserts/muhallebi.svg",
+      "etiket": "Sütlü"
+    }
+  ],
+  "yemek-vol1": [
+    {
+      "id": 5,
+      "isim": "Mantı",
+      "gorsel": "assets/images/manti.svg",
+      "etiket": "Ana Yemek"
+    },
+    {
+      "id": 6,
+      "isim": "Kuru Fasulye",
+      "gorsel": "assets/images/kuru-fasulye.svg",
+      "etiket": "Ana Yemek"
+    },
+    {
+      "id": 7,
+      "isim": "İskender",
+      "gorsel": "assets/images/iskender.svg",
+      "etiket": "Ana Yemek"
+    },
+    {
+      "id": 8,
+      "isim": "Lahmacun",
+      "gorsel": "assets/images/lahmacun.svg",
+      "etiket": "Ana Yemek"
+    },
+    {
+      "id": 11,
+      "isim": "Kokoreç",
+      "gorsel": "assets/images/kokorec.svg",
+      "etiket": "Sokak"
+    },
+    {
+      "id": 12,
+      "isim": "Balık Ekmek",
+      "gorsel": "assets/images/balik-ekmek.svg",
+      "etiket": "Sokak"
+    },
+    {
+      "id": 13,
+      "isim": "Adana Kebap",
+      "gorsel": "assets/images/meals/adana-kebap.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 14,
+      "isim": "Urfa Kebap",
+      "gorsel": "assets/images/meals/urfa-kebap.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 15,
+      "isim": "Döner",
+      "gorsel": "assets/images/meals/doner.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 16,
+      "isim": "İçli Köfte",
+      "gorsel": "assets/images/meals/icli-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 17,
+      "isim": "İnegöl Köfte",
+      "gorsel": "assets/images/meals/inegol-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 18,
+      "isim": "Tavuk Şiş",
+      "gorsel": "assets/images/meals/tavuk-sis.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 21,
+      "isim": "Karnıyarık",
+      "gorsel": "assets/images/meals/karniyarik.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 22,
+      "isim": "İmam Bayıldı",
+      "gorsel": "assets/images/meals/imam-bayildi.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 23,
+      "isim": "Yaprak Sarma",
+      "gorsel": "assets/images/meals/yaprak-sarma.svg",
+      "etiket": "Dolma"
+    },
+    {
+      "id": 24,
+      "isim": "Biber Dolması",
+      "gorsel": "assets/images/meals/biber-dolmasi.svg",
+      "etiket": "Dolma"
+    },
+    {
+      "id": 25,
+      "isim": "Etli Nohut",
+      "gorsel": "assets/images/meals/etli-nohut.svg",
+      "etiket": "Tencere"
+    },
+    {
+      "id": 28,
+      "isim": "Kıymalı Pide",
+      "gorsel": "assets/images/meals/kiymali-pide.svg",
+      "etiket": "Fırın"
+    },
+    {
+      "id": 29,
+      "isim": "Tavuklu Pilav",
+      "gorsel": "assets/images/meals/tavuklu-pilav.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 30,
+      "isim": "Fırında Balık",
+      "gorsel": "assets/images/meals/firinda-balik.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 31,
+      "isim": "Pizza",
+      "gorsel": "assets/images/meals/pizza.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 32,
+      "isim": "Hamburger",
+      "gorsel": "assets/images/meals/hamburger.svg",
+      "etiket": "Burger"
+    },
+    {
+      "id": 37,
+      "isim": "Mercimek Çorbası",
+      "gorsel": "assets/images/meals/mercimek-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 38,
+      "isim": "Ezogelin Çorbası",
+      "gorsel": "assets/images/meals/ezogelin-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 39,
+      "isim": "Yayla Çorbası",
+      "gorsel": "assets/images/meals/yayla-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 40,
+      "isim": "Menemen",
+      "gorsel": "assets/images/meals/menemen.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 42,
+      "isim": "Kaşarlı Tost",
+      "gorsel": "assets/images/meals/kasarli-tost.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 43,
+      "isim": "Su Böreği",
+      "gorsel": "assets/images/meals/su-boregi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 44,
+      "isim": "Patatesli Gözleme",
+      "gorsel": "assets/images/meals/patatesli-gozleme.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 45,
+      "isim": "Arnavut Ciğeri",
+      "gorsel": "assets/images/meals/arnavut-cigeri.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 46,
+      "isim": "Ali Nazik",
+      "gorsel": "assets/images/meals/ali-nazik.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 47,
+      "isim": "Et Sote",
+      "gorsel": "assets/images/meals/et-sote.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 48,
+      "isim": "Tavuk Sote",
+      "gorsel": "assets/images/meals/tavuk-sote.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 49,
+      "isim": "Kadınbudu Köfte",
+      "gorsel": "assets/images/meals/kadinbudu-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 50,
+      "isim": "İzmir Köfte",
+      "gorsel": "assets/images/meals/izmir-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 51,
+      "isim": "Mücver",
+      "gorsel": "assets/images/meals/mucver.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 53,
+      "isim": "Midye Dolma",
+      "gorsel": "assets/images/meals/midye-dolma.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 54,
+      "isim": "Hamsi Tava",
+      "gorsel": "assets/images/meals/hamsi-tava.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 55,
+      "isim": "Spagetti Bolonez",
+      "gorsel": "assets/images/meals/spagetti-bolonez.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2051,
+      "isim": "Tarhana Çorbası",
+      "gorsel": "assets/images/meals/tarhana-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2053,
+      "isim": "İşkembe Çorbası",
+      "gorsel": "assets/images/meals/iskembe-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2054,
+      "isim": "Cağ Kebabı",
+      "gorsel": "assets/images/meals/cag-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2061,
+      "isim": "Sulu Köfte",
+      "gorsel": "assets/images/meals/sulu-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2062,
+      "isim": "Mercimek Köftesi",
+      "gorsel": "assets/images/meals/mercimek-koftesi.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2063,
+      "isim": "Çiğ Köfte",
+      "gorsel": "assets/images/meals/cig-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2070,
+      "isim": "Kumpir",
+      "gorsel": "assets/images/meals/kumpir.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2087,
+      "isim": "Sucuklu Yumurta",
+      "gorsel": "assets/images/meals/sucuklu-yumurta.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2089,
+      "isim": "Simit",
+      "gorsel": "assets/images/meals/simit.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2093,
+      "isim": "Kısır",
+      "gorsel": "assets/images/meals/kisir.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2096,
+      "isim": "Tantuni",
+      "gorsel": "assets/images/meals/tantuni.svg",
+      "etiket": "Sokak Lezzeti"
+    }
+  ],
+  "oyun-karakterleri": [
+    {
+      "id": 15001,
+      "isim": "Mario",
+      "gorsel": "assets/images/game-world/character-mario.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15002,
+      "isim": "Luigi",
+      "gorsel": "assets/images/game-world/character-luigi.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15003,
+      "isim": "Princess Peach",
+      "gorsel": "assets/images/game-world/character-princess-peach.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15004,
+      "isim": "Bowser",
+      "gorsel": "assets/images/game-world/character-bowser.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15005,
+      "isim": "Yoshi",
+      "gorsel": "assets/images/game-world/character-yoshi.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15006,
+      "isim": "Donkey Kong",
+      "gorsel": "assets/images/game-world/character-donkey-kong.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Donkey Kong"
+    },
+    {
+      "id": 15007,
+      "isim": "Sonic",
+      "gorsel": "assets/images/game-world/character-sonic.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15008,
+      "isim": "Tails",
+      "gorsel": "assets/images/game-world/character-tails.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15009,
+      "isim": "Knuckles",
+      "gorsel": "assets/images/game-world/character-knuckles.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15010,
+      "isim": "Shadow",
+      "gorsel": "assets/images/game-world/character-shadow.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15011,
+      "isim": "Link",
+      "gorsel": "assets/images/game-world/character-link.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15012,
+      "isim": "Zelda",
+      "gorsel": "assets/images/game-world/character-zelda.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15013,
+      "isim": "Ganondorf",
+      "gorsel": "assets/images/game-world/character-ganondorf.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15014,
+      "isim": "Kirby",
+      "gorsel": "assets/images/game-world/character-kirby.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Kirby"
+    },
+    {
+      "id": 15015,
+      "isim": "Pikachu",
+      "gorsel": "assets/images/game-world/character-pikachu.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15016,
+      "isim": "Charizard",
+      "gorsel": "assets/images/game-world/character-charizard.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15017,
+      "isim": "Pac-Man",
+      "gorsel": "assets/images/game-world/character-pac-man.svg",
+      "etiket": "Arcade",
+      "tip": "karakter",
+      "evren": "Pac-Man"
+    },
+    {
+      "id": 15018,
+      "isim": "Crash Bandicoot",
+      "gorsel": "assets/images/game-world/character-crash-bandicoot.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Crash Bandicoot"
+    },
+    {
+      "id": 15019,
+      "isim": "Spyro",
+      "gorsel": "assets/images/game-world/character-spyro.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Spyro"
+    },
+    {
+      "id": 15020,
+      "isim": "Lara Croft",
+      "gorsel": "assets/images/game-world/character-lara-croft.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Tomb Raider"
+    },
+    {
+      "id": 15021,
+      "isim": "Kratos",
+      "gorsel": "assets/images/game-world/character-kratos.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "God of War"
+    },
+    {
+      "id": 15022,
+      "isim": "Atreus",
+      "gorsel": "assets/images/game-world/character-atreus.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "God of War"
+    },
+    {
+      "id": 15023,
+      "isim": "Nathan Drake",
+      "gorsel": "assets/images/game-world/character-nathan-drake.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Uncharted"
+    },
+    {
+      "id": 15024,
+      "isim": "Joel Miller",
+      "gorsel": "assets/images/game-world/character-joel-miller.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15025,
+      "isim": "Ellie",
+      "gorsel": "assets/images/game-world/character-ellie.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15026,
+      "isim": "Aloy",
+      "gorsel": "assets/images/game-world/character-aloy.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Horizon"
+    },
+    {
+      "id": 15027,
+      "isim": "Master Chief",
+      "gorsel": "assets/images/game-world/character-master-chief.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Halo"
+    },
+    {
+      "id": 15028,
+      "isim": "Steve",
+      "gorsel": "assets/images/game-world/character-steve.svg",
+      "etiket": "Sandbox",
+      "tip": "karakter",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15029,
+      "isim": "Alex (Minecraft)",
+      "gorsel": "assets/images/game-world/character-alex-minecraft.svg",
+      "etiket": "Sandbox",
+      "tip": "karakter",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15030,
+      "isim": "CJ (Carl Johnson)",
+      "gorsel": "assets/images/game-world/character-cj-carl-johnson.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto: San Andreas"
+    },
+    {
+      "id": 15031,
+      "isim": "Tommy Vercetti",
+      "gorsel": "assets/images/game-world/character-tommy-vercetti.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto: Vice City"
+    },
+    {
+      "id": 15032,
+      "isim": "Niko Bellic",
+      "gorsel": "assets/images/game-world/character-niko-bellic.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto IV"
+    },
+    {
+      "id": 15033,
+      "isim": "Trevor Philips",
+      "gorsel": "assets/images/game-world/character-trevor-philips.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15034,
+      "isim": "Michael De Santa",
+      "gorsel": "assets/images/game-world/character-michael-de-santa.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15035,
+      "isim": "Franklin Clinton",
+      "gorsel": "assets/images/game-world/character-franklin-clinton.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15036,
+      "isim": "Arthur Morgan",
+      "gorsel": "assets/images/game-world/character-arthur-morgan.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15037,
+      "isim": "John Marston",
+      "gorsel": "assets/images/game-world/character-john-marston.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15038,
+      "isim": "Ezio Auditore",
+      "gorsel": "assets/images/game-world/character-ezio-auditore.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15039,
+      "isim": "Altaïr Ibn-La’Ahad",
+      "gorsel": "assets/images/game-world/character-altair-ibn-la-ahad.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15040,
+      "isim": "Geralt of Rivia",
+      "gorsel": "assets/images/game-world/character-geralt-of-rivia.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15041,
+      "isim": "Ciri",
+      "gorsel": "assets/images/game-world/character-ciri.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15042,
+      "isim": "Doom Slayer",
+      "gorsel": "assets/images/game-world/character-doom-slayer.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "DOOM"
+    },
+    {
+      "id": 15043,
+      "isim": "Leon S. Kennedy",
+      "gorsel": "assets/images/game-world/character-leon-s-kennedy.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15044,
+      "isim": "Jill Valentine",
+      "gorsel": "assets/images/game-world/character-jill-valentine.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15045,
+      "isim": "Chris Redfield",
+      "gorsel": "assets/images/game-world/character-chris-redfield.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15046,
+      "isim": "Solid Snake",
+      "gorsel": "assets/images/game-world/character-solid-snake.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Metal Gear"
+    },
+    {
+      "id": 15047,
+      "isim": "Scorpion",
+      "gorsel": "assets/images/game-world/character-scorpion.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15048,
+      "isim": "Sub-Zero",
+      "gorsel": "assets/images/game-world/character-sub-zero.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15049,
+      "isim": "Liu Kang",
+      "gorsel": "assets/images/game-world/character-liu-kang.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15050,
+      "isim": "Raiden (Mortal Kombat)",
+      "gorsel": "assets/images/game-world/character-raiden-mortal-kombat.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15051,
+      "isim": "Ryu",
+      "gorsel": "assets/images/game-world/character-ryu.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15052,
+      "isim": "Chun-Li",
+      "gorsel": "assets/images/game-world/character-chun-li.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15053,
+      "isim": "Ken Masters",
+      "gorsel": "assets/images/game-world/character-ken-masters.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15054,
+      "isim": "Jin Kazama",
+      "gorsel": "assets/images/game-world/character-jin-kazama.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15055,
+      "isim": "Heihachi Mishima",
+      "gorsel": "assets/images/game-world/character-heihachi-mishima.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15056,
+      "isim": "King (Tekken)",
+      "gorsel": "assets/images/game-world/character-king-tekken.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15057,
+      "isim": "Cloud Strife",
+      "gorsel": "assets/images/game-world/character-cloud-strife.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Final Fantasy"
+    },
+    {
+      "id": 15058,
+      "isim": "Sephiroth",
+      "gorsel": "assets/images/game-world/character-sephiroth.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Final Fantasy"
+    },
+    {
+      "id": 15059,
+      "isim": "Jinx",
+      "gorsel": "assets/images/game-world/character-jinx.svg",
+      "etiket": "Strateji",
+      "tip": "karakter",
+      "evren": "League of Legends"
+    },
+    {
+      "id": 15060,
+      "isim": "Ahri",
+      "gorsel": "assets/images/game-world/character-ahri.svg",
+      "etiket": "Strateji",
+      "tip": "karakter",
+      "evren": "League of Legends"
+    }
+  ],
+  "oyunlar": [
+    {
+      "id": 15061,
+      "isim": "Super Mario Bros.",
+      "gorsel": "assets/images/game-world/game-super-mario-bros.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15062,
+      "isim": "Mario Kart 8 Deluxe",
+      "gorsel": "assets/images/game-world/game-mario-kart-8-deluxe.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15063,
+      "isim": "The Legend of Zelda: Breath of the Wild",
+      "gorsel": "assets/images/game-world/game-the-legend-of-zelda-breath-of-the-wild.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15064,
+      "isim": "Pokémon Red / Blue",
+      "gorsel": "assets/images/game-world/game-pokemon-red-blue.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15065,
+      "isim": "Sonic the Hedgehog",
+      "gorsel": "assets/images/game-world/game-sonic-the-hedgehog.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Sonic"
+    },
+    {
+      "id": 15066,
+      "isim": "Minecraft",
+      "gorsel": "assets/images/game-world/game-minecraft.svg",
+      "etiket": "Sandbox",
+      "tip": "oyun",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15067,
+      "isim": "Grand Theft Auto V",
+      "gorsel": "assets/images/game-world/game-grand-theft-auto-v.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Grand Theft Auto"
+    },
+    {
+      "id": 15068,
+      "isim": "Grand Theft Auto: San Andreas",
+      "gorsel": "assets/images/game-world/game-grand-theft-auto-san-andreas.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Grand Theft Auto"
+    },
+    {
+      "id": 15069,
+      "isim": "Red Dead Redemption 2",
+      "gorsel": "assets/images/game-world/game-red-dead-redemption-2.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15070,
+      "isim": "God of War (2018)",
+      "gorsel": "assets/images/game-world/game-god-of-war-2018.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "God of War"
+    },
+    {
+      "id": 15071,
+      "isim": "The Last of Us",
+      "gorsel": "assets/images/game-world/game-the-last-of-us.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15072,
+      "isim": "Uncharted 4: A Thief’s End",
+      "gorsel": "assets/images/game-world/game-uncharted-4-a-thief-s-end.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Uncharted"
+    },
+    {
+      "id": 15073,
+      "isim": "Resident Evil 4",
+      "gorsel": "assets/images/game-world/game-resident-evil-4.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15074,
+      "isim": "Metal Gear Solid",
+      "gorsel": "assets/images/game-world/game-metal-gear-solid.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Metal Gear"
+    },
+    {
+      "id": 15075,
+      "isim": "Assassin’s Creed II",
+      "gorsel": "assets/images/game-world/game-assassin-s-creed-ii.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15076,
+      "isim": "The Witcher 3: Wild Hunt",
+      "gorsel": "assets/images/game-world/game-the-witcher-3-wild-hunt.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15077,
+      "isim": "The Elder Scrolls V: Skyrim",
+      "gorsel": "assets/images/game-world/game-the-elder-scrolls-v-skyrim.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "The Elder Scrolls"
+    },
+    {
+      "id": 15078,
+      "isim": "Halo 3",
+      "gorsel": "assets/images/game-world/game-halo-3.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Halo"
+    },
+    {
+      "id": 15079,
+      "isim": "Call of Duty 4: Modern Warfare",
+      "gorsel": "assets/images/game-world/game-call-of-duty-4-modern-warfare.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Call of Duty"
+    },
+    {
+      "id": 15080,
+      "isim": "Counter-Strike 2",
+      "gorsel": "assets/images/game-world/game-counter-strike-2.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Counter-Strike"
+    },
+    {
+      "id": 15081,
+      "isim": "Fortnite",
+      "gorsel": "assets/images/game-world/game-fortnite.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Fortnite"
+    },
+    {
+      "id": 15082,
+      "isim": "PUBG: Battlegrounds",
+      "gorsel": "assets/images/game-world/game-pubg-battlegrounds.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "PUBG"
+    },
+    {
+      "id": 15083,
+      "isim": "Rocket League",
+      "gorsel": "assets/images/game-world/game-rocket-league.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "Rocket League"
+    },
+    {
+      "id": 15084,
+      "isim": "EA SPORTS FC 25",
+      "gorsel": "assets/images/game-world/game-ea-sports-fc-25.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "EA SPORTS FC"
+    },
+    {
+      "id": 15085,
+      "isim": "PES 2013",
+      "gorsel": "assets/images/game-world/game-pes-2013.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "Pro Evolution Soccer"
+    },
+    {
+      "id": 15086,
+      "isim": "Tekken 3",
+      "gorsel": "assets/images/game-world/game-tekken-3.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15087,
+      "isim": "Mortal Kombat 11",
+      "gorsel": "assets/images/game-world/game-mortal-kombat-11.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15088,
+      "isim": "Street Fighter II",
+      "gorsel": "assets/images/game-world/game-street-fighter-ii.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15089,
+      "isim": "Need for Speed: Underground 2",
+      "gorsel": "assets/images/game-world/game-need-for-speed-underground-2.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Need for Speed"
+    },
+    {
+      "id": 15090,
+      "isim": "Gran Turismo 7",
+      "gorsel": "assets/images/game-world/game-gran-turismo-7.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Gran Turismo"
+    },
+    {
+      "id": 15091,
+      "isim": "Forza Horizon 5",
+      "gorsel": "assets/images/game-world/game-forza-horizon-5.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Forza"
+    },
+    {
+      "id": 15092,
+      "isim": "Crash Bandicoot (Oyun)",
+      "gorsel": "assets/images/game-world/game-crash-bandicoot-oyun.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Crash Bandicoot"
+    },
+    {
+      "id": 15093,
+      "isim": "Spyro the Dragon",
+      "gorsel": "assets/images/game-world/game-spyro-the-dragon.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Spyro"
+    },
+    {
+      "id": 15094,
+      "isim": "Tetris",
+      "gorsel": "assets/images/game-world/game-tetris.svg",
+      "etiket": "Arcade",
+      "tip": "oyun",
+      "evren": "Tetris"
+    },
+    {
+      "id": 15095,
+      "isim": "Pac-Man (Oyun)",
+      "gorsel": "assets/images/game-world/game-pac-man-oyun.svg",
+      "etiket": "Arcade",
+      "tip": "oyun",
+      "evren": "Pac-Man"
+    },
+    {
+      "id": 15096,
+      "isim": "The Sims 4",
+      "gorsel": "assets/images/game-world/game-the-sims-4.svg",
+      "etiket": "Simülasyon",
+      "tip": "oyun",
+      "evren": "The Sims"
+    },
+    {
+      "id": 15097,
+      "isim": "Age of Empires II",
+      "gorsel": "assets/images/game-world/game-age-of-empires-ii.svg",
+      "etiket": "Strateji",
+      "tip": "oyun",
+      "evren": "Age of Empires"
+    },
+    {
+      "id": 15098,
+      "isim": "League of Legends",
+      "gorsel": "assets/images/game-world/game-league-of-legends.svg",
+      "etiket": "Strateji",
+      "tip": "oyun",
+      "evren": "League of Legends"
+    },
+    {
+      "id": 15099,
+      "isim": "Valorant",
+      "gorsel": "assets/images/game-world/game-valorant.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Valorant"
+    },
+    {
+      "id": 15100,
+      "isim": "Final Fantasy VII",
+      "gorsel": "assets/images/game-world/game-final-fantasy-vii.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "Final Fantasy"
     }
   ]
 }

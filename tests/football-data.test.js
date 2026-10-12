@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
-import { DATASET_GROUPS, DATASET_NAMES, resolveDatasetId } from '../js/datasets.js';
+import { DATASET_GROUPS, DATASET_NAMES, LEGACY_DATASET_IDS, resolveDatasetId } from '../js/datasets.js';
 import { createAuction, passTurn } from '../js/auction.js';
 
 const root = new URL('../', import.meta.url);
@@ -37,11 +37,31 @@ for (const key of ['futbol', 'superlig']) {
   });
 }
 
-for (const [key, count] of Object.entries({ tatli: 100, yemek: 100, dizi: 50, film: 50 })) {
+for (const [key, count] of Object.entries({ 'tatli-vol1': 35, tatli: 100, 'yemek-vol1': 50, yemek: 100, dizi: 50, film: 50 })) {
   test(`${key}: exactly ${count} unique cards with original local pixel art`, async () => verifyCards(datasets[key], count));
 }
 
-for (const [key, count] of Object.entries({ 'cocukluk-cizgifilmleri': 35, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35, 'turkiye-sehirleri': 81, 'oyun-evreni': 100, ulkeler: 80 })) {
+test('familiar food volumes reuse complete card records and local images from the full collections', () => {
+  for (const [selectedId, fullId, count] of [['tatli-vol1', 'tatli', 35], ['yemek-vol1', 'yemek', 50]]) {
+    const selected = datasets[selectedId];
+    const full = datasets[fullId];
+    assert.equal(selected.length, count);
+    assert.equal(full.length, 100);
+    for (const card of selected) {
+      const original = full.find(value => value.id === card.id);
+      assert.ok(original, `${selectedId}/${card.id} must already exist in ${fullId}`);
+      assert.deepEqual(card, original, `${selectedId}/${card.id} must retain every original field`);
+      assert.equal(card.gorsel, original.gorsel, 'Vol. 1 must use the existing image file.');
+    }
+  }
+  assert.deepEqual(DATASET_GROUPS.yemek.families.map(family => [family.id, family.sets]), [
+    ['tatli', ['tatli-vol1', 'tatli']],
+    ['yemek', ['yemek-vol1', 'yemek']],
+    ['icecek', ['icecek']]
+  ]);
+});
+
+for (const [key, count] of Object.entries({ 'cocukluk-cizgifilmleri': 60, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35, 'turkiye-sehirleri': 81, 'oyun-karakterleri': 60, oyunlar: 40, 'oyun-evreni': 100, ulkeler: 80 })) {
   test(`${key}: exactly ${count} unique cards with safe local SVG images`, async () => verifyCards(datasets[key], count));
 }
 
@@ -55,12 +75,37 @@ test('new nostalgia pools include the requested childhood titles and snacks', ()
   assert.ok(datasets['doksanlar-nostalji'].some(card => card.isim.includes('Tamagotchi')));
 });
 
-test('game universe distinguishes sixty characters from forty game titles', () => {
-  const cards = datasets['oyun-evreni'];
-  assert.equal(cards.filter(card => card.tip === 'karakter').length, 60);
-  assert.equal(cards.filter(card => card.tip === 'oyun').length, 40);
-  assert.ok(cards.some(card => card.isim === 'Mario'));
-  assert.ok(cards.some(card => card.isim === 'Kratos'));
+test('cartoons use individual Looney Tunes characters instead of the generic franchise card', () => {
+  const cards = datasets['cocukluk-cizgifilmleri'];
+  assert.ok(cards.length > 50);
+  assert.ok(!cards.some(card => card.isim === 'Looney Tunes'));
+  for (const aliases of [['Bugs Bunny'], ['Daffy Duck'], ['Tweety'], ['Sylvester', 'Sylvester (Sylvester Kedi)'], ['Road Runner', 'Road Runner (Bip Bip)', 'Bip Bip'], ['Taz', 'Tazmanya Canavarı']]) {
+    assert.ok(cards.some(card => aliases.includes(card.isim)), `Missing individual cartoon character: ${aliases[0]}`);
+  }
+});
+
+test('characters and games are exclusive pools that preserve the archived mixed deck identities', async () => {
+  const legacy = datasets['oyun-evreni'];
+  const characters = datasets['oyun-karakterleri'];
+  const games = datasets.oyunlar;
+  assert.equal(characters.length, 60);
+  assert.equal(games.length, 40);
+  assert.ok(characters.every(card => card.tip === 'karakter'));
+  assert.ok(games.every(card => card.tip === 'oyun'));
+  assert.deepEqual(characters, legacy.filter(card => card.tip === 'karakter'));
+  assert.deepEqual(games, legacy.filter(card => card.tip === 'oyun'));
+  assert.ok(!characters.some(card => games.some(game => game.id === card.id)));
+  const original = JSON.parse(await readFile(new URL('tools/games-geo.json', root), 'utf8'))['oyun-evreni'];
+  assert.deepEqual(legacy, original, 'Existing mixed-deck rooms must keep all original card records.');
+  assert.deepEqual(LEGACY_DATASET_IDS, ['oyun-evreni']);
+  const visibleIds = Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id));
+  assert.ok(!visibleIds.includes('oyun-evreni'), 'New rooms cannot select the archived mixed deck.');
+  for (const name of ['Mario', 'Sonic', 'Pikachu', 'Pac-Man', 'Lara Croft', 'Kratos', 'Steve', 'CJ (Carl Johnson)', 'Scorpion']) {
+    assert.ok(characters.some(card => card.isim === name), name);
+  }
+  for (const name of ['Minecraft', 'Grand Theft Auto V', 'PES 2013', 'Counter-Strike 2', 'Tetris', 'League of Legends', 'Valorant']) {
+    assert.ok(games.some(card => card.isim === name), name);
+  }
 });
 
 for (const [key, count] of Object.entries({ 'turkiye-efsaneleri': 120, 'dunya-yildizlari': 100 })) {
@@ -160,14 +205,18 @@ test('requested current stars use their verified club and every club card has a 
   }
 });
 
-test('seven categories resolve to eighteen separate pools, including category switches', () => {
+test('eight categories resolve to twenty-one visible pools with one archived mixed deck', () => {
   assert.deepEqual(Object.keys(DATASET_NAMES).sort(), Object.keys(datasets).sort());
+  assert.equal(Object.keys(DATASET_GROUPS).length, 8);
+  assert.equal(Object.keys(DATASET_NAMES).length, 22);
   assert.equal(resolveDatasetId('futbol', 'superlig'), 'superlig');
   assert.equal(resolveDatasetId('yemek', 'tatli'), 'tatli');
   assert.equal(resolveDatasetId('yemek', 'yemek'), 'yemek');
   assert.equal(resolveDatasetId('dizi', 'film'), 'film');
   assert.equal(resolveDatasetId('dizi', 'dizi'), 'dizi');
-  assert.equal(resolveDatasetId('yemek', 'superlig'), 'tatli');
+  assert.equal(resolveDatasetId('yemek', 'superlig'), 'tatli-vol1');
+  assert.equal(resolveDatasetId('yemek', 'tatli-vol1'), 'tatli-vol1');
+  assert.equal(resolveDatasetId('yemek', 'yemek-vol1'), 'yemek-vol1');
   assert.equal(resolveDatasetId('dizi', 'yemek'), 'dizi');
   assert.equal(resolveDatasetId('futbol', 'film'), 'futbol');
   assert.throws(() => resolveDatasetId('unknown', 'film'));
@@ -181,14 +230,21 @@ test('seven categories resolve to eighteen separate pools, including category sw
   assert.equal(resolveDatasetId('ankara', 'ulkeler'), 'ulkeler');
   assert.equal(resolveDatasetId('nostalji', 'kantin-bakkal'), 'kantin-bakkal');
   assert.equal(resolveDatasetId('nostalji', 'doksanlar-nostalji'), 'doksanlar-nostalji');
-  assert.equal(resolveDatasetId('oyun', 'futbol'), 'oyun-evreni');
-  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 3, 2, 1, 4, 3, 1]);
+  assert.equal(resolveDatasetId('oyun', 'futbol'), 'oyun-karakterleri');
+  assert.equal(resolveDatasetId('oyun', 'oyunlar'), 'oyun-karakterleri');
+  assert.equal(resolveDatasetId('oyun', 'oyun-evreni'), 'oyun-karakterleri');
+  assert.equal(resolveDatasetId('video-oyunlari', 'futbol'), 'oyunlar');
+  assert.equal(resolveDatasetId('video-oyunlari', 'oyun-karakterleri'), 'oyunlar');
+  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 5, 2, 1, 4, 3, 1, 1]);
+  const visibleIds = Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id));
+  assert.equal(visibleIds.length, 21);
+  assert.equal(new Set(visibleIds).size, 21);
   for (const group of Object.values(DATASET_GROUPS)) {
     for (const set of group.sets) assert.ok(Object.hasOwn(TEXT_CATALOG, set.searchKey), set.id);
   }
 });
 
-test('all eighteen pools open and award through an auction, including nonconsecutive meal IDs', () => {
+test('all twenty-two pools open and award through an auction, including volume and archived decks', () => {
   for (const cards of Object.values(datasets)) {
     const game = createAuction(cards.map(card => card.id), 'p1');
     assert.equal(game.highestBid, 1);

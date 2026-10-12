@@ -173,7 +173,8 @@ try {
       assert.equal(current.game.awardCount, 0);
       const forbiddenCollections = new Set([datasetId === 'film' ? 'dizi' : 'film',
         'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
-        'turkiye-sehirleri', 'oyun-evreni', 'ulkeler']);
+        'turkiye-sehirleri', 'oyun-evreni', 'ulkeler',
+        'tatli-vol1', 'yemek-vol1', 'oyun-karakterleri', 'oyunlar']);
       for (const changedId of forbiddenCollections) {
         if (changedId === datasetId) continue;
         const changed = changeRoom(current, 'p2', current.revision, 'bid', { amount: 2 });

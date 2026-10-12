@@ -6,6 +6,7 @@ const collection = (id, titleKey, symbol, descriptionKey, noteKey, searchKey) =>
   get description() { return t(descriptionKey); },
   get note() { return t(noteKey); }
 });
+const family = (id, titleKey, sets) => ({ id, sets, get title() { return t(titleKey); } });
 
 export const DATASET_GROUPS = {
   futbol: { get label() { return t('runtime.category.futbol.label'); }, get heading() { return t('runtime.copy.futbol_koleksiyonu'); }, icon: 'ball', sets: [
@@ -14,9 +15,15 @@ export const DATASET_GROUPS = {
     collection('turkiye-efsaneleri', 'runtime.expansion.turkish.title', '◆', 'runtime.expansion.turkish.description', 'runtime.expansion.turkish.note', 'runtime.copy.isim_veya_takim_ara'),
     collection('dunya-yildizlari', 'runtime.expansion.world.title', '✦', 'runtime.expansion.world.description', 'runtime.expansion.world.note', 'runtime.copy.isim_veya_takim_ara')
   ] },
-  yemek: { get label() { return t('runtime.category.yemek.label'); }, get heading() { return t('runtime.copy.menunu_sec'); }, icon: 'cake', sets: [
-    collection('tatli', 'runtime.copy.tatlilar', '♥', 'runtime.copy.serbetli_sutlu_cikolatali', 'runtime.copy.50_tatli_tatli_bir_kapisma', 'runtime.copy.tatli_adi_ara'),
-    collection('yemek', 'runtime.copy.ana_yemekler', '♨', 'runtime.copy.sofranin_yildizlarini_sec', 'runtime.copy.50_ana_yemek_turk_ve_dunya_mutfagindan', 'runtime.copy.yemek_adi_ara'),
+  yemek: { get label() { return t('runtime.category.yemek.label'); }, get heading() { return t('runtime.copy.menunu_sec'); }, icon: 'cake', families: [
+    family('tatli', 'runtime.copy.tatlilar', ['tatli-vol1', 'tatli']),
+    family('yemek', 'runtime.copy.ana_yemekler', ['yemek-vol1', 'yemek']),
+    family('icecek', 'runtime.expansion.drinks.title', ['icecek'])
+  ], sets: [
+    collection('tatli-vol1', 'runtime.volumes.desserts.first.title', '♥', 'runtime.volumes.desserts.first.description', 'runtime.volumes.desserts.first.note', 'runtime.copy.tatli_adi_ara'),
+    collection('tatli', 'runtime.volumes.desserts.full.title', '♥', 'runtime.volumes.full.description', 'runtime.volumes.desserts.full.note', 'runtime.copy.tatli_adi_ara'),
+    collection('yemek-vol1', 'runtime.volumes.meals.first.title', '♨', 'runtime.volumes.meals.first.description', 'runtime.volumes.meals.first.note', 'runtime.copy.yemek_adi_ara'),
+    collection('yemek', 'runtime.volumes.meals.full.title', '♨', 'runtime.volumes.full.description', 'runtime.volumes.meals.full.note', 'runtime.copy.yemek_adi_ara'),
     collection('icecek', 'runtime.expansion.drinks.title', '☕', 'runtime.expansion.drinks.description', 'runtime.expansion.drinks.note', 'runtime.expansion.search.drinks')
   ] },
   dizi: { get label() { return t('runtime.category.dizi.label'); }, get heading() { return t('runtime.copy.ne_izliyoruz'); }, icon: 'tv', sets: [
@@ -37,8 +44,11 @@ export const DATASET_GROUPS = {
     collection('doksanlar-nostalji', 'runtime.expansion.nineties.title', '▦', 'runtime.expansion.nineties.description', 'runtime.expansion.nineties.note', 'runtime.expansion.search.nostalgia'),
     collection('kantin-bakkal', 'runtime.expansion.snacks.title', '♥', 'runtime.expansion.snacks.description', 'runtime.expansion.snacks.note', 'runtime.expansion.search.nostalgia')
   ] },
-  oyun: { get label() { return t('runtime.category.oyun.label'); }, get heading() { return t('runtime.expansion.games.heading'); }, icon: 'controller', sets: [
-    collection('oyun-evreni', 'runtime.expansion.games.title', '✚', 'runtime.expansion.games.description', 'runtime.expansion.games.note', 'runtime.expansion.search.games')
+  oyun: { get label() { return t('runtime.category.oyun.label'); }, get heading() { return t('runtime.characters.heading'); }, icon: 'controller', sets: [
+    collection('oyun-karakterleri', 'runtime.characters.title', '✚', 'runtime.characters.description', 'runtime.characters.note', 'runtime.characters.search')
+  ] },
+  'video-oyunlari': { get label() { return t('runtime.category.video-games.label'); }, get heading() { return t('runtime.video-games.heading'); }, icon: 'controller', sets: [
+    collection('oyunlar', 'runtime.video-games.title', '▣', 'runtime.video-games.description', 'runtime.video-games.note', 'runtime.video-games.search')
   ] }
 };
 
@@ -46,6 +56,10 @@ export const DATASET_NAMES = {};
 for (const group of Object.values(DATASET_GROUPS)) {
   for (const set of group.sets) Object.defineProperty(DATASET_NAMES, set.id, { enumerable: true, get: () => set.title });
 }
+// Existing rooms can finish their original mixed deck. New rooms use the two
+// separate collections above; this archived pool is never a lobby choice.
+export const LEGACY_DATASET_IDS = ['oyun-evreni'];
+Object.defineProperty(DATASET_NAMES, 'oyun-evreni', { enumerable: true, get: () => t('runtime.expansion.games.title') });
 
 export function resolveDatasetId(category, preferredId) {
   const group = DATASET_GROUPS[category];

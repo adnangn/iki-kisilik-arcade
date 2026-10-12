@@ -23,6 +23,8 @@ let datasets = {};
 const chosenCollections = {};
 let selectedCategory = $('dataset-select').value;
 let renderedCategory = null;
+let renderedFamily = null;
+const chosenFamilyCollections = {};
 let service = null;
 let room = null;
 let mySeat = null;
@@ -101,8 +103,27 @@ function renderModePreview() {
 
 function renderCollectionOptions(category) {
   const group = DATASET_GROUPS[category];
+  const selectedId = selectedDatasetId();
+  const activeFamily = group.families?.find(family => family.sets.includes(selectedId));
+  const families = $('collection-families');
+  families.hidden = !group.families;
+  families.replaceChildren(...(group.families || []).map(family => {
+    const label = document.createElement('label'); label.className = 'collection-family';
+    const input = document.createElement('input'); input.type = 'radio'; input.name = 'dataset-family'; input.value = family.id; input.checked = family === activeFamily;
+    const title = document.createElement('span'); title.textContent = family.title;
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
+      chosenFamilyCollections[`${category}:${activeFamily.id}`] = selectedDatasetId();
+      chosenCollections[category] = chosenFamilyCollections[`${category}:${family.id}`] || family.sets[0];
+      renderDatasetPreview();
+      $('collection-families').querySelector('input:checked')?.focus({ preventScroll: true });
+    });
+    label.append(input, title); return label;
+  }));
+  $('collection-volume-heading').hidden = !group.families || activeFamily.sets.length < 2;
   $('collection-heading').textContent = group.heading;
-  $('collection-options').replaceChildren(...group.sets.map(set => {
+  const options = activeFamily ? group.sets.filter(set => activeFamily.sets.includes(set.id)) : group.sets;
+  $('collection-options').replaceChildren(...options.map(set => {
     const label = document.createElement('label'); label.className = 'collection-option';
     const input = document.createElement('input'); input.type = 'radio'; input.name = 'dataset-set'; input.value = set.id; input.checked = set.id === selectedDatasetId();
     const heading = document.createElement('span'); heading.className = 'collection-option-heading';
@@ -115,20 +136,22 @@ function renderCollectionOptions(category) {
     return label;
   }));
   renderedCategory = category;
+  renderedFamily = activeFamily?.id || null;
 }
 
 function renderCollection() {
   const cards = datasets[selectedDatasetId()] || [];
   const searchText = value => value.toLocaleLowerCase('tr').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/ı/g, 'i');
   const query = searchText($('collection-search').value.trim());
-  const matching = cards.filter(card => searchText(`${card.isim} ${card.takim || ''} ${card.etiket}`).includes(query));
+  const matching = cards.filter(card => searchText(`${card.isim} ${card.takim || ''} ${card.evren || ''} ${card.etiket}`)
+    .replaceAll('grand theft auto', 'grand theft auto gta').includes(query));
   $('collection-count').textContent = query ? t('runtime.collection.filtered_count', { count: matching.length, total: cards.length }) : t('runtime.collection.card_count', { count: cards.length });
   $('collection-empty').hidden = !!matching.length;
   $('collection-grid').replaceChildren(...matching.map(card => {
     const item = document.createElement('div'); item.className = 'collection-card';
     const image = document.createElement('img'); image.src = './' + card.gorsel; image.alt = ''; image.loading = 'lazy'; image.width = 96; image.height = 96;
     const name = document.createElement('strong'); name.textContent = card.isim;
-    const detail = document.createElement('span'); detail.textContent = card.takim || card.etiket;
+    const detail = document.createElement('span'); detail.textContent = card.takim || card.evren || card.etiket;
     item.append(image, name, detail); return item;
   }));
 }
@@ -136,7 +159,8 @@ function renderCollection() {
 function renderDatasetPreview() {
   const category = selectedCategory;
   const id = selectedDatasetId();
-  if (renderedCategory !== category) renderCollectionOptions(category);
+  const familyId = DATASET_GROUPS[category].families?.find(family => family.sets.includes(id))?.id || null;
+  if (renderedCategory !== category || renderedFamily !== familyId) renderCollectionOptions(category);
   $('dataset-icon-image').src = `./assets/images/${DATASET_GROUPS[category].icon}-icon.svg`;
   const cards = datasets[id] || [];
   $('dataset-preview-images').replaceChildren(...cards.slice(0, 4).map(card => {

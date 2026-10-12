@@ -364,6 +364,13 @@ h1[tabindex="-1"]:focus { outline: none; }
 
 .dataset-collections { min-width: 0; border: 0; padding: 0; margin: 19px 0 0; }
 .dataset-collections legend { margin-bottom: 9px; font-size: 9px; }
+.collection-families { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 15px; }
+.collection-families[hidden] { display: none; }
+.collection-family { position: relative; min-width: 0; padding: 10px 5px; text-align: center; cursor: pointer; border: 2px solid #c9afd0; background: #faf4eb; box-shadow: 2px 2px 0 #ddcbdc; font-size: 19px; line-height: 1.15; overflow-wrap: anywhere; }
+.collection-family input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.collection-family:has(input:checked) { background: #e5efd8; border-color: #718551; box-shadow: 2px 2px 0 #aab68c; color: #526434; }
+.collection-family:has(input:focus-visible) { outline: 3px solid #715182; outline-offset: 3px; }
+.collection-volume-heading { margin-bottom: 9px; font-size: 16px; color: #84618e; }
 .collection-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .collection-option { position: relative; display: block; min-width: 0; cursor: pointer; border: 2px solid #c9afd0; padding: 10px 8px; background: #f7eef5; box-shadow: 3px 3px 0 #ddcbdc; }
 .collection-option:last-child:nth-child(odd) { grid-column: 1 / -1; }

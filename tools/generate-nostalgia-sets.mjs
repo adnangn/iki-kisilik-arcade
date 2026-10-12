@@ -16,7 +16,7 @@ const rows = {
     ['Taş Devri', 'tas-devri', 'Klasikler', 'caveman', '#bd9470'],
     ['Jetgiller', 'jetgiller', 'Klasikler', 'space', '#7faaa3'],
     ['Scooby-Doo', 'scooby-doo', 'Klasikler', 'dog', '#b8956e'],
-    ['Looney Tunes', 'looney-tunes', 'Klasikler', 'rabbit', '#ac8fa2'],
+    ['Bugs Bunny', 'bugs-bunny', 'Klasikler', 'rabbit', '#ac8fa2'],
     ['Red Kit', 'red-kit', 'Klasikler', 'cowboy', '#baa16e'],
     ['Temel Reis', 'temel-reis', 'Klasikler', 'sailor', '#719da7'],
     ['Arı Maya', 'ari-maya', 'Klasikler', 'bee', '#c3ad67'],
@@ -40,7 +40,32 @@ const rows = {
     ['Niloya', 'niloya', 'Yerli', 'girl', '#b490a2'],
     ['Keloğlan', 'keloglan', 'Yerli', 'village', '#b39c74'],
     ['Maşa ile Koca Ayı', 'masa-ile-koca-ayi', 'Macera', 'bear-girl', '#a68c80'],
-    ['Winnie the Pooh', 'winnie-the-pooh', 'Klasikler', 'honey', '#c2a35d']
+    ['Winnie the Pooh', 'winnie-the-pooh', 'Klasikler', 'honey', '#c2a35d'],
+    ['Daffy Duck', 'daffy-duck', 'Klasikler', 'daffy', '#b49369'],
+    ['Tweety', 'tweety', 'Klasikler', 'tweety', '#c6ae68'],
+    ['Sylvester', 'sylvester', 'Klasikler', 'sylvester', '#9da3a9'],
+    ['Taz', 'taz', 'Klasikler', 'taz', '#b29579'],
+    ['Road Runner', 'road-runner', 'Klasikler', 'roadrunner', '#89a2b5'],
+    ['Wile E. Coyote', 'wile-e-coyote', 'Klasikler', 'coyote', '#b5a080'],
+    ['Porky Pig', 'porky-pig', 'Klasikler', 'porky', '#c6a0a5'],
+    ['Speedy Gonzales', 'speedy-gonzales', 'Klasikler', 'speedy', '#c4aa73'],
+    ['Elmer Fudd', 'elmer-fudd', 'Klasikler', 'elmer', '#ae9b77'],
+    ['Yosemite Sam', 'yosemite-sam', 'Klasikler', 'yosemite', '#ba8a78'],
+    ['Foghorn Leghorn', 'foghorn-leghorn', 'Klasikler', 'foghorn', '#b8a788'],
+    ['Marvin the Martian', 'marvin-the-martian', 'Klasikler', 'marvin', '#90a581'],
+    ['Pepé Le Pew', 'pepe-le-pew', 'Klasikler', 'skunk', '#a197aa'],
+    ['Lola Bunny', 'lola-bunny', 'Klasikler', 'lola', '#ba9bac'],
+    ['Mickey Mouse', 'mickey-mouse', 'Klasikler', 'mickey', '#bd8c7f'],
+    ['Minnie Mouse', 'minnie-mouse', 'Klasikler', 'minnie', '#bd94a9'],
+    ['Donald Duck', 'donald-duck', 'Klasikler', 'donald', '#8ca4ba'],
+    ['Goofy', 'goofy', 'Klasikler', 'goofy', '#9caa81'],
+    ['Pluto', 'pluto', 'Klasikler', 'pluto', '#c3ad74'],
+    ['Pembe Panter', 'pembe-panter', 'Klasikler', 'panther', '#c58fae'],
+    ['Müfettiş Gadget', 'mufettis-gadget', 'Macera', 'gadget', '#9ca6ae'],
+    ['Garfield', 'garfield', 'Komedi', 'garfield', '#c2a173'],
+    ['Gumball', 'gumball', 'Komedi', 'gumball', '#87b0bc'],
+    ['Darwin', 'darwin', 'Komedi', 'darwin', '#c69e7a'],
+    ['Finn', 'finn', 'Macera', 'finn', '#8baeb5']
   ],
   'doksanlar-nostalji': [
     ['Tamagotchi', 'tamagotchi', 'Teknoloji', 'pet', '#b892b2'],
@@ -231,6 +256,161 @@ function cartoonArt(row, index) {
       animal(d, 'bear', '#977757', 'round'); r(65, 47, 17, 28, '#bc83a0'); r(64, 38, 18, 15, '#bc83a0'); r(67, 41, 12, 11, c.skin); r(69, 43, 2, 2, c.ink); r(76, 43, 2, 2, c.ink); break;
     case 'honey':
       animal(d, 'bear', '#cfac5e', 'round'); r(28, 52, 40, 14, '#bb7768'); r(11, 61, 20, 17, '#a17f58'); r(12, 58, 18, 5, '#cbb476'); r(15, 61, 4, 11, '#d6bb75'); break;
+    case 'daffy':
+      r(35, 43, 27, 29, '#45454a'); r(44, 34, 10, 15, '#45454a'); r(33, 20, 30, 24, '#45454a');
+      r(32, 16, 4, 9, '#45454a'); r(38, 14, 4, 9, '#45454a'); r(41, 23, 8, 11, c.white); r(50, 23, 8, 11, c.white);
+      r(45, 26, 3, 6, c.ink); r(51, 26, 3, 6, c.ink); r(30, 35, 40, 8, '#d8a369'); r(35, 42, 28, 3, '#ba8258');
+      r(43, 45, 13, 4, c.white); r(38, 70, 6, 10, '#d8a369'); r(54, 70, 6, 10, '#d8a369');
+      r(31, 77, 14, 5, '#d8a369'); r(53, 77, 17, 5, '#d8a369'); p('M33 54H21V59H30V64H37Z', '#45454a'); break;
+    case 'tweety':
+      r(31, 17, 34, 31, '#e0bf65'); r(25, 23, 46, 20, '#e0bf65'); r(34, 46, 28, 19, '#e0bf65');
+      r(41, 9, 2, 9, c.ink); r(48, 8, 2, 9, c.ink); r(54, 10, 2, 8, c.ink);
+      r(32, 27, 12, 13, c.white); r(52, 27, 12, 13, c.white); r(39, 31, 4, 8, '#709baa'); r(53, 31, 4, 8, '#709baa');
+      r(39, 32, 2, 7, c.ink); r(53, 32, 2, 7, c.ink); r(44, 40, 9, 5, '#cd965a'); r(46, 43, 5, 4, '#cd965a');
+      r(34, 60, 9, 13, '#e0bf65'); r(54, 60, 9, 13, '#e0bf65'); r(23, 70, 21, 9, '#cd965a'); r(53, 70, 21, 9, '#cd965a');
+      r(29, 48, 8, 12, '#e0bf65'); r(61, 48, 8, 12, '#e0bf65'); break;
+    case 'sylvester':
+      animal(d, 'cat', '#494a50'); r(31, 50, 34, 24, c.white); r(29, 41, 38, 16, c.white); r(44, 40, 11, 7, '#bf776d');
+      r(30, 27, 6, 9, '#cf9aa1'); r(60, 27, 6, 9, '#cf9aa1'); r(21, 47, 15, 2, c.ink); r(60, 47, 15, 2, c.ink);
+      r(23, 53, 13, 2, c.ink); r(61, 53, 12, 2, c.ink); p('M65 68H77V52H72V43H78V49H83V73H65Z', '#494a50');
+      r(33, 73, 13, 7, c.white); r(54, 73, 13, 7, c.white); break;
+    case 'taz':
+      p('M23 31H31V23H39V18H61V25H71V33H77V62H69V78H27V63H19V43H23Z', '#9c7857');
+      r(33, 32, 9, 8, c.white); r(54, 32, 9, 8, c.white); r(37, 33, 4, 6, c.ink); r(54, 33, 4, 6, c.ink);
+      p('M31 43H65V47H69V65H61V70H35V65H27V47H31Z', '#d9ba90'); r(34, 49, 28, 17, '#655044');
+      r(36, 49, 7, 8, c.white); r(52, 49, 7, 8, c.white); r(40, 60, 7, 6, c.white); r(51, 60, 6, 6, c.white);
+      r(42, 41, 14, 8, '#534841'); r(27, 73, 15, 7, '#d0ad86'); r(55, 73, 15, 7, '#d0ad86');
+      p('M13 70H25V73H18V76H79V73H72V70H83V78H13Z', '#b79873'); break;
+    case 'roadrunner':
+      r(41, 40, 23, 15, '#738bb0'); r(53, 27, 9, 25, '#738bb0'); r(52, 20, 18, 15, '#738bb0');
+      r(58, 14, 4, 9, '#6b7c9e'); r(65, 13, 4, 10, '#6b7c9e'); r(69, 29, 16, 5, '#c7a268');
+      r(61, 22, 7, 8, c.white); r(65, 24, 3, 5, c.ink); r(44, 49, 13, 8, '#afc4c6');
+      p('M43 44H32V39H20V33H13V43H20V50H43Z', '#657b9c');
+      p('M47 55H51V65H39V75H23V72H35V61H47Z', '#c4a172'); p('M55 54H59V66H70V72H83V75H66V70H55Z', '#c4a172');
+      r(12, 59, 16, 3, '#c4b391'); r(9, 66, 12, 3, '#c4b391'); break;
+    case 'coyote':
+      r(31, 13, 9, 25, '#a98a62'); r(55, 12, 9, 26, '#a98a62'); r(34, 16, 3, 17, '#d0b494'); r(58, 15, 3, 18, '#d0b494');
+      r(28, 32, 38, 22, '#a98a62'); r(33, 52, 30, 26, '#a98a62'); r(37, 56, 22, 19, '#d7bc93');
+      r(35, 37, 9, 9, '#e8d7b2'); r(52, 37, 9, 9, '#e8d7b2'); r(40, 39, 3, 6, c.ink); r(53, 39, 3, 6, c.ink);
+      r(42, 46, 29, 10, '#d7bc93'); r(64, 45, 9, 7, c.ink); r(30, 28, 13, 4, c.ink); r(54, 28, 12, 4, c.ink);
+      p('M63 67H76V56H81V71H65Z', '#a98a62'); r(11, 64, 19, 17, '#b4956d'); r(13, 66, 15, 2, '#cfb58d');
+      pixelText(d, 'ACME', 13, 72, c.ink); break;
+    case 'porky':
+      r(25, 48, 46, 29, '#7596ab'); r(31, 50, 34, 22, '#deb0aa'); r(30, 20, 36, 28, '#deb0aa');
+      r(23, 22, 11, 14, '#deb0aa'); r(62, 22, 11, 14, '#deb0aa'); r(25, 25, 6, 8, '#ba8785'); r(65, 25, 6, 8, '#ba8785');
+      r(35, 27, 10, 11, c.white); r(52, 27, 10, 11, c.white); r(41, 30, 3, 6, c.ink); r(53, 30, 3, 6, c.ink);
+      r(40, 37, 18, 9, '#c89491'); r(44, 40, 3, 3, '#9b6b70'); r(51, 40, 3, 3, '#9b6b70');
+      r(36, 47, 10, 8, '#b87377'); r(51, 47, 10, 8, '#b87377'); r(46, 50, 6, 4, '#9e5f68');
+      r(33, 72, 10, 10, '#deb0aa'); r(55, 72, 10, 10, '#deb0aa'); break;
+    case 'speedy':
+      r(30, 37, 35, 21, '#a78965'); r(23, 30, 14, 18, '#a78965'); r(59, 30, 14, 18, '#a78965');
+      r(26, 33, 7, 10, '#cfab93'); r(63, 33, 7, 10, '#cfab93'); r(35, 42, 6, 7, c.white); r(51, 42, 6, 7, c.white);
+      r(38, 44, 3, 4, c.ink); r(51, 44, 3, 4, c.ink); r(41, 51, 16, 7, '#dbc19a'); r(45, 48, 7, 5, c.ink);
+      r(15, 26, 66, 7, '#d2b26b'); r(23, 21, 50, 7, '#d2b26b'); r(36, 12, 25, 13, '#d2b26b'); r(36, 22, 25, 4, '#b78e55');
+      r(33, 57, 30, 17, c.white); r(43, 57, 12, 5, '#ba796b'); r(48, 61, 6, 10, '#ba796b');
+      r(32, 73, 13, 8, '#a78965'); r(55, 73, 16, 8, '#a78965'); p('M64 64H77V58H80V68H64Z', '#a78965'); break;
+    case 'elmer':
+      person(d, 48, 38, '#ab9168', c.hair, 1, 'bald'); r(23, 21, 47, 8, '#a08a68'); r(32, 15, 29, 13, '#a08a68');
+      r(57, 27, 10, 15, '#a08a68'); r(38, 43, 21, 5, '#d8a686'); r(45, 36, 10, 10, '#d8a686');
+      r(46, 53, 4, 22, '#806d55'); r(35, 61, 10, 9, '#bba07c'); r(54, 61, 9, 9, '#bba07c');
+      r(31, 75, 16, 6, '#7a6857'); r(53, 75, 16, 6, '#7a6857'); break;
+    case 'yosemite':
+      person(d, 48, 41, '#bc7b69', '#ad6d46'); r(16, 20, 64, 8, '#e5d6b5'); r(30, 9, 37, 16, '#e5d6b5');
+      r(24, 10, 10, 12, '#e5d6b5'); r(62, 10, 10, 12, '#e5d6b5'); r(30, 21, 36, 5, '#c0a379');
+      p('M47 45H37V40H24V48H18V61H26V66H40V56H47Z', '#ba7b4c');
+      p('M49 45H59V40H72V48H78V61H70V66H56V56H49Z', '#ba7b4c');
+      r(43, 40, 11, 8, '#d5a781'); r(38, 74, 11, 7, '#775948'); r(53, 74, 11, 7, '#775948'); break;
+    case 'foghorn':
+      r(31, 42, 33, 32, '#eee4ce'); r(48, 26, 13, 31, '#eee4ce'); r(40, 25, 27, 22, '#eee4ce');
+      r(47, 13, 6, 15, '#bd756d'); r(54, 11, 6, 17, '#bd756d'); r(61, 14, 6, 14, '#bd756d');
+      r(55, 30, 8, 10, c.white); r(59, 31, 3, 7, c.ink); r(61, 39, 18, 6, '#cea166'); r(53, 45, 8, 12, '#bd756d');
+      p('M34 49H21V38H15V48H10V58H18V64H33Z', '#9c7354'); r(40, 69, 5, 10, '#cea166'); r(55, 69, 5, 10, '#cea166');
+      r(33, 78, 15, 4, '#cea166'); r(54, 78, 17, 4, '#cea166'); break;
+    case 'marvin':
+      r(34, 37, 28, 22, '#49494b'); r(28, 27, 40, 18, '#829a6e'); r(33, 21, 30, 12, '#829a6e');
+      r(27, 38, 43, 6, '#667f58'); r(29, 39, 8, 17, '#829a6e'); r(60, 39, 8, 17, '#829a6e');
+      r(39, 9, 21, 10, '#d6b86f'); r(45, 18, 9, 6, '#b7985b'); r(39, 44, 7, 11, c.white); r(51, 44, 7, 11, c.white);
+      r(34, 58, 28, 16, '#b6756b'); r(28, 60, 7, 9, '#b6756b'); r(61, 60, 7, 9, '#b6756b');
+      r(28, 66, 7, 7, c.white); r(61, 66, 7, 7, c.white); r(33, 71, 9, 8, '#b6756b'); r(54, 71, 9, 8, '#b6756b');
+      r(28, 77, 16, 7, c.white); r(53, 77, 18, 7, c.white); break;
+    case 'skunk':
+      p('M58 67H72V62H78V32H73V22H63V17H54V22H48V36H55V53H58Z', '#49484c');
+      p('M61 59H66V33H63V26H57V22H63V24H70V32H72V57H67V65H61Z', c.white);
+      animal(d, 'skunk', '#49484c', 'round'); r(43, 21, 11, 20, c.white); r(35, 43, 29, 14, c.white); r(45, 42, 10, 7, '#49484c');
+      r(39, 58, 18, 18, c.white); r(23, 27, 10, 10, '#49484c'); r(64, 27, 10, 10, '#49484c'); break;
+    case 'lola':
+      animal(d, 'rabbit', '#b79873', 'long'); r(40, 42, 21, 13, '#e0c5a0'); r(39, 54, 19, 14, '#c2a3b9');
+      r(42, 23, 20, 6, '#d9bd77'); r(51, 17, 14, 8, '#d9bd77'); r(61, 21, 9, 14, '#d9bd77'); r(60, 24, 8, 3, '#a481a7');
+      r(37, 31, 5, 2, c.ink); r(54, 31, 5, 2, c.ink); r(40, 68, 17, 9, '#928da7');
+      r(70, 60, 14, 15, '#c89462'); r(74, 58, 7, 19, '#c89462'); r(76, 59, 2, 17, '#9a704f'); r(70, 67, 14, 2, '#9a704f'); break;
+    case 'mickey': case 'minnie': {
+      const black = '#4b4749'; r(23, 15, 18, 18, black); r(55, 15, 18, 18, black); r(28, 26, 40, 32, black);
+      p('M34 31H44V35H52V31H63V48H59V53H37V48H33Z', '#e6c7a3'); r(40, 34, 7, 12, c.white); r(50, 34, 7, 12, c.white);
+      r(44, 37, 3, 8, c.ink); r(51, 37, 3, 8, c.ink); r(43, 45, 12, 6, black); r(39, 53, 18, 2, '#a87568');
+      r(34, 57, 29, 20, motif === 'mickey' ? '#b8756d' : '#c28da4'); r(26, 58, 9, 15, black); r(63, 58, 9, 15, black);
+      r(22, 70, 14, 9, c.white); r(61, 70, 14, 9, c.white); r(37, 76, 5, 6, black); r(55, 76, 5, 6, black);
+      r(31, 81, 14, 5, '#d7b573'); r(52, 81, 16, 5, '#d7b573');
+      if (motif === 'minnie') {
+        p('M32 12H42L48 17L54 12H64V26H54L48 21L42 26H32Z', '#c38fa5'); r(45, 16, 7, 7, '#a6748c');
+        for (const [x, y] of [[35, 16], [56, 17], [38, 63], [52, 63], [45, 71], [59, 71]]) r(x, y, 3, 3, c.white);
+        r(31, 69, 36, 9, '#c28da4'); r(37, 32, 9, 2, black); r(51, 32, 8, 2, black);
+      } else { r(39, 63, 4, 7, c.cream); r(53, 63, 4, 7, c.cream); }
+      break;
+    }
+    case 'donald':
+      r(31, 28, 35, 28, c.white); r(33, 21, 30, 13, c.white); r(35, 52, 29, 25, '#789ab7'); r(29, 59, 7, 14, c.white); r(64, 59, 8, 14, c.white);
+      r(30, 17, 38, 9, '#789ab7'); r(36, 11, 26, 9, '#789ab7'); r(28, 24, 43, 4, '#5d7d9e');
+      r(36, 30, 9, 13, c.white); r(52, 30, 9, 13, c.white); r(40, 32, 4, 9, '#7798ae'); r(53, 32, 4, 9, '#7798ae');
+      r(27, 43, 44, 9, '#d4a365'); r(35, 51, 29, 4, '#be8d58'); r(32, 55, 15, 5, c.white); r(52, 55, 15, 5, c.white);
+      r(43, 58, 12, 8, '#b77974'); r(32, 73, 10, 8, '#d4a365'); r(56, 73, 10, 8, '#d4a365'); r(26, 79, 17, 5, '#d4a365'); r(55, 79, 18, 5, '#d4a365'); break;
+    case 'goofy':
+      r(39, 25, 24, 27, '#56504a'); r(26, 33, 8, 29, '#4f4945'); r(64, 34, 8, 29, '#4f4945');
+      r(35, 29, 13, 17, c.white); r(49, 29, 12, 17, c.white); r(42, 33, 4, 11, c.ink); r(50, 33, 4, 11, c.ink);
+      r(33, 43, 28, 15, '#d2b18a'); r(30, 43, 15, 8, '#514944'); r(46, 53, 14, 7, '#7b6252'); r(48, 52, 4, 6, c.white); r(54, 52, 4, 6, c.white);
+      r(37, 16, 28, 10, '#90a36f'); r(44, 9, 18, 9, '#90a36f'); r(36, 23, 30, 4, '#66794f');
+      r(32, 59, 34, 15, '#c19663'); r(39, 60, 5, 13, '#615b52'); r(56, 60, 5, 13, '#615b52'); r(34, 74, 13, 10, '#7792a7'); r(52, 74, 13, 10, '#7792a7'); break;
+    case 'pluto':
+      r(26, 48, 43, 21, '#d1ad61'); r(22, 55, 11, 22, '#d1ad61'); r(57, 55, 11, 22, '#d1ad61');
+      r(31, 25, 30, 30, '#d1ad61'); r(23, 27, 9, 29, '#554c43'); r(60, 27, 9, 29, '#554c43');
+      r(34, 31, 10, 13, c.white); r(48, 31, 10, 13, c.white); r(40, 35, 3, 8, c.ink); r(50, 35, 3, 8, c.ink);
+      r(33, 43, 32, 13, '#e2c587'); r(40, 42, 14, 8, '#554c43'); r(32, 53, 32, 5, '#86a071');
+      r(20, 75, 15, 6, '#d1ad61'); r(55, 75, 15, 6, '#d1ad61'); p('M68 53H75V40H78V59H68Z', '#554c43'); r(44, 54, 9, 7, '#c6ac70'); break;
+    case 'panther':
+      r(38, 40, 20, 34, '#c88fa7'); r(34, 20, 29, 26, '#c88fa7'); r(28, 16, 10, 13, '#c88fa7'); r(59, 16, 10, 13, '#c88fa7');
+      r(36, 26, 10, 9, '#ded095'); r(52, 26, 10, 9, '#ded095'); r(42, 29, 3, 6, c.ink); r(53, 29, 3, 6, c.ink);
+      r(33, 34, 32, 9, '#ddaec0'); r(45, 32, 11, 6, '#a46783'); r(45, 40, 2, 6, '#a46783'); r(33, 29, 14, 3, '#bb7f9b');
+      r(24, 48, 14, 5, '#c88fa7'); r(21, 48, 6, 19, '#c88fa7'); r(57, 48, 6, 23, '#c88fa7'); r(38, 71, 5, 11, '#c88fa7'); r(53, 71, 5, 11, '#c88fa7');
+      r(32, 80, 12, 5, '#c88fa7'); r(52, 80, 13, 5, '#c88fa7'); p('M57 65H76V58H81V68H74V72H57Z', '#c88fa7'); break;
+    case 'gadget':
+      person(d, 48, 40, '#a3a5a1', '#544f48'); r(22, 25, 52, 6, '#939c9e'); r(32, 16, 31, 13, '#939c9e'); r(34, 24, 27, 3, '#657479');
+      r(43, 34, 13, 10, '#dfb493'); r(49, 35, 15, 6, '#dfb493'); r(44, 44, 12, 3, '#a57767'); r(39, 57, 5, 6, '#757c79'); r(55, 57, 5, 6, '#757c79');
+      r(31, 67, 35, 4, '#707973'); r(46, 53, 4, 25, '#707973'); r(68, 47, 5, 22, '#a5b1b1');
+      r(68, 45, 12, 4, '#a5b1b1'); r(77, 35, 4, 13, '#a5b1b1'); r(72, 30, 6, 7, '#a5b1b1'); r(79, 30, 6, 7, '#a5b1b1'); r(73, 34, 10, 6, '#a5b1b1'); break;
+    case 'garfield':
+      r(24, 43, 47, 33, '#d0a064'); r(24, 26, 47, 29, '#d0a064'); r(29, 20, 10, 15, '#d0a064'); r(58, 20, 10, 15, '#d0a064');
+      r(30, 35, 16, 10, c.white); r(49, 35, 16, 10, c.white); r(30, 31, 16, 8, '#c19259'); r(49, 31, 16, 8, '#c19259');
+      r(41, 39, 3, 6, c.ink); r(50, 39, 3, 6, c.ink); r(31, 45, 33, 10, '#e2bc80'); r(43, 44, 11, 6, '#b58b72');
+      r(21, 34, 8, 3, '#795d49'); r(65, 34, 9, 3, '#795d49'); r(22, 56, 9, 3, '#795d49'); r(64, 58, 9, 3, '#795d49');
+      r(43, 24, 3, 8, '#795d49'); r(50, 24, 3, 8, '#795d49'); r(18, 72, 18, 6, '#d0a064'); r(61, 72, 16, 6, '#d0a064');
+      r(37, 66, 26, 13, '#918576'); r(39, 64, 22, 10, '#d7b57e'); r(41, 64, 18, 3, '#b3765c'); r(39, 70, 22, 2, '#edcb8d'); break;
+    case 'gumball':
+      r(26, 23, 45, 33, '#89b9c4'); r(22, 16, 12, 22, '#89b9c4'); r(63, 16, 12, 22, '#89b9c4'); r(29, 20, 5, 10, '#b4d3d3'); r(65, 20, 5, 10, '#b4d3d3');
+      r(32, 30, 13, 13, c.white); r(50, 30, 13, 13, c.white); r(40, 33, 4, 8, c.ink); r(51, 33, 4, 8, c.ink);
+      r(43, 44, 11, 5, '#668f9c'); r(37, 51, 21, 2, c.ink); r(20, 44, 11, 2, '#668f9c'); r(65, 44, 11, 2, '#668f9c');
+      r(31, 57, 34, 19, '#c7bca8'); r(32, 57, 32, 4, '#a49382'); r(30, 70, 7, 6, '#a49382'); r(60, 70, 7, 6, '#a49382');
+      r(36, 75, 9, 8, '#7d8588'); r(54, 75, 9, 8, '#7d8588'); p('M65 67H79V58H75V63H65Z', '#89b9c4'); break;
+    case 'darwin':
+      r(26, 20, 43, 38, '#d6a06b'); r(21, 27, 53, 24, '#d6a06b'); r(33, 54, 29, 16, '#d6a06b');
+      r(27, 27, 17, 15, c.white); r(48, 27, 17, 15, c.white); r(38, 31, 4, 9, c.ink); r(50, 31, 4, 9, c.ink);
+      r(40, 48, 21, 3, '#8c6955'); r(45, 51, 8, 3, '#c88765'); r(32, 65, 7, 13, '#d6a06b'); r(57, 65, 7, 13, '#d6a06b');
+      r(25, 75, 18, 8, '#8ea97c'); r(53, 75, 18, 8, '#8ea97c'); r(25, 81, 18, 3, c.white); r(53, 81, 18, 3, c.white);
+      p('M24 43H17V38H12V52H24Z', '#d6a06b'); p('M70 43H77V38H82V52H70Z', '#d6a06b'); break;
+    case 'finn':
+      r(29, 17, 39, 32, c.white); r(29, 12, 10, 14, c.white); r(58, 12, 10, 14, c.white); r(34, 26, 28, 18, '#dfba98');
+      r(40, 31, 3, 3, c.ink); r(54, 31, 3, 3, c.ink); r(44, 38, 11, 2, '#986f61');
+      r(34, 49, 28, 22, '#80b4c0'); r(25, 49, 9, 23, '#94ad77'); r(24, 51, 10, 9, '#aecb8c');
+      r(31, 69, 34, 9, '#698ca5'); r(35, 76, 6, 6, '#dfba98'); r(55, 76, 6, 6, '#dfba98'); r(32, 82, 12, 4, c.ink); r(52, 82, 12, 4, c.ink);
+      r(70, 27, 4, 39, '#d3bc7c'); r(64, 63, 17, 4, '#ab985c'); r(69, 67, 6, 13, '#97784f'); break;
     default: throw new Error(`Unknown cartoon motif: ${motif}`);
   }
   return d.finish();
@@ -376,25 +556,37 @@ function snackArt(row, index) {
 }
 
 const config = {
-  'cocukluk-cizgifilmleri': { directory: 'cartoons', start: 11001, art: cartoonArt },
-  'doksanlar-nostalji': { directory: 'nostalgia', start: 12001, art: nostalgiaArt },
-  'kantin-bakkal': { directory: 'snacks', start: 13001, art: snackArt }
+  'cocukluk-cizgifilmleri': { directory: 'cartoons', start: 11001, count: 60, art: cartoonArt },
+  'doksanlar-nostalji': { directory: 'nostalgia', start: 12001, count: 35, art: nostalgiaArt },
+  'kantin-bakkal': { directory: 'snacks', start: 13001, count: 35, art: snackArt }
 };
+// Limit asset writes when refreshing one collection; the complete merge feed is
+// still emitted. Existing unrelated assets are left byte-for-byte unchanged.
+const datasetArgument = process.argv.find(argument => argument.startsWith('--dataset='));
+const selectedDataset = datasetArgument?.slice('--dataset='.length);
+assert.ok(!selectedDataset || Object.hasOwn(config, selectedDataset), `Unknown dataset: ${selectedDataset}`);
+const looneyCharacterNames = new Set([
+  'Bugs Bunny', 'Daffy Duck', 'Tweety', 'Sylvester', 'Taz', 'Road Runner',
+  'Wile E. Coyote', 'Porky Pig', 'Speedy Gonzales', 'Elmer Fudd',
+  'Yosemite Sam', 'Foghorn Leghorn', 'Marvin the Martian', 'Pepé Le Pew', 'Lola Bunny'
+]);
 const feed = {};
 for (const [dataset, items] of Object.entries(rows)) {
-  assert.equal(items.length, 35, `${dataset} must contain exactly 35 records`);
-  assert.equal(new Set(items.map(row => row[0].toLocaleLowerCase('tr-TR'))).size, 35, `${dataset} contains duplicate names`);
-  assert.equal(new Set(items.map(row => row[1])).size, 35, `${dataset} contains duplicate asset paths`);
-  const { directory, start, art } = config[dataset];
-  await mkdir(new URL(`assets/images/${directory}/`, root), { recursive: true });
+  const { directory, start, count, art } = config[dataset];
+  assert.equal(items.length, count, `${dataset} must contain exactly ${count} records`);
+  assert.equal(new Set(items.map(row => row[0].toLocaleLowerCase('tr-TR'))).size, count, `${dataset} contains duplicate names`);
+  assert.equal(new Set(items.map(row => row[1])).size, count, `${dataset} contains duplicate asset paths`);
+  const writeAssets = !selectedDataset || selectedDataset === dataset;
+  if (writeAssets) await mkdir(new URL(`assets/images/${directory}/`, root), { recursive: true });
   feed[dataset] = [];
   for (const [index, row] of items.entries()) {
     const gorsel = `assets/images/${directory}/${row[1]}.svg`;
     const item = { id: start + index, isim: row[0], gorsel, etiket: row[2] };
+    if (dataset === 'cocukluk-cizgifilmleri' && looneyCharacterNames.has(row[0])) item.evren = 'Looney Tunes';
     if (dataset === 'kantin-bakkal' && row[5]) item.marka = row[5];
     feed[dataset].push(item);
-    await writeFile(new URL(gorsel, root), art(row, index), 'utf8');
+    if (writeAssets) await writeFile(new URL(gorsel, root), art(row, index), 'utf8');
   }
 }
 await writeFile(new URL('tools/nostalgia-sets.json', root), `${JSON.stringify(feed, null, 2)}\n`, 'utf8');
-console.log('Generated 3 nostalgia collections: 35 cartoons, 35 memories, 35 snacks; 105 original local SVG assets.');
+console.log('Generated 3 nostalgia collections: 60 cartoons, 35 memories, 35 snacks; 130 original local SVG card assets.');

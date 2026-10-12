@@ -57,7 +57,7 @@ const turkishDefinitions = [
 ];
 
 const additions = [
-  ['ibrahima-yattara', 'İbrahima Yattara', 'OF', 'Trabzonspor', 61, 'dreads', 'deep', 'smile'],
+  ['ibrahima-yattara', 'İbrahima Yattara', 'OF', 'Trabzonspor', 61, 'blond-short', 'deep', 'smile'],
   ['didier-drogba', 'Didier Drogba', 'FV', 'Galatasaray', 11, 'band-long', 'deep', 'clean'],
   ['gheorghe-hagi', 'Gheorghe Hagi', 'OF', 'Galatasaray', 10, 'curls', 'olive', 'clean'],
   ['alex-de-souza', 'Alex de Souza', 'OF', 'Fenerbahçe', 10, 'receding', 'light', 'clean'],
@@ -120,7 +120,7 @@ const additions = [
   ['shota-arveladze', 'Şota Arveladze', 'FV', 'Trabzonspor', 11, 'curls', 'light', 'clean'],
   ['gustavo-colman', 'Gustavo Colman', 'OF', 'Trabzonspor', 20, 'long-side', 'light', 'stubble'],
   ['marek-hamsik', 'Marek Hamšík', 'OF', 'Trabzonspor', 17, 'mohawk', 'light', 'beard'],
-  ['anthony-nwakaeme', 'Anthony Nwakaeme', 'FV', 'Trabzonspor', 9, 'tight-curls', 'deep', 'beard'],
+  ['anthony-nwakaeme', 'Anthony Nwakaeme', 'FV', 'Trabzonspor', 9, 'shaved', 'deep', 'clean'],
   ['oscar-cardozo', 'Óscar Cardozo', 'FV', 'Trabzonspor', 7, 'short', 'olive', 'clean'],
   ['jose-sosa', 'José Sosa', 'OF', 'Trabzonspor', 8, 'side', 'light', 'stubble'],
   ['pablo-batalla', 'Pablo Batalla', 'OF', 'Bursaspor', 10, 'centre', 'light', 'clean'],
@@ -186,6 +186,10 @@ function hairBehind(type, colour) {
 }
 
 function hairFront(type, colour, shadow, skin) {
+  if (type === 'shaved') return '';
+  if (type === 'blond-short') return rect(32, 18, 32, 8, colour)
+    + rect(30, 24, 4, 6, colour) + rect(62, 24, 4, 6, colour)
+    + rect(35, 18, 25, 2, shadow) + rect(40, 21, 5, 2, shadow);
   if (type === 'blond-ponytail') type = 'ponytail';
   if (type === 'blond-curls') type = 'curls';
   if (type === 'blond-braids') type = 'dreads';
@@ -264,8 +268,9 @@ function portrait(definition, id) {
   const theme = clubs[clubName];
   const [skin, skinShade] = skins[skinType];
   const blond = hair.startsWith('blond');
-  const hairColour = blond ? '#b99c64' : id % 4 === 0 ? '#554b40' : '#3c4140';
-  const hairShade = blond ? '#dbc084' : '#676150';
+  const hairColour = hair === 'blond-short' ? '#edc85b' : blond ? '#b99c64' : id % 4 === 0 ? '#554b40' : '#3c4140';
+  const hairShade = hair === 'blond-short' ? '#ffe18a' : blond ? '#dbc084' : '#676150';
+  const browColour = hair === 'blond-short' ? '#3c4140' : hairColour;
   const keeper = tag === 'KL';
   const back = ['#c8d8c4', '#c3d4ce', '#d1d7bc', '#c8d1c5'][id % 4];
   let art = rect(0, 0, 96, 96, back) + rect(0, 15, 96, 28, '#aebfb5')
@@ -279,9 +284,11 @@ function portrait(definition, id) {
     + rect(32, 21, 32, 28, skin) + rect(35, 49, 26, 4, skin)
     + rect(28, 30, 4, 11, skin) + rect(64, 30, 4, 11, skinShade)
     + rect(60, 27, 4, 21, skinShade) + rect(36, 49, 23, 3, skinShade);
+  if (hair === 'shaved') art += rect(35, 18, 26, 4, skin) + rect(39, 16, 18, 2, skin)
+    + rect(37, 19, 13, 2, '#946c54');
   art += hairFront(hair, hairColour, hairShade, skin);
   const browY = id % 3 === 0 ? 32 : 31;
-  art += rect(37, browY, 7, 2, hairColour) + rect(52, browY, 7, 2, hairColour)
+  art += rect(37, browY, 7, 2, browColour) + rect(52, browY, 7, 2, browColour)
     + rect(39, 35, 4, 3, '#35463f') + rect(53, 35, 4, 3, '#35463f')
     + rect(40, 35, 1, 1, '#f2e7c9') + rect(54, 35, 1, 1, '#f2e7c9')
     + rect(47, 36, 3, 7, skinShade);
