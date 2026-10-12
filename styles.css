@@ -366,6 +366,7 @@ h1[tabindex="-1"]:focus { outline: none; }
 .dataset-collections legend { margin-bottom: 9px; font-size: 9px; }
 .collection-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .collection-option { position: relative; display: block; min-width: 0; cursor: pointer; border: 2px solid #c9afd0; padding: 10px 8px; background: #f7eef5; box-shadow: 3px 3px 0 #ddcbdc; }
+.collection-option:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .collection-option:has(input:checked) { border-color: #715182; background: #eee2f1; box-shadow: 3px 3px 0 #aa88b6; }
 .collection-option:has(input:focus-visible) { outline: 3px solid #715182; outline-offset: 4px; }
 .collection-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }

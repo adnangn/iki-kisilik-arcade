@@ -155,7 +155,7 @@ try {
   await check('unknown collections cannot create a room', async () => {
     expectDenied(await writeRoom(initialRoom(TEST_CODES[1], 'unknown'), 'p1'));
   });
-  await check('all six collections create, join, and start with their own deck', async () => {
+  await check('all collections create, join, and start with their own deck', async () => {
     const categoryCode = TEST_CODES[1];
     for (const [datasetId, cards] of Object.entries(DATASETS)) {
       expectStatus(await writeRoom(initialRoom(categoryCode, datasetId), 'p1'), 200, datasetId);
@@ -379,7 +379,7 @@ try {
     let current = await join(soloCode);
     current = await command(current, 'p1', 'start', { deck: DECK });
     assert.equal(current.datasetId, 'superlig');
-    assert.equal(current.game.deck.length, 80);
+    assert.equal(current.game.deck.length, DECK.length);
     const changedDataset = changeRoom(current, 'p2', current.revision, 'bid', { amount: 2 });
     changedDataset.datasetId = 'futbol';
     expectDenied(await writeRoom(changedDataset, 'p2'), 'Changing the room collection');

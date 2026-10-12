@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { shuffledIds, draftTriplets } from '../js/game-setup.js';
 const data = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
 
-test('all six collections supply eleven matching-tag trios without changing source data', () => {
+test('all collections supply eleven matching-tag trios without changing source data', () => {
   for (const cards of Object.values(data)) {
     const before = structuredClone(cards);
     const triples = draftTriplets(cards, length => length - 1);

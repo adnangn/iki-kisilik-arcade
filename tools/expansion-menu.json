@@ -1,0 +1,958 @@
+{
+  "tatli": [
+    {
+      "id": 1051,
+      "isim": "Höşmerim",
+      "gorsel": "assets/images/desserts/hosmerim.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1052,
+      "isim": "Zerde",
+      "gorsel": "assets/images/desserts/zerde.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1053,
+      "isim": "Paluze",
+      "gorsel": "assets/images/desserts/paluze.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1054,
+      "isim": "Bici Bici",
+      "gorsel": "assets/images/desserts/bici-bici.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1055,
+      "isim": "Karsambaç",
+      "gorsel": "assets/images/desserts/karsambac.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1056,
+      "isim": "Kerebiç",
+      "gorsel": "assets/images/desserts/kerebic.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1057,
+      "isim": "Acıbadem Kurabiyesi",
+      "gorsel": "assets/images/desserts/acibadem-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1058,
+      "isim": "Kavala Kurabiyesi",
+      "gorsel": "assets/images/desserts/kavala-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1059,
+      "isim": "Un Kurabiyesi",
+      "gorsel": "assets/images/desserts/un-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1060,
+      "isim": "Leblebi Helvası",
+      "gorsel": "assets/images/desserts/leblebi-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1061,
+      "isim": "Çekme Helva",
+      "gorsel": "assets/images/desserts/cekme-helva.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1062,
+      "isim": "Kağıt Helva",
+      "gorsel": "assets/images/desserts/kagit-helva.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1063,
+      "isim": "Vezir Parmağı",
+      "gorsel": "assets/images/desserts/vezir-parmagi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1064,
+      "isim": "Hanım Göbeği",
+      "gorsel": "assets/images/desserts/hanim-gobegi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1065,
+      "isim": "Taş Kadayıf",
+      "gorsel": "assets/images/desserts/tas-kadayif.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1066,
+      "isim": "Ekmek Kadayıfı",
+      "gorsel": "assets/images/desserts/ekmek-kadayifi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1067,
+      "isim": "Tel Kadayıf",
+      "gorsel": "assets/images/desserts/tel-kadayif.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1068,
+      "isim": "Laz Böreği",
+      "gorsel": "assets/images/desserts/laz-boregi.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1069,
+      "isim": "Nevzine",
+      "gorsel": "assets/images/desserts/nevzine.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1070,
+      "isim": "Hira Tatlısı",
+      "gorsel": "assets/images/desserts/hira-tatlisi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1071,
+      "isim": "Keşkül",
+      "gorsel": "assets/images/desserts/keskul.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1072,
+      "isim": "Muhallebi",
+      "gorsel": "assets/images/desserts/muhallebi.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1073,
+      "isim": "Mochi",
+      "gorsel": "assets/images/desserts/mochi.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1074,
+      "isim": "Dorayaki",
+      "gorsel": "assets/images/desserts/dorayaki.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1075,
+      "isim": "Taiyaki",
+      "gorsel": "assets/images/desserts/taiyaki.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1076,
+      "isim": "Tangyuan",
+      "gorsel": "assets/images/desserts/tangyuan.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1077,
+      "isim": "Mango Sticky Rice",
+      "gorsel": "assets/images/desserts/mango-sticky-rice.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1078,
+      "isim": "Kulfi",
+      "gorsel": "assets/images/desserts/kulfi.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1079,
+      "isim": "Gulab Jamun",
+      "gorsel": "assets/images/desserts/gulab-jamun.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1080,
+      "isim": "Rasgulla",
+      "gorsel": "assets/images/desserts/rasgulla.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1081,
+      "isim": "Jalebi",
+      "gorsel": "assets/images/desserts/jalebi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1082,
+      "isim": "Beignets",
+      "gorsel": "assets/images/desserts/beignets.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1083,
+      "isim": "Cannoli",
+      "gorsel": "assets/images/desserts/cannoli.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1084,
+      "isim": "Sfogliatella",
+      "gorsel": "assets/images/desserts/sfogliatella.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1085,
+      "isim": "Pastel de Nata",
+      "gorsel": "assets/images/desserts/pastel-de-nata.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1086,
+      "isim": "Pavlova",
+      "gorsel": "assets/images/desserts/pavlova.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1087,
+      "isim": "Baked Alaska",
+      "gorsel": "assets/images/desserts/baked-alaska.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1088,
+      "isim": "Opera Pasta",
+      "gorsel": "assets/images/desserts/opera-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1089,
+      "isim": "Mille-Feuille",
+      "gorsel": "assets/images/desserts/mille-feuille.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1090,
+      "isim": "Sachertorte",
+      "gorsel": "assets/images/desserts/sachertorte.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1091,
+      "isim": "Victoria Sponge",
+      "gorsel": "assets/images/desserts/victoria-sponge.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1092,
+      "isim": "Stollen",
+      "gorsel": "assets/images/desserts/stollen.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1093,
+      "isim": "Pandoro",
+      "gorsel": "assets/images/desserts/pandoro.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1094,
+      "isim": "Panettone",
+      "gorsel": "assets/images/desserts/panettone.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1095,
+      "isim": "Banoffee Pie",
+      "gorsel": "assets/images/desserts/banoffee-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1096,
+      "isim": "Key Lime Pie",
+      "gorsel": "assets/images/desserts/key-lime-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1097,
+      "isim": "Lemon Meringue Pie",
+      "gorsel": "assets/images/desserts/lemon-meringue-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1098,
+      "isim": "Peach Cobbler",
+      "gorsel": "assets/images/desserts/peach-cobbler.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1099,
+      "isim": "Pecan Pie",
+      "gorsel": "assets/images/desserts/pecan-pie.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1100,
+      "isim": "Biscotti",
+      "gorsel": "assets/images/desserts/biscotti.svg",
+      "etiket": "Kurabiye"
+    }
+  ],
+  "yemek": [
+    {
+      "id": 2051,
+      "isim": "Tarhana Çorbası",
+      "gorsel": "assets/images/meals/tarhana-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2052,
+      "isim": "Beyran Çorbası",
+      "gorsel": "assets/images/meals/beyran-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2053,
+      "isim": "İşkembe Çorbası",
+      "gorsel": "assets/images/meals/iskembe-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2054,
+      "isim": "Cağ Kebabı",
+      "gorsel": "assets/images/meals/cag-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2055,
+      "isim": "Testi Kebabı",
+      "gorsel": "assets/images/meals/testi-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2056,
+      "isim": "Büryan Kebabı",
+      "gorsel": "assets/images/meals/buryan-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2057,
+      "isim": "Güveç",
+      "gorsel": "assets/images/meals/guvec.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2058,
+      "isim": "Orman Kebabı",
+      "gorsel": "assets/images/meals/orman-kebabi.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2059,
+      "isim": "Boeuf Bourguignon",
+      "gorsel": "assets/images/meals/boeuf-bourguignon.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2060,
+      "isim": "Fellah Köftesi",
+      "gorsel": "assets/images/meals/fellah-koftesi.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2061,
+      "isim": "Sulu Köfte",
+      "gorsel": "assets/images/meals/sulu-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2062,
+      "isim": "Mercimek Köftesi",
+      "gorsel": "assets/images/meals/mercimek-koftesi.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2063,
+      "isim": "Çiğ Köfte",
+      "gorsel": "assets/images/meals/cig-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2064,
+      "isim": "Tavuk Kapama",
+      "gorsel": "assets/images/meals/tavuk-kapama.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2065,
+      "isim": "Tavuk Tandır",
+      "gorsel": "assets/images/meals/tavuk-tandir.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2066,
+      "isim": "Butter Chicken",
+      "gorsel": "assets/images/meals/butter-chicken.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2067,
+      "isim": "Karides Güveç",
+      "gorsel": "assets/images/meals/karides-guvec.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2068,
+      "isim": "Kalamar Tava",
+      "gorsel": "assets/images/meals/kalamar-tava.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2069,
+      "isim": "Somon Izgara",
+      "gorsel": "assets/images/meals/somon-izgara.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2070,
+      "isim": "Kumpir",
+      "gorsel": "assets/images/meals/kumpir.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2071,
+      "isim": "Ratatouille",
+      "gorsel": "assets/images/meals/ratatouille.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2072,
+      "isim": "Bamya Yemeği",
+      "gorsel": "assets/images/meals/bamya-yemegi.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2073,
+      "isim": "Ispanak Yemeği",
+      "gorsel": "assets/images/meals/ispanak-yemegi.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2074,
+      "isim": "Fırında Karnabahar",
+      "gorsel": "assets/images/meals/firinda-karnabahar.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2075,
+      "isim": "Perde Pilavı",
+      "gorsel": "assets/images/meals/perde-pilavi.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2076,
+      "isim": "Özbek Pilavı",
+      "gorsel": "assets/images/meals/ozbek-pilavi.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2077,
+      "isim": "Paella",
+      "gorsel": "assets/images/meals/paella.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2078,
+      "isim": "Çiğ Börek",
+      "gorsel": "assets/images/meals/cig-borek.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2079,
+      "isim": "Boşnak Böreği",
+      "gorsel": "assets/images/meals/bosnak-boregi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2080,
+      "isim": "Kayseri Yağlaması",
+      "gorsel": "assets/images/meals/kayseri-yaglamasi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2081,
+      "isim": "Bao",
+      "gorsel": "assets/images/meals/bao.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2082,
+      "isim": "Ramen",
+      "gorsel": "assets/images/meals/ramen.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2083,
+      "isim": "Pho",
+      "gorsel": "assets/images/meals/pho.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2084,
+      "isim": "Udon",
+      "gorsel": "assets/images/meals/udon.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2085,
+      "isim": "Falafel",
+      "gorsel": "assets/images/meals/falafel.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2086,
+      "isim": "Musakka",
+      "gorsel": "assets/images/meals/musakka.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2087,
+      "isim": "Sucuklu Yumurta",
+      "gorsel": "assets/images/meals/sucuklu-yumurta.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2088,
+      "isim": "Patatesli Omlet",
+      "gorsel": "assets/images/meals/patatesli-omlet.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2089,
+      "isim": "Simit",
+      "gorsel": "assets/images/meals/simit.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2090,
+      "isim": "Fettuccine Alfredo",
+      "gorsel": "assets/images/meals/fettuccine-alfredo.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2091,
+      "isim": "Cacio e Pepe",
+      "gorsel": "assets/images/meals/cacio-e-pepe.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2092,
+      "isim": "Gnocchi",
+      "gorsel": "assets/images/meals/gnocchi.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2093,
+      "isim": "Kısır",
+      "gorsel": "assets/images/meals/kisir.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2094,
+      "isim": "Tabule",
+      "gorsel": "assets/images/meals/tabule.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2095,
+      "isim": "Çoban Salata",
+      "gorsel": "assets/images/meals/coban-salata.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2096,
+      "isim": "Tantuni",
+      "gorsel": "assets/images/meals/tantuni.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2097,
+      "isim": "Fajita",
+      "gorsel": "assets/images/meals/fajita.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2098,
+      "isim": "Burrito",
+      "gorsel": "assets/images/meals/burrito.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2099,
+      "isim": "Steak",
+      "gorsel": "assets/images/meals/steak.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2100,
+      "isim": "Fish and Chips",
+      "gorsel": "assets/images/meals/fish-and-chips.svg",
+      "etiket": "Deniz Ürünü"
+    }
+  ],
+  "icecek": [
+    {
+      "id": 9001,
+      "isim": "Türk Kahvesi",
+      "gorsel": "assets/images/drinks/turk-kahvesi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9002,
+      "isim": "Filtre Kahve",
+      "gorsel": "assets/images/drinks/filtre-kahve.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9003,
+      "isim": "Espresso",
+      "gorsel": "assets/images/drinks/espresso.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9004,
+      "isim": "Americano",
+      "gorsel": "assets/images/drinks/americano.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9005,
+      "isim": "Latte",
+      "gorsel": "assets/images/drinks/latte.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9006,
+      "isim": "Cappuccino",
+      "gorsel": "assets/images/drinks/cappuccino.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9007,
+      "isim": "Flat White",
+      "gorsel": "assets/images/drinks/flat-white.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9008,
+      "isim": "Mocha",
+      "gorsel": "assets/images/drinks/mocha.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9009,
+      "isim": "Siyah Çay",
+      "gorsel": "assets/images/drinks/siyah-cay.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9010,
+      "isim": "Yeşil Çay",
+      "gorsel": "assets/images/drinks/yesil-cay.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9011,
+      "isim": "Ihlamur",
+      "gorsel": "assets/images/drinks/ihlamur.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9012,
+      "isim": "Ada Çayı",
+      "gorsel": "assets/images/drinks/ada-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9013,
+      "isim": "Kuşburnu Çayı",
+      "gorsel": "assets/images/drinks/kusburnu-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9014,
+      "isim": "Papatya Çayı",
+      "gorsel": "assets/images/drinks/papatya-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9015,
+      "isim": "Salep",
+      "gorsel": "assets/images/drinks/salep.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9016,
+      "isim": "Sıcak Çikolata",
+      "gorsel": "assets/images/drinks/sicak-cikolata.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9017,
+      "isim": "Matcha Latte",
+      "gorsel": "assets/images/drinks/matcha-latte.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9018,
+      "isim": "Su",
+      "gorsel": "assets/images/drinks/su.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9019,
+      "isim": "Maden Suyu",
+      "gorsel": "assets/images/drinks/maden-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9020,
+      "isim": "Ayran",
+      "gorsel": "assets/images/drinks/ayran.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9021,
+      "isim": "Kefir",
+      "gorsel": "assets/images/drinks/kefir.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9022,
+      "isim": "Şalgam",
+      "gorsel": "assets/images/drinks/salgam.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9023,
+      "isim": "Boza",
+      "gorsel": "assets/images/drinks/boza.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9024,
+      "isim": "Limonata",
+      "gorsel": "assets/images/drinks/limonata.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9025,
+      "isim": "Portakal Suyu",
+      "gorsel": "assets/images/drinks/portakal-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9026,
+      "isim": "Vişne Suyu",
+      "gorsel": "assets/images/drinks/visne-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9027,
+      "isim": "Elma Suyu",
+      "gorsel": "assets/images/drinks/elma-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9028,
+      "isim": "Nar Suyu",
+      "gorsel": "assets/images/drinks/nar-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9029,
+      "isim": "Şeftali Nektarı",
+      "gorsel": "assets/images/drinks/seftali-nektari.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9030,
+      "isim": "Havuç Suyu",
+      "gorsel": "assets/images/drinks/havuc-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9031,
+      "isim": "Domates Suyu",
+      "gorsel": "assets/images/drinks/domates-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9032,
+      "isim": "Gazoz",
+      "gorsel": "assets/images/drinks/gazoz.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9033,
+      "isim": "Kola",
+      "gorsel": "assets/images/drinks/kola.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9034,
+      "isim": "Buzlu Çay",
+      "gorsel": "assets/images/drinks/buzlu-cay.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9035,
+      "isim": "Cold Brew",
+      "gorsel": "assets/images/drinks/cold-brew.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9036,
+      "isim": "Frappe",
+      "gorsel": "assets/images/drinks/frappe.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9037,
+      "isim": "Milkshake",
+      "gorsel": "assets/images/drinks/milkshake.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9038,
+      "isim": "Smoothie",
+      "gorsel": "assets/images/drinks/smoothie.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9039,
+      "isim": "Bubble Tea",
+      "gorsel": "assets/images/drinks/bubble-tea.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9040,
+      "isim": "Hindistan Cevizi Suyu",
+      "gorsel": "assets/images/drinks/hindistan-cevizi-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9041,
+      "isim": "Demirhindi Şerbeti",
+      "gorsel": "assets/images/drinks/demirhindi-serbeti.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9042,
+      "isim": "Gül Şerbeti",
+      "gorsel": "assets/images/drinks/gul-serbeti.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9043,
+      "isim": "Bira",
+      "gorsel": "assets/images/drinks/bira.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9044,
+      "isim": "Kırmızı Şarap",
+      "gorsel": "assets/images/drinks/kirmizi-sarap.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9045,
+      "isim": "Beyaz Şarap",
+      "gorsel": "assets/images/drinks/beyaz-sarap.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9046,
+      "isim": "Rakı",
+      "gorsel": "assets/images/drinks/raki.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9047,
+      "isim": "Viski",
+      "gorsel": "assets/images/drinks/viski.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9048,
+      "isim": "Cin",
+      "gorsel": "assets/images/drinks/cin.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9049,
+      "isim": "Tekila",
+      "gorsel": "assets/images/drinks/tekila.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9050,
+      "isim": "Votka",
+      "gorsel": "assets/images/drinks/votka.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    }
+  ]
+}

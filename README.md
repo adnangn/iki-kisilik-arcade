@@ -24,9 +24,10 @@ oyun/
 │   ├── game-view.js       # Turnuva geçmişi, aday kartlar ve takım/saha görünümü
 │   ├── ranking-view.js    # Canlı ve sonuç ekranlarının ortak sıralama görünümü
 │   ├── demo-bot.js        # Yalnız kendi sırasında teklif/pas yapan demo botu
-│   ├── datasets.js        # Üç ana kategori, altı koleksiyon ve seçim eşleştirmesi
+│   ├── datasets.js        # Beş ana kategori, 11 koleksiyon ve seçim eşleştirmesi
 │   ├── texts.js           # Metin yükleme, güvenli şablonlar ve yerel önizleme
 │   ├── text-catalog.js    # Düzenleyici alanları ve varsayılan metin kataloğu
+│   ├── text-catalog-expansion.js # Yeni kategori/koleksiyonların 22 metin alanı
 │   ├── text-editor.js     # Taslak, arama, önizleme ve JSON aktarımı
 │   ├── room-state.js      # Üyelik, sürüm kontrolü, tur ve rövanş geçişleri
 │   └── firebase-room.js   # Kalıcı kimlik, transaction, dinleyiciler, presence
@@ -34,10 +35,15 @@ oyun/
 │   ├── images/            # Yerel piksel kartları, veri seti ve reaksiyon ikonları
 │   │   ├── legends/       # 100 efsanenin özgün piksel portresi
 │   │   ├── superlig/      # 100 Süper Lig oyuncusunun kulüp renkli portresi
+│   │   ├── turkish-legends/ # 50 eski Türk futbolcunun piksel portresi
+│   │   ├── world-stars/   # 50 güncel dünya yıldızının piksel portresi
 │   │   ├── desserts/      # Yeni tatlı kartları
 │   │   ├── meals/         # Yeni ana yemek kartları
+│   │   ├── drinks/        # 50 içecek için özgün piksel çizimleri
 │   │   ├── series/        # Yeni dizi kartları
-│   │   └── movies/        # 50 film için özgün piksel sahneleri
+│   │   ├── movies/        # 50 film için özgün piksel sahneleri
+│   │   ├── artists/       # 40 solo sanatçı ve 10 grubun temsili piksel çizimleri
+│   │   └── ankara/        # 25 ilçenin temsili mimari/doğa çizimleri
 │   └── fonts/             # Yerel Press Start 2P / VT323 yazı tipleri ve OFL lisansları
 ├── firebase.rules.json    # RTDB erişim ve veri doğrulama kuralları
 ├── firebase.json          # İsteğe bağlı Firebase emulator ayarları
@@ -55,8 +61,11 @@ oyun/
 │   └── firebase-emulator.mjs # Yerel RTDB kuralları ve eşzamanlı yazma testi
 ├── tools/
 │   ├── serve.mjs          # Sadece bilgisayarda geliştirme önizlemesi
-│   ├── preflight.mjs      # Altı havuz, dört mod, yerel yollar ve çevrimiçi ayarlar
-│   └── build-site.mjs     # Yalnız çalışma dosyalarını artifacts/site içine kopyalar
+│   ├── preflight.mjs      # 11 havuz, dört mod, yerel yollar ve çevrimiçi ayarlar
+│   ├── build-site.mjs     # Yalnız çalışma dosyalarını artifacts/site içine kopyalar
+│   ├── expansion-*.json  # Futbol/menü/kültür ek kartları ve kaynak kayıtları
+│   ├── generate-expansion-*.mjs # 325 ek kartın yerel SVG üreteçleri
+│   └── integrate-expansion.mjs # Ek kartları eski kartları koruyarak veri.json dosyasına birleştirir
 ├── .github/workflows/pages.yml # Kontrol, test ve statik Pages yayını
 ├── package.json           # Önizleme ve test komutları; runtime bağımlılığı yok
 ├── .nojekyll              # GitHub Pages için
@@ -71,15 +80,15 @@ Lobinin altındaki **Metin Atölyesi** bağlantısını açın. Başlık, slogan
 
 **Metinleri indir** bir `metinler.json` dosyası üretir. Herkesin değişiklikleri görmesi için depodaki aynı dosyayı bununla değiştirin ve GitHub Pages yayınının tamamlanmasını bekleyin. Daha sonra bu dosyayı **Dosyadan yükle** ile tekrar düzenleyebilirsiniz. GitHub Pages statik olduğu için düzenleyicideki taslak kaydı doğrudan GitHub'a dosya yazmaz.
 
-Varsayılanlar `js/text-catalog-static.js` ve `js/text-catalog-runtime.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
+Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js` ve `js/text-catalog-expansion.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **369 alan** sunar; bunların 22'si yeni kategori ve koleksiyonlara aittir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
 
 ## Oynanabilir modlar
 
-Lobi, 6 rakamlı kodla iki kişilik oda kurma/katılma, bekleme ekranı, dört oyun modu ve aynı kodla rövanş hazırdır. Altı koleksiyonun tamamı dört modla kullanılabilir.
+Lobi, 6 rakamlı kodla iki kişilik oda kurma/katılma, bekleme ekranı, dört oyun modu ve aynı kodla rövanş hazırdır. 11 koleksiyonun tamamı dört modla kullanılabilir.
 
 Her oyuncu 20 TL ve beş kartlık kontenjanla başlar. Açılış teklifini sistem 1 TL olarak yapar, hamle diğer oyuncuya geçer. Tam sayı teklif mevcut fiyattan büyük ve oyuncunun bütçesi içinde olmalıdır. Pas, son teklif sahibine kartı verir ve yalnızca kazananın bütçesini düşürür. Yeni kartta açılış sırası değişir. Açılış ve fiyat artırma kart satın almaz; bütçe yalnızca gerçek bir Pas hamlesiyle kapanan açık artırmada düşer. Her Pas en fazla bir kart verir. Bir oyuncunun bütçesi veya kontenjanı dolsa bile sonraki kartlar otomatik dağıtılmaz; o oyuncu sırası geldiğinde Pas diyerek kartı son teklif sahibine bırakır. Teklif veremeyen oyuncunun açılış sırası, açılış yapabilen rakibine geçer. İki oyuncu da kart alamayınca veya deste bitince sonuç ekranı açılır. Puanlama ölçütü tanımlanmadığı için sonuç ekranı kadroları ve kalan bütçeyi karşılaştırır.
 
-Kör Sıralama, aynı altı koleksiyonun kartlarını ve yerel görsellerini kullanır. Karıştırılan havuzdan 10 kart seçilir; ekranda yalnızca mevcut kart gösterilir. Aktif oyuncu kartı 1–10 arasındaki boş bir sıraya yerleştirir (1 en iyi, 10 en alt); dolu sıra kilitlenir, sonraki kart açılır. İzleyicide seçim düğmeleri gizlenir, mevcut kart ve sıralama anlık güncellenir; reaksiyonlar kullanılabilir. Onuncu seçimde tam liste sonuç ekranında gösterilir. Rövanş oda kodunu korur, yeni 10 kart seçer ve sıralayan/izleyen rollerini değiştirir.
+Kör Sıralama, aynı 11 koleksiyonun kartlarını ve yerel görsellerini kullanır. Karıştırılan havuzdan 10 kart seçilir; ekranda yalnızca mevcut kart gösterilir. Aktif oyuncu kartı 1–10 arasındaki boş bir sıraya yerleştirir (1 en iyi, 10 en alt); dolu sıra kilitlenir, sonraki kart açılır. İzleyicide seçim düğmeleri gizlenir, mevcut kart ve sıralama anlık güncellenir; reaksiyonlar kullanılabilir. Onuncu seçimde tam liste sonuç ekranında gösterilir. Rövanş oda kodunu korur, yeni 10 kart seçer ve sıralayan/izleyen rollerini değiştirir.
 
 **O mu, Bu mu?** aynı havuzdan 16 benzersiz kartla başlar. Aktif oyuncu her eşleşmede iki karttan birini seçer; kazananlar son 16, çeyrek final, yarı final ve final sırasıyla üst tura çıkar. 15 seçim sonunda tek şampiyon ve dört turluk şampiyonluk yolu gösterilir. İzleyici kartları ve tur geçmişini görür, seçim yapamaz. Rövanşta aktif oyuncu değişir; demoda bot turnuvayı oynarken izlersin.
 
@@ -87,7 +96,7 @@ Kör Sıralama, aynı altı koleksiyonun kartlarını ve yerel görsellerini kul
 
 Üçlü üretiminde aynı etiketten en az üç kart içeren gruplar kullanılır. Her üçlüde üç farklı kart bulunur. Mevcut uygun havuzdan artık üçlü çıkmıyorsa havuz yeniden karıştırılır; bu nedenle küçük koleksiyonlarda bir kart farklı turlarda tekrar aday olabilir ve farklı Start seçimlerinde yeniden bulunabilir. Bu kural `reusePolicy: 'pool-reset'` olarak odada saklanır; rövanş yeni 11 üçlüyle başlar.
 
-Yeni bir veri setinin dört modda da kullanılabilmesi için 16–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Sadece Kör Sıralama motorunun alt sınırı 10'dur. Mevcut altı koleksiyon bu dört modlu hazırlık kontrolünden geçer.
+Yeni bir veri setinin dört modda da kullanılabilmesi için 16–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Sadece Kör Sıralama motorunun alt sınırı 10'dur. Hazırlık kontrolü mevcut 11 koleksiyonu bu koşullara göre denetler.
 
 ## Yerel önizleme
 
@@ -119,7 +128,7 @@ Turnuvanın iki kartı mobilde yan yana kalır; tur geçmişi alt bölümde gör
 
 ## Firebase kurulumu
 
-11 Ekim 2026'da **Adoapp** Firebase projesi (`adoapp-858f7`) Spark planında oluşturuldu. Anonymous giriş etkinleştirildi, `adnangn.github.io` yetkili alan adlarına eklendi ve Realtime Database `europe-west1` bölgesinde oluşturuldu. Projenin Web uygulama bilgileri ve tam veritabanı adresi `firebase-config.js` dosyasına eklendi; emulator kapalıdır. Güncel `firebase.rules.json` içeriği Firebase Console'da yayımlandı. Gerçek bulut bağlantısıyla yapılan kontrollerin kapsamı aşağıdaki Doğrulama bölümündedir.
+11 Ekim 2026'da **Adoapp** Firebase projesi (`adoapp-858f7`) Spark planında oluşturuldu. Anonymous giriş etkinleştirildi, `adnangn.github.io` yetkili alan adlarına eklendi ve Realtime Database `europe-west1` bölgesinde oluşturuldu. Projenin Web uygulama bilgileri ve tam veritabanı adresi `firebase-config.js` dosyasına eklendi; emulator kapalıdır. O tarihteki `firebase.rules.json` içeriği Firebase Console'da yayımlandı. Gerçek bulut bağlantısıyla yapılan kontrollerin kapsamı ve tarihleri aşağıdaki Doğrulama bölümündedir.
 
 Başka bir Firebase projesiyle kullanmak için genel kurulum adımları:
 
@@ -131,7 +140,7 @@ Başka bir Firebase projesiyle kullanmak için genel kurulum adımları:
 6. Authentication → Settings → Authorized domains listesine `KULLANICI.github.io` alan adınızı, gerekirse yerel deneme için `localhost` ve `127.0.0.1` ekleyin.
 7. Birinci cihazda isim, veri seti ve oyun modunu seçip oda kurun. İkinci cihazda isim ve kodla katılın. Oda sahibi iki cihaz da bağlanınca oyunu başlatır.
 
-Dört modlu güncellemeyi mevcut Firebase projesinde kullanırken güncel `firebase.rules.json` içeriğini **Realtime Database → Rules** bölümünde ayrıca yayımlayın; eski kurallar yeni modları ve hamlelerini kabul etmez. Bu gereklilik Adoapp projesi için de geçerlidir: Web yapılandırmasını değiştirmek veya GitHub Pages'e yüklemek veritabanı kurallarını güncellemez. Node veya yerel önizleme sunucusu GitHub Pages'te çalışmaz; Firebase istemcisi dışında bir backend gerekmez.
+Yeni mod veya koleksiyon eklerken güncel `firebase.rules.json` içeriğini **Realtime Database → Rules** bölümünde ayrıca yayımlayın; eski kurallar yeni koleksiyon kimliklerini veya yeni hamleleri kabul etmeyebilir. Bu gereklilik Adoapp projesi için de geçerlidir: Web yapılandırmasını değiştirmek veya GitHub Pages'e yüklemek veritabanı kurallarını güncellemez. Node veya yerel önizleme sunucusu GitHub Pages'te çalışmaz; Firebase istemcisi dışında bir backend gerekmez.
 
 Aynı site kökenini kullanan aynı tarayıcı profilindeki sekmeler aynı Firebase anonim kimliğini paylaşır; ikinci oyuncuyu test etmek için farklı cihaz, farklı tarayıcı profili veya gizli pencere kullanın. Aynı kimlik yeni bir koltuk tüketmez, mevcut koltuğa döner.
 
@@ -150,22 +159,27 @@ npm run check:online
 npm run build
 ```
 
-`check`, altı havuzda dört motoru sonuna kadar oynatır; kart/görsel dosyalarını, göreli yolları ve dosya adlarının harf büyüklüğünü doğrular. `check:online` ayrıca beş Firebase alanının doluluğunu, HTTPS databaseURL ve kapalı emulator ayarını kontrol eder; Firebase'e bağlanıp hesabın veya yayımlanmış kuralların çalıştığını kanıtlamaz. Adoapp yapılandırması bu alanları içerir; eksik alan, HTTPS olmayan veya yerel bir veritabanı adresi ya da açık emulator ayarı kontrolü durdurur. `build` yalnız yerel `artifacts/site/` paketini yeniler, GitHub'a dosya göndermez.
+`check`, 11 havuzda dört motoru sonuna kadar oynatır; kart/görsel dosyalarını, göreli yolları ve dosya adlarının harf büyüklüğünü doğrular. `check:online` ayrıca beş Firebase alanının doluluğunu, HTTPS databaseURL ve kapalı emulator ayarını kontrol eder; Firebase'e bağlanıp hesabın veya yayımlanmış kuralların çalıştığını kanıtlamaz. Adoapp yapılandırması bu alanları içerir; eksik alan, HTTPS olmayan veya yerel bir veritabanı adresi ya da açık emulator ayarı kontrolü durdurur. `build` yalnız yerel `artifacts/site/` paketini yeniler, GitHub'a dosya göndermez.
 
 İç yollar `./styles.css`, `./app.js`, `./veri.json` ve `./assets/images/...` biçimindedir. URL yönlendirme/history routing yoktur; ekran değişimleri DOM ile yapılır, böylece yenileme 404'e yol açmaz. Firebase SDK'sı resmi CDN'den sabit 13.0.0 sürümüyle gerektiğinde yüklenir; internet bağlantısı gerekir. Yerel `tools/serve.mjs` canlı ortamda çalıştırılmaz.
 
 ## Veri formatı
 
-`veri.json` içinde altı kart havuzu aynı kart sözleşmesini kullanır. Üç ana kategori içinde ikişer koleksiyon seçilir. Seçilen havuz oda kurarken kaydedilir; bot, katılan oyuncu ve rövanş aynı havuzu kullanır. Ana kategoriye geri dönünce o kategorinin son alt seçimi hatırlanır. Kart galerisi isim veya takım adıyla aranabilir.
+`veri.json` içinde 11 kart havuzu aynı kart sözleşmesini kullanır. Beş ana kategori içinde futbol, menü, ekran, müzik ve Ankara koleksiyonları seçilir. Seçilen havuz oda kurarken kaydedilir; bot, katılan oyuncu ve rövanş aynı havuzu kullanır. Ana kategoriye geri dönünce o kategorinin son alt seçimi hatırlanır. Kart galerisi isim, takım veya etiketle aranabilir.
 
 | Ana kategori | Koleksiyon | JSON anahtarı | Kart |
 | --- | --- | --- | ---: |
 | Futbolcular | Efsaneler | `futbol` | 100 |
 | Futbolcular | Türkiye Süper Lig | `superlig` | 100 |
-| Yemekler | Tatlılar | `tatli` | 50 |
-| Yemekler | Ana Yemekler | `yemek` | 50 |
+| Futbolcular | Türkiye Efsaneleri | `turkiye-efsaneleri` | 50 |
+| Futbolcular | Güncel Dünya Yıldızları | `dunya-yildizlari` | 50 |
+| Yemekler ve İçecekler | Tatlılar | `tatli` | 100 |
+| Yemekler ve İçecekler | Ana Yemekler | `yemek` | 100 |
+| Yemekler ve İçecekler | İçecekler | `icecek` | 50 |
 | Diziler ve Filmler | Diziler | `dizi` | 50 |
 | Diziler ve Filmler | Filmler | `film` | 50 |
+| Yerli Müzik | Şarkıcılar ve Gruplar | `yerli-sanatcilar` | 50 |
+| Ankara | Ankara İlçeleri | `ankara-ilceleri` | 25 |
 
 ```json
 {
@@ -173,14 +187,19 @@ npm run build
     { "id": 1, "isim": "Lionel Messi", "gorsel": "assets/images/legends/messi.svg", "etiket": "FV", "takim": "Arjantin", "takimTuru": "milli" }
   ],
   "superlig": [],
+  "turkiye-efsaneleri": [],
+  "dunya-yildizlari": [],
   "tatli": [],
   "yemek": [],
+  "icecek": [],
   "dizi": [],
-  "film": []
+  "film": [],
+  "yerli-sanatcilar": [],
+  "ankara-ilceleri": []
 }
 ```
 
-Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Toplam **400 kart** vardır. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre kullanılır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını saklar. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
+Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Toplam **725 kart** vardır. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre, sanatçılarda geniş müzik türü, ilçelerde Ankara etiketi kullanılır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını, sanatçı kartlarındaki `tip` ise `sanatci`/`grup` ayrımını saklar. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
 
 Efsaneler, başarı ve geniş bilinirlik gözetilerek hazırlanmış editoryal bir seçkidir; ölçülmüş taraftar sayısı sıralaması değildir. Aktif ve emekli isimler birlikte bulunur. İkonik milli takım renkleriyle gösterilir; ülke bilgisi güncel kulüp iddiası taşımaz. Süper Lig portrelerinde doğrulanmış kulübün renkleri kullanılır. Her futbolcu için farklı saç, ten, sakal ve forma ayrıntıları olan özgün 96×96 SVG vardır.
 
@@ -188,13 +207,21 @@ Efsaneler, başarı ve geniş bilinirlik gözetilerek hazırlanmış editoryal b
 
 Süper Lig seçkisinde ilk 50 kart korunarak 30 yeni oyuncu eklendi. On kulüp temsil ediliyor; Beşiktaş'ta Vlahović, Fenerbahçe'de Greenwood, Trabzonspor'da Salah, Amed FK'de Dia Saba dahil sekiz oyuncu var. Başakşehir ve Kocaelispor yıldızları da havuza dahil.
 
-Son genişlemede altı koleksiyonun her birine 20 kart ve 20 yerel piksel görseli eklendi: futbol havuzları 100'er, diğer havuzlar 50'şer karta ulaştı. Önceki 280 kartın kimlikleri, isimleri, etiketleri ve görselleri korundu; devam eden odaların eski kart referansları geçerlidir. Yeni efsaneler arasında Riquelme, Verón, Rui Costa, Deco, Laudrup kardeşler, Okocha, Abedi Pelé, David Villa, Inzaghi, Crespo ve Van der Sar bulunur; ID81–100 kartları da `1990–2015` dönem işaretini taşır. Yeni Süper Lig kartlarının ID81–100 kaynakları 9 Ekim 2026 erişim tarihiyle ayrıca kaydedildi; önceki 80 kartın kaynak tarihleri değiştirilmedi.
+9 Ekim 2026 tarihli önceki genişlemede altı koleksiyonun her birine 20 kart ve 20 yerel piksel görseli eklendi: futbol havuzları 100'er, diğer havuzlar 50'şer karta ulaştı. Önceki 280 kartın kimlikleri, isimleri, etiketleri ve görselleri korundu; devam eden odaların eski kart referansları geçerlidir. Yeni efsaneler arasında Riquelme, Verón, Rui Costa, Deco, Laudrup kardeşler, Okocha, Abedi Pelé, David Villa, Inzaghi, Crespo ve Van der Sar bulunur; ID81–100 kartları da `1990–2015` dönem işaretini taşır. Yeni Süper Lig kartlarının ID81–100 kaynakları 9 Ekim 2026 erişim tarihiyle ayrıca kaydedildi; önceki 80 kartın kaynak tarihleri değiştirilmedi.
 
 `tools/legends-cards.json`, `tools/superlig-cards.json`, `tools/extra-collections.json` ve görsel üreteçleri geliştirme kaynaklarıdır. `node tools/generate-legends.mjs`, `node tools/generate-superlig.mjs` ve `node tools/generate-collections.mjs` yerel SVG'leri tekrar oluşturur; runtime veri dosyasını otomatik değiştirmezler. Tarayıcı yalnızca tek `./veri.json` dosyasını okur; veri ve görseller yereldir. Transferler otomatik izlenmez; yeni kadro güncellemesinde veri dosyası ve ilgili portre birlikte yenilenmelidir.
 
-`tools/additions-legends.json`, `tools/additions-superlig.json` ve `tools/additions-collections.json` son eklenen 120 kartın ayrı üretim listeleridir; tarayıcı bunları okumaz. Ana yemeklerin eski ID'leri aralıklı olduğundan yeni kartlar 37–56 aralığında; tatlı, dizi ve film havuzlarının yeni kartları 31–50 aralığında saklanır.
+`tools/additions-legends.json`, `tools/additions-superlig.json` ve `tools/additions-collections.json` önceki genişlemedeki 120 kartın ayrı üretim listeleridir; tarayıcı bunları okumaz. Ana yemeklerin eski ID'leri aralıklı olduğundan yeni kartlar 37–56 aralığında; tatlı, dizi ve film havuzlarının yeni kartları 31–50 aralığında saklanır.
 
-Mevcut görseller **temsili demo piksel çizimleridir**; gerçek oyuncu fotoğrafları veya dizi afişleri değildir. JSON ve görseller Firebase'e yazılmaz; odada yalnızca kart ID'leri ve seçim durumu tutulur. Devam eden odalarda veri setini değiştirip aynı ID'yi başka karta atamayın.
+12 Ekim 2026 genişlemesinde **325 kart ve 325 yerel piksel SVG** eklendi; mevcut 400 kartın ID, isim, etiket, metadata ve görsel dosyaları korunarak toplam 725 karta ulaşıldı. Türkiye Efsaneleri 50 eski Türk futbolcudan, Güncel Dünya Yıldızları 50 aktif futbolcudan oluşur. Bu yeni futbol setlerinde ülke ve temsili milli forma renkleri kullanılır; güncel kulüp bilgisi veya transfer tahmini ileri sürülmez. İçeceklerin **42'si alkolsüz, 8'i alkollüdür**. Yerli Müzik'te **40 solo sanatçı ve 10 grup** bulunur; Pop, Rock, Türk Sanat Müziği, Arabesk, Halk ve Rap etiketleri aynı türden üçlüler üretmek için geniş oyun gruplarıdır. Ankara havuzu resmi listedeki 25 ilçenin tamamını içerir; ilçe çizimleri kesin harita veya coğrafi sınır göstermez.
+
+Yeni geliştirme kaynakları `tools/expansion-football.json`, `tools/expansion-menu.json` ve `tools/expansion-culture.json` içindedir. Üç `tools/generate-expansion-*.mjs` aracı kendi ek kartlarını ve yerel SVG dosyalarını üretir. Ardından `node tools/integrate-expansion.mjs`, bu listeleri eski kayıtlarla tek `veri.json` dosyasına birleştirir. Aynı kartın tekrar eklenmesini engeller, mevcut aynı ID'nin başka içerikle değiştirilmesini reddeder; tekrar çalıştırıldığında kart sayısı artmaz. Tarayıcı bu geliştirme listelerini okumaz.
+
+12 Ekim futbol seçkisinin TFF, FIFA ve resmi kulüp/yarışma kaynakları `tools/expansion-football-sources.json`; Ankara ilçe listesi, motifler ve müzik kaynakları `tools/expansion-culture-sources.json` içinde erişim tarihleriyle saklanır. Eski Süper Lig kaynak tarihleri bu genişlemede yeniden kontrol edilmiş gibi gösterilmez.
+
+Başlıca resmi kaynaklar: [TFF A Millî Takım kayıtları](https://www.tff.org/default.aspx?pageID=319), [FIFA 2026 turnuva kadroları](https://fdp.fifa.org/assetspublic/ce281/pdf/SquadLists-English.pdf), [ABB'nin 25 ilçe dizini](https://www.ankara.bel.tr/muhtarlar) ve ilçe çizimlerinin motifleri için [ABB Günümüz Ankarası / Kent Rehberi](https://s.ankara.bel.tr/files/2024/12/23/0dec3727ad6b1d4bf4b496e81605cc84.pdf). Seçkiler resmi başarı veya popülerlik sıralaması değildir.
+
+Mevcut görseller **temsili piksel çizimleridir**; gerçek oyuncu/sanatçı fotoğrafları, albüm kapakları veya dizi afişleri değildir. JSON ve görseller Firebase'e yazılmaz; odada yalnızca kart ID'leri ve seçim durumu tutulur. Devam eden odalarda veri setini değiştirip aynı ID'yi başka karta atamayın.
 
 ## Oda ve bağlantı davranışı
 
@@ -230,11 +257,15 @@ Bu sürüm güvenilir arkadaşlar arasında oyun için hazırlanmıştır. İste
 npm test
 ```
 
-Toplam **91 test geçti**: açık artırma/bot/oda geçişlerinde 24, veri/seçim yapısında 10, Kör Sıralama'da 12, turnuvada 8, takım kurmada 10, bağımsız takım atamalarında 9, üçlü/havuz hazırlığında 3, Firebase servis yaşam döngüsünde 9 ve metin özelleştirmede 6 test. Sıra/para/kontenjan sınırları, değişmez transaction tekrarları, yarışan hamleler, izleyici yetkisi, kilitli seçimler, RTDB boş alan normalizasyonu, bozuk durumlar, bitiş ve rövanşlar kapsanır. Bağımsız atama testleri rakip ilerlerken yeniden denemeyi ve aynı oyuncunun eski hamlesinin sonraki tur/rövanşa taşınmamasını doğrular. Firebase servis testleri kontrollü SDK ile kalıcı UID, dışarıdan oturum kapanması, tekrar işlemde UID değişimi, onDisconnect kayıt sırası, sekme izolasyonu ve oturum kapatmayı kontrol eder; gerçek ağ/Auth sunucusu testi değildir. Yeni katılma regresyonu, tek seferlik okumadan sonra boş kalan yerel transaction önbelleğini modeller; geçici oda dinleyicisinin işlem boyunca korunmasını, yarışan katılımları, aynı kimlikle dönüşü ve başarı/hata/oturum değişiminde dinleyici temizliğini doğrular. Metin testleri JSON biçimi ve alan doğrulamasını, şablondaki otomatik alanların korunmasını, oyuncu adlarının düz metin olarak işlenmesini ve DOM metni güncellenirken ikonlarla boşlukların korunmasını doğrular; katalogdaki varsayılan metinler de aynı sözleşmeden geçer.
+12 Ekim 2026 genişlemesinin güncel doğrulaması: **97/97 test geçti**. `npm run check:online`, 11 koleksiyonun **725 kartını ve 725 yerel kart görselini**, dört oyun modunu ve 67 göreli dosya başvurusunu doğruladı; `npm run build` 781 çalışma dosyasını paketledi. Önceki 400 kart kaydının değişmediği SHA-256 regresyonuyla kontrol edildi. RTDB kuralları resmi Database Emulator 4.11.2'de yeniden derlendi ve **55 entegrasyon kontrolü, sıfır atlamayla geçti**; bu çalıştırma 11 koleksiyonun tamamında oda kurma, katılma ve başlatmayı da kapsar. Açık artırma destesi sınırının testi, eski sabit 80 değerinden mevcut 100 kartlık `DECK.length` değerine uyarlanmıştır.
+
+Bu genişlemenin yerel tarayıcı kontrolünde yeni futbolcu, sanatçı ve ilçe görselleri açıldı; Mor ve ötesi araması 1/50, Höşmerim araması 1/100 sonuç verdi. Menüde 100 tatlı, 100 ana yemek ve 50 içecek sayaçları gösterildi. Bu bölümdeki hazırlık ve emulator kontrolleri, canlı Firebase kural yayını veya GitHub Pages dağıtımının tamamlandığı anlamına gelmez; aşağıdaki 11 Ekim bulut testleri tarihsel olarak ayrı tutulur.
+
+11 Ekim 2026'daki Firebase entegrasyonu sonrasında **91 test geçti**: açık artırma/bot/oda geçişlerinde 24, veri/seçim yapısında 10, Kör Sıralama'da 12, turnuvada 8, takım kurmada 10, bağımsız takım atamalarında 9, üçlü/havuz hazırlığında 3, Firebase servis yaşam döngüsünde 9 ve metin özelleştirmede 6 test. Sıra/para/kontenjan sınırları, değişmez transaction tekrarları, yarışan hamleler, izleyici yetkisi, kilitli seçimler, RTDB boş alan normalizasyonu, bozuk durumlar, bitiş ve rövanşlar kapsanır. Bağımsız atama testleri rakip ilerlerken yeniden denemeyi ve aynı oyuncunun eski hamlesinin sonraki tur/rövanşa taşınmamasını doğrular. Firebase servis testleri kontrollü SDK ile kalıcı UID, dışarıdan oturum kapanması, tekrar işlemde UID değişimi, onDisconnect kayıt sırası, sekme izolasyonu ve oturum kapatmayı kontrol eder; gerçek ağ/Auth sunucusu testi değildir. Yeni katılma regresyonu, tek seferlik okumadan sonra boş kalan yerel transaction önbelleğini modeller; geçici oda dinleyicisinin işlem boyunca korunmasını, yarışan katılımları, aynı kimlikle dönüşü ve başarı/hata/oturum değişiminde dinleyici temizliğini doğrular. Metin testleri JSON biçimi ve alan doğrulamasını, şablondaki otomatik alanların korunmasını, oyuncu adlarının düz metin olarak işlenmesini ve DOM metni güncellenirken ikonlarla boşlukların korunmasını doğrular; katalogdaki varsayılan metinler de aynı sözleşmeden geçer.
 
 Önceki geliştirme doğrulamasında RTDB kuralları resmi Database Emulator 4.11.2'de başarıyla derlendi. Ayrı REST entegrasyon testi **55 kontrolü geçti, atlanan kontrol yok**: önceki 32 açık artırma/oda/presence/reaksiyon/Kör Sıralama kontrolüne ek olarak turnuva için 10 ve takım kurma için 13 kontrol. Turnuvanın 15 seçimi, takım kurmanın 66 rol ataması, izleyici/rakip müdahalesi, toplu veya eski sürüm hamleleri, aynı kodla rövanş ve durumu geri okuma doğrulandı. İki farklı oyuncunun aynı görüntüden başlayan atamaları CAS çakışması ardından yeniden üretilip ikisi de kaydedildi; kendi eski cursor'ıyla tekrar atama oda değiştirmeden reddedildi. Bu tarihsel emulator testi SDK'nın tarayıcı Auth kalıcılığı veya gerçek cihaz bağlantısını taklit etmez; aşağıdaki bulut kontrollerinden ayrıdır.
 
-Önceki yerel tarayıcı demo kontrollerinde Kör Sıralama'nın insan turu ve izleyici rövanşı, turnuvanın insan/bot 15 seçimli turları, takım kurmanın iki 11'li kadrosu ve temiz rövanşı tamamlandı. Açık artırmada gerçek Pas öncesi bütçe/kadro değişmediği ve sonraki kartta açılışın diğerine geçtiği kontrol edildi. Kayıt temizleme penceresinde vazgeçmek odayı korudu; onaylamak adı/demo turunu temizleyip lobiye döndü. Klavye odağı, kilitli düğmeler, yerel görseller ve küçük mobil görünüm kontrol edildi. Hazırlık kontrolü altı havuzun tamamını dört modda sonuna kadar oynatır. Bu demo kontrolleri Firebase bulut bağlantısı kullanmadı.
+Önceki yerel tarayıcı demo kontrollerinde Kör Sıralama'nın insan turu ve izleyici rövanşı, turnuvanın insan/bot 15 seçimli turları, takım kurmanın iki 11'li kadrosu ve temiz rövanşı tamamlandı. Açık artırmada gerçek Pas öncesi bütçe/kadro değişmediği ve sonraki kartta açılışın diğerine geçtiği kontrol edildi. Kayıt temizleme penceresinde vazgeçmek odayı korudu; onaylamak adı/demo turunu temizleyip lobiye döndü. Klavye odağı, kilitli düğmeler, yerel görseller ve küçük mobil görünüm kontrol edildi. O tarihteki hazırlık kontrolü altı havuzun tamamını dört modda sonuna kadar oynattı. Bu demo kontrolleri Firebase bulut bağlantısı kullanmadı.
 
 11 Ekim 2026'da gerçek Adoapp Firebase bulutuna bağlanan iki ayrı tarayıcı kökeninde (`127.0.0.1` ve `localhost`) iki bağımsız anonim kimlikle açık artırma doğrulandı. `957722` kodlu oda oluşturuldu ve ikinci oyuncu katıldı. P2'nin 2 TL teklifi ve P1'in Pas hamlesiyle P2'nin bütçesi 18 TL, kadrosu 1/5 oldu; her iki sayfanın yenilenmesi aynı oda, koltuk ve oyun durumunu geri getirdi. Sırası olmayan oyuncunun eylemleri kilitlendi ve reaksiyon karşı oyuncuya ulaştı. On kart tamamlandıktan sonra rövanş aynı oda kodunu korudu; bütçeler 20 TL'ye döndü ve başlangıç P2'ye geçti.
 

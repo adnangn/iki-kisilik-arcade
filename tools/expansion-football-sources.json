@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12",
+  "scope": "Two editorial game collections. Names and national associations checked against official records; selection is not an official greatness/popularity ranking.",
+  "nationalKits": "Country labels refer to national associations. Pixel kit colours and numbers are symbolic; they do not claim current club membership or an exact 2026 national uniform.",
+  "currentStars": "2026 official tournament rosters plus current club/competition profiles are the factual basis. Recent official reports also confirm continuing club activity for Messi, Cristiano Ronaldo and Neymar. Club transfer speculation is not stored.",
+  "positionTags": "FV/OF/DF/KL are broad game groups based on the player’s familiar career role; versatile players occupy one group for Start/Bench/Cut.",
+  "artwork": "100 original, local, script-free, 96×96 SVG pixel portraits. No remote photographs, official logos or copyrighted image downloads.",
+  "sources": [
+    {
+      "id": "tff-caps",
+      "publisher": "TFF",
+      "title": "A Millî Takım: en fazla millî olan oyuncular",
+      "url": "https://www.tff.org/default.aspx?pageID=319",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5007,
+        5008,
+        5012,
+        5015,
+        5016,
+        5022,
+        5023,
+        5024,
+        5029,
+        5030,
+        5031,
+        5034,
+        5038,
+        5039,
+        5040,
+        5045,
+        5048
+      ]
+    },
+    {
+      "id": "tff-goals",
+      "publisher": "TFF",
+      "title": "A Millî Takım: en fazla gol atan oyuncular",
+      "url": "https://www.tff.org/default.aspx?pageID=320",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5001,
+        5002,
+        5009,
+        5018,
+        5019,
+        5020,
+        5024
+      ]
+    },
+    {
+      "id": "tff-norway-history",
+      "publisher": "TFF TamSaha",
+      "title": "Türkiye–Norveç: 1961 maçları ve tarihçe",
+      "url": "https://www.tff.org/Resources/Tamsaha/Turkiye-Norvec-08-10-2021/38-39/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5001,
+        5002,
+        5003,
+        5004
+      ]
+    },
+    {
+      "id": "tff-keepers-history",
+      "publisher": "TFF TamSaha",
+      "title": "Kadim devrin millî kalecileri",
+      "url": "https://www.tff.org/Resources/Tamsaha/132/112-113/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5005,
+        5006
+      ]
+    },
+    {
+      "id": "tff-1992-derby",
+      "publisher": "TFF",
+      "title": "Fenerbahçe–Beşiktaş tarihî maç kadrosu",
+      "url": "https://www.tff.org/Default.aspx?macId=59288&pageID=528",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5009,
+        5010,
+        5011,
+        5014
+      ]
+    },
+    {
+      "id": "tff-soviet-history",
+      "publisher": "TFF",
+      "title": "18 yıl beklenen randevu: eski millî kadrolar",
+      "url": "https://www.tff.org/default.aspx?ftxtID=25727&pageID=202",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5013
+      ]
+    },
+    {
+      "id": "tff-hami-profile",
+      "publisher": "TFF",
+      "title": "Hami Mandıralı: eski futbolculuk kariyeri",
+      "url": "https://www.tff.org/default.aspx?ftxtID=45536&pageID=628",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5017
+      ]
+    },
+    {
+      "id": "tff-korea-history",
+      "publisher": "TFF",
+      "title": "Türkiye–Güney Kore 9 Şubat 2011 maç kitabı ve tarihî kadrolar",
+      "url": "https://www.tff.org/Resources/TFF/Auto/bb0aaffcf1bf4e24bdc9368e55a9c7db.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5005,
+        5021,
+        5027,
+        5028,
+        5041,
+        5042
+      ]
+    },
+    {
+      "id": "uefa-galatasaray-2006",
+      "publisher": "UEFA",
+      "title": "Galatasaray–Liverpool 5 Aralık 2006 resmî maç raporu",
+      "url": "https://www.uefa.com/newsfiles/UCL/2006/1116398_FR.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5026,
+        5027,
+        5028
+      ]
+    },
+    {
+      "id": "tff-euro-2008",
+      "publisher": "TFF",
+      "title": "2008 Avrupa Şampiyonası millî takım tarihçesi",
+      "url": "https://www.tff.org/default.aspx?pageID=316",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5025,
+        5032,
+        5033,
+        5037,
+        5043,
+        5044,
+        5046,
+        5049
+      ]
+    },
+    {
+      "id": "tff-manisa-2006",
+      "publisher": "TFF",
+      "title": "Gençlerbirliği–Vestel Manisaspor maç kadrosu",
+      "url": "https://www.tff.org/Default.aspx?macId=7305&pageId=397",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5035,
+        5036
+      ]
+    },
+    {
+      "id": "tff-cup-2009",
+      "publisher": "TFF",
+      "title": "2009 Türkiye Kupası finali kadroları",
+      "url": "https://www.tff.org/default.aspx?2586pg=22&ftxtID=7067&pageID=471",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5047,
+        5048,
+        5050
+      ]
+    },
+    {
+      "id": "fifa-2026-squads",
+      "publisher": "FIFA",
+      "title": "FIFA World Cup 2026 final squad lists, 19 July 2026 version",
+      "url": "https://fdp.fifa.org/assetspublic/ce281/pdf/SquadLists-English.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6001,
+        6002,
+        6003,
+        6004,
+        6005,
+        6006,
+        6007,
+        6008,
+        6009,
+        6011,
+        6012,
+        6013,
+        6015,
+        6016,
+        6018,
+        6019,
+        6020,
+        6023,
+        6024,
+        6025,
+        6026,
+        6027,
+        6028,
+        6029,
+        6030,
+        6031,
+        6032,
+        6033,
+        6035,
+        6036,
+        6037,
+        6038,
+        6039,
+        6041,
+        6042,
+        6044,
+        6045,
+        6046,
+        6047,
+        6049,
+        6050
+      ]
+    },
+    {
+      "id": "real-madrid-current",
+      "publisher": "Real Madrid CF",
+      "title": "Current first team roster",
+      "url": "https://www.realmadrid.com/en-US/football/first-team/players",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6017,
+        6034,
+        6040,
+        6042
+      ]
+    },
+    {
+      "id": "chelsea-palmer",
+      "publisher": "Chelsea FC",
+      "title": "Cole Palmer current first team profile",
+      "url": "https://www.chelseafc.com/en/teams/profile/cole-palmer",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6022
+      ]
+    },
+    {
+      "id": "city-foden-current",
+      "publisher": "Manchester City FC",
+      "title": "Phil Foden new contract, 2026",
+      "url": "https://www.mancity.com/news/mens/phil-foden-new-manchester-city-contract-63920315/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6021
+      ]
+    },
+    {
+      "id": "galatasaray-osimhen",
+      "publisher": "Galatasaray SK",
+      "title": "Victor Osimhen current first team profile",
+      "url": "https://www.galatasaray.org/p/45-victor-osimhen/3314",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6014
+      ]
+    },
+    {
+      "id": "uefa-lewandowski-2026",
+      "publisher": "UEFA",
+      "title": "Robert Lewandowski: Poland 2026 European Qualifiers profile",
+      "url": "https://www.uefa.com/european-qualifiers/teams/players/250002096--robert-lewandowski/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6010
+      ]
+    },
+    {
+      "id": "uefa-bastoni-2026-27",
+      "publisher": "UEFA",
+      "title": "Alessandro Bastoni 2026/27 player profile",
+      "url": "https://www.uefa.com/uefachampionsleague/clubs/players/250091199--alessandro-bastoni/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6043
+      ]
+    },
+    {
+      "id": "uefa-donnarumma-2026-27",
+      "publisher": "UEFA",
+      "title": "Gianluigi Donnarumma 2026/27 player profile",
+      "url": "https://www.uefa.com/uefachampionsleague/clubs/players/250078922--gianluigi-donnarumma/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6048
+      ]
+    },
+    {
+      "id": "inter-miami-messi-current",
+      "publisher": "Inter Miami CF",
+      "title": "Leo Messi current news and October 2026 international duty",
+      "url": "https://www.intermiamicf.com/players/lionel-messi/news/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6001
+      ]
+    },
+    {
+      "id": "spl-ronaldo-current",
+      "publisher": "Saudi Pro League",
+      "title": "Cristiano Ronaldo news, 10 October 2026",
+      "url": "https://www.spl.com.sa/en/players/cristiano-ronaldo/news",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6002
+      ]
+    },
+    {
+      "id": "santos-neymar-current",
+      "publisher": "Santos FC",
+      "title": "Santos–Flamengo, 8 October 2026 match report",
+      "url": "https://www.santosfc.com.br/santos-fc-busca-empate-contra-o-flamengo-em-noite-de-festa-na-vila-belmiro/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        6011
+      ]
+    }
+  ],
+  "sourceCoverage": {
+    "5001": [
+      "tff-goals",
+      "tff-norway-history"
+    ],
+    "5002": [
+      "tff-goals",
+      "tff-norway-history"
+    ],
+    "5003": [
+      "tff-norway-history"
+    ],
+    "5004": [
+      "tff-norway-history"
+    ],
+    "5005": [
+      "tff-keepers-history",
+      "tff-korea-history"
+    ],
+    "5006": [
+      "tff-keepers-history"
+    ],
+    "5007": [
+      "tff-caps"
+    ],
+    "5008": [
+      "tff-caps"
+    ],
+    "5009": [
+      "tff-goals",
+      "tff-1992-derby"
+    ],
+    "5010": [
+      "tff-1992-derby"
+    ],
+    "5011": [
+      "tff-1992-derby"
+    ],
+    "5012": [
+      "tff-caps"
+    ],
+    "5013": [
+      "tff-soviet-history"
+    ],
+    "5014": [
+      "tff-1992-derby"
+    ],
+    "5015": [
+      "tff-caps"
+    ],
+    "5016": [
+      "tff-caps"
+    ],
+    "5017": [
+      "tff-hami-profile"
+    ],
+    "5018": [
+      "tff-goals"
+    ],
+    "5019": [
+      "tff-goals"
+    ],
+    "5020": [
+      "tff-goals"
+    ],
+    "5021": [
+      "tff-korea-history"
+    ],
+    "5022": [
+      "tff-caps"
+    ],
+    "5023": [
+      "tff-caps"
+    ],
+    "5024": [
+      "tff-caps",
+      "tff-goals"
+    ],
+    "5025": [
+      "tff-euro-2008"
+    ],
+    "5026": [
+      "uefa-galatasaray-2006"
+    ],
+    "5027": [
+      "tff-korea-history",
+      "uefa-galatasaray-2006"
+    ],
+    "5028": [
+      "tff-korea-history",
+      "uefa-galatasaray-2006"
+    ],
+    "5029": [
+      "tff-caps"
+    ],
+    "5030": [
+      "tff-caps"
+    ],
+    "5031": [
+      "tff-caps"
+    ],
+    "5032": [
+      "tff-euro-2008"
+    ],
+    "5033": [
+      "tff-euro-2008"
+    ],
+    "5034": [
+      "tff-caps"
+    ],
+    "5035": [
+      "tff-manisa-2006"
+    ],
+    "5036": [
+      "tff-manisa-2006"
+    ],
+    "5037": [
+      "tff-euro-2008"
+    ],
+    "5038": [
+      "tff-caps"
+    ],
+    "5039": [
+      "tff-caps"
+    ],
+    "5040": [
+      "tff-caps"
+    ],
+    "5041": [
+      "tff-korea-history"
+    ],
+    "5042": [
+      "tff-korea-history"
+    ],
+    "5043": [
+      "tff-euro-2008"
+    ],
+    "5044": [
+      "tff-euro-2008"
+    ],
+    "5045": [
+      "tff-caps"
+    ],
+    "5046": [
+      "tff-euro-2008"
+    ],
+    "5047": [
+      "tff-cup-2009"
+    ],
+    "5048": [
+      "tff-caps",
+      "tff-cup-2009"
+    ],
+    "5049": [
+      "tff-euro-2008"
+    ],
+    "5050": [
+      "tff-cup-2009"
+    ],
+    "6001": [
+      "fifa-2026-squads",
+      "inter-miami-messi-current"
+    ],
+    "6002": [
+      "fifa-2026-squads",
+      "spl-ronaldo-current"
+    ],
+    "6003": [
+      "fifa-2026-squads"
+    ],
+    "6004": [
+      "fifa-2026-squads"
+    ],
+    "6005": [
+      "fifa-2026-squads"
+    ],
+    "6006": [
+      "fifa-2026-squads"
+    ],
+    "6007": [
+      "fifa-2026-squads"
+    ],
+    "6008": [
+      "fifa-2026-squads"
+    ],
+    "6009": [
+      "fifa-2026-squads"
+    ],
+    "6010": [
+      "uefa-lewandowski-2026"
+    ],
+    "6011": [
+      "fifa-2026-squads",
+      "santos-neymar-current"
+    ],
+    "6012": [
+      "fifa-2026-squads"
+    ],
+    "6013": [
+      "fifa-2026-squads"
+    ],
+    "6014": [
+      "galatasaray-osimhen"
+    ],
+    "6015": [
+      "fifa-2026-squads"
+    ],
+    "6016": [
+      "fifa-2026-squads"
+    ],
+    "6017": [
+      "real-madrid-current"
+    ],
+    "6018": [
+      "fifa-2026-squads"
+    ],
+    "6019": [
+      "fifa-2026-squads"
+    ],
+    "6020": [
+      "fifa-2026-squads"
+    ],
+    "6021": [
+      "city-foden-current"
+    ],
+    "6022": [
+      "chelsea-palmer"
+    ],
+    "6023": [
+      "fifa-2026-squads"
+    ],
+    "6024": [
+      "fifa-2026-squads"
+    ],
+    "6025": [
+      "fifa-2026-squads"
+    ],
+    "6026": [
+      "fifa-2026-squads"
+    ],
+    "6027": [
+      "fifa-2026-squads"
+    ],
+    "6028": [
+      "fifa-2026-squads"
+    ],
+    "6029": [
+      "fifa-2026-squads"
+    ],
+    "6030": [
+      "fifa-2026-squads"
+    ],
+    "6031": [
+      "fifa-2026-squads"
+    ],
+    "6032": [
+      "fifa-2026-squads"
+    ],
+    "6033": [
+      "fifa-2026-squads"
+    ],
+    "6034": [
+      "real-madrid-current"
+    ],
+    "6035": [
+      "fifa-2026-squads"
+    ],
+    "6036": [
+      "fifa-2026-squads"
+    ],
+    "6037": [
+      "fifa-2026-squads"
+    ],
+    "6038": [
+      "fifa-2026-squads"
+    ],
+    "6039": [
+      "fifa-2026-squads"
+    ],
+    "6040": [
+      "real-madrid-current"
+    ],
+    "6041": [
+      "fifa-2026-squads"
+    ],
+    "6042": [
+      "fifa-2026-squads",
+      "real-madrid-current"
+    ],
+    "6043": [
+      "uefa-bastoni-2026-27"
+    ],
+    "6044": [
+      "fifa-2026-squads"
+    ],
+    "6045": [
+      "fifa-2026-squads"
+    ],
+    "6046": [
+      "fifa-2026-squads"
+    ],
+    "6047": [
+      "fifa-2026-squads"
+    ],
+    "6048": [
+      "uefa-donnarumma-2026-27"
+    ],
+    "6049": [
+      "fifa-2026-squads"
+    ],
+    "6050": [
+      "fifa-2026-squads"
+    ]
+  }
+}

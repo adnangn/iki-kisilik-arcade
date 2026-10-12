@@ -1953,6 +1953,306 @@
       "isim": "Churros",
       "gorsel": "assets/images/desserts/churros.svg",
       "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1051,
+      "isim": "Höşmerim",
+      "gorsel": "assets/images/desserts/hosmerim.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1052,
+      "isim": "Zerde",
+      "gorsel": "assets/images/desserts/zerde.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1053,
+      "isim": "Paluze",
+      "gorsel": "assets/images/desserts/paluze.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1054,
+      "isim": "Bici Bici",
+      "gorsel": "assets/images/desserts/bici-bici.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1055,
+      "isim": "Karsambaç",
+      "gorsel": "assets/images/desserts/karsambac.svg",
+      "etiket": "Geleneksel"
+    },
+    {
+      "id": 1056,
+      "isim": "Kerebiç",
+      "gorsel": "assets/images/desserts/kerebic.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1057,
+      "isim": "Acıbadem Kurabiyesi",
+      "gorsel": "assets/images/desserts/acibadem-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1058,
+      "isim": "Kavala Kurabiyesi",
+      "gorsel": "assets/images/desserts/kavala-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1059,
+      "isim": "Un Kurabiyesi",
+      "gorsel": "assets/images/desserts/un-kurabiyesi.svg",
+      "etiket": "Kurabiye"
+    },
+    {
+      "id": 1060,
+      "isim": "Leblebi Helvası",
+      "gorsel": "assets/images/desserts/leblebi-helvasi.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1061,
+      "isim": "Çekme Helva",
+      "gorsel": "assets/images/desserts/cekme-helva.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1062,
+      "isim": "Kağıt Helva",
+      "gorsel": "assets/images/desserts/kagit-helva.svg",
+      "etiket": "Helva"
+    },
+    {
+      "id": 1063,
+      "isim": "Vezir Parmağı",
+      "gorsel": "assets/images/desserts/vezir-parmagi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1064,
+      "isim": "Hanım Göbeği",
+      "gorsel": "assets/images/desserts/hanim-gobegi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1065,
+      "isim": "Taş Kadayıf",
+      "gorsel": "assets/images/desserts/tas-kadayif.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1066,
+      "isim": "Ekmek Kadayıfı",
+      "gorsel": "assets/images/desserts/ekmek-kadayifi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1067,
+      "isim": "Tel Kadayıf",
+      "gorsel": "assets/images/desserts/tel-kadayif.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1068,
+      "isim": "Laz Böreği",
+      "gorsel": "assets/images/desserts/laz-boregi.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1069,
+      "isim": "Nevzine",
+      "gorsel": "assets/images/desserts/nevzine.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1070,
+      "isim": "Hira Tatlısı",
+      "gorsel": "assets/images/desserts/hira-tatlisi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1071,
+      "isim": "Keşkül",
+      "gorsel": "assets/images/desserts/keskul.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1072,
+      "isim": "Muhallebi",
+      "gorsel": "assets/images/desserts/muhallebi.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1073,
+      "isim": "Mochi",
+      "gorsel": "assets/images/desserts/mochi.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1074,
+      "isim": "Dorayaki",
+      "gorsel": "assets/images/desserts/dorayaki.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1075,
+      "isim": "Taiyaki",
+      "gorsel": "assets/images/desserts/taiyaki.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1076,
+      "isim": "Tangyuan",
+      "gorsel": "assets/images/desserts/tangyuan.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1077,
+      "isim": "Mango Sticky Rice",
+      "gorsel": "assets/images/desserts/mango-sticky-rice.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1078,
+      "isim": "Kulfi",
+      "gorsel": "assets/images/desserts/kulfi.svg",
+      "etiket": "Sütlü"
+    },
+    {
+      "id": 1079,
+      "isim": "Gulab Jamun",
+      "gorsel": "assets/images/desserts/gulab-jamun.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1080,
+      "isim": "Rasgulla",
+      "gorsel": "assets/images/desserts/rasgulla.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1081,
+      "isim": "Jalebi",
+      "gorsel": "assets/images/desserts/jalebi.svg",
+      "etiket": "Şerbetli"
+    },
+    {
+      "id": 1082,
+      "isim": "Beignets",
+      "gorsel": "assets/images/desserts/beignets.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1083,
+      "isim": "Cannoli",
+      "gorsel": "assets/images/desserts/cannoli.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1084,
+      "isim": "Sfogliatella",
+      "gorsel": "assets/images/desserts/sfogliatella.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1085,
+      "isim": "Pastel de Nata",
+      "gorsel": "assets/images/desserts/pastel-de-nata.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1086,
+      "isim": "Pavlova",
+      "gorsel": "assets/images/desserts/pavlova.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1087,
+      "isim": "Baked Alaska",
+      "gorsel": "assets/images/desserts/baked-alaska.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1088,
+      "isim": "Opera Pasta",
+      "gorsel": "assets/images/desserts/opera-pasta.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1089,
+      "isim": "Mille-Feuille",
+      "gorsel": "assets/images/desserts/mille-feuille.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1090,
+      "isim": "Sachertorte",
+      "gorsel": "assets/images/desserts/sachertorte.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1091,
+      "isim": "Victoria Sponge",
+      "gorsel": "assets/images/desserts/victoria-sponge.svg",
+      "etiket": "Pasta"
+    },
+    {
+      "id": 1092,
+      "isim": "Stollen",
+      "gorsel": "assets/images/desserts/stollen.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1093,
+      "isim": "Pandoro",
+      "gorsel": "assets/images/desserts/pandoro.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1094,
+      "isim": "Panettone",
+      "gorsel": "assets/images/desserts/panettone.svg",
+      "etiket": "Kek"
+    },
+    {
+      "id": 1095,
+      "isim": "Banoffee Pie",
+      "gorsel": "assets/images/desserts/banoffee-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1096,
+      "isim": "Key Lime Pie",
+      "gorsel": "assets/images/desserts/key-lime-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1097,
+      "isim": "Lemon Meringue Pie",
+      "gorsel": "assets/images/desserts/lemon-meringue-pie.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1098,
+      "isim": "Peach Cobbler",
+      "gorsel": "assets/images/desserts/peach-cobbler.svg",
+      "etiket": "Meyveli"
+    },
+    {
+      "id": 1099,
+      "isim": "Pecan Pie",
+      "gorsel": "assets/images/desserts/pecan-pie.svg",
+      "etiket": "Hamur Tatlısı"
+    },
+    {
+      "id": 1100,
+      "isim": "Biscotti",
+      "gorsel": "assets/images/desserts/biscotti.svg",
+      "etiket": "Kurabiye"
     }
   ],
   "yemek": [
@@ -2255,6 +2555,306 @@
       "isim": "Pad Thai",
       "gorsel": "assets/images/meals/pad-thai.svg",
       "etiket": "Tayland"
+    },
+    {
+      "id": 2051,
+      "isim": "Tarhana Çorbası",
+      "gorsel": "assets/images/meals/tarhana-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2052,
+      "isim": "Beyran Çorbası",
+      "gorsel": "assets/images/meals/beyran-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2053,
+      "isim": "İşkembe Çorbası",
+      "gorsel": "assets/images/meals/iskembe-corbasi.svg",
+      "etiket": "Çorba"
+    },
+    {
+      "id": 2054,
+      "isim": "Cağ Kebabı",
+      "gorsel": "assets/images/meals/cag-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2055,
+      "isim": "Testi Kebabı",
+      "gorsel": "assets/images/meals/testi-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2056,
+      "isim": "Büryan Kebabı",
+      "gorsel": "assets/images/meals/buryan-kebabi.svg",
+      "etiket": "Kebap"
+    },
+    {
+      "id": 2057,
+      "isim": "Güveç",
+      "gorsel": "assets/images/meals/guvec.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2058,
+      "isim": "Orman Kebabı",
+      "gorsel": "assets/images/meals/orman-kebabi.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2059,
+      "isim": "Boeuf Bourguignon",
+      "gorsel": "assets/images/meals/boeuf-bourguignon.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2060,
+      "isim": "Fellah Köftesi",
+      "gorsel": "assets/images/meals/fellah-koftesi.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2061,
+      "isim": "Sulu Köfte",
+      "gorsel": "assets/images/meals/sulu-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2062,
+      "isim": "Mercimek Köftesi",
+      "gorsel": "assets/images/meals/mercimek-koftesi.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2063,
+      "isim": "Çiğ Köfte",
+      "gorsel": "assets/images/meals/cig-kofte.svg",
+      "etiket": "Köfte"
+    },
+    {
+      "id": 2064,
+      "isim": "Tavuk Kapama",
+      "gorsel": "assets/images/meals/tavuk-kapama.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2065,
+      "isim": "Tavuk Tandır",
+      "gorsel": "assets/images/meals/tavuk-tandir.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2066,
+      "isim": "Butter Chicken",
+      "gorsel": "assets/images/meals/butter-chicken.svg",
+      "etiket": "Tavuk"
+    },
+    {
+      "id": 2067,
+      "isim": "Karides Güveç",
+      "gorsel": "assets/images/meals/karides-guvec.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2068,
+      "isim": "Kalamar Tava",
+      "gorsel": "assets/images/meals/kalamar-tava.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2069,
+      "isim": "Somon Izgara",
+      "gorsel": "assets/images/meals/somon-izgara.svg",
+      "etiket": "Deniz Ürünü"
+    },
+    {
+      "id": 2070,
+      "isim": "Kumpir",
+      "gorsel": "assets/images/meals/kumpir.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2071,
+      "isim": "Ratatouille",
+      "gorsel": "assets/images/meals/ratatouille.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2072,
+      "isim": "Bamya Yemeği",
+      "gorsel": "assets/images/meals/bamya-yemegi.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2073,
+      "isim": "Ispanak Yemeği",
+      "gorsel": "assets/images/meals/ispanak-yemegi.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2074,
+      "isim": "Fırında Karnabahar",
+      "gorsel": "assets/images/meals/firinda-karnabahar.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2075,
+      "isim": "Perde Pilavı",
+      "gorsel": "assets/images/meals/perde-pilavi.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2076,
+      "isim": "Özbek Pilavı",
+      "gorsel": "assets/images/meals/ozbek-pilavi.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2077,
+      "isim": "Paella",
+      "gorsel": "assets/images/meals/paella.svg",
+      "etiket": "Pilav"
+    },
+    {
+      "id": 2078,
+      "isim": "Çiğ Börek",
+      "gorsel": "assets/images/meals/cig-borek.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2079,
+      "isim": "Boşnak Böreği",
+      "gorsel": "assets/images/meals/bosnak-boregi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2080,
+      "isim": "Kayseri Yağlaması",
+      "gorsel": "assets/images/meals/kayseri-yaglamasi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2081,
+      "isim": "Bao",
+      "gorsel": "assets/images/meals/bao.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 2082,
+      "isim": "Ramen",
+      "gorsel": "assets/images/meals/ramen.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2083,
+      "isim": "Pho",
+      "gorsel": "assets/images/meals/pho.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2084,
+      "isim": "Udon",
+      "gorsel": "assets/images/meals/udon.svg",
+      "etiket": "Asya"
+    },
+    {
+      "id": 2085,
+      "isim": "Falafel",
+      "gorsel": "assets/images/meals/falafel.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2086,
+      "isim": "Musakka",
+      "gorsel": "assets/images/meals/musakka.svg",
+      "etiket": "Sebze"
+    },
+    {
+      "id": 2087,
+      "isim": "Sucuklu Yumurta",
+      "gorsel": "assets/images/meals/sucuklu-yumurta.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2088,
+      "isim": "Patatesli Omlet",
+      "gorsel": "assets/images/meals/patatesli-omlet.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2089,
+      "isim": "Simit",
+      "gorsel": "assets/images/meals/simit.svg",
+      "etiket": "Kahvaltı"
+    },
+    {
+      "id": 2090,
+      "isim": "Fettuccine Alfredo",
+      "gorsel": "assets/images/meals/fettuccine-alfredo.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2091,
+      "isim": "Cacio e Pepe",
+      "gorsel": "assets/images/meals/cacio-e-pepe.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2092,
+      "isim": "Gnocchi",
+      "gorsel": "assets/images/meals/gnocchi.svg",
+      "etiket": "İtalyan"
+    },
+    {
+      "id": 2093,
+      "isim": "Kısır",
+      "gorsel": "assets/images/meals/kisir.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2094,
+      "isim": "Tabule",
+      "gorsel": "assets/images/meals/tabule.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2095,
+      "isim": "Çoban Salata",
+      "gorsel": "assets/images/meals/coban-salata.svg",
+      "etiket": "Salata"
+    },
+    {
+      "id": 2096,
+      "isim": "Tantuni",
+      "gorsel": "assets/images/meals/tantuni.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2097,
+      "isim": "Fajita",
+      "gorsel": "assets/images/meals/fajita.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2098,
+      "isim": "Burrito",
+      "gorsel": "assets/images/meals/burrito.svg",
+      "etiket": "Sokak Lezzeti"
+    },
+    {
+      "id": 2099,
+      "isim": "Steak",
+      "gorsel": "assets/images/meals/steak.svg",
+      "etiket": "Et"
+    },
+    {
+      "id": 2100,
+      "isim": "Fish and Chips",
+      "gorsel": "assets/images/meals/fish-and-chips.svg",
+      "etiket": "Deniz Ürünü"
     }
   ],
   "dizi": [
@@ -2859,6 +3459,1666 @@
       "isim": "Kelebeğin Rüyası",
       "gorsel": "assets/images/movies/kelebegin-ruyasi.svg",
       "etiket": "Dram"
+    }
+  ],
+  "turkiye-efsaneleri": [
+    {
+      "id": 5001,
+      "isim": "Lefter Küçükandonyadis",
+      "gorsel": "assets/images/turkish-legends/lefter.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5002,
+      "isim": "Metin Oktay",
+      "gorsel": "assets/images/turkish-legends/metin-oktay.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5003,
+      "isim": "Can Bartu",
+      "gorsel": "assets/images/turkish-legends/can-bartu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5004,
+      "isim": "Turgay Şeren",
+      "gorsel": "assets/images/turkish-legends/turgay-seren.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5005,
+      "isim": "Şenol Güneş",
+      "gorsel": "assets/images/turkish-legends/senol-gunes.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5006,
+      "isim": "Yasin Özdenak",
+      "gorsel": "assets/images/turkish-legends/yasin-ozdenak.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5007,
+      "isim": "Rüştü Reçber",
+      "gorsel": "assets/images/turkish-legends/rustu-recber.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5008,
+      "isim": "Volkan Demirel",
+      "gorsel": "assets/images/turkish-legends/volkan-demirel.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5009,
+      "isim": "Tanju Çolak",
+      "gorsel": "assets/images/turkish-legends/tanju-colak.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5010,
+      "isim": "Aykut Kocaman",
+      "gorsel": "assets/images/turkish-legends/aykut-kocaman.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5011,
+      "isim": "Feyyaz Uçar",
+      "gorsel": "assets/images/turkish-legends/feyyaz-ucar.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5012,
+      "isim": "Hakan Şükür",
+      "gorsel": "assets/images/turkish-legends/hakan-sukur.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5013,
+      "isim": "Rıdvan Dilmen",
+      "gorsel": "assets/images/turkish-legends/ridvan-dilmen.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5014,
+      "isim": "Sergen Yalçın",
+      "gorsel": "assets/images/turkish-legends/sergen-yalcin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5015,
+      "isim": "Oğuz Çetin",
+      "gorsel": "assets/images/turkish-legends/oguz-cetin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5016,
+      "isim": "Tugay Kerimoğlu",
+      "gorsel": "assets/images/turkish-legends/tugay-kerimoglu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5017,
+      "isim": "Hami Mandıralı",
+      "gorsel": "assets/images/turkish-legends/hami-mandirali.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5018,
+      "isim": "Fatih Tekke",
+      "gorsel": "assets/images/turkish-legends/fatih-tekke.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5019,
+      "isim": "Ertuğrul Sağlam",
+      "gorsel": "assets/images/turkish-legends/ertugrul-saglam.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5020,
+      "isim": "Arif Erdem",
+      "gorsel": "assets/images/turkish-legends/arif-erdem.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5021,
+      "isim": "İlhan Mansız",
+      "gorsel": "assets/images/turkish-legends/ilhan-mansiz.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5022,
+      "isim": "Nihat Kahveci",
+      "gorsel": "assets/images/turkish-legends/nihat-kahveci.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5023,
+      "isim": "Tuncay Şanlı",
+      "gorsel": "assets/images/turkish-legends/tuncay-sanli.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5024,
+      "isim": "Burak Yılmaz",
+      "gorsel": "assets/images/turkish-legends/burak-yilmaz.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5025,
+      "isim": "Semih Şentürk",
+      "gorsel": "assets/images/turkish-legends/semih-senturk.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5026,
+      "isim": "Ümit Karan",
+      "gorsel": "assets/images/turkish-legends/umit-karan.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5027,
+      "isim": "Hasan Şaş",
+      "gorsel": "assets/images/turkish-legends/hasan-sas.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5028,
+      "isim": "Okan Buruk",
+      "gorsel": "assets/images/turkish-legends/okan-buruk.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5029,
+      "isim": "Emre Belözoğlu",
+      "gorsel": "assets/images/turkish-legends/emre-belozoglu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5030,
+      "isim": "Arda Turan",
+      "gorsel": "assets/images/turkish-legends/arda-turan.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5031,
+      "isim": "Hamit Altıntop",
+      "gorsel": "assets/images/turkish-legends/hamit-altintop.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5032,
+      "isim": "Gökdeniz Karadeniz",
+      "gorsel": "assets/images/turkish-legends/gokdeniz-karadeniz.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5033,
+      "isim": "Mehmet Aurélio",
+      "gorsel": "assets/images/turkish-legends/mehmet-aurelio.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5034,
+      "isim": "Mehmet Topal",
+      "gorsel": "assets/images/turkish-legends/mehmet-topal.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5035,
+      "isim": "Selçuk İnan",
+      "gorsel": "assets/images/turkish-legends/selcuk-inan.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5036,
+      "isim": "Tayfun Korkut",
+      "gorsel": "assets/images/turkish-legends/tayfun-korkut.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5037,
+      "isim": "Tümer Metin",
+      "gorsel": "assets/images/turkish-legends/tumer-metin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5038,
+      "isim": "Bülent Korkmaz",
+      "gorsel": "assets/images/turkish-legends/bulent-korkmaz.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5039,
+      "isim": "Alpay Özalan",
+      "gorsel": "assets/images/turkish-legends/alpay-ozalan.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5040,
+      "isim": "Ogün Temizkanoğlu",
+      "gorsel": "assets/images/turkish-legends/ogun-temizkanoglu.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5041,
+      "isim": "Ümit Özat",
+      "gorsel": "assets/images/turkish-legends/umit-ozat.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5042,
+      "isim": "Hakan Ünsal",
+      "gorsel": "assets/images/turkish-legends/hakan-unsal.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5043,
+      "isim": "Hakan Balta",
+      "gorsel": "assets/images/turkish-legends/hakan-balta.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5044,
+      "isim": "Servet Çetin",
+      "gorsel": "assets/images/turkish-legends/servet-cetin.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5045,
+      "isim": "Fatih Akyel",
+      "gorsel": "assets/images/turkish-legends/fatih-akyel.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5046,
+      "isim": "Emre Aşık",
+      "gorsel": "assets/images/turkish-legends/emre-asik.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5047,
+      "isim": "İbrahim Üzülmez",
+      "gorsel": "assets/images/turkish-legends/ibrahim-uzulmez.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5048,
+      "isim": "Gökhan Gönül",
+      "gorsel": "assets/images/turkish-legends/gokhan-gonul.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5049,
+      "isim": "Sabri Sarıoğlu",
+      "gorsel": "assets/images/turkish-legends/sabri-sarioglu.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5050,
+      "isim": "İbrahim Toraman",
+      "gorsel": "assets/images/turkish-legends/ibrahim-toraman.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    }
+  ],
+  "dunya-yildizlari": [
+    {
+      "id": 6001,
+      "isim": "Lionel Messi",
+      "gorsel": "assets/images/world-stars/lionel-messi.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6002,
+      "isim": "Cristiano Ronaldo",
+      "gorsel": "assets/images/world-stars/cristiano-ronaldo.svg",
+      "etiket": "FV",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6003,
+      "isim": "Kylian Mbappé",
+      "gorsel": "assets/images/world-stars/kylian-mbappe.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6004,
+      "isim": "Erling Haaland",
+      "gorsel": "assets/images/world-stars/erling-haaland.svg",
+      "etiket": "FV",
+      "takim": "Norveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6005,
+      "isim": "Vinícius Júnior",
+      "gorsel": "assets/images/world-stars/vinicius-junior.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6006,
+      "isim": "Mohamed Salah",
+      "gorsel": "assets/images/world-stars/mohamed-salah.svg",
+      "etiket": "FV",
+      "takim": "Mısır",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6007,
+      "isim": "Harry Kane",
+      "gorsel": "assets/images/world-stars/harry-kane.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6008,
+      "isim": "Lamine Yamal",
+      "gorsel": "assets/images/world-stars/lamine-yamal.svg",
+      "etiket": "FV",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6009,
+      "isim": "Bukayo Saka",
+      "gorsel": "assets/images/world-stars/bukayo-saka.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6010,
+      "isim": "Robert Lewandowski",
+      "gorsel": "assets/images/world-stars/robert-lewandowski.svg",
+      "etiket": "FV",
+      "takim": "Polonya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6011,
+      "isim": "Neymar",
+      "gorsel": "assets/images/world-stars/neymar.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6012,
+      "isim": "Lautaro Martínez",
+      "gorsel": "assets/images/world-stars/lautaro-martinez.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6013,
+      "isim": "Julián Álvarez",
+      "gorsel": "assets/images/world-stars/julian-alvarez.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6014,
+      "isim": "Victor Osimhen",
+      "gorsel": "assets/images/world-stars/victor-osimhen.svg",
+      "etiket": "FV",
+      "takim": "Nijerya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6015,
+      "isim": "Alexander Isak",
+      "gorsel": "assets/images/world-stars/alexander-isak.svg",
+      "etiket": "FV",
+      "takim": "İsveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6016,
+      "isim": "Raphinha",
+      "gorsel": "assets/images/world-stars/raphinha.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6017,
+      "isim": "Rodrygo",
+      "gorsel": "assets/images/world-stars/rodrygo.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6018,
+      "isim": "Son Heung-min",
+      "gorsel": "assets/images/world-stars/son-heung-min.svg",
+      "etiket": "FV",
+      "takim": "Güney Kore",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6019,
+      "isim": "Ousmane Dembélé",
+      "gorsel": "assets/images/world-stars/ousmane-dembele.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6020,
+      "isim": "Jude Bellingham",
+      "gorsel": "assets/images/world-stars/jude-bellingham.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6021,
+      "isim": "Phil Foden",
+      "gorsel": "assets/images/world-stars/phil-foden.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6022,
+      "isim": "Cole Palmer",
+      "gorsel": "assets/images/world-stars/cole-palmer.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6023,
+      "isim": "Jamal Musiala",
+      "gorsel": "assets/images/world-stars/jamal-musiala.svg",
+      "etiket": "OF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6024,
+      "isim": "Florian Wirtz",
+      "gorsel": "assets/images/world-stars/florian-wirtz.svg",
+      "etiket": "OF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6025,
+      "isim": "Pedri",
+      "gorsel": "assets/images/world-stars/pedri.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6026,
+      "isim": "Rodri",
+      "gorsel": "assets/images/world-stars/rodri.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6027,
+      "isim": "Declan Rice",
+      "gorsel": "assets/images/world-stars/declan-rice.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6028,
+      "isim": "Bruno Fernandes",
+      "gorsel": "assets/images/world-stars/bruno-fernandes.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6029,
+      "isim": "Bernardo Silva",
+      "gorsel": "assets/images/world-stars/bernardo-silva.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6030,
+      "isim": "Kevin De Bruyne",
+      "gorsel": "assets/images/world-stars/kevin-de-bruyne.svg",
+      "etiket": "OF",
+      "takim": "Belçika",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6031,
+      "isim": "Martin Ødegaard",
+      "gorsel": "assets/images/world-stars/martin-odegaard.svg",
+      "etiket": "OF",
+      "takim": "Norveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6032,
+      "isim": "Federico Valverde",
+      "gorsel": "assets/images/world-stars/federico-valverde.svg",
+      "etiket": "OF",
+      "takim": "Uruguay",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6033,
+      "isim": "Aurélien Tchouaméni",
+      "gorsel": "assets/images/world-stars/aurelien-tchouameni.svg",
+      "etiket": "OF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6034,
+      "isim": "Eduardo Camavinga",
+      "gorsel": "assets/images/world-stars/eduardo-camavinga.svg",
+      "etiket": "OF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6035,
+      "isim": "Bruno Guimarães",
+      "gorsel": "assets/images/world-stars/bruno-guimaraes.svg",
+      "etiket": "OF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6036,
+      "isim": "Virgil van Dijk",
+      "gorsel": "assets/images/world-stars/virgil-van-dijk.svg",
+      "etiket": "DF",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6037,
+      "isim": "William Saliba",
+      "gorsel": "assets/images/world-stars/william-saliba.svg",
+      "etiket": "DF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6038,
+      "isim": "Rúben Dias",
+      "gorsel": "assets/images/world-stars/ruben-dias.svg",
+      "etiket": "DF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6039,
+      "isim": "Achraf Hakimi",
+      "gorsel": "assets/images/world-stars/achraf-hakimi.svg",
+      "etiket": "DF",
+      "takim": "Fas",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6040,
+      "isim": "Trent Alexander-Arnold",
+      "gorsel": "assets/images/world-stars/trent-alexander-arnold.svg",
+      "etiket": "DF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6041,
+      "isim": "Theo Hernández",
+      "gorsel": "assets/images/world-stars/theo-hernandez.svg",
+      "etiket": "DF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6042,
+      "isim": "Antonio Rüdiger",
+      "gorsel": "assets/images/world-stars/antonio-rudiger.svg",
+      "etiket": "DF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6043,
+      "isim": "Alessandro Bastoni",
+      "gorsel": "assets/images/world-stars/alessandro-bastoni.svg",
+      "etiket": "DF",
+      "takim": "İtalya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6044,
+      "isim": "Marquinhos",
+      "gorsel": "assets/images/world-stars/marquinhos.svg",
+      "etiket": "DF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6045,
+      "isim": "Joško Gvardiol",
+      "gorsel": "assets/images/world-stars/josko-gvardiol.svg",
+      "etiket": "DF",
+      "takim": "Hırvatistan",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6046,
+      "isim": "Thibaut Courtois",
+      "gorsel": "assets/images/world-stars/thibaut-courtois.svg",
+      "etiket": "KL",
+      "takim": "Belçika",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6047,
+      "isim": "Alisson Becker",
+      "gorsel": "assets/images/world-stars/alisson-becker.svg",
+      "etiket": "KL",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6048,
+      "isim": "Gianluigi Donnarumma",
+      "gorsel": "assets/images/world-stars/gianluigi-donnarumma.svg",
+      "etiket": "KL",
+      "takim": "İtalya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6049,
+      "isim": "Emiliano Martínez",
+      "gorsel": "assets/images/world-stars/emiliano-martinez.svg",
+      "etiket": "KL",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6050,
+      "isim": "David Raya",
+      "gorsel": "assets/images/world-stars/david-raya.svg",
+      "etiket": "KL",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    }
+  ],
+  "icecek": [
+    {
+      "id": 9001,
+      "isim": "Türk Kahvesi",
+      "gorsel": "assets/images/drinks/turk-kahvesi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9002,
+      "isim": "Filtre Kahve",
+      "gorsel": "assets/images/drinks/filtre-kahve.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9003,
+      "isim": "Espresso",
+      "gorsel": "assets/images/drinks/espresso.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9004,
+      "isim": "Americano",
+      "gorsel": "assets/images/drinks/americano.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9005,
+      "isim": "Latte",
+      "gorsel": "assets/images/drinks/latte.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9006,
+      "isim": "Cappuccino",
+      "gorsel": "assets/images/drinks/cappuccino.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9007,
+      "isim": "Flat White",
+      "gorsel": "assets/images/drinks/flat-white.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9008,
+      "isim": "Mocha",
+      "gorsel": "assets/images/drinks/mocha.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9009,
+      "isim": "Siyah Çay",
+      "gorsel": "assets/images/drinks/siyah-cay.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9010,
+      "isim": "Yeşil Çay",
+      "gorsel": "assets/images/drinks/yesil-cay.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9011,
+      "isim": "Ihlamur",
+      "gorsel": "assets/images/drinks/ihlamur.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9012,
+      "isim": "Ada Çayı",
+      "gorsel": "assets/images/drinks/ada-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9013,
+      "isim": "Kuşburnu Çayı",
+      "gorsel": "assets/images/drinks/kusburnu-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9014,
+      "isim": "Papatya Çayı",
+      "gorsel": "assets/images/drinks/papatya-cayi.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9015,
+      "isim": "Salep",
+      "gorsel": "assets/images/drinks/salep.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9016,
+      "isim": "Sıcak Çikolata",
+      "gorsel": "assets/images/drinks/sicak-cikolata.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9017,
+      "isim": "Matcha Latte",
+      "gorsel": "assets/images/drinks/matcha-latte.svg",
+      "etiket": "Sıcak",
+      "alkol": false
+    },
+    {
+      "id": 9018,
+      "isim": "Su",
+      "gorsel": "assets/images/drinks/su.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9019,
+      "isim": "Maden Suyu",
+      "gorsel": "assets/images/drinks/maden-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9020,
+      "isim": "Ayran",
+      "gorsel": "assets/images/drinks/ayran.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9021,
+      "isim": "Kefir",
+      "gorsel": "assets/images/drinks/kefir.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9022,
+      "isim": "Şalgam",
+      "gorsel": "assets/images/drinks/salgam.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9023,
+      "isim": "Boza",
+      "gorsel": "assets/images/drinks/boza.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9024,
+      "isim": "Limonata",
+      "gorsel": "assets/images/drinks/limonata.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9025,
+      "isim": "Portakal Suyu",
+      "gorsel": "assets/images/drinks/portakal-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9026,
+      "isim": "Vişne Suyu",
+      "gorsel": "assets/images/drinks/visne-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9027,
+      "isim": "Elma Suyu",
+      "gorsel": "assets/images/drinks/elma-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9028,
+      "isim": "Nar Suyu",
+      "gorsel": "assets/images/drinks/nar-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9029,
+      "isim": "Şeftali Nektarı",
+      "gorsel": "assets/images/drinks/seftali-nektari.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9030,
+      "isim": "Havuç Suyu",
+      "gorsel": "assets/images/drinks/havuc-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9031,
+      "isim": "Domates Suyu",
+      "gorsel": "assets/images/drinks/domates-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9032,
+      "isim": "Gazoz",
+      "gorsel": "assets/images/drinks/gazoz.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9033,
+      "isim": "Kola",
+      "gorsel": "assets/images/drinks/kola.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9034,
+      "isim": "Buzlu Çay",
+      "gorsel": "assets/images/drinks/buzlu-cay.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9035,
+      "isim": "Cold Brew",
+      "gorsel": "assets/images/drinks/cold-brew.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9036,
+      "isim": "Frappe",
+      "gorsel": "assets/images/drinks/frappe.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9037,
+      "isim": "Milkshake",
+      "gorsel": "assets/images/drinks/milkshake.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9038,
+      "isim": "Smoothie",
+      "gorsel": "assets/images/drinks/smoothie.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9039,
+      "isim": "Bubble Tea",
+      "gorsel": "assets/images/drinks/bubble-tea.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9040,
+      "isim": "Hindistan Cevizi Suyu",
+      "gorsel": "assets/images/drinks/hindistan-cevizi-suyu.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9041,
+      "isim": "Demirhindi Şerbeti",
+      "gorsel": "assets/images/drinks/demirhindi-serbeti.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9042,
+      "isim": "Gül Şerbeti",
+      "gorsel": "assets/images/drinks/gul-serbeti.svg",
+      "etiket": "Soğuk",
+      "alkol": false
+    },
+    {
+      "id": 9043,
+      "isim": "Bira",
+      "gorsel": "assets/images/drinks/bira.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9044,
+      "isim": "Kırmızı Şarap",
+      "gorsel": "assets/images/drinks/kirmizi-sarap.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9045,
+      "isim": "Beyaz Şarap",
+      "gorsel": "assets/images/drinks/beyaz-sarap.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9046,
+      "isim": "Rakı",
+      "gorsel": "assets/images/drinks/raki.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9047,
+      "isim": "Viski",
+      "gorsel": "assets/images/drinks/viski.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9048,
+      "isim": "Cin",
+      "gorsel": "assets/images/drinks/cin.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9049,
+      "isim": "Tekila",
+      "gorsel": "assets/images/drinks/tekila.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    },
+    {
+      "id": 9050,
+      "isim": "Votka",
+      "gorsel": "assets/images/drinks/votka.svg",
+      "etiket": "Alkollü",
+      "alkol": true
+    }
+  ],
+  "yerli-sanatcilar": [
+    {
+      "id": 7001,
+      "isim": "Tarkan",
+      "gorsel": "assets/images/artists/tarkan.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7002,
+      "isim": "Sezen Aksu",
+      "gorsel": "assets/images/artists/sezen-aksu.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7003,
+      "isim": "Ajda Pekkan",
+      "gorsel": "assets/images/artists/ajda-pekkan.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7004,
+      "isim": "Sertab Erener",
+      "gorsel": "assets/images/artists/sertab-erener.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7005,
+      "isim": "Barış Manço",
+      "gorsel": "assets/images/artists/baris-manco.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7006,
+      "isim": "Cem Karaca",
+      "gorsel": "assets/images/artists/cem-karaca.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7007,
+      "isim": "Erkin Koray",
+      "gorsel": "assets/images/artists/erkin-koray.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7008,
+      "isim": "Fikret Kızılok",
+      "gorsel": "assets/images/artists/fikret-kizilok.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7009,
+      "isim": "MFÖ",
+      "gorsel": "assets/images/artists/mfo.svg",
+      "etiket": "Pop",
+      "tip": "grup"
+    },
+    {
+      "id": 7010,
+      "isim": "Duman",
+      "gorsel": "assets/images/artists/duman.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7011,
+      "isim": "mor ve ötesi",
+      "gorsel": "assets/images/artists/mor-ve-otesi.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7012,
+      "isim": "maNga",
+      "gorsel": "assets/images/artists/manga.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7013,
+      "isim": "Athena",
+      "gorsel": "assets/images/artists/athena.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7014,
+      "isim": "Gripin",
+      "gorsel": "assets/images/artists/gripin.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7015,
+      "isim": "Teoman",
+      "gorsel": "assets/images/artists/teoman.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7016,
+      "isim": "Şebnem Ferah",
+      "gorsel": "assets/images/artists/sebnem-ferah.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7017,
+      "isim": "Haluk Levent",
+      "gorsel": "assets/images/artists/haluk-levent.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7018,
+      "isim": "Hayko Cepkin",
+      "gorsel": "assets/images/artists/hayko-cepkin.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7019,
+      "isim": "Özlem Tekin",
+      "gorsel": "assets/images/artists/ozlem-tekin.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7020,
+      "isim": "Yüksek Sadakat",
+      "gorsel": "assets/images/artists/yuksek-sadakat.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7021,
+      "isim": "Model",
+      "gorsel": "assets/images/artists/model.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7022,
+      "isim": "Pinhani",
+      "gorsel": "assets/images/artists/pinhani.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7023,
+      "isim": "Moğollar",
+      "gorsel": "assets/images/artists/mogollar.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7024,
+      "isim": "Bülent Ortaçgil",
+      "gorsel": "assets/images/artists/bulent-ortacgil.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7025,
+      "isim": "Zeki Müren",
+      "gorsel": "assets/images/artists/zeki-muren.svg",
+      "etiket": "Türk Sanat Müziği",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7026,
+      "isim": "Müzeyyen Senar",
+      "gorsel": "assets/images/artists/muzeyyen-senar.svg",
+      "etiket": "Türk Sanat Müziği",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7027,
+      "isim": "Bülent Ersoy",
+      "gorsel": "assets/images/artists/bulent-ersoy.svg",
+      "etiket": "Türk Sanat Müziği",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7028,
+      "isim": "Orhan Gencebay",
+      "gorsel": "assets/images/artists/orhan-gencebay.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7029,
+      "isim": "Ferdi Tayfur",
+      "gorsel": "assets/images/artists/ferdi-tayfur.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7030,
+      "isim": "Müslüm Gürses",
+      "gorsel": "assets/images/artists/muslum-gurses.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7031,
+      "isim": "İbrahim Tatlıses",
+      "gorsel": "assets/images/artists/ibrahim-tatlises.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7032,
+      "isim": "Bergen",
+      "gorsel": "assets/images/artists/bergen.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7033,
+      "isim": "Gülden Karaböcek",
+      "gorsel": "assets/images/artists/gulden-karabocek.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7034,
+      "isim": "Neşet Ertaş",
+      "gorsel": "assets/images/artists/neset-ertas.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7035,
+      "isim": "Âşık Veysel",
+      "gorsel": "assets/images/artists/asik-veysel.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7036,
+      "isim": "Selda Bağcan",
+      "gorsel": "assets/images/artists/selda-bagcan.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7037,
+      "isim": "Sabahat Akkiraz",
+      "gorsel": "assets/images/artists/sabahat-akkiraz.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7038,
+      "isim": "Ceza",
+      "gorsel": "assets/images/artists/ceza.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7039,
+      "isim": "Sagopa Kajmer",
+      "gorsel": "assets/images/artists/sagopa-kajmer.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7040,
+      "isim": "Ezhel",
+      "gorsel": "assets/images/artists/ezhel.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7041,
+      "isim": "Sıla",
+      "gorsel": "assets/images/artists/sila.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7042,
+      "isim": "Kenan Doğulu",
+      "gorsel": "assets/images/artists/kenan-dogulu.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7043,
+      "isim": "Gülşen",
+      "gorsel": "assets/images/artists/gulsen.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7044,
+      "isim": "Hande Yener",
+      "gorsel": "assets/images/artists/hande-yener.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7045,
+      "isim": "Göksel",
+      "gorsel": "assets/images/artists/goksel.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7046,
+      "isim": "Yıldız Tilbe",
+      "gorsel": "assets/images/artists/yildiz-tilbe.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7047,
+      "isim": "Ebru Gündeş",
+      "gorsel": "assets/images/artists/ebru-gundes.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7048,
+      "isim": "Levent Yüksel",
+      "gorsel": "assets/images/artists/levent-yuksel.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7049,
+      "isim": "Mabel Matiz",
+      "gorsel": "assets/images/artists/mabel-matiz.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7050,
+      "isim": "Derya Uluğ",
+      "gorsel": "assets/images/artists/derya-ulug.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    }
+  ],
+  "ankara-ilceleri": [
+    {
+      "id": 8001,
+      "isim": "Akyurt",
+      "gorsel": "assets/images/ankara/akyurt.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8002,
+      "isim": "Altındağ",
+      "gorsel": "assets/images/ankara/altindag.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8003,
+      "isim": "Ayaş",
+      "gorsel": "assets/images/ankara/ayas.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8004,
+      "isim": "Bala",
+      "gorsel": "assets/images/ankara/bala.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8005,
+      "isim": "Beypazarı",
+      "gorsel": "assets/images/ankara/beypazari.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8006,
+      "isim": "Çamlıdere",
+      "gorsel": "assets/images/ankara/camlidere.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8007,
+      "isim": "Çankaya",
+      "gorsel": "assets/images/ankara/cankaya.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8008,
+      "isim": "Çubuk",
+      "gorsel": "assets/images/ankara/cubuk.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8009,
+      "isim": "Elmadağ",
+      "gorsel": "assets/images/ankara/elmadag.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8010,
+      "isim": "Etimesgut",
+      "gorsel": "assets/images/ankara/etimesgut.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8011,
+      "isim": "Evren",
+      "gorsel": "assets/images/ankara/evren.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8012,
+      "isim": "Gölbaşı",
+      "gorsel": "assets/images/ankara/golbasi.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8013,
+      "isim": "Güdül",
+      "gorsel": "assets/images/ankara/gudul.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8014,
+      "isim": "Haymana",
+      "gorsel": "assets/images/ankara/haymana.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8015,
+      "isim": "Kahramankazan",
+      "gorsel": "assets/images/ankara/kahramankazan.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8016,
+      "isim": "Kalecik",
+      "gorsel": "assets/images/ankara/kalecik.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8017,
+      "isim": "Keçiören",
+      "gorsel": "assets/images/ankara/kecioren.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8018,
+      "isim": "Kızılcahamam",
+      "gorsel": "assets/images/ankara/kizilcahamam.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8019,
+      "isim": "Mamak",
+      "gorsel": "assets/images/ankara/mamak.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8020,
+      "isim": "Nallıhan",
+      "gorsel": "assets/images/ankara/nallihan.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8021,
+      "isim": "Polatlı",
+      "gorsel": "assets/images/ankara/polatli.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8022,
+      "isim": "Pursaklar",
+      "gorsel": "assets/images/ankara/pursaklar.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8023,
+      "isim": "Sincan",
+      "gorsel": "assets/images/ankara/sincan.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8024,
+      "isim": "Şereflikoçhisar",
+      "gorsel": "assets/images/ankara/sereflikochisar.svg",
+      "etiket": "Ankara"
+    },
+    {
+      "id": 8025,
+      "isim": "Yenimahalle",
+      "gorsel": "assets/images/ankara/yenimahalle.svg",
+      "etiket": "Ankara"
     }
   ]
 }

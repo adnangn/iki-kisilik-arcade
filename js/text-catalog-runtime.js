@@ -28,7 +28,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.category.yemek.label": {
     "group": "Koleksiyonlar",
     "label": "Yemek kategorisi adı",
-    "value": "Yemekler"
+    "value": "Yemekler ve İçecekler"
   },
   "runtime.category.dizi.label": {
     "group": "Koleksiyonlar",
@@ -1012,8 +1012,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.50_tatli_tatli_bir_kapisma": {
     "group": "Koleksiyonlar",
-    "label": "50 tatlı · Tatlı bir kapışma.",
-    "value": "50 tatlı · Tatlı bir kapışma."
+    "label": "100 tatlı · Tatlı bir kapışma.",
+    "value": "100 tatlı · Tatlı bir kapışma."
   },
   "runtime.copy.ana_yemekler": {
     "group": "Koleksiyonlar",
@@ -1027,8 +1027,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.50_ana_yemek_turk_ve_dunya_mutfagindan": {
     "group": "Koleksiyonlar",
-    "label": "50 ana yemek · Türk ve dünya mutfağından.",
-    "value": "50 ana yemek · Türk ve dünya mutfağından."
+    "label": "100 ana yemek · Türk ve dünya mutfağından.",
+    "value": "100 ana yemek · Türk ve dünya mutfağından."
   },
   "runtime.copy.ne_izliyoruz": {
     "group": "Koleksiyonlar",

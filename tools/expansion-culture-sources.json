@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-12",
+  "selectionNote": "Sanatçı koleksiyonu farklı dönem, tür ve kadın/erkek yorumcular ile gruplardan oluşan editoryal bir seçkidir. Popülerlik sıralaması veya bütün zamanların en iyileri iddiası içermez. Etiketler oyunda aynı türden üçlüler oluşturmak için kullanılan geniş müzik türleridir; bir sanatçının tek türde müzik yaptığı anlamına gelmez.",
+  "artNote": "75 görsel projede üretilmiş özgün, temsili piksel SVG çizimidir. Sanatçı portreleri ve grup sahneleri fotoğraf, albüm kapağı veya güncel grup kadrosu değildir. İlçe görselleri yerel mimari/doğa motiflerinden esinlenir; harita veya kesin coğrafi sınır göstermez.",
+  "sources": [
+    {
+      "title": "Ankara Büyükşehir Belediyesi — Muhtarlar / İlçeler",
+      "url": "https://www.ankara.bel.tr/muhtarlar",
+      "coverage": "Ankara'nın 25 ilçesinin eksiksiz resmi listesi ve güncel ilçe adları.",
+      "districts": ["Akyurt", "Altındağ", "Ayaş", "Bala", "Beypazarı", "Çamlıdere", "Çankaya", "Çubuk", "Elmadağ", "Etimesgut", "Evren", "Gölbaşı", "Güdül", "Haymana", "Kahramankazan", "Kalecik", "Keçiören", "Kızılcahamam", "Mamak", "Nallıhan", "Polatlı", "Pursaklar", "Sincan", "Şereflikoçhisar", "Yenimahalle"]
+    },
+    {
+      "title": "Ankara Büyükşehir Belediyesi — Günümüz Ankarası / Kent Rehberi",
+      "url": "https://s.ankara.bel.tr/files/2024/12/23/0dec3727ad6b1d4bf4b496e81605cc84.pdf",
+      "coverage": "İlçe görselleri için temsili mimari/doğa motifleri: Ankara Kalesi, Beypazarı evleri, Anıtkabir, Çubuk Barajı, Elmadağ, Etimesgut demiryolu, Gölbaşı gölleri, Haymana kaplıcaları, Nallıhan, Polatlı tümülüsü, Sincan laleleri, Tuz Gölü. İlçe adları ve adet ayrıca resmi Muhtarlar dizininden kontrol edilmiştir.",
+      "pages": "8–15"
+    },
+    {
+      "title": "Ankara Büyükşehir Belediyesi — Kurumsal ana sayfa",
+      "url": "https://www.ankara.bel.tr/",
+      "coverage": "25 ilçe sayısının güncel resmi teyidi."
+    },
+    {
+      "title": "MFÖ — Paradise Production sanatçı tanıtımı",
+      "url": "https://paradiseproduction.com.tr/sanatcilar/mfo/",
+      "coverage": "MFÖ'nün grup kimliği ve pop/rock çizgisi. Kadro sayısı veya faaliyet dönemi oyun kartında ileri sürülmez."
+    },
+    {
+      "title": "Muğla İl Kültür ve Turizm Müdürlüğü — Nereye Gidilir / Zeki Müren Sanat Müzesi",
+      "url": "https://mugla.ktb.gov.tr/TR-296341/nereye-gidilir.html",
+      "coverage": "Zeki Müren'in Türk Sanat Müziği kimliği."
+    },
+    {
+      "title": "Kültür İstanbul — Âşık Veysel",
+      "url": "https://kultur.istanbul/saziyla-sozuyle-gonullerin-tercumani-asik-veysel/",
+      "coverage": "Âşık Veysel'in halk ozanı/saz geleneği."
+    },
+    {
+      "title": "Millî Eğitim Bakanlığı — Türk Sanat Müziği besteci ve yorumcuları",
+      "url": "https://bursa.meb.gov.tr/meb_iys_dosyalar/2019_12/13113329_KYTAP_LYSE.pdf",
+      "coverage": "Müzeyyen Senar ve Zeki Müren'in Türk Sanat Müziği yorumcusu olarak anılması."
+    }
+  ]
+}

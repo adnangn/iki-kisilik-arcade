@@ -19,6 +19,15 @@
     "static.055": "!",
     "static.056": "reaksiyon",
     "static.109": "XD",
-    "static.110": "Kudurdum"
+    "static.110": "Kudurdum",
+    "runtime.copy.cevrimici_oynamak_icin_firebase_ayarlarini_ve_guncel": "BEKLİYORUM",
+    "runtime.copy.odaya_erisilemiyor_kodu_ve_firebase_veritabani_kural": "BEKLİYORUM",
+    "runtime.copy.firebase_console_da_anonim_giris_yontemini_acin": "BEKLİYORUM",
+    "runtime.copy.bu_alan_adini_firebase_authentication_ayarlarina_ekl": "BEKLİYORUM",
+    "runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin": "Rövanşta bot seçer, sen izlersin",
+    "runtime.copy.once_firebase_yapilandirmasini_ekleyin": "BEKLİYORUM",
+    "runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin": "BEKLİYORUM",
+    "runtime.copy.efsaneler_super_lig_tatli_ana_yemek_dizi_ve_film_ver": "Efsaneler, Süper Lig, tatlı, ana yemek, dizi ve film NE ARARSAN",
+    "runtime.copy.amed_fk_dahil_guncel_yildizlar": "Güncel SÜPER LİG."
   }
 }

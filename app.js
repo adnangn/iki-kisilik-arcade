@@ -121,7 +121,7 @@ function renderCollection() {
   const cards = datasets[selectedDatasetId()] || [];
   const searchText = value => value.toLocaleLowerCase('tr').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/ı/g, 'i');
   const query = searchText($('collection-search').value.trim());
-  const matching = cards.filter(card => searchText(`${card.isim} ${card.takim || ''}`).includes(query));
+  const matching = cards.filter(card => searchText(`${card.isim} ${card.takim || ''} ${card.etiket}`).includes(query));
   $('collection-count').textContent = query ? t('runtime.collection.filtered_count', { count: matching.length, total: cards.length }) : t('runtime.collection.card_count', { count: cards.length });
   $('collection-empty').hidden = !!matching.length;
   $('collection-grid').replaceChildren(...matching.map(card => {
@@ -143,8 +143,9 @@ function renderDatasetPreview() {
     const img = document.createElement('img'); img.src = './' + card.gorsel; img.alt = ''; return img;
   }));
   $('dataset-preview-label').textContent = cards.length ? t('runtime.collection.preview', { count: cards.length, dataset: DATASET_NAMES[id] }) : t('runtime.copy.kartlar_yukleniyor');
-  $('collection-note').textContent = DATASET_GROUPS[category].sets.find(set => set.id === id).note;
-  const searchPrompt = category === 'futbol' ? t('runtime.copy.isim_veya_takim_ara') : ({ tatli: t('runtime.copy.tatli_adi_ara'), yemek: t('runtime.copy.yemek_adi_ara'), dizi: t('runtime.copy.dizi_adi_ara'), film: t('runtime.copy.film_adi_ara') })[id];
+  const collection = DATASET_GROUPS[category].sets.find(set => set.id === id);
+  $('collection-note').textContent = collection.note;
+  const searchPrompt = t(collection.searchKey);
   $('collection-search').placeholder = t('runtime.collection.search_placeholder', { prompt: searchPrompt });
   $('collection-search-label').textContent = searchPrompt;
   $('collection-search').value = '';

@@ -1,0 +1,806 @@
+{
+  "turkiye-efsaneleri": [
+    {
+      "id": 5001,
+      "isim": "Lefter Küçükandonyadis",
+      "gorsel": "assets/images/turkish-legends/lefter.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5002,
+      "isim": "Metin Oktay",
+      "gorsel": "assets/images/turkish-legends/metin-oktay.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5003,
+      "isim": "Can Bartu",
+      "gorsel": "assets/images/turkish-legends/can-bartu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5004,
+      "isim": "Turgay Şeren",
+      "gorsel": "assets/images/turkish-legends/turgay-seren.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5005,
+      "isim": "Şenol Güneş",
+      "gorsel": "assets/images/turkish-legends/senol-gunes.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5006,
+      "isim": "Yasin Özdenak",
+      "gorsel": "assets/images/turkish-legends/yasin-ozdenak.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5007,
+      "isim": "Rüştü Reçber",
+      "gorsel": "assets/images/turkish-legends/rustu-recber.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5008,
+      "isim": "Volkan Demirel",
+      "gorsel": "assets/images/turkish-legends/volkan-demirel.svg",
+      "etiket": "KL",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5009,
+      "isim": "Tanju Çolak",
+      "gorsel": "assets/images/turkish-legends/tanju-colak.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5010,
+      "isim": "Aykut Kocaman",
+      "gorsel": "assets/images/turkish-legends/aykut-kocaman.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5011,
+      "isim": "Feyyaz Uçar",
+      "gorsel": "assets/images/turkish-legends/feyyaz-ucar.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5012,
+      "isim": "Hakan Şükür",
+      "gorsel": "assets/images/turkish-legends/hakan-sukur.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5013,
+      "isim": "Rıdvan Dilmen",
+      "gorsel": "assets/images/turkish-legends/ridvan-dilmen.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5014,
+      "isim": "Sergen Yalçın",
+      "gorsel": "assets/images/turkish-legends/sergen-yalcin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5015,
+      "isim": "Oğuz Çetin",
+      "gorsel": "assets/images/turkish-legends/oguz-cetin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5016,
+      "isim": "Tugay Kerimoğlu",
+      "gorsel": "assets/images/turkish-legends/tugay-kerimoglu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5017,
+      "isim": "Hami Mandıralı",
+      "gorsel": "assets/images/turkish-legends/hami-mandirali.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5018,
+      "isim": "Fatih Tekke",
+      "gorsel": "assets/images/turkish-legends/fatih-tekke.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5019,
+      "isim": "Ertuğrul Sağlam",
+      "gorsel": "assets/images/turkish-legends/ertugrul-saglam.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5020,
+      "isim": "Arif Erdem",
+      "gorsel": "assets/images/turkish-legends/arif-erdem.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5021,
+      "isim": "İlhan Mansız",
+      "gorsel": "assets/images/turkish-legends/ilhan-mansiz.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5022,
+      "isim": "Nihat Kahveci",
+      "gorsel": "assets/images/turkish-legends/nihat-kahveci.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5023,
+      "isim": "Tuncay Şanlı",
+      "gorsel": "assets/images/turkish-legends/tuncay-sanli.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5024,
+      "isim": "Burak Yılmaz",
+      "gorsel": "assets/images/turkish-legends/burak-yilmaz.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5025,
+      "isim": "Semih Şentürk",
+      "gorsel": "assets/images/turkish-legends/semih-senturk.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5026,
+      "isim": "Ümit Karan",
+      "gorsel": "assets/images/turkish-legends/umit-karan.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5027,
+      "isim": "Hasan Şaş",
+      "gorsel": "assets/images/turkish-legends/hasan-sas.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5028,
+      "isim": "Okan Buruk",
+      "gorsel": "assets/images/turkish-legends/okan-buruk.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5029,
+      "isim": "Emre Belözoğlu",
+      "gorsel": "assets/images/turkish-legends/emre-belozoglu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5030,
+      "isim": "Arda Turan",
+      "gorsel": "assets/images/turkish-legends/arda-turan.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5031,
+      "isim": "Hamit Altıntop",
+      "gorsel": "assets/images/turkish-legends/hamit-altintop.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5032,
+      "isim": "Gökdeniz Karadeniz",
+      "gorsel": "assets/images/turkish-legends/gokdeniz-karadeniz.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5033,
+      "isim": "Mehmet Aurélio",
+      "gorsel": "assets/images/turkish-legends/mehmet-aurelio.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5034,
+      "isim": "Mehmet Topal",
+      "gorsel": "assets/images/turkish-legends/mehmet-topal.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5035,
+      "isim": "Selçuk İnan",
+      "gorsel": "assets/images/turkish-legends/selcuk-inan.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5036,
+      "isim": "Tayfun Korkut",
+      "gorsel": "assets/images/turkish-legends/tayfun-korkut.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5037,
+      "isim": "Tümer Metin",
+      "gorsel": "assets/images/turkish-legends/tumer-metin.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5038,
+      "isim": "Bülent Korkmaz",
+      "gorsel": "assets/images/turkish-legends/bulent-korkmaz.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5039,
+      "isim": "Alpay Özalan",
+      "gorsel": "assets/images/turkish-legends/alpay-ozalan.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5040,
+      "isim": "Ogün Temizkanoğlu",
+      "gorsel": "assets/images/turkish-legends/ogun-temizkanoglu.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5041,
+      "isim": "Ümit Özat",
+      "gorsel": "assets/images/turkish-legends/umit-ozat.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5042,
+      "isim": "Hakan Ünsal",
+      "gorsel": "assets/images/turkish-legends/hakan-unsal.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5043,
+      "isim": "Hakan Balta",
+      "gorsel": "assets/images/turkish-legends/hakan-balta.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5044,
+      "isim": "Servet Çetin",
+      "gorsel": "assets/images/turkish-legends/servet-cetin.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5045,
+      "isim": "Fatih Akyel",
+      "gorsel": "assets/images/turkish-legends/fatih-akyel.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5046,
+      "isim": "Emre Aşık",
+      "gorsel": "assets/images/turkish-legends/emre-asik.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5047,
+      "isim": "İbrahim Üzülmez",
+      "gorsel": "assets/images/turkish-legends/ibrahim-uzulmez.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5048,
+      "isim": "Gökhan Gönül",
+      "gorsel": "assets/images/turkish-legends/gokhan-gonul.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5049,
+      "isim": "Sabri Sarıoğlu",
+      "gorsel": "assets/images/turkish-legends/sabri-sarioglu.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 5050,
+      "isim": "İbrahim Toraman",
+      "gorsel": "assets/images/turkish-legends/ibrahim-toraman.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    }
+  ],
+  "dunya-yildizlari": [
+    {
+      "id": 6001,
+      "isim": "Lionel Messi",
+      "gorsel": "assets/images/world-stars/lionel-messi.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6002,
+      "isim": "Cristiano Ronaldo",
+      "gorsel": "assets/images/world-stars/cristiano-ronaldo.svg",
+      "etiket": "FV",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6003,
+      "isim": "Kylian Mbappé",
+      "gorsel": "assets/images/world-stars/kylian-mbappe.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6004,
+      "isim": "Erling Haaland",
+      "gorsel": "assets/images/world-stars/erling-haaland.svg",
+      "etiket": "FV",
+      "takim": "Norveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6005,
+      "isim": "Vinícius Júnior",
+      "gorsel": "assets/images/world-stars/vinicius-junior.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6006,
+      "isim": "Mohamed Salah",
+      "gorsel": "assets/images/world-stars/mohamed-salah.svg",
+      "etiket": "FV",
+      "takim": "Mısır",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6007,
+      "isim": "Harry Kane",
+      "gorsel": "assets/images/world-stars/harry-kane.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6008,
+      "isim": "Lamine Yamal",
+      "gorsel": "assets/images/world-stars/lamine-yamal.svg",
+      "etiket": "FV",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6009,
+      "isim": "Bukayo Saka",
+      "gorsel": "assets/images/world-stars/bukayo-saka.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6010,
+      "isim": "Robert Lewandowski",
+      "gorsel": "assets/images/world-stars/robert-lewandowski.svg",
+      "etiket": "FV",
+      "takim": "Polonya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6011,
+      "isim": "Neymar",
+      "gorsel": "assets/images/world-stars/neymar.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6012,
+      "isim": "Lautaro Martínez",
+      "gorsel": "assets/images/world-stars/lautaro-martinez.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6013,
+      "isim": "Julián Álvarez",
+      "gorsel": "assets/images/world-stars/julian-alvarez.svg",
+      "etiket": "FV",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6014,
+      "isim": "Victor Osimhen",
+      "gorsel": "assets/images/world-stars/victor-osimhen.svg",
+      "etiket": "FV",
+      "takim": "Nijerya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6015,
+      "isim": "Alexander Isak",
+      "gorsel": "assets/images/world-stars/alexander-isak.svg",
+      "etiket": "FV",
+      "takim": "İsveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6016,
+      "isim": "Raphinha",
+      "gorsel": "assets/images/world-stars/raphinha.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6017,
+      "isim": "Rodrygo",
+      "gorsel": "assets/images/world-stars/rodrygo.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6018,
+      "isim": "Son Heung-min",
+      "gorsel": "assets/images/world-stars/son-heung-min.svg",
+      "etiket": "FV",
+      "takim": "Güney Kore",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6019,
+      "isim": "Ousmane Dembélé",
+      "gorsel": "assets/images/world-stars/ousmane-dembele.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6020,
+      "isim": "Jude Bellingham",
+      "gorsel": "assets/images/world-stars/jude-bellingham.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6021,
+      "isim": "Phil Foden",
+      "gorsel": "assets/images/world-stars/phil-foden.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6022,
+      "isim": "Cole Palmer",
+      "gorsel": "assets/images/world-stars/cole-palmer.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6023,
+      "isim": "Jamal Musiala",
+      "gorsel": "assets/images/world-stars/jamal-musiala.svg",
+      "etiket": "OF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6024,
+      "isim": "Florian Wirtz",
+      "gorsel": "assets/images/world-stars/florian-wirtz.svg",
+      "etiket": "OF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6025,
+      "isim": "Pedri",
+      "gorsel": "assets/images/world-stars/pedri.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6026,
+      "isim": "Rodri",
+      "gorsel": "assets/images/world-stars/rodri.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6027,
+      "isim": "Declan Rice",
+      "gorsel": "assets/images/world-stars/declan-rice.svg",
+      "etiket": "OF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6028,
+      "isim": "Bruno Fernandes",
+      "gorsel": "assets/images/world-stars/bruno-fernandes.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6029,
+      "isim": "Bernardo Silva",
+      "gorsel": "assets/images/world-stars/bernardo-silva.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6030,
+      "isim": "Kevin De Bruyne",
+      "gorsel": "assets/images/world-stars/kevin-de-bruyne.svg",
+      "etiket": "OF",
+      "takim": "Belçika",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6031,
+      "isim": "Martin Ødegaard",
+      "gorsel": "assets/images/world-stars/martin-odegaard.svg",
+      "etiket": "OF",
+      "takim": "Norveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6032,
+      "isim": "Federico Valverde",
+      "gorsel": "assets/images/world-stars/federico-valverde.svg",
+      "etiket": "OF",
+      "takim": "Uruguay",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6033,
+      "isim": "Aurélien Tchouaméni",
+      "gorsel": "assets/images/world-stars/aurelien-tchouameni.svg",
+      "etiket": "OF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6034,
+      "isim": "Eduardo Camavinga",
+      "gorsel": "assets/images/world-stars/eduardo-camavinga.svg",
+      "etiket": "OF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6035,
+      "isim": "Bruno Guimarães",
+      "gorsel": "assets/images/world-stars/bruno-guimaraes.svg",
+      "etiket": "OF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6036,
+      "isim": "Virgil van Dijk",
+      "gorsel": "assets/images/world-stars/virgil-van-dijk.svg",
+      "etiket": "DF",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6037,
+      "isim": "William Saliba",
+      "gorsel": "assets/images/world-stars/william-saliba.svg",
+      "etiket": "DF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6038,
+      "isim": "Rúben Dias",
+      "gorsel": "assets/images/world-stars/ruben-dias.svg",
+      "etiket": "DF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6039,
+      "isim": "Achraf Hakimi",
+      "gorsel": "assets/images/world-stars/achraf-hakimi.svg",
+      "etiket": "DF",
+      "takim": "Fas",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6040,
+      "isim": "Trent Alexander-Arnold",
+      "gorsel": "assets/images/world-stars/trent-alexander-arnold.svg",
+      "etiket": "DF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6041,
+      "isim": "Theo Hernández",
+      "gorsel": "assets/images/world-stars/theo-hernandez.svg",
+      "etiket": "DF",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6042,
+      "isim": "Antonio Rüdiger",
+      "gorsel": "assets/images/world-stars/antonio-rudiger.svg",
+      "etiket": "DF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6043,
+      "isim": "Alessandro Bastoni",
+      "gorsel": "assets/images/world-stars/alessandro-bastoni.svg",
+      "etiket": "DF",
+      "takim": "İtalya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6044,
+      "isim": "Marquinhos",
+      "gorsel": "assets/images/world-stars/marquinhos.svg",
+      "etiket": "DF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6045,
+      "isim": "Joško Gvardiol",
+      "gorsel": "assets/images/world-stars/josko-gvardiol.svg",
+      "etiket": "DF",
+      "takim": "Hırvatistan",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6046,
+      "isim": "Thibaut Courtois",
+      "gorsel": "assets/images/world-stars/thibaut-courtois.svg",
+      "etiket": "KL",
+      "takim": "Belçika",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6047,
+      "isim": "Alisson Becker",
+      "gorsel": "assets/images/world-stars/alisson-becker.svg",
+      "etiket": "KL",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6048,
+      "isim": "Gianluigi Donnarumma",
+      "gorsel": "assets/images/world-stars/gianluigi-donnarumma.svg",
+      "etiket": "KL",
+      "takim": "İtalya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6049,
+      "isim": "Emiliano Martínez",
+      "gorsel": "assets/images/world-stars/emiliano-martinez.svg",
+      "etiket": "KL",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6050,
+      "isim": "David Raya",
+      "gorsel": "assets/images/world-stars/david-raya.svg",
+      "etiket": "KL",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    }
+  ]
+}

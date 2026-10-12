@@ -20,7 +20,7 @@
           ".validate": "newData.isNumber() && (!data.exists() || newData.val() === data.val())"
         },
         "datasetId": {
-          ".validate": "(newData.val() === 'futbol' || newData.val() === 'superlig' || newData.val() === 'tatli' || newData.val() === 'yemek' || newData.val() === 'dizi' || newData.val() === 'film') && (!data.exists() || newData.val() === data.val())"
+          ".validate": "(newData.val() === 'futbol' || newData.val() === 'superlig' || newData.val() === 'turkiye-efsaneleri' || newData.val() === 'dunya-yildizlari' || newData.val() === 'tatli' || newData.val() === 'yemek' || newData.val() === 'icecek' || newData.val() === 'dizi' || newData.val() === 'film' || newData.val() === 'yerli-sanatcilar' || newData.val() === 'ankara-ilceleri') && (!data.exists() || newData.val() === data.val())"
         },
         "mode": {
           ".validate": "(newData.val() === 'auction' || newData.val() === 'blind-ranking' || newData.val() === 'bracket' || newData.val() === 'team-draft') && (!data.exists() || newData.val() === data.val())"
