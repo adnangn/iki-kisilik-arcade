@@ -1,5 +1,5 @@
 import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
-import { seatFor, RoomError } from './room-state.js';
+import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
 
 const SDK = 'https://www.gstatic.com/firebasejs/13.0.0';
 
@@ -110,6 +110,25 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
         const current = snapshot.val();
         if (!current) throw new RoomError('Bu kodla bir oda bulunamadı.');
         if (seatFor(current, user.uid)) return current;
+        if (hasOptionalSpectator(current)) {
+          if (current.players.p2) throw new RoomError('Bu oda dolu veya oyun başladı.');
+          // Claim only the empty spectator seat. A host may start, make a
+          // choice, or finish concurrently; none of that state is rewritten.
+          try {
+            await transact(`rooms/${code}/players/p2`, value => {
+              // Another tab with our saved identity may win the seat race.
+              // Abort rather than rewriting the now immutable member record.
+              if (value?.uid === user.uid) throw new RoomError('ALREADY_MEMBER');
+              if (value) throw new RoomError('Bu oda dolu veya oyun başladı.');
+              return { uid: user.uid, name };
+            });
+          } catch (error) {
+            if (error.message !== 'ALREADY_MEMBER') throw error;
+          }
+          const latest = await get(roomRef);
+          assertOnline();
+          return latest.val();
+        }
         try { return await transact(`rooms/${code}`, value => {
           if (!value) throw new RoomError('Bu kodla bir oda bulunamadı.');
           if (seatFor(value, user.uid)) throw new RoomError('ALREADY_MEMBER');

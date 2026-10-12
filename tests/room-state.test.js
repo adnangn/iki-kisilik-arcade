@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { changeRoom, RoomError, seatFor } from '../js/room-state.js';
+import { changeRoom, RoomError, seatFor, hasOptionalSpectator, rematchStarter } from '../js/room-state.js';
 
 const deck = Array.from({ length: 20 }, (_, index) => index + 1);
 const HOST = 'owner-uid';
@@ -140,4 +140,56 @@ test('room transitions leave source rooms and caller-owned deck arrays untouched
   first.game.deck[0] = 99;
   assert.deepEqual(waiting, saved);
   assert.deepEqual(localDeck, deck);
+});
+
+test('single-active modes start, finish and rematch while the spectator seat is empty', () => {
+  for (const mode of ['blind-ranking', 'bracket']) {
+    const waiting = waitingRoom();
+    waiting.mode = mode;
+    delete waiting.players.p2;
+    const payload = { deck: deck.slice(0, mode === 'blind-ranking' ? 10 : 16) };
+    assert.equal(hasOptionalSpectator(waiting), true);
+    let room = changeRoom(waiting, HOST, waiting.revision, 'start', payload);
+    assert.equal(room.game.activeSeat, 'p1');
+    while (room.status === 'playing') {
+      const move = mode === 'blind-ranking' ? ['rank', { slot: room.game.deckIndex + 1 }] : ['choose', { cardId: room.game.currentPair.left }];
+      room = changeRoom(room, HOST, room.revision, ...move);
+    }
+    assert.equal(rematchStarter(room), 'p1');
+    const rematch = changeRoom(room, HOST, room.revision, 'rematch', payload);
+    assert.equal(rematch.round, 2);
+    assert.equal(rematch.game.activeSeat, 'p1');
+    assert.equal(rematch.starterSeat, 'p1');
+    assert.equal(rematch.players.p2, undefined);
+    assert.equal(rematch.code, waiting.code);
+  }
+});
+
+test('late spectators do not alter the current role or revision and cannot play; the next round swaps roles', () => {
+  for (const mode of ['blind-ranking', 'bracket']) {
+    const waiting = waitingRoom(); waiting.mode = mode; delete waiting.players.p2;
+    const payload = { deck: deck.slice(0, mode === 'blind-ranking' ? 10 : 16) };
+    let current = changeRoom(waiting, HOST, 0, 'start', payload);
+    const move = game => mode === 'blind-ranking' ? ['rank', { slot: game.deckIndex + 1 }] : ['choose', { cardId: game.currentPair.left }];
+    current = changeRoom(current, HOST, current.revision, ...move(current.game));
+    const gameBeforeJoin = structuredClone(current.game);
+    const revisionBeforeJoin = current.revision;
+    current.players.p2 = { uid: GUEST, name: 'Deniz' };
+    assert.throws(() => changeRoom(current, GUEST, current.revision, ...move(current.game)), /izleyicisin/);
+    assert.deepEqual(current.game, gameBeforeJoin);
+    assert.equal(current.revision, revisionBeforeJoin);
+    current = changeRoom(current, HOST, revisionBeforeJoin, ...move(current.game));
+    while (current.status === 'playing') current = changeRoom(current, HOST, current.revision, ...move(current.game));
+    const rematch = changeRoom(current, HOST, current.revision, 'rematch', payload);
+    assert.equal(rematch.starterSeat, 'p2');
+    assert.equal(rematch.game.activeSeat, 'p2');
+  }
+});
+
+test('two-active modes still require both seats before starting', () => {
+  for (const mode of ['auction', 'team-draft']) {
+    const room = waitingRoom(); room.mode = mode; delete room.players.p2;
+    assert.equal(hasOptionalSpectator(room), false);
+    assert.throws(() => changeRoom(room, HOST, 0, 'start', { deck }), RoomError);
+  }
 });

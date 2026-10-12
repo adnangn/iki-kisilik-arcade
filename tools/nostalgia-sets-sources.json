@@ -1,0 +1,116 @@
+{
+  "checkedAt": "2026-10-12",
+  "selectionNote": "Üç havuz 35'er kartlık editoryal çocukluk seçkisidir. Çizgi filmler farklı kuşakları kapsar; 90'lar havuzu o dönemde hatırlanan nesne, okul ve mahalle deneyimlerini içerir ve bütün nesnelerin 1990–1999 arasında icat edildiğini ileri sürmez. Kantin/bakkal havuzu farklı dönemlerde bilinen ürünleri ve markasız lezzetleri bir araya getirir; üretim tarihi, güncel satış durumu, eski ambalaj doğruluğu veya popülerlik sıralaması iddiası yoktur. Etiketler oyun için kullanılan geniş gruplardır.",
+  "artNote": "105 görsel yerel jeneratörde üretilen özgün, temsili 96 × 96 piksel SVG çizimidir. Resmî dizi kareleri, ürün fotoğrafları, lisanslı logolar veya ambalaj kopyaları indirilmemiştir. İsimler ilgili eser ve ürünleri belirtir; temsili ambalajlar gerçek ticari ambalaj değildir.",
+  "nameResolution": "Kullanıcının kantin listesinde verdiği Cin Ali, Cin Ali Vakfı'nın resmî açıklamasında okuma kitaplarının karakteridir. Bu gerçek kimlikle 90'lar havuzuna Cin Ali Kitapları eklendi. Atıştırmalık havuzuna ise üreticinin doğruladığı ETİ Cin bisküvisi eklendi; Cin Ali adında hayalî bir gıda markası oluşturulmadı.",
+  "sources": [
+    {
+      "title": "Cartoon Network — Trademark Information",
+      "url": "https://www.cartoonnetwork.com/legal/trademark.html?atclk_gn=un_community",
+      "coverage": "Resmî eser kimlikleri: Tom ve Jerry, Taş Devri, Jetgiller, Looney Tunes, Scooby-Doo, Ben 10, Powerpuff Girls, Samuray Jack, Dexter'ın Laboratuvarı, Cesur Korkak Köpek, Ed/Edd/Eddy ve Beyblade. Sayfadaki görseller veya metinler kopyalanmadı.",
+      "cardIds": [11006, 11008, 11009, 11010, 11011, 11018, 11022, 11023, 11024, 11025, 11026, 11027]
+    },
+    {
+      "title": "Studio 100 — Resmî karakter seçkisi",
+      "url": "https://studio100.com/be/fr/general/fun",
+      "coverage": "Heidi ve Arı Maya'nın eser/karakter kimliği.",
+      "cardIds": [11001, 11014]
+    },
+    {
+      "title": "TRT — 2021 Faaliyet Raporu",
+      "url": "https://www.trt.net.tr/pdfs/event-reports/2021.pdf",
+      "coverage": "Heidi ve Rafadan Tayfa'nın TRT Çocuk yapımları/yayınları arasında anılması; Rafadan Tayfa'nın mahalle hikâyesi.",
+      "cardIds": [11001, 11003]
+    },
+    {
+      "title": "TRT PepeeTV — TRT'nin resmî App Store kaydı",
+      "url": "https://apps.apple.com/tr/app/trt-pepeetv/id547949118",
+      "coverage": "Geliştiricisi Türkiye Radyo ve Televizyon Kurumu olan kayıt, Pepee bölümlerini içeren uygulamanın kimliğini doğrular. Uygulamanın bugün çalıştığı iddiası yoktur.",
+      "cardIds": [11002]
+    },
+    {
+      "title": "VIZ — Captain Tsubasa resmî anime sayfası",
+      "url": "https://www.viz.com/captain-tsubasa",
+      "coverage": "Kaptan Tsubasa/Tsubasa Ozora'nın futbol temalı anime kimliği.",
+      "cardIds": [11004]
+    },
+    {
+      "title": "Pokémon — Resmî Animation sayfası",
+      "url": "https://parents.pokemon.com/en-us/animation/",
+      "coverage": "Pokémon animasyon serisinin eser kimliği; temsilî görsel için bilinen canavar/top teması.",
+      "cardIds": [11005]
+    },
+    {
+      "title": "Tamagotchi — Resmî tarihçe",
+      "url": "https://tamagotchi-official.com/jp/history/",
+      "coverage": "Tamagotchi'nin 1996'da başlayan dijital evcil hayvan kimliği.",
+      "cardIds": [12001]
+    },
+    {
+      "title": "Sony — Throwback Walkman",
+      "url": "https://www.sony.com/en/SonyInfo/design/bside/01_throwback_walkman/",
+      "coverage": "Kasetli Walkman'ın kimliği ve 1993 modellerinin resmî tarihçede bulunması. Kartta yıl veya belirli cihaz modeli ileri sürülmez.",
+      "cardIds": [12003, 12005]
+    },
+    {
+      "title": "Cin Ali Eğitim ve Kültür Vakfı — Cin Ali'nin dünyası",
+      "url": "https://www.cinali.com.tr/",
+      "coverage": "Cin Ali'nin Rasim Kaygusuz'un okuma kitaplarının çizgi karakteri olduğunun resmî doğrulaması.",
+      "cardIds": [12019]
+    },
+    {
+      "title": "ETİ — Cin",
+      "url": "https://www.etietieti.com/tr-tr/markalarimiz/cin",
+      "coverage": "ETİ Cin'in bisküvi, meyveli sos ve granül içeren ürün kimliği.",
+      "cardIds": [13001]
+    },
+    {
+      "title": "Sagra — Markalarımız",
+      "url": "https://www.sagra.com.tr/",
+      "coverage": "Tadelle ve Sarelle'nin üretici tarafından belirtilen marka kimliği.",
+      "cardIds": [13002, 13026]
+    },
+    {
+      "title": "Ülker — Çokokrem",
+      "url": "https://www.ulker.com.tr/tr/markalar/cokokrem",
+      "coverage": "Çokokrem'in tüp ve kavanoz dâhil kakaolu fındıklı krema ürün biçimleri.",
+      "cardIds": [13004]
+    },
+    {
+      "title": "Ülker — Resmî ürün kataloğu",
+      "url": "https://www.ulker.com.tr/documents/ulkercomtr-katalogu_compressed.pdf",
+      "coverage": "Metro, Ülker Çikolatalı Gofret, Albeni, Halley, Çokomel, CocoStar, Çizi, Biskrem, Hanımeller, Çubuk Kraker, Çokoprens ve Probis ürün adları. Tarihî ambalaj veya belirli tat iddiası yoktur.",
+      "cardIds": [13003, 13005, 13012, 13013, 13014, 13015, 13016, 13017, 13018, 13019, 13024, 13025]
+    },
+    {
+      "title": "ETİ — Markalarımız",
+      "url": "https://www.etietieti.com/tr-tr/markalarimiz",
+      "coverage": "Üreticinin ürün aileleri ve Burçak, Popkek, Browni markaları. Geniş oyun etiketleri resmî beslenme sınıflandırması değildir.",
+      "cardIds": [13006, 13009, 13011]
+    },
+    {
+      "title": "ETİ — Tutku",
+      "url": "https://www.etietieti.com/tr-tr/markalarimiz/tutku",
+      "coverage": "ETİ Tutku'nun marka kimliği.",
+      "cardIds": [13008]
+    },
+    {
+      "title": "ETİ — Nero",
+      "url": "https://www.etietieti.com/tr-tr/markalarimiz/nero",
+      "coverage": "Koleksiyonda güncel resmî Nero yazımı kullanılmıştır; eski isimle ikinci mükerrer kart oluşturulmamıştır.",
+      "cardIds": [13023]
+    },
+    {
+      "title": "Mondelēz — Kent Gıda Tarihçe",
+      "url": "https://www.mondelezinternational.com/turkey/kent-gida/kent-history/",
+      "coverage": "Tipitip sakızının resmî marka/tarihçe kimliği.",
+      "cardIds": [13027]
+    },
+    {
+      "title": "Mondelēz — Türkiye Markalarımız",
+      "url": "https://www.mondelezinternational.com/turkey/brands/",
+      "coverage": "Falım ve Şıpsevdi sakızlarının resmî marka kimliği.",
+      "cardIds": [13028, 13030]
+    }
+  ]
+}

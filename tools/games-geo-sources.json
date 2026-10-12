@@ -1,0 +1,1099 @@
+{
+  "verifiedAt": "2026-10-12",
+  "notes": [
+    "İl adları ve toplam 81 il İçişleri Bakanlığının valilikler diziniyle doğrulandı; plaka sırası standart il trafik kodudur.",
+    "Şehir görselleri harita veya güncel bina durumu iddiası içermeyen, o ilin doğa ve kültür çağrışımlarından özgün temsili piksel çizimlerdir.",
+    "Oyun havuzu editoryal tanınırlık seçkisidir; en çok satanlar veya güncel popülerlik sıralaması iddiası değildir.",
+    "Oyun karakterleri ve oyun kutuları farklı tip alanları taşır; çizimler resmi kapak veya ekran görüntüsü değildir.",
+    "80 ülke BM üyesidir; etiketler BM M49 coğrafi gruplamasının geniş kıta seviyesine uyarlanır."
+  ],
+  "geography": [
+    {
+      "title": "T.C. İçişleri Bakanlığı — Valilikler",
+      "url": "https://www.icisleri.gov.tr/valilikler",
+      "dataset": "turkiye-sehirleri",
+      "ids": [
+        14001,
+        14002,
+        14003,
+        14004,
+        14005,
+        14006,
+        14007,
+        14008,
+        14009,
+        14010,
+        14011,
+        14012,
+        14013,
+        14014,
+        14015,
+        14016,
+        14017,
+        14018,
+        14019,
+        14020,
+        14021,
+        14022,
+        14023,
+        14024,
+        14025,
+        14026,
+        14027,
+        14028,
+        14029,
+        14030,
+        14031,
+        14032,
+        14033,
+        14034,
+        14035,
+        14036,
+        14037,
+        14038,
+        14039,
+        14040,
+        14041,
+        14042,
+        14043,
+        14044,
+        14045,
+        14046,
+        14047,
+        14048,
+        14049,
+        14050,
+        14051,
+        14052,
+        14053,
+        14054,
+        14055,
+        14056,
+        14057,
+        14058,
+        14059,
+        14060,
+        14061,
+        14062,
+        14063,
+        14064,
+        14065,
+        14066,
+        14067,
+        14068,
+        14069,
+        14070,
+        14071,
+        14072,
+        14073,
+        14074,
+        14075,
+        14076,
+        14077,
+        14078,
+        14079,
+        14080,
+        14081
+      ]
+    },
+    {
+      "title": "United Nations — Member States",
+      "url": "https://www.un.org/about-us/member-states",
+      "dataset": "ulkeler",
+      "ids": [
+        16001,
+        16002,
+        16003,
+        16004,
+        16005,
+        16006,
+        16007,
+        16008,
+        16009,
+        16010,
+        16011,
+        16012,
+        16013,
+        16014,
+        16015,
+        16016,
+        16017,
+        16018,
+        16019,
+        16020,
+        16021,
+        16022,
+        16023,
+        16024,
+        16025,
+        16026,
+        16027,
+        16028,
+        16029,
+        16030,
+        16031,
+        16032,
+        16033,
+        16034,
+        16035,
+        16036,
+        16037,
+        16038,
+        16039,
+        16040,
+        16041,
+        16042,
+        16043,
+        16044,
+        16045,
+        16046,
+        16047,
+        16048,
+        16049,
+        16050,
+        16051,
+        16052,
+        16053,
+        16054,
+        16055,
+        16056,
+        16057,
+        16058,
+        16059,
+        16060,
+        16061,
+        16062,
+        16063,
+        16064,
+        16065,
+        16066,
+        16067,
+        16068,
+        16069,
+        16070,
+        16071,
+        16072,
+        16073,
+        16074,
+        16075,
+        16076,
+        16077,
+        16078,
+        16079,
+        16080
+      ]
+    },
+    {
+      "title": "UN Statistics Division — M49 Standard",
+      "url": "https://unstats.un.org/unsd/methodology/m49/",
+      "dataset": "ulkeler",
+      "ids": [
+        16001,
+        16002,
+        16003,
+        16004,
+        16005,
+        16006,
+        16007,
+        16008,
+        16009,
+        16010,
+        16011,
+        16012,
+        16013,
+        16014,
+        16015,
+        16016,
+        16017,
+        16018,
+        16019,
+        16020,
+        16021,
+        16022,
+        16023,
+        16024,
+        16025,
+        16026,
+        16027,
+        16028,
+        16029,
+        16030,
+        16031,
+        16032,
+        16033,
+        16034,
+        16035,
+        16036,
+        16037,
+        16038,
+        16039,
+        16040,
+        16041,
+        16042,
+        16043,
+        16044,
+        16045,
+        16046,
+        16047,
+        16048,
+        16049,
+        16050,
+        16051,
+        16052,
+        16053,
+        16054,
+        16055,
+        16056,
+        16057,
+        16058,
+        16059,
+        16060,
+        16061,
+        16062,
+        16063,
+        16064,
+        16065,
+        16066,
+        16067,
+        16068,
+        16069,
+        16070,
+        16071,
+        16072,
+        16073,
+        16074,
+        16075,
+        16076,
+        16077,
+        16078,
+        16079,
+        16080
+      ]
+    }
+  ],
+  "games": [
+    {
+      "title": "Nintendo — Mario characters",
+      "url": "https://mario.nintendo.com/ca/characters/",
+      "franchises": [
+        "Super Mario",
+        "Donkey Kong"
+      ],
+      "ids": [
+        15001,
+        15002,
+        15003,
+        15004,
+        15005,
+        15006,
+        15061,
+        15062
+      ]
+    },
+    {
+      "title": "Nintendo — amiibo character lineup",
+      "url": "https://www.nintendo.com/en-ca/amiibo/line-up/",
+      "franchises": [
+        "The Legend of Zelda",
+        "Kirby"
+      ],
+      "ids": [
+        15011,
+        15012,
+        15013,
+        15014,
+        15063
+      ]
+    },
+    {
+      "title": "SEGA — Sonic Superstars characters",
+      "url": "https://asia.sega.com/SonicSuperStars/en/character/",
+      "franchises": [
+        "Sonic",
+        "Sonic the Hedgehog"
+      ],
+      "ids": [
+        15007,
+        15008,
+        15009,
+        15010,
+        15065
+      ]
+    },
+    {
+      "title": "PlayStation — Sonic characters",
+      "url": "https://www.playstation.com/en-ca/explore-sonic-the-hedgehog/",
+      "franchises": [
+        "Sonic",
+        "Sonic the Hedgehog"
+      ],
+      "ids": [
+        15007,
+        15008,
+        15009,
+        15010,
+        15065
+      ]
+    },
+    {
+      "title": "Pokémon — Official Pokédex",
+      "url": "https://www.pokemon.com/pokedex/",
+      "franchises": [
+        "Pokémon"
+      ],
+      "ids": [
+        15015,
+        15016,
+        15064
+      ]
+    },
+    {
+      "title": "PlayStation — Games and franchises",
+      "url": "https://www.playstation.com/en-us/games/",
+      "franchises": [
+        "God of War",
+        "The Last of Us",
+        "Uncharted",
+        "Horizon",
+        "Crash Bandicoot",
+        "Spyro",
+        "Gran Turismo"
+      ],
+      "ids": [
+        15018,
+        15019,
+        15021,
+        15022,
+        15023,
+        15024,
+        15025,
+        15026,
+        15070,
+        15071,
+        15072,
+        15090,
+        15092,
+        15093
+      ]
+    },
+    {
+      "title": "Rockstar Games — Games",
+      "url": "https://www.rockstargames.com/games",
+      "franchises": [
+        "Grand Theft Auto",
+        "Grand Theft Auto: San Andreas",
+        "Grand Theft Auto: Vice City",
+        "Grand Theft Auto IV",
+        "Grand Theft Auto V",
+        "Red Dead Redemption"
+      ],
+      "ids": [
+        15030,
+        15031,
+        15032,
+        15033,
+        15034,
+        15035,
+        15036,
+        15037,
+        15067,
+        15068,
+        15069
+      ]
+    },
+    {
+      "title": "Capcom — Resident Evil portal",
+      "url": "https://game.capcom.com/residentevil/en/",
+      "franchises": [
+        "Resident Evil"
+      ],
+      "ids": [
+        15043,
+        15044,
+        15045,
+        15073
+      ]
+    },
+    {
+      "title": "Capcom — Street Fighter IV character manual",
+      "url": "https://static.capcom.com/manuals/sfiv/SFIV_360_DMNL_EN.pdf",
+      "franchises": [
+        "Street Fighter"
+      ],
+      "ids": [
+        15051,
+        15052,
+        15053,
+        15088
+      ]
+    },
+    {
+      "title": "Bandai Namco — Tekken",
+      "url": "https://tekken.com/",
+      "franchises": [
+        "Tekken"
+      ],
+      "ids": [
+        15054,
+        15055,
+        15056,
+        15086
+      ]
+    },
+    {
+      "title": "Bandai Namco — PAC-MAN",
+      "url": "https://www.bandainamcoent.com/games/pac-man-museum-plus",
+      "franchises": [
+        "Pac-Man"
+      ],
+      "ids": [
+        15017,
+        15095
+      ]
+    },
+    {
+      "title": "Warner Bros. — Mortal Kombat roster",
+      "url": "https://www.mortalkombat.com/en-us/roster",
+      "franchises": [
+        "Mortal Kombat"
+      ],
+      "ids": [
+        15047,
+        15048,
+        15049,
+        15050,
+        15087
+      ]
+    },
+    {
+      "title": "Square Enix — Final Fantasy VII",
+      "url": "https://ffvii.square-enix-games.com/",
+      "franchises": [
+        "Final Fantasy"
+      ],
+      "ids": [
+        15057,
+        15058,
+        15100
+      ]
+    },
+    {
+      "title": "Tomb Raider — Official website",
+      "url": "https://www.tombraider.com/",
+      "franchises": [
+        "Tomb Raider"
+      ],
+      "ids": [
+        15020
+      ]
+    },
+    {
+      "title": "Ubisoft — Assassin’s Creed",
+      "url": "https://www.ubisoft.com/en-us/game/assassins-creed",
+      "franchises": [
+        "Assassin’s Creed"
+      ],
+      "ids": [
+        15038,
+        15039,
+        15075
+      ]
+    },
+    {
+      "title": "CD Projekt Red — The Witcher",
+      "url": "https://www.thewitcher.com/",
+      "franchises": [
+        "The Witcher"
+      ],
+      "ids": [
+        15040,
+        15041,
+        15076
+      ]
+    },
+    {
+      "title": "Bethesda — Games",
+      "url": "https://bethesda.net/en/games",
+      "franchises": [
+        "The Elder Scrolls",
+        "DOOM"
+      ],
+      "ids": [
+        15042,
+        15077
+      ]
+    },
+    {
+      "title": "Halo — Official website",
+      "url": "https://www.halowaypoint.com/",
+      "franchises": [
+        "Halo"
+      ],
+      "ids": [
+        15027,
+        15078
+      ]
+    },
+    {
+      "title": "Minecraft — Official website",
+      "url": "https://www.minecraft.net/",
+      "franchises": [
+        "Minecraft"
+      ],
+      "ids": [
+        15028,
+        15029,
+        15066
+      ]
+    },
+    {
+      "title": "Konami — Metal Gear",
+      "url": "https://www.konami.com/mg/",
+      "franchises": [
+        "Metal Gear"
+      ],
+      "ids": [
+        15046,
+        15074
+      ]
+    },
+    {
+      "title": "PlayStation — Interview with Konami PES 2013 team",
+      "url": "https://blog.playstation.com/?p=76737",
+      "franchises": [
+        "Pro Evolution Soccer"
+      ],
+      "ids": [
+        15085
+      ]
+    },
+    {
+      "title": "Riot Games — League of Legends champions",
+      "url": "https://www.leagueoflegends.com/en-us/champions/",
+      "franchises": [
+        "League of Legends"
+      ],
+      "ids": [
+        15059,
+        15060,
+        15098
+      ]
+    },
+    {
+      "title": "Riot Games — Valorant",
+      "url": "https://playvalorant.com/",
+      "franchises": [
+        "Valorant"
+      ],
+      "ids": [
+        15099
+      ]
+    },
+    {
+      "title": "EA — Games",
+      "url": "https://www.ea.com/games",
+      "franchises": [
+        "EA SPORTS FC",
+        "The Sims",
+        "Need for Speed"
+      ],
+      "ids": [
+        15084,
+        15089,
+        15096
+      ]
+    },
+    {
+      "title": "Xbox — Forza Horizon 5",
+      "url": "https://www.xbox.com/en-US/games/forza-horizon-5",
+      "franchises": [
+        "Forza"
+      ],
+      "ids": [
+        15091
+      ]
+    },
+    {
+      "title": "Xbox — Age of Empires II",
+      "url": "https://www.ageofempires.com/games/age-of-empires-ii-definitive-edition/",
+      "franchises": [
+        "Age of Empires"
+      ],
+      "ids": [
+        15097
+      ]
+    },
+    {
+      "title": "Activision — Call of Duty",
+      "url": "https://www.callofduty.com/",
+      "franchises": [
+        "Call of Duty"
+      ],
+      "ids": [
+        15079
+      ]
+    },
+    {
+      "title": "Valve — Counter-Strike 2",
+      "url": "https://www.counter-strike.net/cs2",
+      "franchises": [
+        "Counter-Strike"
+      ],
+      "ids": [
+        15080
+      ]
+    },
+    {
+      "title": "Epic Games — Fortnite",
+      "url": "https://www.fortnite.com/",
+      "franchises": [
+        "Fortnite"
+      ],
+      "ids": [
+        15081
+      ]
+    },
+    {
+      "title": "PUBG — Official website",
+      "url": "https://pubg.com/",
+      "franchises": [
+        "PUBG"
+      ],
+      "ids": [
+        15082
+      ]
+    },
+    {
+      "title": "Psyonix — Rocket League",
+      "url": "https://www.rocketleague.com/",
+      "franchises": [
+        "Rocket League"
+      ],
+      "ids": [
+        15083
+      ]
+    },
+    {
+      "title": "The Tetris Company — About Tetris",
+      "url": "https://tetris.com/about-us",
+      "franchises": [
+        "Tetris"
+      ],
+      "ids": [
+        15094
+      ]
+    }
+  ],
+  "flags": {
+    "name": "flag-icons",
+    "author": "Panayiotis Lipiridis",
+    "version": "v7.3.2",
+    "source": "https://github.com/lipis/flag-icons",
+    "license": "MIT",
+    "licenseUrl": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/LICENSE",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2013 Panayiotis Lipiridis\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "description": "Yerel bayrak SVG dosyaları sabit sürümden alınmış, özgün kart çerçevesi içine yerleştirilmiştir. Kaynak ve tam MIT bildirimi her SVG içinde korunur.",
+    "files": [
+      {
+        "iso2": "TR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/tr.svg",
+        "local": "assets/images/countries/tr.svg"
+      },
+      {
+        "iso2": "US",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/us.svg",
+        "local": "assets/images/countries/us.svg"
+      },
+      {
+        "iso2": "DE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/de.svg",
+        "local": "assets/images/countries/de.svg"
+      },
+      {
+        "iso2": "FR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/fr.svg",
+        "local": "assets/images/countries/fr.svg"
+      },
+      {
+        "iso2": "IT",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/it.svg",
+        "local": "assets/images/countries/it.svg"
+      },
+      {
+        "iso2": "ES",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/es.svg",
+        "local": "assets/images/countries/es.svg"
+      },
+      {
+        "iso2": "GB",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gb.svg",
+        "local": "assets/images/countries/gb.svg"
+      },
+      {
+        "iso2": "PT",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pt.svg",
+        "local": "assets/images/countries/pt.svg"
+      },
+      {
+        "iso2": "NL",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/nl.svg",
+        "local": "assets/images/countries/nl.svg"
+      },
+      {
+        "iso2": "BE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/be.svg",
+        "local": "assets/images/countries/be.svg"
+      },
+      {
+        "iso2": "CH",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ch.svg",
+        "local": "assets/images/countries/ch.svg"
+      },
+      {
+        "iso2": "AT",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/at.svg",
+        "local": "assets/images/countries/at.svg"
+      },
+      {
+        "iso2": "SE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/se.svg",
+        "local": "assets/images/countries/se.svg"
+      },
+      {
+        "iso2": "NO",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/no.svg",
+        "local": "assets/images/countries/no.svg"
+      },
+      {
+        "iso2": "DK",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/dk.svg",
+        "local": "assets/images/countries/dk.svg"
+      },
+      {
+        "iso2": "FI",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/fi.svg",
+        "local": "assets/images/countries/fi.svg"
+      },
+      {
+        "iso2": "IS",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/is.svg",
+        "local": "assets/images/countries/is.svg"
+      },
+      {
+        "iso2": "IE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ie.svg",
+        "local": "assets/images/countries/ie.svg"
+      },
+      {
+        "iso2": "PL",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pl.svg",
+        "local": "assets/images/countries/pl.svg"
+      },
+      {
+        "iso2": "CZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cz.svg",
+        "local": "assets/images/countries/cz.svg"
+      },
+      {
+        "iso2": "HU",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/hu.svg",
+        "local": "assets/images/countries/hu.svg"
+      },
+      {
+        "iso2": "GR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gr.svg",
+        "local": "assets/images/countries/gr.svg"
+      },
+      {
+        "iso2": "BG",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/bg.svg",
+        "local": "assets/images/countries/bg.svg"
+      },
+      {
+        "iso2": "RO",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ro.svg",
+        "local": "assets/images/countries/ro.svg"
+      },
+      {
+        "iso2": "RS",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/rs.svg",
+        "local": "assets/images/countries/rs.svg"
+      },
+      {
+        "iso2": "HR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/hr.svg",
+        "local": "assets/images/countries/hr.svg"
+      },
+      {
+        "iso2": "BA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ba.svg",
+        "local": "assets/images/countries/ba.svg"
+      },
+      {
+        "iso2": "AL",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/al.svg",
+        "local": "assets/images/countries/al.svg"
+      },
+      {
+        "iso2": "UA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ua.svg",
+        "local": "assets/images/countries/ua.svg"
+      },
+      {
+        "iso2": "RU",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ru.svg",
+        "local": "assets/images/countries/ru.svg"
+      },
+      {
+        "iso2": "JP",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/jp.svg",
+        "local": "assets/images/countries/jp.svg"
+      },
+      {
+        "iso2": "CN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cn.svg",
+        "local": "assets/images/countries/cn.svg"
+      },
+      {
+        "iso2": "KR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/kr.svg",
+        "local": "assets/images/countries/kr.svg"
+      },
+      {
+        "iso2": "KP",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/kp.svg",
+        "local": "assets/images/countries/kp.svg"
+      },
+      {
+        "iso2": "IN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/in.svg",
+        "local": "assets/images/countries/in.svg"
+      },
+      {
+        "iso2": "PK",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pk.svg",
+        "local": "assets/images/countries/pk.svg"
+      },
+      {
+        "iso2": "BD",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/bd.svg",
+        "local": "assets/images/countries/bd.svg"
+      },
+      {
+        "iso2": "LK",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/lk.svg",
+        "local": "assets/images/countries/lk.svg"
+      },
+      {
+        "iso2": "NP",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/np.svg",
+        "local": "assets/images/countries/np.svg"
+      },
+      {
+        "iso2": "TH",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/th.svg",
+        "local": "assets/images/countries/th.svg"
+      },
+      {
+        "iso2": "VN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/vn.svg",
+        "local": "assets/images/countries/vn.svg"
+      },
+      {
+        "iso2": "KH",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/kh.svg",
+        "local": "assets/images/countries/kh.svg"
+      },
+      {
+        "iso2": "ID",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/id.svg",
+        "local": "assets/images/countries/id.svg"
+      },
+      {
+        "iso2": "MY",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/my.svg",
+        "local": "assets/images/countries/my.svg"
+      },
+      {
+        "iso2": "SG",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/sg.svg",
+        "local": "assets/images/countries/sg.svg"
+      },
+      {
+        "iso2": "PH",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ph.svg",
+        "local": "assets/images/countries/ph.svg"
+      },
+      {
+        "iso2": "MN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/mn.svg",
+        "local": "assets/images/countries/mn.svg"
+      },
+      {
+        "iso2": "KZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/kz.svg",
+        "local": "assets/images/countries/kz.svg"
+      },
+      {
+        "iso2": "UZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/uz.svg",
+        "local": "assets/images/countries/uz.svg"
+      },
+      {
+        "iso2": "AZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/az.svg",
+        "local": "assets/images/countries/az.svg"
+      },
+      {
+        "iso2": "GE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ge.svg",
+        "local": "assets/images/countries/ge.svg"
+      },
+      {
+        "iso2": "AM",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/am.svg",
+        "local": "assets/images/countries/am.svg"
+      },
+      {
+        "iso2": "SA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/sa.svg",
+        "local": "assets/images/countries/sa.svg"
+      },
+      {
+        "iso2": "AE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ae.svg",
+        "local": "assets/images/countries/ae.svg"
+      },
+      {
+        "iso2": "QA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/qa.svg",
+        "local": "assets/images/countries/qa.svg"
+      },
+      {
+        "iso2": "IR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ir.svg",
+        "local": "assets/images/countries/ir.svg"
+      },
+      {
+        "iso2": "IQ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/iq.svg",
+        "local": "assets/images/countries/iq.svg"
+      },
+      {
+        "iso2": "JO",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/jo.svg",
+        "local": "assets/images/countries/jo.svg"
+      },
+      {
+        "iso2": "IL",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/il.svg",
+        "local": "assets/images/countries/il.svg"
+      },
+      {
+        "iso2": "EG",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/eg.svg",
+        "local": "assets/images/countries/eg.svg"
+      },
+      {
+        "iso2": "MA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ma.svg",
+        "local": "assets/images/countries/ma.svg"
+      },
+      {
+        "iso2": "DZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/dz.svg",
+        "local": "assets/images/countries/dz.svg"
+      },
+      {
+        "iso2": "TN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/tn.svg",
+        "local": "assets/images/countries/tn.svg"
+      },
+      {
+        "iso2": "ZA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/za.svg",
+        "local": "assets/images/countries/za.svg"
+      },
+      {
+        "iso2": "NG",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ng.svg",
+        "local": "assets/images/countries/ng.svg"
+      },
+      {
+        "iso2": "KE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ke.svg",
+        "local": "assets/images/countries/ke.svg"
+      },
+      {
+        "iso2": "ET",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/et.svg",
+        "local": "assets/images/countries/et.svg"
+      },
+      {
+        "iso2": "GH",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gh.svg",
+        "local": "assets/images/countries/gh.svg"
+      },
+      {
+        "iso2": "SN",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/sn.svg",
+        "local": "assets/images/countries/sn.svg"
+      },
+      {
+        "iso2": "CA",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ca.svg",
+        "local": "assets/images/countries/ca.svg"
+      },
+      {
+        "iso2": "MX",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/mx.svg",
+        "local": "assets/images/countries/mx.svg"
+      },
+      {
+        "iso2": "BR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/br.svg",
+        "local": "assets/images/countries/br.svg"
+      },
+      {
+        "iso2": "AR",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ar.svg",
+        "local": "assets/images/countries/ar.svg"
+      },
+      {
+        "iso2": "CL",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cl.svg",
+        "local": "assets/images/countries/cl.svg"
+      },
+      {
+        "iso2": "CO",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/co.svg",
+        "local": "assets/images/countries/co.svg"
+      },
+      {
+        "iso2": "PE",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pe.svg",
+        "local": "assets/images/countries/pe.svg"
+      },
+      {
+        "iso2": "CU",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cu.svg",
+        "local": "assets/images/countries/cu.svg"
+      },
+      {
+        "iso2": "UY",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/uy.svg",
+        "local": "assets/images/countries/uy.svg"
+      },
+      {
+        "iso2": "AU",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/au.svg",
+        "local": "assets/images/countries/au.svg"
+      },
+      {
+        "iso2": "NZ",
+        "source": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/nz.svg",
+        "local": "assets/images/countries/nz.svg"
+      }
+    ]
+  }
+}

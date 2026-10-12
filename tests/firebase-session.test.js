@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import { connectFirebase } from '../js/firebase-room.js';
-import { RoomError } from '../js/room-state.js';
+import { changeRoom, RoomError } from '../js/room-state.js';
 
 globalThis.crypto ||= webcrypto;
 
@@ -31,6 +31,35 @@ function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = fal
   let nextDisconnectGate = null;
   let nextTransactionRetryGate = null;
   let nextRoomValueGate = null;
+
+  // RTDB listeners retain descendants too. Model a child transaction merging
+  // into its stored room rather than storing a second unrelated map entry.
+  function readRecord(path) {
+    if (records.has(path)) return records.get(path);
+    const parts = path.split('/');
+    for (let end = parts.length - 1; end > 0; end -= 1) {
+      const ancestor = parts.slice(0, end).join('/');
+      if (!records.has(ancestor)) continue;
+      return parts.slice(end).reduce((value, key) => value?.[key], records.get(ancestor));
+    }
+    return undefined;
+  }
+  function writeRecord(path, value) {
+    const parts = path.split('/');
+    for (let end = parts.length - 1; end > 0; end -= 1) {
+      const ancestor = parts.slice(0, end).join('/');
+      if (!records.has(ancestor)) continue;
+      const updated = clone(records.get(ancestor));
+      let parent = updated;
+      for (const key of parts.slice(end, -1)) parent = parent[key] ||= {};
+      if (value === null) delete parent[parts.at(-1)];
+      else parent[parts.at(-1)] = clone(value);
+      records.set(ancestor, updated);
+      return;
+    }
+    if (value === null) records.delete(path);
+    else records.set(path, clone(value));
+  }
 
   function emitAuth(user) {
     auth.currentUser = user;
@@ -78,7 +107,7 @@ function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = fal
     goOnline(target) { assert.equal(target, db); events.push({ type: 'go-online' }); emitConnection(true); },
     goOffline(target) { assert.equal(target, db); events.push({ type: 'go-offline' }); emitConnection(false); },
     // Like the SDK, a completed get() does not retain an unwatched room cache.
-    async get(reference) { return snapshot(records.get(reference.path)); },
+    async get(reference) { return snapshot(readRecord(reference.path)); },
     onValue(reference, callback, onError) {
       const listener = { path: reference.path, callback, ready: false }; dbListeners.add(listener);
       const gate = reference.path.startsWith('rooms/') ? nextRoomValueGate : null;
@@ -88,25 +117,24 @@ function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = fal
         if (!dbListeners.has(listener)) return;
         if (readErrors.has(reference.path)) { onError?.(readErrors.get(reference.path)); return; }
         listener.ready = true;
-        callback(snapshot(reference.path === '.info/connected' ? connected : records.get(reference.path)));
+        callback(snapshot(reference.path === '.info/connected' ? connected : readRecord(reference.path)));
       });
       return () => dbListeners.delete(listener);
     },
     async runTransaction(reference, reducer, options) {
       assert.equal(options?.applyLocally, false);
       const retained = !coldRoomCache || !reference.path.startsWith('rooms/') ||
-        [...dbListeners].some(listener => listener.path === reference.path && listener.ready);
-      let proposed = reducer(retained ? clone(records.get(reference.path)) : null);
+        [...dbListeners].some(listener => (listener.path === reference.path || reference.path.startsWith(listener.path + '/')) && listener.ready);
+      let proposed = reducer(retained ? clone(readRecord(reference.path)) : null);
       const retryGate = nextTransactionRetryGate; nextTransactionRetryGate = null;
       if (retryGate) {
         await retryGate.promise;
-        proposed = reducer(clone(records.get(reference.path)));
+        proposed = reducer(clone(readRecord(reference.path)));
       }
       events.push({ type: 'transaction', path: reference.path, value: clone(proposed), aborted: proposed === undefined });
-      if (proposed === undefined) return { committed: false, snapshot: snapshot(records.get(reference.path)) };
-      if (proposed === null) records.delete(reference.path);
-      else records.set(reference.path, clone(proposed));
-      return { committed: true, snapshot: snapshot(records.get(reference.path)) };
+      if (proposed === undefined) return { committed: false, snapshot: snapshot(readRecord(reference.path)) };
+      writeRecord(reference.path, proposed);
+      return { committed: true, snapshot: snapshot(readRecord(reference.path)) };
     },
     onDisconnect(reference) {
       return {
@@ -322,6 +350,79 @@ test('presence is published only after disconnect cleanup registration, includin
   assert.deepEqual(events.map(event => event.type),
     ['disconnect-register-done', 'transaction', 'disconnect-register-done', 'transaction']);
   assert.deepEqual(connections, [true, false, true]); assert.deepEqual(errors, []);
+});
+
+test('optional spectator joins touch only the empty seat before, during, and after a round', async t => {
+  for (const mode of ['blind-ranking', 'bracket']) for (const status of ['waiting', 'playing', 'finished']) {
+    const fixture = sdkFixture({ uid: 'guest' }, { coldRoomCache: true });
+    const { service } = await openFixture(t, fixture);
+    const path = 'rooms/957722';
+    let room = { code: '957722', ownerUid: 'owner', mode, status: 'waiting', round: 1,
+      revision: 0, starterSeat: 'p1', players: { p1: { uid: 'owner', name: 'Ado' } } };
+    if (status !== 'waiting') room = changeRoom(room, 'owner', 0, 'start', {
+      deck: Array.from({ length: mode === 'blind-ranking' ? 10 : 16 }, (_, i) => i + 1),
+    });
+    while (status === 'finished' && room.status === 'playing') room = changeRoom(room, 'owner', room.revision,
+      mode === 'blind-ranking' ? 'rank' : 'choose', mode === 'blind-ranking' ? { slot: room.game.deckIndex + 1 } : { cardId: room.game.currentPair.left });
+    const saved = structuredClone(room);
+    fixture.records.set(path, room);
+    const joined = await service.joinRoom('957722', 'Can');
+    assert.deepEqual(joined, { ...saved, players: { ...saved.players, p2: { uid: 'guest', name: 'Can' } } });
+    const writes = fixture.events.filter(event => event.type === 'transaction');
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].path, `${path}/players/p2`);
+    assert.equal(fixture.subscriberCount(path), 0);
+    assert.deepEqual(await service.joinRoom('957722', 'Changed'), joined, 'Refreshing must retain the saved spectator name.');
+  }
+});
+
+test('spectator seat retries retain concurrent host progress and refuse a competing spectator', async t => {
+  const fixture = sdkFixture({ uid: 'guest' }, { coldRoomCache: true });
+  const { service } = await openFixture(t, fixture);
+  const path = 'rooms/957722';
+  const waiting = { code: '957722', ownerUid: 'owner', mode: 'blind-ranking', status: 'waiting',
+    revision: 0, round: 1, starterSeat: 'p1', players: { p1: { uid: 'owner', name: 'Ado' } } };
+  fixture.records.set(path, waiting);
+  const gate = fixture.retryNextTransaction();
+  const joining = service.joinRoom('957722', 'Can'); await flush();
+  const started = changeRoom(waiting, 'owner', 0, 'start', { deck: Array.from({ length: 10 }, (_, i) => i + 1) });
+  const progressed = changeRoom(started, 'owner', 1, 'rank', { slot: 4 });
+  fixture.records.set(path, progressed);
+  gate.release();
+  const joined = await joining;
+  assert.deepEqual(joined.game, progressed.game);
+  assert.equal(joined.revision, progressed.revision);
+  assert.equal(joined.status, 'playing');
+  assert.deepEqual(joined.players.p2, { uid: 'guest', name: 'Can' });
+
+  fixture.records.set(path, progressed);
+  const competitorGate = fixture.retryNextTransaction();
+  const competingJoin = service.joinRoom('957722', 'Can');
+  const refused = assert.rejects(competingJoin, /Bu oda dolu veya oyun başladı/); await flush();
+  const winner = { ...progressed, players: { ...progressed.players, p2: { uid: 'other', name: 'First viewer' } } };
+  fixture.records.set(path, winner); competitorGate.release(); await refused;
+  assert.deepEqual(fixture.records.get(path), winner);
+  assert.equal(fixture.subscriberCount(path), 0);
+
+  fixture.records.set(path, progressed);
+  const sameUidGate = fixture.retryNextTransaction();
+  const sameUidJoin = service.joinRoom('957722', 'New name'); await flush();
+  fixture.records.set(path, joined); sameUidGate.release();
+  assert.deepEqual(await sameUidJoin, joined);
+  assert.equal(fixture.events.filter(event => event.type === 'transaction').at(-1).aborted, true,
+    'A same-UID seat race must abort without attempting to overwrite the immutable spectator record.');
+  assert.equal(fixture.subscriberCount(path), 0);
+});
+
+test('auction and team draft still refuse a new seat after starting', async t => {
+  for (const mode of ['auction', 'team-draft']) {
+    const fixture = sdkFixture({ uid: 'guest' });
+    const { service } = await openFixture(t, fixture);
+    const room = { code: '957722', status: 'playing', mode, revision: 3, players: { p1: { uid: 'owner', name: 'Ado' } } };
+    fixture.records.set('rooms/957722', room);
+    await assert.rejects(service.joinRoom('957722', 'Can'), /Bu oda dolu veya oyun başladı/);
+    assert.deepEqual(fixture.records.get('rooms/957722'), room);
+  }
 });
 
 test('two presence IDs remain isolated when one leaves and the other reconnects', async t => {

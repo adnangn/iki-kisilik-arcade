@@ -1,0 +1,2177 @@
+{
+  "turkiye-sehirleri": [
+    {
+      "id": 14001,
+      "isim": "Adana",
+      "gorsel": "assets/images/turkiye-cities/adana.svg",
+      "etiket": "Akdeniz",
+      "plaka": "01",
+      "tip": "il",
+      "motif": "bridge"
+    },
+    {
+      "id": 14002,
+      "isim": "Adıyaman",
+      "gorsel": "assets/images/turkiye-cities/adiyaman.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "02",
+      "tip": "il",
+      "motif": "nemrut"
+    },
+    {
+      "id": 14003,
+      "isim": "Afyonkarahisar",
+      "gorsel": "assets/images/turkiye-cities/afyonkarahisar.svg",
+      "etiket": "Ege",
+      "plaka": "03",
+      "tip": "il",
+      "motif": "hill-castle"
+    },
+    {
+      "id": 14004,
+      "isim": "Ağrı",
+      "gorsel": "assets/images/turkiye-cities/agri.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "04",
+      "tip": "il",
+      "motif": "snow"
+    },
+    {
+      "id": 14005,
+      "isim": "Amasya",
+      "gorsel": "assets/images/turkiye-cities/amasya.svg",
+      "etiket": "Karadeniz",
+      "plaka": "05",
+      "tip": "il",
+      "motif": "river-houses"
+    },
+    {
+      "id": 14006,
+      "isim": "Ankara",
+      "gorsel": "assets/images/turkiye-cities/ankara.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "06",
+      "tip": "il",
+      "motif": "monument"
+    },
+    {
+      "id": 14007,
+      "isim": "Antalya",
+      "gorsel": "assets/images/turkiye-cities/antalya.svg",
+      "etiket": "Akdeniz",
+      "plaka": "07",
+      "tip": "il",
+      "motif": "waterfall-palm"
+    },
+    {
+      "id": 14008,
+      "isim": "Artvin",
+      "gorsel": "assets/images/turkiye-cities/artvin.svg",
+      "etiket": "Karadeniz",
+      "plaka": "08",
+      "tip": "il",
+      "motif": "forest-mountain"
+    },
+    {
+      "id": 14009,
+      "isim": "Aydın",
+      "gorsel": "assets/images/turkiye-cities/aydin.svg",
+      "etiket": "Ege",
+      "plaka": "09",
+      "tip": "il",
+      "motif": "columns-olive"
+    },
+    {
+      "id": 14010,
+      "isim": "Balıkesir",
+      "gorsel": "assets/images/turkiye-cities/balikesir.svg",
+      "etiket": "Marmara",
+      "plaka": "10",
+      "tip": "il",
+      "motif": "olive-sea"
+    },
+    {
+      "id": 14011,
+      "isim": "Bilecik",
+      "gorsel": "assets/images/turkiye-cities/bilecik.svg",
+      "etiket": "Marmara",
+      "plaka": "11",
+      "tip": "il",
+      "motif": "clock"
+    },
+    {
+      "id": 14012,
+      "isim": "Bingöl",
+      "gorsel": "assets/images/turkiye-cities/bingol.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "12",
+      "tip": "il",
+      "motif": "mountain-lake"
+    },
+    {
+      "id": 14013,
+      "isim": "Bitlis",
+      "gorsel": "assets/images/turkiye-cities/bitlis.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "13",
+      "tip": "il",
+      "motif": "castle"
+    },
+    {
+      "id": 14014,
+      "isim": "Bolu",
+      "gorsel": "assets/images/turkiye-cities/bolu.svg",
+      "etiket": "Karadeniz",
+      "plaka": "14",
+      "tip": "il",
+      "motif": "forest-lake"
+    },
+    {
+      "id": 14015,
+      "isim": "Burdur",
+      "gorsel": "assets/images/turkiye-cities/burdur.svg",
+      "etiket": "Akdeniz",
+      "plaka": "15",
+      "tip": "il",
+      "motif": "white-lake"
+    },
+    {
+      "id": 14016,
+      "isim": "Bursa",
+      "gorsel": "assets/images/turkiye-cities/bursa.svg",
+      "etiket": "Marmara",
+      "plaka": "16",
+      "tip": "il",
+      "motif": "green-mosque"
+    },
+    {
+      "id": 14017,
+      "isim": "Çanakkale",
+      "gorsel": "assets/images/turkiye-cities/canakkale.svg",
+      "etiket": "Marmara",
+      "plaka": "17",
+      "tip": "il",
+      "motif": "trojan-horse"
+    },
+    {
+      "id": 14018,
+      "isim": "Çankırı",
+      "gorsel": "assets/images/turkiye-cities/cankiri.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "18",
+      "tip": "il",
+      "motif": "salt-cave"
+    },
+    {
+      "id": 14019,
+      "isim": "Çorum",
+      "gorsel": "assets/images/turkiye-cities/corum.svg",
+      "etiket": "Karadeniz",
+      "plaka": "19",
+      "tip": "il",
+      "motif": "hittite"
+    },
+    {
+      "id": 14020,
+      "isim": "Denizli",
+      "gorsel": "assets/images/turkiye-cities/denizli.svg",
+      "etiket": "Ege",
+      "plaka": "20",
+      "tip": "il",
+      "motif": "terraces"
+    },
+    {
+      "id": 14021,
+      "isim": "Diyarbakır",
+      "gorsel": "assets/images/turkiye-cities/diyarbakir.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "21",
+      "tip": "il",
+      "motif": "walls"
+    },
+    {
+      "id": 14022,
+      "isim": "Edirne",
+      "gorsel": "assets/images/turkiye-cities/edirne.svg",
+      "etiket": "Marmara",
+      "plaka": "22",
+      "tip": "il",
+      "motif": "four-minarets"
+    },
+    {
+      "id": 14023,
+      "isim": "Elazığ",
+      "gorsel": "assets/images/turkiye-cities/elazig.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "23",
+      "tip": "il",
+      "motif": "hill-castle"
+    },
+    {
+      "id": 14024,
+      "isim": "Erzincan",
+      "gorsel": "assets/images/turkiye-cities/erzincan.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "24",
+      "tip": "il",
+      "motif": "waterfall-mountain"
+    },
+    {
+      "id": 14025,
+      "isim": "Erzurum",
+      "gorsel": "assets/images/turkiye-cities/erzurum.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "25",
+      "tip": "il",
+      "motif": "twin-minarets"
+    },
+    {
+      "id": 14026,
+      "isim": "Eskişehir",
+      "gorsel": "assets/images/turkiye-cities/eskisehir.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "26",
+      "tip": "il",
+      "motif": "river-houses"
+    },
+    {
+      "id": 14027,
+      "isim": "Gaziantep",
+      "gorsel": "assets/images/turkiye-cities/gaziantep.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "27",
+      "tip": "il",
+      "motif": "mosaic"
+    },
+    {
+      "id": 14028,
+      "isim": "Giresun",
+      "gorsel": "assets/images/turkiye-cities/giresun.svg",
+      "etiket": "Karadeniz",
+      "plaka": "28",
+      "tip": "il",
+      "motif": "island-nuts"
+    },
+    {
+      "id": 14029,
+      "isim": "Gümüşhane",
+      "gorsel": "assets/images/turkiye-cities/gumushane.svg",
+      "etiket": "Karadeniz",
+      "plaka": "29",
+      "tip": "il",
+      "motif": "valley-bridge"
+    },
+    {
+      "id": 14030,
+      "isim": "Hakkari",
+      "gorsel": "assets/images/turkiye-cities/hakkari.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "30",
+      "tip": "il",
+      "motif": "snow"
+    },
+    {
+      "id": 14031,
+      "isim": "Hatay",
+      "gorsel": "assets/images/turkiye-cities/hatay.svg",
+      "etiket": "Akdeniz",
+      "plaka": "31",
+      "tip": "il",
+      "motif": "oldtown-laurel"
+    },
+    {
+      "id": 14032,
+      "isim": "Isparta",
+      "gorsel": "assets/images/turkiye-cities/isparta.svg",
+      "etiket": "Akdeniz",
+      "plaka": "32",
+      "tip": "il",
+      "motif": "roses"
+    },
+    {
+      "id": 14033,
+      "isim": "Mersin",
+      "gorsel": "assets/images/turkiye-cities/mersin.svg",
+      "etiket": "Akdeniz",
+      "plaka": "33",
+      "tip": "il",
+      "motif": "sea-castle"
+    },
+    {
+      "id": 14034,
+      "isim": "İstanbul",
+      "gorsel": "assets/images/turkiye-cities/istanbul.svg",
+      "etiket": "Marmara",
+      "plaka": "34",
+      "tip": "il",
+      "motif": "maiden-tower"
+    },
+    {
+      "id": 14035,
+      "isim": "İzmir",
+      "gorsel": "assets/images/turkiye-cities/izmir.svg",
+      "etiket": "Ege",
+      "plaka": "35",
+      "tip": "il",
+      "motif": "clock-sea"
+    },
+    {
+      "id": 14036,
+      "isim": "Kars",
+      "gorsel": "assets/images/turkiye-cities/kars.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "36",
+      "tip": "il",
+      "motif": "ruins"
+    },
+    {
+      "id": 14037,
+      "isim": "Kastamonu",
+      "gorsel": "assets/images/turkiye-cities/kastamonu.svg",
+      "etiket": "Karadeniz",
+      "plaka": "37",
+      "tip": "il",
+      "motif": "house-castle"
+    },
+    {
+      "id": 14038,
+      "isim": "Kayseri",
+      "gorsel": "assets/images/turkiye-cities/kayseri.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "38",
+      "tip": "il",
+      "motif": "snow"
+    },
+    {
+      "id": 14039,
+      "isim": "Kırklareli",
+      "gorsel": "assets/images/turkiye-cities/kirklareli.svg",
+      "etiket": "Marmara",
+      "plaka": "39",
+      "tip": "il",
+      "motif": "forest"
+    },
+    {
+      "id": 14040,
+      "isim": "Kırşehir",
+      "gorsel": "assets/images/turkiye-cities/kirsehir.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "40",
+      "tip": "il",
+      "motif": "baglama"
+    },
+    {
+      "id": 14041,
+      "isim": "Kocaeli",
+      "gorsel": "assets/images/turkiye-cities/kocaeli.svg",
+      "etiket": "Marmara",
+      "plaka": "41",
+      "tip": "il",
+      "motif": "bay-industry"
+    },
+    {
+      "id": 14042,
+      "isim": "Konya",
+      "gorsel": "assets/images/turkiye-cities/konya.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "42",
+      "tip": "il",
+      "motif": "green-tower"
+    },
+    {
+      "id": 14043,
+      "isim": "Kütahya",
+      "gorsel": "assets/images/turkiye-cities/kutahya.svg",
+      "etiket": "Ege",
+      "plaka": "43",
+      "tip": "il",
+      "motif": "tile"
+    },
+    {
+      "id": 14044,
+      "isim": "Malatya",
+      "gorsel": "assets/images/turkiye-cities/malatya.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "44",
+      "tip": "il",
+      "motif": "apricots"
+    },
+    {
+      "id": 14045,
+      "isim": "Manisa",
+      "gorsel": "assets/images/turkiye-cities/manisa.svg",
+      "etiket": "Ege",
+      "plaka": "45",
+      "tip": "il",
+      "motif": "mountain-tulips"
+    },
+    {
+      "id": 14046,
+      "isim": "Kahramanmaraş",
+      "gorsel": "assets/images/turkiye-cities/kahramanmaras.svg",
+      "etiket": "Akdeniz",
+      "plaka": "46",
+      "tip": "il",
+      "motif": "icecream"
+    },
+    {
+      "id": 14047,
+      "isim": "Mardin",
+      "gorsel": "assets/images/turkiye-cities/mardin.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "47",
+      "tip": "il",
+      "motif": "stone-houses"
+    },
+    {
+      "id": 14048,
+      "isim": "Muğla",
+      "gorsel": "assets/images/turkiye-cities/mugla.svg",
+      "etiket": "Ege",
+      "plaka": "48",
+      "tip": "il",
+      "motif": "beach-boat"
+    },
+    {
+      "id": 14049,
+      "isim": "Muş",
+      "gorsel": "assets/images/turkiye-cities/mus.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "49",
+      "tip": "il",
+      "motif": "mountain-tulips"
+    },
+    {
+      "id": 14050,
+      "isim": "Nevşehir",
+      "gorsel": "assets/images/turkiye-cities/nevsehir.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "50",
+      "tip": "il",
+      "motif": "chimneys"
+    },
+    {
+      "id": 14051,
+      "isim": "Niğde",
+      "gorsel": "assets/images/turkiye-cities/nigde.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "51",
+      "tip": "il",
+      "motif": "mountain-apples"
+    },
+    {
+      "id": 14052,
+      "isim": "Ordu",
+      "gorsel": "assets/images/turkiye-cities/ordu.svg",
+      "etiket": "Karadeniz",
+      "plaka": "52",
+      "tip": "il",
+      "motif": "cable-sea"
+    },
+    {
+      "id": 14053,
+      "isim": "Rize",
+      "gorsel": "assets/images/turkiye-cities/rize.svg",
+      "etiket": "Karadeniz",
+      "plaka": "53",
+      "tip": "il",
+      "motif": "tea"
+    },
+    {
+      "id": 14054,
+      "isim": "Sakarya",
+      "gorsel": "assets/images/turkiye-cities/sakarya.svg",
+      "etiket": "Marmara",
+      "plaka": "54",
+      "tip": "il",
+      "motif": "river-bridge"
+    },
+    {
+      "id": 14055,
+      "isim": "Samsun",
+      "gorsel": "assets/images/turkiye-cities/samsun.svg",
+      "etiket": "Karadeniz",
+      "plaka": "55",
+      "tip": "il",
+      "motif": "ferry"
+    },
+    {
+      "id": 14056,
+      "isim": "Siirt",
+      "gorsel": "assets/images/turkiye-cities/siirt.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "56",
+      "tip": "il",
+      "motif": "textile"
+    },
+    {
+      "id": 14057,
+      "isim": "Sinop",
+      "gorsel": "assets/images/turkiye-cities/sinop.svg",
+      "etiket": "Karadeniz",
+      "plaka": "57",
+      "tip": "il",
+      "motif": "sea-walls"
+    },
+    {
+      "id": 14058,
+      "isim": "Sivas",
+      "gorsel": "assets/images/turkiye-cities/sivas.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "58",
+      "tip": "il",
+      "motif": "twin-minarets"
+    },
+    {
+      "id": 14059,
+      "isim": "Tekirdağ",
+      "gorsel": "assets/images/turkiye-cities/tekirdag.svg",
+      "etiket": "Marmara",
+      "plaka": "59",
+      "tip": "il",
+      "motif": "vineyard-sea"
+    },
+    {
+      "id": 14060,
+      "isim": "Tokat",
+      "gorsel": "assets/images/turkiye-cities/tokat.svg",
+      "etiket": "Karadeniz",
+      "plaka": "60",
+      "tip": "il",
+      "motif": "wood-houses"
+    },
+    {
+      "id": 14061,
+      "isim": "Trabzon",
+      "gorsel": "assets/images/turkiye-cities/trabzon.svg",
+      "etiket": "Karadeniz",
+      "plaka": "61",
+      "tip": "il",
+      "motif": "cliff-monastery"
+    },
+    {
+      "id": 14062,
+      "isim": "Tunceli",
+      "gorsel": "assets/images/turkiye-cities/tunceli.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "62",
+      "tip": "il",
+      "motif": "river-goat"
+    },
+    {
+      "id": 14063,
+      "isim": "Şanlıurfa",
+      "gorsel": "assets/images/turkiye-cities/sanliurfa.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "63",
+      "tip": "il",
+      "motif": "fish-lake"
+    },
+    {
+      "id": 14064,
+      "isim": "Uşak",
+      "gorsel": "assets/images/turkiye-cities/usak.svg",
+      "etiket": "Ege",
+      "plaka": "64",
+      "tip": "il",
+      "motif": "rug"
+    },
+    {
+      "id": 14065,
+      "isim": "Van",
+      "gorsel": "assets/images/turkiye-cities/van.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "65",
+      "tip": "il",
+      "motif": "cat-lake"
+    },
+    {
+      "id": 14066,
+      "isim": "Yozgat",
+      "gorsel": "assets/images/turkiye-cities/yozgat.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "66",
+      "tip": "il",
+      "motif": "clock"
+    },
+    {
+      "id": 14067,
+      "isim": "Zonguldak",
+      "gorsel": "assets/images/turkiye-cities/zonguldak.svg",
+      "etiket": "Karadeniz",
+      "plaka": "67",
+      "tip": "il",
+      "motif": "coal-port"
+    },
+    {
+      "id": 14068,
+      "isim": "Aksaray",
+      "gorsel": "assets/images/turkiye-cities/aksaray.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "68",
+      "tip": "il",
+      "motif": "valley"
+    },
+    {
+      "id": 14069,
+      "isim": "Bayburt",
+      "gorsel": "assets/images/turkiye-cities/bayburt.svg",
+      "etiket": "Karadeniz",
+      "plaka": "69",
+      "tip": "il",
+      "motif": "castle"
+    },
+    {
+      "id": 14070,
+      "isim": "Karaman",
+      "gorsel": "assets/images/turkiye-cities/karaman.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "70",
+      "tip": "il",
+      "motif": "stone-arch"
+    },
+    {
+      "id": 14071,
+      "isim": "Kırıkkale",
+      "gorsel": "assets/images/turkiye-cities/kirikkale.svg",
+      "etiket": "İç Anadolu",
+      "plaka": "71",
+      "tip": "il",
+      "motif": "river-industry"
+    },
+    {
+      "id": 14072,
+      "isim": "Batman",
+      "gorsel": "assets/images/turkiye-cities/batman.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "72",
+      "tip": "il",
+      "motif": "cave-bridge"
+    },
+    {
+      "id": 14073,
+      "isim": "Şırnak",
+      "gorsel": "assets/images/turkiye-cities/sirnak.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "73",
+      "tip": "il",
+      "motif": "mountain"
+    },
+    {
+      "id": 14074,
+      "isim": "Bartın",
+      "gorsel": "assets/images/turkiye-cities/bartin.svg",
+      "etiket": "Karadeniz",
+      "plaka": "74",
+      "tip": "il",
+      "motif": "river-houses"
+    },
+    {
+      "id": 14075,
+      "isim": "Ardahan",
+      "gorsel": "assets/images/turkiye-cities/ardahan.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "75",
+      "tip": "il",
+      "motif": "castle"
+    },
+    {
+      "id": 14076,
+      "isim": "Iğdır",
+      "gorsel": "assets/images/turkiye-cities/igdir.svg",
+      "etiket": "Doğu Anadolu",
+      "plaka": "76",
+      "tip": "il",
+      "motif": "stork-mountain"
+    },
+    {
+      "id": 14077,
+      "isim": "Yalova",
+      "gorsel": "assets/images/turkiye-cities/yalova.svg",
+      "etiket": "Marmara",
+      "plaka": "77",
+      "tip": "il",
+      "motif": "thermal"
+    },
+    {
+      "id": 14078,
+      "isim": "Karabük",
+      "gorsel": "assets/images/turkiye-cities/karabuk.svg",
+      "etiket": "Karadeniz",
+      "plaka": "78",
+      "tip": "il",
+      "motif": "wood-houses"
+    },
+    {
+      "id": 14079,
+      "isim": "Kilis",
+      "gorsel": "assets/images/turkiye-cities/kilis.svg",
+      "etiket": "Güneydoğu Anadolu",
+      "plaka": "79",
+      "tip": "il",
+      "motif": "olive"
+    },
+    {
+      "id": 14080,
+      "isim": "Osmaniye",
+      "gorsel": "assets/images/turkiye-cities/osmaniye.svg",
+      "etiket": "Akdeniz",
+      "plaka": "80",
+      "tip": "il",
+      "motif": "hill-castle"
+    },
+    {
+      "id": 14081,
+      "isim": "Düzce",
+      "gorsel": "assets/images/turkiye-cities/duzce.svg",
+      "etiket": "Karadeniz",
+      "plaka": "81",
+      "tip": "il",
+      "motif": "waterfall-forest"
+    }
+  ],
+  "oyun-evreni": [
+    {
+      "id": 15001,
+      "isim": "Mario",
+      "gorsel": "assets/images/game-world/character-mario.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15002,
+      "isim": "Luigi",
+      "gorsel": "assets/images/game-world/character-luigi.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15003,
+      "isim": "Princess Peach",
+      "gorsel": "assets/images/game-world/character-princess-peach.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15004,
+      "isim": "Bowser",
+      "gorsel": "assets/images/game-world/character-bowser.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15005,
+      "isim": "Yoshi",
+      "gorsel": "assets/images/game-world/character-yoshi.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15006,
+      "isim": "Donkey Kong",
+      "gorsel": "assets/images/game-world/character-donkey-kong.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Donkey Kong"
+    },
+    {
+      "id": 15007,
+      "isim": "Sonic",
+      "gorsel": "assets/images/game-world/character-sonic.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15008,
+      "isim": "Tails",
+      "gorsel": "assets/images/game-world/character-tails.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15009,
+      "isim": "Knuckles",
+      "gorsel": "assets/images/game-world/character-knuckles.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15010,
+      "isim": "Shadow",
+      "gorsel": "assets/images/game-world/character-shadow.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Sonic the Hedgehog"
+    },
+    {
+      "id": 15011,
+      "isim": "Link",
+      "gorsel": "assets/images/game-world/character-link.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15012,
+      "isim": "Zelda",
+      "gorsel": "assets/images/game-world/character-zelda.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15013,
+      "isim": "Ganondorf",
+      "gorsel": "assets/images/game-world/character-ganondorf.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15014,
+      "isim": "Kirby",
+      "gorsel": "assets/images/game-world/character-kirby.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Kirby"
+    },
+    {
+      "id": 15015,
+      "isim": "Pikachu",
+      "gorsel": "assets/images/game-world/character-pikachu.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15016,
+      "isim": "Charizard",
+      "gorsel": "assets/images/game-world/character-charizard.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15017,
+      "isim": "Pac-Man",
+      "gorsel": "assets/images/game-world/character-pac-man.svg",
+      "etiket": "Arcade",
+      "tip": "karakter",
+      "evren": "Pac-Man"
+    },
+    {
+      "id": 15018,
+      "isim": "Crash Bandicoot",
+      "gorsel": "assets/images/game-world/character-crash-bandicoot.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Crash Bandicoot"
+    },
+    {
+      "id": 15019,
+      "isim": "Spyro",
+      "gorsel": "assets/images/game-world/character-spyro.svg",
+      "etiket": "Platform",
+      "tip": "karakter",
+      "evren": "Spyro"
+    },
+    {
+      "id": 15020,
+      "isim": "Lara Croft",
+      "gorsel": "assets/images/game-world/character-lara-croft.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Tomb Raider"
+    },
+    {
+      "id": 15021,
+      "isim": "Kratos",
+      "gorsel": "assets/images/game-world/character-kratos.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "God of War"
+    },
+    {
+      "id": 15022,
+      "isim": "Atreus",
+      "gorsel": "assets/images/game-world/character-atreus.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "God of War"
+    },
+    {
+      "id": 15023,
+      "isim": "Nathan Drake",
+      "gorsel": "assets/images/game-world/character-nathan-drake.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Uncharted"
+    },
+    {
+      "id": 15024,
+      "isim": "Joel Miller",
+      "gorsel": "assets/images/game-world/character-joel-miller.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15025,
+      "isim": "Ellie",
+      "gorsel": "assets/images/game-world/character-ellie.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15026,
+      "isim": "Aloy",
+      "gorsel": "assets/images/game-world/character-aloy.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Horizon"
+    },
+    {
+      "id": 15027,
+      "isim": "Master Chief",
+      "gorsel": "assets/images/game-world/character-master-chief.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Halo"
+    },
+    {
+      "id": 15028,
+      "isim": "Steve",
+      "gorsel": "assets/images/game-world/character-steve.svg",
+      "etiket": "Sandbox",
+      "tip": "karakter",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15029,
+      "isim": "Alex (Minecraft)",
+      "gorsel": "assets/images/game-world/character-alex-minecraft.svg",
+      "etiket": "Sandbox",
+      "tip": "karakter",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15030,
+      "isim": "CJ (Carl Johnson)",
+      "gorsel": "assets/images/game-world/character-cj-carl-johnson.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto: San Andreas"
+    },
+    {
+      "id": 15031,
+      "isim": "Tommy Vercetti",
+      "gorsel": "assets/images/game-world/character-tommy-vercetti.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto: Vice City"
+    },
+    {
+      "id": 15032,
+      "isim": "Niko Bellic",
+      "gorsel": "assets/images/game-world/character-niko-bellic.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto IV"
+    },
+    {
+      "id": 15033,
+      "isim": "Trevor Philips",
+      "gorsel": "assets/images/game-world/character-trevor-philips.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15034,
+      "isim": "Michael De Santa",
+      "gorsel": "assets/images/game-world/character-michael-de-santa.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15035,
+      "isim": "Franklin Clinton",
+      "gorsel": "assets/images/game-world/character-franklin-clinton.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Grand Theft Auto V"
+    },
+    {
+      "id": 15036,
+      "isim": "Arthur Morgan",
+      "gorsel": "assets/images/game-world/character-arthur-morgan.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15037,
+      "isim": "John Marston",
+      "gorsel": "assets/images/game-world/character-john-marston.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15038,
+      "isim": "Ezio Auditore",
+      "gorsel": "assets/images/game-world/character-ezio-auditore.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15039,
+      "isim": "Altaïr Ibn-La’Ahad",
+      "gorsel": "assets/images/game-world/character-altair-ibn-la-ahad.svg",
+      "etiket": "Macera",
+      "tip": "karakter",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15040,
+      "isim": "Geralt of Rivia",
+      "gorsel": "assets/images/game-world/character-geralt-of-rivia.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15041,
+      "isim": "Ciri",
+      "gorsel": "assets/images/game-world/character-ciri.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15042,
+      "isim": "Doom Slayer",
+      "gorsel": "assets/images/game-world/character-doom-slayer.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "DOOM"
+    },
+    {
+      "id": 15043,
+      "isim": "Leon S. Kennedy",
+      "gorsel": "assets/images/game-world/character-leon-s-kennedy.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15044,
+      "isim": "Jill Valentine",
+      "gorsel": "assets/images/game-world/character-jill-valentine.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15045,
+      "isim": "Chris Redfield",
+      "gorsel": "assets/images/game-world/character-chris-redfield.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15046,
+      "isim": "Solid Snake",
+      "gorsel": "assets/images/game-world/character-solid-snake.svg",
+      "etiket": "Aksiyon",
+      "tip": "karakter",
+      "evren": "Metal Gear"
+    },
+    {
+      "id": 15047,
+      "isim": "Scorpion",
+      "gorsel": "assets/images/game-world/character-scorpion.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15048,
+      "isim": "Sub-Zero",
+      "gorsel": "assets/images/game-world/character-sub-zero.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15049,
+      "isim": "Liu Kang",
+      "gorsel": "assets/images/game-world/character-liu-kang.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15050,
+      "isim": "Raiden (Mortal Kombat)",
+      "gorsel": "assets/images/game-world/character-raiden-mortal-kombat.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15051,
+      "isim": "Ryu",
+      "gorsel": "assets/images/game-world/character-ryu.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15052,
+      "isim": "Chun-Li",
+      "gorsel": "assets/images/game-world/character-chun-li.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15053,
+      "isim": "Ken Masters",
+      "gorsel": "assets/images/game-world/character-ken-masters.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15054,
+      "isim": "Jin Kazama",
+      "gorsel": "assets/images/game-world/character-jin-kazama.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15055,
+      "isim": "Heihachi Mishima",
+      "gorsel": "assets/images/game-world/character-heihachi-mishima.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15056,
+      "isim": "King (Tekken)",
+      "gorsel": "assets/images/game-world/character-king-tekken.svg",
+      "etiket": "Dövüş",
+      "tip": "karakter",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15057,
+      "isim": "Cloud Strife",
+      "gorsel": "assets/images/game-world/character-cloud-strife.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Final Fantasy"
+    },
+    {
+      "id": 15058,
+      "isim": "Sephiroth",
+      "gorsel": "assets/images/game-world/character-sephiroth.svg",
+      "etiket": "Rol Yapma",
+      "tip": "karakter",
+      "evren": "Final Fantasy"
+    },
+    {
+      "id": 15059,
+      "isim": "Jinx",
+      "gorsel": "assets/images/game-world/character-jinx.svg",
+      "etiket": "Strateji",
+      "tip": "karakter",
+      "evren": "League of Legends"
+    },
+    {
+      "id": 15060,
+      "isim": "Ahri",
+      "gorsel": "assets/images/game-world/character-ahri.svg",
+      "etiket": "Strateji",
+      "tip": "karakter",
+      "evren": "League of Legends"
+    },
+    {
+      "id": 15061,
+      "isim": "Super Mario Bros.",
+      "gorsel": "assets/images/game-world/game-super-mario-bros.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15062,
+      "isim": "Mario Kart 8 Deluxe",
+      "gorsel": "assets/images/game-world/game-mario-kart-8-deluxe.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Super Mario"
+    },
+    {
+      "id": 15063,
+      "isim": "The Legend of Zelda: Breath of the Wild",
+      "gorsel": "assets/images/game-world/game-the-legend-of-zelda-breath-of-the-wild.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "The Legend of Zelda"
+    },
+    {
+      "id": 15064,
+      "isim": "Pokémon Red / Blue",
+      "gorsel": "assets/images/game-world/game-pokemon-red-blue.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "Pokémon"
+    },
+    {
+      "id": 15065,
+      "isim": "Sonic the Hedgehog",
+      "gorsel": "assets/images/game-world/game-sonic-the-hedgehog.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Sonic"
+    },
+    {
+      "id": 15066,
+      "isim": "Minecraft",
+      "gorsel": "assets/images/game-world/game-minecraft.svg",
+      "etiket": "Sandbox",
+      "tip": "oyun",
+      "evren": "Minecraft"
+    },
+    {
+      "id": 15067,
+      "isim": "Grand Theft Auto V",
+      "gorsel": "assets/images/game-world/game-grand-theft-auto-v.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Grand Theft Auto"
+    },
+    {
+      "id": 15068,
+      "isim": "Grand Theft Auto: San Andreas",
+      "gorsel": "assets/images/game-world/game-grand-theft-auto-san-andreas.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Grand Theft Auto"
+    },
+    {
+      "id": 15069,
+      "isim": "Red Dead Redemption 2",
+      "gorsel": "assets/images/game-world/game-red-dead-redemption-2.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Red Dead Redemption"
+    },
+    {
+      "id": 15070,
+      "isim": "God of War (2018)",
+      "gorsel": "assets/images/game-world/game-god-of-war-2018.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "God of War"
+    },
+    {
+      "id": 15071,
+      "isim": "The Last of Us",
+      "gorsel": "assets/images/game-world/game-the-last-of-us.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "The Last of Us"
+    },
+    {
+      "id": 15072,
+      "isim": "Uncharted 4: A Thief’s End",
+      "gorsel": "assets/images/game-world/game-uncharted-4-a-thief-s-end.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Uncharted"
+    },
+    {
+      "id": 15073,
+      "isim": "Resident Evil 4",
+      "gorsel": "assets/images/game-world/game-resident-evil-4.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Resident Evil"
+    },
+    {
+      "id": 15074,
+      "isim": "Metal Gear Solid",
+      "gorsel": "assets/images/game-world/game-metal-gear-solid.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Metal Gear"
+    },
+    {
+      "id": 15075,
+      "isim": "Assassin’s Creed II",
+      "gorsel": "assets/images/game-world/game-assassin-s-creed-ii.svg",
+      "etiket": "Macera",
+      "tip": "oyun",
+      "evren": "Assassin’s Creed"
+    },
+    {
+      "id": 15076,
+      "isim": "The Witcher 3: Wild Hunt",
+      "gorsel": "assets/images/game-world/game-the-witcher-3-wild-hunt.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "The Witcher"
+    },
+    {
+      "id": 15077,
+      "isim": "The Elder Scrolls V: Skyrim",
+      "gorsel": "assets/images/game-world/game-the-elder-scrolls-v-skyrim.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "The Elder Scrolls"
+    },
+    {
+      "id": 15078,
+      "isim": "Halo 3",
+      "gorsel": "assets/images/game-world/game-halo-3.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Halo"
+    },
+    {
+      "id": 15079,
+      "isim": "Call of Duty 4: Modern Warfare",
+      "gorsel": "assets/images/game-world/game-call-of-duty-4-modern-warfare.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Call of Duty"
+    },
+    {
+      "id": 15080,
+      "isim": "Counter-Strike 2",
+      "gorsel": "assets/images/game-world/game-counter-strike-2.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Counter-Strike"
+    },
+    {
+      "id": 15081,
+      "isim": "Fortnite",
+      "gorsel": "assets/images/game-world/game-fortnite.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Fortnite"
+    },
+    {
+      "id": 15082,
+      "isim": "PUBG: Battlegrounds",
+      "gorsel": "assets/images/game-world/game-pubg-battlegrounds.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "PUBG"
+    },
+    {
+      "id": 15083,
+      "isim": "Rocket League",
+      "gorsel": "assets/images/game-world/game-rocket-league.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "Rocket League"
+    },
+    {
+      "id": 15084,
+      "isim": "EA SPORTS FC 25",
+      "gorsel": "assets/images/game-world/game-ea-sports-fc-25.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "EA SPORTS FC"
+    },
+    {
+      "id": 15085,
+      "isim": "PES 2013",
+      "gorsel": "assets/images/game-world/game-pes-2013.svg",
+      "etiket": "Spor",
+      "tip": "oyun",
+      "evren": "Pro Evolution Soccer"
+    },
+    {
+      "id": 15086,
+      "isim": "Tekken 3",
+      "gorsel": "assets/images/game-world/game-tekken-3.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Tekken"
+    },
+    {
+      "id": 15087,
+      "isim": "Mortal Kombat 11",
+      "gorsel": "assets/images/game-world/game-mortal-kombat-11.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Mortal Kombat"
+    },
+    {
+      "id": 15088,
+      "isim": "Street Fighter II",
+      "gorsel": "assets/images/game-world/game-street-fighter-ii.svg",
+      "etiket": "Dövüş",
+      "tip": "oyun",
+      "evren": "Street Fighter"
+    },
+    {
+      "id": 15089,
+      "isim": "Need for Speed: Underground 2",
+      "gorsel": "assets/images/game-world/game-need-for-speed-underground-2.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Need for Speed"
+    },
+    {
+      "id": 15090,
+      "isim": "Gran Turismo 7",
+      "gorsel": "assets/images/game-world/game-gran-turismo-7.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Gran Turismo"
+    },
+    {
+      "id": 15091,
+      "isim": "Forza Horizon 5",
+      "gorsel": "assets/images/game-world/game-forza-horizon-5.svg",
+      "etiket": "Yarış",
+      "tip": "oyun",
+      "evren": "Forza"
+    },
+    {
+      "id": 15092,
+      "isim": "Crash Bandicoot (Oyun)",
+      "gorsel": "assets/images/game-world/game-crash-bandicoot-oyun.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Crash Bandicoot"
+    },
+    {
+      "id": 15093,
+      "isim": "Spyro the Dragon",
+      "gorsel": "assets/images/game-world/game-spyro-the-dragon.svg",
+      "etiket": "Platform",
+      "tip": "oyun",
+      "evren": "Spyro"
+    },
+    {
+      "id": 15094,
+      "isim": "Tetris",
+      "gorsel": "assets/images/game-world/game-tetris.svg",
+      "etiket": "Arcade",
+      "tip": "oyun",
+      "evren": "Tetris"
+    },
+    {
+      "id": 15095,
+      "isim": "Pac-Man (Oyun)",
+      "gorsel": "assets/images/game-world/game-pac-man-oyun.svg",
+      "etiket": "Arcade",
+      "tip": "oyun",
+      "evren": "Pac-Man"
+    },
+    {
+      "id": 15096,
+      "isim": "The Sims 4",
+      "gorsel": "assets/images/game-world/game-the-sims-4.svg",
+      "etiket": "Simülasyon",
+      "tip": "oyun",
+      "evren": "The Sims"
+    },
+    {
+      "id": 15097,
+      "isim": "Age of Empires II",
+      "gorsel": "assets/images/game-world/game-age-of-empires-ii.svg",
+      "etiket": "Strateji",
+      "tip": "oyun",
+      "evren": "Age of Empires"
+    },
+    {
+      "id": 15098,
+      "isim": "League of Legends",
+      "gorsel": "assets/images/game-world/game-league-of-legends.svg",
+      "etiket": "Strateji",
+      "tip": "oyun",
+      "evren": "League of Legends"
+    },
+    {
+      "id": 15099,
+      "isim": "Valorant",
+      "gorsel": "assets/images/game-world/game-valorant.svg",
+      "etiket": "Aksiyon",
+      "tip": "oyun",
+      "evren": "Valorant"
+    },
+    {
+      "id": 15100,
+      "isim": "Final Fantasy VII",
+      "gorsel": "assets/images/game-world/game-final-fantasy-vii.svg",
+      "etiket": "Rol Yapma",
+      "tip": "oyun",
+      "evren": "Final Fantasy"
+    }
+  ],
+  "ulkeler": [
+    {
+      "id": 16001,
+      "isim": "Türkiye",
+      "gorsel": "assets/images/countries/tr.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "TR"
+    },
+    {
+      "id": 16002,
+      "isim": "Amerika Birleşik Devletleri",
+      "gorsel": "assets/images/countries/us.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "US"
+    },
+    {
+      "id": 16003,
+      "isim": "Almanya",
+      "gorsel": "assets/images/countries/de.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "DE"
+    },
+    {
+      "id": 16004,
+      "isim": "Fransa",
+      "gorsel": "assets/images/countries/fr.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "FR"
+    },
+    {
+      "id": 16005,
+      "isim": "İtalya",
+      "gorsel": "assets/images/countries/it.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "IT"
+    },
+    {
+      "id": 16006,
+      "isim": "İspanya",
+      "gorsel": "assets/images/countries/es.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "ES"
+    },
+    {
+      "id": 16007,
+      "isim": "Birleşik Krallık",
+      "gorsel": "assets/images/countries/gb.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "GB"
+    },
+    {
+      "id": 16008,
+      "isim": "Portekiz",
+      "gorsel": "assets/images/countries/pt.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "PT"
+    },
+    {
+      "id": 16009,
+      "isim": "Hollanda",
+      "gorsel": "assets/images/countries/nl.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "NL"
+    },
+    {
+      "id": 16010,
+      "isim": "Belçika",
+      "gorsel": "assets/images/countries/be.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "BE"
+    },
+    {
+      "id": 16011,
+      "isim": "İsviçre",
+      "gorsel": "assets/images/countries/ch.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "CH"
+    },
+    {
+      "id": 16012,
+      "isim": "Avusturya",
+      "gorsel": "assets/images/countries/at.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "AT"
+    },
+    {
+      "id": 16013,
+      "isim": "İsveç",
+      "gorsel": "assets/images/countries/se.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "SE"
+    },
+    {
+      "id": 16014,
+      "isim": "Norveç",
+      "gorsel": "assets/images/countries/no.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "NO"
+    },
+    {
+      "id": 16015,
+      "isim": "Danimarka",
+      "gorsel": "assets/images/countries/dk.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "DK"
+    },
+    {
+      "id": 16016,
+      "isim": "Finlandiya",
+      "gorsel": "assets/images/countries/fi.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "FI"
+    },
+    {
+      "id": 16017,
+      "isim": "İzlanda",
+      "gorsel": "assets/images/countries/is.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "IS"
+    },
+    {
+      "id": 16018,
+      "isim": "İrlanda",
+      "gorsel": "assets/images/countries/ie.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "IE"
+    },
+    {
+      "id": 16019,
+      "isim": "Polonya",
+      "gorsel": "assets/images/countries/pl.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "PL"
+    },
+    {
+      "id": 16020,
+      "isim": "Çekya",
+      "gorsel": "assets/images/countries/cz.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "CZ"
+    },
+    {
+      "id": 16021,
+      "isim": "Macaristan",
+      "gorsel": "assets/images/countries/hu.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "HU"
+    },
+    {
+      "id": 16022,
+      "isim": "Yunanistan",
+      "gorsel": "assets/images/countries/gr.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "GR"
+    },
+    {
+      "id": 16023,
+      "isim": "Bulgaristan",
+      "gorsel": "assets/images/countries/bg.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "BG"
+    },
+    {
+      "id": 16024,
+      "isim": "Romanya",
+      "gorsel": "assets/images/countries/ro.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "RO"
+    },
+    {
+      "id": 16025,
+      "isim": "Sırbistan",
+      "gorsel": "assets/images/countries/rs.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "RS"
+    },
+    {
+      "id": 16026,
+      "isim": "Hırvatistan",
+      "gorsel": "assets/images/countries/hr.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "HR"
+    },
+    {
+      "id": 16027,
+      "isim": "Bosna-Hersek",
+      "gorsel": "assets/images/countries/ba.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "BA"
+    },
+    {
+      "id": 16028,
+      "isim": "Arnavutluk",
+      "gorsel": "assets/images/countries/al.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "AL"
+    },
+    {
+      "id": 16029,
+      "isim": "Ukrayna",
+      "gorsel": "assets/images/countries/ua.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "UA"
+    },
+    {
+      "id": 16030,
+      "isim": "Rusya",
+      "gorsel": "assets/images/countries/ru.svg",
+      "etiket": "Avrupa",
+      "tip": "ulke",
+      "iso2": "RU"
+    },
+    {
+      "id": 16031,
+      "isim": "Japonya",
+      "gorsel": "assets/images/countries/jp.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "JP"
+    },
+    {
+      "id": 16032,
+      "isim": "Çin",
+      "gorsel": "assets/images/countries/cn.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "CN"
+    },
+    {
+      "id": 16033,
+      "isim": "Güney Kore",
+      "gorsel": "assets/images/countries/kr.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "KR"
+    },
+    {
+      "id": 16034,
+      "isim": "Kuzey Kore",
+      "gorsel": "assets/images/countries/kp.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "KP"
+    },
+    {
+      "id": 16035,
+      "isim": "Hindistan",
+      "gorsel": "assets/images/countries/in.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "IN"
+    },
+    {
+      "id": 16036,
+      "isim": "Pakistan",
+      "gorsel": "assets/images/countries/pk.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "PK"
+    },
+    {
+      "id": 16037,
+      "isim": "Bangladeş",
+      "gorsel": "assets/images/countries/bd.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "BD"
+    },
+    {
+      "id": 16038,
+      "isim": "Sri Lanka",
+      "gorsel": "assets/images/countries/lk.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "LK"
+    },
+    {
+      "id": 16039,
+      "isim": "Nepal",
+      "gorsel": "assets/images/countries/np.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "NP"
+    },
+    {
+      "id": 16040,
+      "isim": "Tayland",
+      "gorsel": "assets/images/countries/th.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "TH"
+    },
+    {
+      "id": 16041,
+      "isim": "Vietnam",
+      "gorsel": "assets/images/countries/vn.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "VN"
+    },
+    {
+      "id": 16042,
+      "isim": "Kamboçya",
+      "gorsel": "assets/images/countries/kh.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "KH"
+    },
+    {
+      "id": 16043,
+      "isim": "Endonezya",
+      "gorsel": "assets/images/countries/id.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "ID"
+    },
+    {
+      "id": 16044,
+      "isim": "Malezya",
+      "gorsel": "assets/images/countries/my.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "MY"
+    },
+    {
+      "id": 16045,
+      "isim": "Singapur",
+      "gorsel": "assets/images/countries/sg.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "SG"
+    },
+    {
+      "id": 16046,
+      "isim": "Filipinler",
+      "gorsel": "assets/images/countries/ph.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "PH"
+    },
+    {
+      "id": 16047,
+      "isim": "Moğolistan",
+      "gorsel": "assets/images/countries/mn.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "MN"
+    },
+    {
+      "id": 16048,
+      "isim": "Kazakistan",
+      "gorsel": "assets/images/countries/kz.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "KZ"
+    },
+    {
+      "id": 16049,
+      "isim": "Özbekistan",
+      "gorsel": "assets/images/countries/uz.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "UZ"
+    },
+    {
+      "id": 16050,
+      "isim": "Azerbaycan",
+      "gorsel": "assets/images/countries/az.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "AZ"
+    },
+    {
+      "id": 16051,
+      "isim": "Gürcistan",
+      "gorsel": "assets/images/countries/ge.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "GE"
+    },
+    {
+      "id": 16052,
+      "isim": "Ermenistan",
+      "gorsel": "assets/images/countries/am.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "AM"
+    },
+    {
+      "id": 16053,
+      "isim": "Suudi Arabistan",
+      "gorsel": "assets/images/countries/sa.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "SA"
+    },
+    {
+      "id": 16054,
+      "isim": "Birleşik Arap Emirlikleri",
+      "gorsel": "assets/images/countries/ae.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "AE"
+    },
+    {
+      "id": 16055,
+      "isim": "Katar",
+      "gorsel": "assets/images/countries/qa.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "QA"
+    },
+    {
+      "id": 16056,
+      "isim": "İran",
+      "gorsel": "assets/images/countries/ir.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "IR"
+    },
+    {
+      "id": 16057,
+      "isim": "Irak",
+      "gorsel": "assets/images/countries/iq.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "IQ"
+    },
+    {
+      "id": 16058,
+      "isim": "Ürdün",
+      "gorsel": "assets/images/countries/jo.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "JO"
+    },
+    {
+      "id": 16059,
+      "isim": "İsrail",
+      "gorsel": "assets/images/countries/il.svg",
+      "etiket": "Asya",
+      "tip": "ulke",
+      "iso2": "IL"
+    },
+    {
+      "id": 16060,
+      "isim": "Mısır",
+      "gorsel": "assets/images/countries/eg.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "EG"
+    },
+    {
+      "id": 16061,
+      "isim": "Fas",
+      "gorsel": "assets/images/countries/ma.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "MA"
+    },
+    {
+      "id": 16062,
+      "isim": "Cezayir",
+      "gorsel": "assets/images/countries/dz.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "DZ"
+    },
+    {
+      "id": 16063,
+      "isim": "Tunus",
+      "gorsel": "assets/images/countries/tn.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "TN"
+    },
+    {
+      "id": 16064,
+      "isim": "Güney Afrika",
+      "gorsel": "assets/images/countries/za.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "ZA"
+    },
+    {
+      "id": 16065,
+      "isim": "Nijerya",
+      "gorsel": "assets/images/countries/ng.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "NG"
+    },
+    {
+      "id": 16066,
+      "isim": "Kenya",
+      "gorsel": "assets/images/countries/ke.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "KE"
+    },
+    {
+      "id": 16067,
+      "isim": "Etiyopya",
+      "gorsel": "assets/images/countries/et.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "ET"
+    },
+    {
+      "id": 16068,
+      "isim": "Gana",
+      "gorsel": "assets/images/countries/gh.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "GH"
+    },
+    {
+      "id": 16069,
+      "isim": "Senegal",
+      "gorsel": "assets/images/countries/sn.svg",
+      "etiket": "Afrika",
+      "tip": "ulke",
+      "iso2": "SN"
+    },
+    {
+      "id": 16070,
+      "isim": "Kanada",
+      "gorsel": "assets/images/countries/ca.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "CA"
+    },
+    {
+      "id": 16071,
+      "isim": "Meksika",
+      "gorsel": "assets/images/countries/mx.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "MX"
+    },
+    {
+      "id": 16072,
+      "isim": "Brezilya",
+      "gorsel": "assets/images/countries/br.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "BR"
+    },
+    {
+      "id": 16073,
+      "isim": "Arjantin",
+      "gorsel": "assets/images/countries/ar.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "AR"
+    },
+    {
+      "id": 16074,
+      "isim": "Şili",
+      "gorsel": "assets/images/countries/cl.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "CL"
+    },
+    {
+      "id": 16075,
+      "isim": "Kolombiya",
+      "gorsel": "assets/images/countries/co.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "CO"
+    },
+    {
+      "id": 16076,
+      "isim": "Peru",
+      "gorsel": "assets/images/countries/pe.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "PE"
+    },
+    {
+      "id": 16077,
+      "isim": "Küba",
+      "gorsel": "assets/images/countries/cu.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "CU"
+    },
+    {
+      "id": 16078,
+      "isim": "Uruguay",
+      "gorsel": "assets/images/countries/uy.svg",
+      "etiket": "Amerika",
+      "tip": "ulke",
+      "iso2": "UY"
+    },
+    {
+      "id": 16079,
+      "isim": "Avustralya",
+      "gorsel": "assets/images/countries/au.svg",
+      "etiket": "Okyanusya",
+      "tip": "ulke",
+      "iso2": "AU"
+    },
+    {
+      "id": 16080,
+      "isim": "Yeni Zelanda",
+      "gorsel": "assets/images/countries/nz.svg",
+      "etiket": "Okyanusya",
+      "tip": "ulke",
+      "iso2": "NZ"
+    }
+  ]
+}

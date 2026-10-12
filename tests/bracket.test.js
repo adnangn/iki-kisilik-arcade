@@ -120,7 +120,9 @@ test('bracket room commands enforce start ownership, mode, membership and stale 
   const waiting = waitingRoom();
   assert.throws(() => changeRoom(waiting, GUEST, 0, 'start', { deck }), RoomError);
   const alone = waitingRoom(); delete alone.players.p2;
-  assert.throws(() => changeRoom(alone, HOST, 0, 'start', { deck }), RoomError);
+  const solo = changeRoom(alone, HOST, 0, 'start', { deck });
+  assert.equal(solo.game.activeSeat, 'p1');
+  assert.equal(solo.players.p2, undefined);
   const before = changeRoom(waiting, HOST, 0, 'start', { deck });
   assert.throws(() => changeRoom(before, GUEST, before.revision, 'choose', { cardId: 1 }),
     error => error.code === 'NOT_ACTIVE_PLAYER');

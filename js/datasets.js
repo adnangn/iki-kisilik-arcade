@@ -27,7 +27,18 @@ export const DATASET_GROUPS = {
     collection('yerli-sanatcilar', 'runtime.expansion.artists.title', '♫', 'runtime.expansion.artists.description', 'runtime.expansion.artists.note', 'runtime.expansion.search.artists')
   ] },
   ankara: { get label() { return t('runtime.category.ankara.label'); }, get heading() { return t('runtime.expansion.ankara.heading'); }, icon: 'map', sets: [
-    collection('ankara-ilceleri', 'runtime.expansion.districts.title', '⌖', 'runtime.expansion.districts.description', 'runtime.expansion.districts.note', 'runtime.expansion.search.districts')
+    collection('ankara-ilceleri', 'runtime.expansion.districts.title', '⌖', 'runtime.expansion.districts.description', 'runtime.expansion.districts.note', 'runtime.expansion.search.districts'),
+    collection('istanbul-ilceleri', 'runtime.expansion.istanbul.title', '≋', 'runtime.expansion.istanbul.description', 'runtime.expansion.istanbul.note', 'runtime.expansion.search.districts'),
+    collection('turkiye-sehirleri', 'runtime.expansion.cities.title', '⌂', 'runtime.expansion.cities.description', 'runtime.expansion.cities.note', 'runtime.expansion.search.places'),
+    collection('ulkeler', 'runtime.expansion.countries.title', '⚑', 'runtime.expansion.countries.description', 'runtime.expansion.countries.note', 'runtime.expansion.search.places')
+  ] },
+  nostalji: { get label() { return t('runtime.category.nostalji.label'); }, get heading() { return t('runtime.expansion.nostalgia.heading'); }, icon: 'cassette', sets: [
+    collection('cocukluk-cizgifilmleri', 'runtime.expansion.cartoons.title', '▣', 'runtime.expansion.cartoons.description', 'runtime.expansion.cartoons.note', 'runtime.expansion.search.nostalgia'),
+    collection('doksanlar-nostalji', 'runtime.expansion.nineties.title', '▦', 'runtime.expansion.nineties.description', 'runtime.expansion.nineties.note', 'runtime.expansion.search.nostalgia'),
+    collection('kantin-bakkal', 'runtime.expansion.snacks.title', '♥', 'runtime.expansion.snacks.description', 'runtime.expansion.snacks.note', 'runtime.expansion.search.nostalgia')
+  ] },
+  oyun: { get label() { return t('runtime.category.oyun.label'); }, get heading() { return t('runtime.expansion.games.heading'); }, icon: 'controller', sets: [
+    collection('oyun-evreni', 'runtime.expansion.games.title', '✚', 'runtime.expansion.games.description', 'runtime.expansion.games.note', 'runtime.expansion.search.games')
   ] }
 };
 

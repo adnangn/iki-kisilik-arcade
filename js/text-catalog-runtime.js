@@ -103,12 +103,12 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.room.blind_summary": {
     "group": "Oda",
     "label": "Kör sıralama özeti",
-    "value": "10 kart · 1 sıralayan, 1 izleyen"
+    "value": "10 kart · Tek sıralayan · İzleyici isteğe bağlı"
   },
   "runtime.room.bracket_summary": {
     "group": "Oda",
     "label": "Turnuva özeti",
-    "value": "16 kart · 1 seçen, 1 izleyen"
+    "value": "16 kart · Tek seçen · İzleyici isteğe bağlı"
   },
   "runtime.room.draft_summary": {
     "group": "Oda",

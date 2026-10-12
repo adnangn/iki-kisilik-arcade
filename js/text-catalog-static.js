@@ -168,7 +168,7 @@ export const STATIC_TEXT_CATALOG = {
   "static.034": {
     "group": "Lobi",
     "label": "1 AKTİF + 1 İZLEYİCİ",
-    "value": "1 AKTİF + 1 İZLEYİCİ"
+    "value": "1 AKTİF · İZLEYİCİ İSTEĞE BAĞLI"
   },
   "static.035": {
     "group": "Lobi",

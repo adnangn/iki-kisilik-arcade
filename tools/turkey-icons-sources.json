@@ -1,0 +1,950 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12",
+  "datasetId": "turkiye-efsaneleri",
+  "count": 120,
+  "preservedIdentityRange": [
+    5001,
+    5050
+  ],
+  "newIdentityRange": [
+    5051,
+    5120
+  ],
+  "previewIds": [
+    5051,
+    5052,
+    5053,
+    5054
+  ],
+  "displayOrder": "New 70 Turkish club icons, then IDs 5007–5050, then IDs 5001–5006.",
+  "scope": "Editorial collection of footballers who played in Türkiye, associated with one iconic historical Turkish club. Not an official ranking or a current-club roster.",
+  "historicalClubNote": "takimTuru=kulup and takimNotu explicitly describe a historical Türkiye association. Symbolic retro club colours and shirt numbers do not claim exact official kits; no current transfer claim is made.",
+  "artwork": "120 original local static 96×96 SVG pixel portraits; no official logo, remote photograph or copyrighted image download.",
+  "sources": [
+    {
+      "id": "tff-poland-1956",
+      "publisher": "TFF",
+      "title": "Türkiye–Polonya tarihî millî maç kadrosu",
+      "url": "https://www.tff.org/Default.aspx?macID=2913&pageID=29",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5001,
+        5002,
+        5004
+      ]
+    },
+    {
+      "id": "gs-can-bartu",
+      "publisher": "Galatasaray SK",
+      "title": "Fenerbahçe efsanesi Can Bartu anma haberi",
+      "url": "https://www.galatasaray.org/haber/kulup/can-bartu-son-yolculuguna-ugurlandi/43930",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5003
+      ]
+    },
+    {
+      "id": "tff-korea-2011",
+      "publisher": "TFF",
+      "title": "Türkiye–Güney Kore 2011 maç kitabı ve tarihî kadrolar",
+      "url": "https://www.tff.org/Resources/TFF/Auto/bb0aaffcf1bf4e24bdc9368e55a9c7db.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5005,
+        5021
+      ]
+    },
+    {
+      "id": "tff-yasin",
+      "publisher": "TFF",
+      "title": "Yasin Özdenak’ın eski Galatasaray kaleciliğini anan kulüp tarihçesi",
+      "url": "https://www.tff.org/default.aspx?ftxtID=49381&pageID=285",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5006
+      ]
+    },
+    {
+      "id": "uefa-fener-2005",
+      "publisher": "UEFA",
+      "title": "Fenerbahçe poised for lift-off: 2005 squad profile",
+      "url": "https://www.uefa.com/uefachampionsleague/news/01ad-0e6d0fa44a85-08d76bb6592b-1000--fenerbahce-poised-for-lift-off/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5007,
+        5008,
+        5023,
+        5041,
+        5054,
+        5056,
+        5069
+      ]
+    },
+    {
+      "id": "tff-tanju",
+      "publisher": "TFF TamSaha",
+      "title": "Süper Lig gol kralları: Galatasaraylı Tanju Çolak",
+      "url": "https://www.tff.org/Resources/Tamsaha/129/files/assets/common/downloads/publication.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5009
+      ]
+    },
+    {
+      "id": "tff-derby-1991",
+      "publisher": "TFF",
+      "title": "Fenerbahçe–Beşiktaş tarihî maç kadrosu",
+      "url": "https://www.tff.org/Default.aspx?macId=59288&pageID=528",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5010,
+        5011,
+        5014,
+        5015
+      ]
+    },
+    {
+      "id": "tff-ridvan",
+      "publisher": "TFF",
+      "title": "18 yıl beklenen randevu: Rıdvan Dilmen/Fenerbahçe tarihçesi",
+      "url": "https://www.tff.org/default.aspx?ftxtID=25727&pageID=202",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5013
+      ]
+    },
+    {
+      "id": "tff-supercup-history",
+      "publisher": "TFF",
+      "title": "2016 Süper Kupa maç kitabındaki tarihî kupa finali kadroları",
+      "url": "https://www.tff.org/Resources/Tamsaha/TurkcellSuperKupa2016/files/assets/common/downloads/publication.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5016,
+        5019,
+        5039,
+        5045
+      ]
+    },
+    {
+      "id": "ts-goal-kings",
+      "publisher": "Trabzonspor",
+      "title": "Gol krallarımız ve tarihî kulüp golcüleri",
+      "url": "https://www.trabzonspor.org.tr/tr/arsiv/gol-krallarimiz",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5017,
+        5111
+      ]
+    },
+    {
+      "id": "tff-ts-2005",
+      "publisher": "TFF",
+      "title": "Trabzonspor–Denizlispor eski maç kadrosu",
+      "url": "https://www.tff.org/Default.aspx?macId=9773&pageID=29",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5018,
+        5032
+      ]
+    },
+    {
+      "id": "uefa-gs-2000",
+      "publisher": "UEFA",
+      "title": "2000 UEFA Cup final: Galatasaray–Arsenal match record",
+      "url": "https://www.uefa.com/uefaeuropaleague/match/64414--galatasaray-vs-arsenal/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5012,
+        5020,
+        5027,
+        5028,
+        5038,
+        5042,
+        5053,
+        5092,
+        5099,
+        5100
+      ]
+    },
+    {
+      "id": "uefa-gs-2006",
+      "publisher": "UEFA",
+      "title": "Galatasaray–Liverpool 5 December 2006 official report",
+      "url": "https://www.uefa.com/newsfiles/UCL/2006/1116398_FR.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5026,
+        5046,
+        5049,
+        5093
+      ]
+    },
+    {
+      "id": "uefa-fb-2008",
+      "publisher": "UEFA",
+      "title": "Fenerbahçe–Sevilla 20 February 2008 official line-up",
+      "url": "https://www.uefa.com/newsfiles/UCL/2008/301894_LU.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5025,
+        5033,
+        5048,
+        5054,
+        5055,
+        5061,
+        5067,
+        5071,
+        5074
+      ]
+    },
+    {
+      "id": "tff-almanac-2010",
+      "publisher": "TFF",
+      "title": "2010–2011 Süper Lig yearly records and club rosters",
+      "url": "https://www.tff.org/Resources/TFF/Documents/002011/Ligler/SuperLig/almanak2011-12/2010-11-Super-Lig-Almanak.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5022,
+        5024,
+        5030,
+        5043,
+        5044,
+        5047,
+        5050,
+        5051,
+        5076,
+        5077,
+        5082,
+        5083,
+        5087,
+        5088,
+        5090,
+        5091,
+        5096,
+        5097,
+        5112
+      ]
+    },
+    {
+      "id": "tff-supercup-2013",
+      "publisher": "TFF",
+      "title": "2013 Süper Kupa Galatasaray/Fenerbahçe player rosters",
+      "url": "https://www.tff.org/Resources/TFF/Images/00000013/KUPALAR/Super-Kupa-2013/TFF-Super-Kupa-2013.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5029,
+        5031,
+        5034,
+        5035,
+        5052,
+        5062,
+        5064,
+        5070,
+        5072,
+        5073,
+        5094,
+        5095
+      ]
+    },
+    {
+      "id": "tff-tayfun",
+      "publisher": "TFF",
+      "title": "Tayfun Korkut career record with Fenerbahçe",
+      "url": "https://www.tff.org/Default.aspx?kisiID=26429&pageId=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5036
+      ]
+    },
+    {
+      "id": "tff-tumer",
+      "publisher": "TFF",
+      "title": "Tümer Metin career record with Beşiktaş",
+      "url": "https://www.tff.org/Default.aspx?kisiID=25283&pageId=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5037
+      ]
+    },
+    {
+      "id": "tff-ogun",
+      "publisher": "TFF",
+      "title": "Ogün Temizkanoğlu career record with Trabzonspor",
+      "url": "https://www.tff.org/Default.aspx?kisiID=21360&pageID=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5040
+      ]
+    },
+    {
+      "id": "tff-yattara",
+      "publisher": "TFF TamSaha",
+      "title": "İbrahima Yattara: 2003–2011 Trabzonspor career",
+      "url": "https://www.tff.org/Resources/Tamsaha/Turkiye-Gine-31-05-2021/28-29/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5051
+      ]
+    },
+    {
+      "id": "gs-hagi",
+      "publisher": "Galatasaray SK",
+      "title": "Gheorghe Hagi club career biography",
+      "url": "https://www.galatasaray.org/haber/kulup-haberleri/gheorghe-hagi-kimdir/1430",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5053
+      ]
+    },
+    {
+      "id": "tff-hooijdonk",
+      "publisher": "TFF",
+      "title": "Pierre van Hooijdonk Fenerbahçe player record",
+      "url": "https://www.tff.org/Default.aspx?kisiID=29981&pageId=526",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5057
+      ]
+    },
+    {
+      "id": "tff-okocha",
+      "publisher": "TFF",
+      "title": "Okocha’s Turkish registration, Muhammet Yavuz; born 14 August 1973",
+      "url": "https://www.tff.org/Default.aspx?kisiID=27408&pageID=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5058
+      ]
+    },
+    {
+      "id": "tff-revivo",
+      "publisher": "TFF",
+      "title": "Haim Michael Revivo career record with Fenerbahçe",
+      "url": "https://www.tff.org/Default.aspx?kisiID=29682&pageID=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5059
+      ]
+    },
+    {
+      "id": "tff-guiza",
+      "publisher": "TFF",
+      "title": "Fenerbahçe–Antalyaspor: Güiza and Lugano scoring",
+      "url": "https://www.tff.org/default.aspx?ftxtID=5698&pageID=201",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5060
+      ]
+    },
+    {
+      "id": "tff-emenike",
+      "publisher": "TFF",
+      "title": "Emmanuel Emenike Fenerbahçe career record",
+      "url": "https://www.tff.org/Default.aspx?kisiID=1253076&pageId=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5063
+      ]
+    },
+    {
+      "id": "tff-fb-2015",
+      "publisher": "TFF",
+      "title": "Fenerbahçe–Atromitos match report with Nani, Diego and Van Persie",
+      "url": "https://www.tff.org/default.aspx?ftxtID=23535&pageID=267",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5065,
+        5066,
+        5068
+      ]
+    },
+    {
+      "id": "bjk-2015",
+      "publisher": "Beşiktaş JK",
+      "title": "Konyaspor line-up with Atiba, Quaresma and Mario Gomez",
+      "url": "https://www.bjk.com.tr/tr/mobil/haber?news_id=64843",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5075,
+        5076,
+        5079
+      ]
+    },
+    {
+      "id": "bjk-2017",
+      "publisher": "Beşiktaş JK",
+      "title": "Official 2017 match record with Demba Ba and Aboubakar",
+      "url": "https://bjk.com.tr/tr/mac_merkezi/canli/10098",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5078,
+        5080
+      ]
+    },
+    {
+      "id": "tff-nouma",
+      "publisher": "TFF",
+      "title": "Beşiktaş–Gençlerbirliği archived match record",
+      "url": "https://www.tff.org/Default.aspx?macId=22293&pageID=29",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5081
+      ]
+    },
+    {
+      "id": "bjk-carew",
+      "publisher": "Beşiktaş JK",
+      "title": "Carew Beşiktaş’ta: official club archive",
+      "url": "https://bjk.com.tr/tr/haber/31253/carew_besiktas_ta.html",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5084
+      ]
+    },
+    {
+      "id": "bjk-amokachi",
+      "publisher": "Beşiktaş JK",
+      "title": "Daniel Amokachi historical club player profile",
+      "url": "https://bjk.com.tr/tr/oyuncu/904/daniel_amokachi.html",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5085
+      ]
+    },
+    {
+      "id": "bjk-ferdinand",
+      "publisher": "Beşiktaş JK",
+      "title": "Les Ferdinand historical club player profile",
+      "url": "https://bjk.com.tr/tr/oyuncu/901/leslie_ferdinand.html",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5086
+      ]
+    },
+    {
+      "id": "tff-holosko",
+      "publisher": "TFF",
+      "title": "Filip Holosko Beşiktaş career record",
+      "url": "https://www.tff.org/Default.aspx?kisiID=950514&pageId=526",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5087
+      ]
+    },
+    {
+      "id": "tff-josef-bjk",
+      "publisher": "TFF",
+      "title": "Beşiktaş–Kayserispor 24 April 2021 archived match record",
+      "url": "https://www.tff.org/Default.aspx?macId=219335&pageID=528",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5089
+      ]
+    },
+    {
+      "id": "tff-elano",
+      "publisher": "TFF",
+      "title": "Galatasaray–Dinamo Bucuresti match record, Kewell and Elano goals",
+      "url": "https://www.tff.org/default.aspx?ftxtID=8286&pageID=267",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5098
+      ]
+    },
+    {
+      "id": "gs-history-euro",
+      "publisher": "Galatasaray SK",
+      "title": "Bizimkiler: past club players Frank de Boer and Franck Ribéry",
+      "url": "https://www.galatasaray.org/haber/galatasaray-haberleri/bizimkiler/32592",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5101,
+        5120
+      ]
+    },
+    {
+      "id": "gs-title-2012",
+      "publisher": "Galatasaray SK",
+      "title": "2012 championship interviews with Elmander, Melo and Ujfalusi",
+      "url": "https://www.galatasaray.org/haber/gstv/roportajlar/adim-adim-sampiyonluga-elmander-melo-ujfalusi/23786",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5102,
+        5103,
+        5108
+      ]
+    },
+    {
+      "id": "gs-podolski",
+      "publisher": "Galatasaray SK",
+      "title": "Podolski’s 2016 cup final winning goal",
+      "url": "https://www.galatasaray.org/haber/futbol/turkiye-kupasi/macin-adami-podolski-fenerbahceye-ilk-degil-ikinci-golum/32514",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5104
+      ]
+    },
+    {
+      "id": "gs-2018",
+      "publisher": "Galatasaray SK",
+      "title": "Galatasaray–Valencia 21 July 2018 match roster",
+      "url": "https://www.galatasaray.org/haber/futbol/galatasaray-1-2-valencia/39978",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5105,
+        5107
+      ]
+    },
+    {
+      "id": "gs-falcao",
+      "publisher": "Galatasaray SK",
+      "title": "Galatasaray–Kasımpaşa 13 September 2019 official match record",
+      "url": "https://www.galatasaray.org/haber/futbol/galatasaray-1-0-kasimpasa/44862",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5106
+      ]
+    },
+    {
+      "id": "gs-lincoln-song",
+      "publisher": "Galatasaray SK",
+      "title": "2008 club training archive: Lincoln and Rigobert Song",
+      "url": "https://www.galatasaray.org/haber/futbol/florya-gunlugu/25-mart-2008-sali/8285",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5109,
+        5110
+      ]
+    },
+    {
+      "id": "tff-ts-2021",
+      "publisher": "TFF",
+      "title": "Trabzonspor–Galatasaray 2021 match roster: Hamsik and Nwakaeme",
+      "url": "https://www.tff.org/Default.aspx?macId=222946&pageID=528",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5113,
+        5114
+      ]
+    },
+    {
+      "id": "tff-cardozo",
+      "publisher": "TFF",
+      "title": "Trabzonspor–Galatasaray archived match roster",
+      "url": "https://www.tff.org/Default.aspx?macId=140019&pageID=528",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5115
+      ]
+    },
+    {
+      "id": "tff-sosa",
+      "publisher": "TFF",
+      "title": "Jose Ernesto Sosa career record with Trabzonspor",
+      "url": "https://www.tff.org/Default.aspx?kisiID=1727445&pageID=30",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5116
+      ]
+    },
+    {
+      "id": "bursa-batalla",
+      "publisher": "Bursaspor",
+      "title": "Championship almanac: Pablo Martin Batalla",
+      "url": "https://www.bursaspor.org.tr/bs/sampiyonluk/Futbolcu/485/Pablo_martin_batalla",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5117
+      ]
+    },
+    {
+      "id": "antalya-etoo",
+      "publisher": "Antalyaspor",
+      "title": "2017 club victory with Eto’o scoring",
+      "url": "https://www.antalyaspor.com.tr/tr/futbol-haberleri/antalyasporumuzdan_altin_galibiyet_2-1_2017-04-01_232856.html",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5118
+      ]
+    },
+    {
+      "id": "tff-visca",
+      "publisher": "TFF TamSaha",
+      "title": "2020 Süper Kupa history: Başakşehir’s Edin Visca",
+      "url": "https://www.tff.org/Resources/Tamsaha/TFF-Super-Kupa-2020/26-27/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [
+        5119
+      ]
+    }
+  ],
+  "sourceCoverage": {
+    "5001": [
+      "tff-poland-1956"
+    ],
+    "5002": [
+      "tff-poland-1956"
+    ],
+    "5003": [
+      "gs-can-bartu"
+    ],
+    "5004": [
+      "tff-poland-1956"
+    ],
+    "5005": [
+      "tff-korea-2011"
+    ],
+    "5006": [
+      "tff-yasin"
+    ],
+    "5007": [
+      "uefa-fener-2005"
+    ],
+    "5008": [
+      "uefa-fener-2005"
+    ],
+    "5009": [
+      "tff-tanju"
+    ],
+    "5010": [
+      "tff-derby-1991"
+    ],
+    "5011": [
+      "tff-derby-1991"
+    ],
+    "5012": [
+      "uefa-gs-2000"
+    ],
+    "5013": [
+      "tff-ridvan"
+    ],
+    "5014": [
+      "tff-derby-1991"
+    ],
+    "5015": [
+      "tff-derby-1991"
+    ],
+    "5016": [
+      "tff-supercup-history"
+    ],
+    "5017": [
+      "ts-goal-kings"
+    ],
+    "5018": [
+      "tff-ts-2005"
+    ],
+    "5019": [
+      "tff-supercup-history"
+    ],
+    "5020": [
+      "uefa-gs-2000"
+    ],
+    "5021": [
+      "tff-korea-2011"
+    ],
+    "5022": [
+      "tff-almanac-2010"
+    ],
+    "5023": [
+      "uefa-fener-2005"
+    ],
+    "5024": [
+      "tff-almanac-2010"
+    ],
+    "5025": [
+      "uefa-fb-2008"
+    ],
+    "5026": [
+      "uefa-gs-2006"
+    ],
+    "5027": [
+      "uefa-gs-2000"
+    ],
+    "5028": [
+      "uefa-gs-2000"
+    ],
+    "5029": [
+      "tff-supercup-2013"
+    ],
+    "5030": [
+      "tff-almanac-2010"
+    ],
+    "5031": [
+      "tff-supercup-2013"
+    ],
+    "5032": [
+      "tff-ts-2005"
+    ],
+    "5033": [
+      "uefa-fb-2008"
+    ],
+    "5034": [
+      "tff-supercup-2013"
+    ],
+    "5035": [
+      "tff-supercup-2013"
+    ],
+    "5036": [
+      "tff-tayfun"
+    ],
+    "5037": [
+      "tff-tumer"
+    ],
+    "5038": [
+      "uefa-gs-2000"
+    ],
+    "5039": [
+      "tff-supercup-history"
+    ],
+    "5040": [
+      "tff-ogun"
+    ],
+    "5041": [
+      "uefa-fener-2005"
+    ],
+    "5042": [
+      "uefa-gs-2000"
+    ],
+    "5043": [
+      "tff-almanac-2010"
+    ],
+    "5044": [
+      "tff-almanac-2010"
+    ],
+    "5045": [
+      "tff-supercup-history"
+    ],
+    "5046": [
+      "uefa-gs-2006"
+    ],
+    "5047": [
+      "tff-almanac-2010"
+    ],
+    "5048": [
+      "uefa-fb-2008"
+    ],
+    "5049": [
+      "uefa-gs-2006"
+    ],
+    "5050": [
+      "tff-almanac-2010"
+    ],
+    "5051": [
+      "tff-almanac-2010",
+      "tff-yattara"
+    ],
+    "5052": [
+      "tff-supercup-2013"
+    ],
+    "5053": [
+      "uefa-gs-2000",
+      "gs-hagi"
+    ],
+    "5054": [
+      "uefa-fener-2005",
+      "uefa-fb-2008"
+    ],
+    "5055": [
+      "uefa-fb-2008"
+    ],
+    "5056": [
+      "uefa-fener-2005"
+    ],
+    "5057": [
+      "tff-hooijdonk"
+    ],
+    "5058": [
+      "tff-okocha"
+    ],
+    "5059": [
+      "tff-revivo"
+    ],
+    "5060": [
+      "tff-guiza"
+    ],
+    "5061": [
+      "uefa-fb-2008"
+    ],
+    "5062": [
+      "tff-supercup-2013"
+    ],
+    "5063": [
+      "tff-emenike"
+    ],
+    "5064": [
+      "tff-supercup-2013"
+    ],
+    "5065": [
+      "tff-fb-2015"
+    ],
+    "5066": [
+      "tff-fb-2015"
+    ],
+    "5067": [
+      "uefa-fb-2008"
+    ],
+    "5068": [
+      "tff-fb-2015"
+    ],
+    "5069": [
+      "uefa-fener-2005"
+    ],
+    "5070": [
+      "tff-supercup-2013"
+    ],
+    "5071": [
+      "uefa-fb-2008"
+    ],
+    "5072": [
+      "tff-supercup-2013"
+    ],
+    "5073": [
+      "tff-supercup-2013"
+    ],
+    "5074": [
+      "uefa-fb-2008"
+    ],
+    "5075": [
+      "bjk-2015"
+    ],
+    "5076": [
+      "tff-almanac-2010",
+      "bjk-2015"
+    ],
+    "5077": [
+      "tff-almanac-2010"
+    ],
+    "5078": [
+      "bjk-2017"
+    ],
+    "5079": [
+      "bjk-2015"
+    ],
+    "5080": [
+      "bjk-2017"
+    ],
+    "5081": [
+      "tff-nouma"
+    ],
+    "5082": [
+      "tff-almanac-2010"
+    ],
+    "5083": [
+      "tff-almanac-2010"
+    ],
+    "5084": [
+      "bjk-carew"
+    ],
+    "5085": [
+      "bjk-amokachi"
+    ],
+    "5086": [
+      "bjk-ferdinand"
+    ],
+    "5087": [
+      "tff-almanac-2010",
+      "tff-holosko"
+    ],
+    "5088": [
+      "tff-almanac-2010"
+    ],
+    "5089": [
+      "tff-josef-bjk"
+    ],
+    "5090": [
+      "tff-almanac-2010"
+    ],
+    "5091": [
+      "tff-almanac-2010"
+    ],
+    "5092": [
+      "uefa-gs-2000"
+    ],
+    "5093": [
+      "uefa-gs-2006"
+    ],
+    "5094": [
+      "tff-supercup-2013"
+    ],
+    "5095": [
+      "tff-supercup-2013"
+    ],
+    "5096": [
+      "tff-almanac-2010"
+    ],
+    "5097": [
+      "tff-almanac-2010"
+    ],
+    "5098": [
+      "tff-elano"
+    ],
+    "5099": [
+      "uefa-gs-2000"
+    ],
+    "5100": [
+      "uefa-gs-2000"
+    ],
+    "5101": [
+      "gs-history-euro"
+    ],
+    "5102": [
+      "gs-title-2012"
+    ],
+    "5103": [
+      "gs-title-2012"
+    ],
+    "5104": [
+      "gs-podolski"
+    ],
+    "5105": [
+      "gs-2018"
+    ],
+    "5106": [
+      "gs-falcao"
+    ],
+    "5107": [
+      "gs-2018"
+    ],
+    "5108": [
+      "gs-title-2012"
+    ],
+    "5109": [
+      "gs-lincoln-song"
+    ],
+    "5110": [
+      "gs-lincoln-song"
+    ],
+    "5111": [
+      "ts-goal-kings"
+    ],
+    "5112": [
+      "tff-almanac-2010"
+    ],
+    "5113": [
+      "tff-ts-2021"
+    ],
+    "5114": [
+      "tff-ts-2021"
+    ],
+    "5115": [
+      "tff-cardozo"
+    ],
+    "5116": [
+      "tff-sosa"
+    ],
+    "5117": [
+      "bursa-batalla"
+    ],
+    "5118": [
+      "antalya-etoo"
+    ],
+    "5119": [
+      "tff-visca"
+    ],
+    "5120": [
+      "gs-history-euro"
+    ]
+  }
+}

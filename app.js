@@ -9,7 +9,7 @@ import { shuffledIds, draftTriplets } from './js/game-setup.js';
 import { ROUND_NAMES, ROLE_NAMES, fillCard, renderBracketHistory, renderTeamCandidates, renderLineup } from './js/game-view.js';
 import { renderRankingList, renderRankChoices } from './js/ranking-view.js';
 import { chooseBotMove } from './js/demo-bot.js';
-import { changeRoom, seatFor, otherSeat, RoomError } from './js/room-state.js';
+import { changeRoom, seatFor, otherSeat, hasOptionalSpectator, rematchStarter, RoomError } from './js/room-state.js';
 import { connectFirebase } from './js/firebase-room.js';
 import { DATASET_GROUPS, DATASET_NAMES, resolveDatasetId } from './js/datasets.js';
 
@@ -305,7 +305,7 @@ function render() {
     $('blind-results').hidden = !blind;
     $('bracket-results').hidden = !bracket;
     $('team-draft-results').hidden = !teamDraft;
-    $('rematch-note').textContent = blind || bracket ? t('runtime.results.rematch_player', { player: nameFor(otherSeat(room.game.activeSeat)) }) : teamDraft ? t('runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide') : t('runtime.copy.ayni_oda_ayni_kod_ilk_hamle_bu_kez_diger_oyuncuda');
+    $('rematch-note').textContent = blind || bracket ? t('runtime.results.rematch_player', { player: nameFor(rematchStarter(room)) }) : teamDraft ? t('runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide') : t('runtime.copy.ayni_oda_ayni_kod_ilk_hamle_bu_kez_diger_oyuncuda');
     if (blind) {
       renderBlindResults(connected, bothOnline);
       return;
@@ -336,15 +336,16 @@ function render() {
   $('room-title').textContent = t('runtime.room.title', { dataset: DATASET_NAMES[room.datasetId], mode: MODE_NAMES[room.mode] || MODE_NAMES.auction });
   $('room-subtitle').textContent = demo ? blind || bracket ? t('runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin') : t('runtime.copy.yerel_demo_rakibin_atari_bot') : t('runtime.room.subtitle', { round: room.round, summary: blind ? t('runtime.room.blind_summary') : bracket ? t('runtime.room.bracket_summary') : teamDraft ? t('runtime.room.draft_summary') : t('runtime.room.auction_summary') });
   setStatusText('opponent-status', opponent ? t('runtime.room.opponent_status', { player: opponent.name, status: onlineSeat(otherSeat(mySeat)) ? t('runtime.room.opponent_online') : t('runtime.room.opponent_reconnecting') }) : t('runtime.copy.arkadasin_icin_bir_koltuk_ayirdik'));
-  $('waiting-hint').textContent = !opponent ? t('runtime.copy.kodu_kopyala_ve_arkadasina_gonder_katilinca_oyun_haz') : !bothOnline ? t('runtime.copy.baglanti_bekleniyor_odaniz_guvende') : room.ownerUid === service?.uid ? t('runtime.copy.ikiniz_de_hazirsiniz_oyunu_baslatabilirsin') : t('runtime.copy.oda_sahibi_oyunu_baslattiginda_ilk_kart_acilacak');
+  $('waiting-hint').textContent = hasOptionalSpectator(room) && room.ownerUid === service?.uid ? t('runtime.room.optional_spectator_hint') : !opponent ? t('runtime.copy.kodu_kopyala_ve_arkadasina_gonder_katilinca_oyun_haz') : !bothOnline ? t('runtime.copy.baglanti_bekleniyor_odaniz_guvende') : room.ownerUid === service?.uid ? t('runtime.copy.ikiniz_de_hazirsiniz_oyunu_baslatabilirsin') : t('runtime.copy.oda_sahibi_oyunu_baslattiginda_ilk_kart_acilacak');
   const waiting = room.status === 'waiting';
+  $('waiting-eyebrow').textContent = hasOptionalSpectator(room) ? t('runtime.room.optional_spectator_label') : t('static.064');
   $('waiting-panel').hidden = !waiting;
   $('auction-panel').hidden = waiting || room.mode !== 'auction';
   $('blind-panel').hidden = waiting || !blind;
   $('bracket-panel').hidden = waiting || !bracket;
   $('team-draft-panel').hidden = waiting || !teamDraft;
   $('start-game').hidden = !waiting || (!demo && service.uid !== room.ownerUid);
-  $('start-game').disabled = busy || !connected || !opponent || !bothOnline;
+  $('start-game').disabled = busy || !connected || (!hasOptionalSpectator(room) && (!opponent || !bothOnline));
   if (waiting) { lastVisualState = { code: room.code, round: room.round, status: 'waiting' }; return; }
   if (blind) { renderBlind(connected, bothOnline); return; }
   if (bracket) { renderBracket(connected, bothOnline); return; }
@@ -418,7 +419,7 @@ function renderBlind(connected, bothOnline) {
   const game = normalizeBlindRanking(room.game);
   const card = getCard(game.currentCardId);
   const isActive = mySeat === game.activeSeat;
-  const canAct = isActive && connected && bothOnline && !busy;
+  const canAct = isActive && connected && !busy;
   const sameRound = lastVisualState?.code === room.code && lastVisualState?.round === room.round;
   const newPlacement = sameRound && lastVisualState.deckIndex < game.deckIndex;
   $('blind-progress').textContent = t('runtime.ranking.progress', { count: game.deckIndex + 1 });
@@ -432,7 +433,7 @@ function renderBlind(connected, bothOnline) {
   $('blind-card-affiliation').textContent = card?.takim || '';
   $('blind-card-affiliation').hidden = !card?.takim;
   $('blind-choices').hidden = !isActive;
-  $('blind-hint').textContent = !connected ? t('runtime.copy.baglanti_bekleniyor_siralaman_korunuyor') : !bothOnline ? t('runtime.copy.oyuncu_yeniden_baglaniyor_ikiniz_de_baglaninca_devam') : busy && pendingAction?.startsWith('rank-slot-') ? t('runtime.copy.kart_siraya_yerlestiriliyor') : isActive ? t('runtime.copy.1_en_iyi_10_en_alt_secimin_kalici') : t('runtime.ranking.viewer_hint', { player: nameFor(game.activeSeat) });
+  $('blind-hint').textContent = !connected ? t('runtime.copy.baglanti_bekleniyor_siralaman_korunuyor') : busy && pendingAction?.startsWith('rank-slot-') ? t('runtime.copy.kart_siraya_yerlestiriliyor') : isActive ? t('runtime.copy.1_en_iyi_10_en_alt_secimin_kalici') : t('runtime.ranking.viewer_hint', { player: nameFor(game.activeSeat) });
   renderRankChoices($('blind-choices'), game.slots, canAct, busy ? pendingAction : null);
   renderRankingList($('blind-slots'), game.slots, getCard, newPlacement ? game.lastPlacement.slot : 0);
   const cardKey = `${room.code}:${room.round}:${game.deckIndex}`;
@@ -461,12 +462,12 @@ function renderBlindResults(connected, bothOnline) {
   renderRankingList($('blind-result-slots'), game.slots, getCard, arrivedFromGame ? game.lastPlacement.slot : 0);
   if (arrivedFromGame) { celebrate(); beep('win'); }
   lastVisualState = { code: room.code, round: room.round, status: 'finished', deckIndex: game.deckIndex };
-  $('rematch-button').disabled = busy || !connected || !bothOnline;
+  $('rematch-button').disabled = busy || !connected;
 }
 
 function renderBracket(connected, bothOnline) {
   const game = normalizeBracket(room.game);
-  const canAct = mySeat === game.activeSeat && connected && bothOnline && !busy;
+  const canAct = mySeat === game.activeSeat && connected && !busy;
   const key = `${room.code}:${room.round}:${game.matchIndex}`;
   const sameRound = lastVisualState?.code === room.code && lastVisualState?.round === room.round;
   const changed = sameRound && lastVisualState.matchIndex < game.matchIndex;
@@ -479,7 +480,7 @@ function renderBracket(connected, bothOnline) {
     const button = $(`bracket-${side}`); button.disabled = !canAct; button.dataset.cardId = String(id);
     button.setAttribute('aria-label', t('runtime.bracket.card_accessible', { card: getCard(id)?.isim }));
   }
-  $('bracket-hint').textContent = !connected || !bothOnline ? t('runtime.copy.baglanti_bekleniyor_turnuvan_korunuyor') : busy ? t('runtime.copy.secim_kaydediliyor') : mySeat === game.activeSeat ? t('runtime.copy.hangisi_ust_tura_ciksin_bir_kart_sec') : t('runtime.bracket.viewer_hint', { player: nameFor(game.activeSeat) });
+  $('bracket-hint').textContent = !connected ? t('runtime.copy.baglanti_bekleniyor_turnuvan_korunuyor') : busy ? t('runtime.copy.secim_kaydediliyor') : mySeat === game.activeSeat ? t('runtime.copy.hangisi_ust_tura_ciksin_bir_kart_sec') : t('runtime.bracket.viewer_hint', { player: nameFor(game.activeSeat) });
   renderBracketHistory($('bracket-history'), game, getCard);
   if (lastVisualState?.cardKey !== key) animateOnce($('bracket-left').parentElement, 'card-reveal');
   if (changed) beep('bid');
@@ -555,7 +556,7 @@ function renderExtraResults(connected, bothOnline) {
   }
   if (arrived) { celebrate(); beep('win'); }
   lastVisualState = { code: room.code, round: room.round, status: 'finished' };
-  $('rematch-button').disabled = busy || !connected || !bothOnline;
+  $('rematch-button').disabled = busy || !connected || (!hasOptionalSpectator(room) && !bothOnline);
 }
 
 function animateAward(seat, cardId, originRect, target) {
@@ -702,7 +703,7 @@ async function command(kind, payload = {}) {
   if (demo) {
     room = apply(room); render();
   } else {
-    if (!onlineSeat('p1') || !onlineSeat('p2')) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
+    if (!hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
     const originService = service;
     await originService.mutateRoom(room.code, apply);
   }

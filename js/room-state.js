@@ -5,6 +5,8 @@ import { createTeamDraft, assignTeamCard } from './team-draft.js';
 
 export class RoomError extends Error {}
 export const otherSeat = seat => seat === 'p1' ? 'p2' : 'p1';
+export const hasOptionalSpectator = room => room?.mode === 'blind-ranking' || room?.mode === 'bracket';
+export const rematchStarter = room => hasOptionalSpectator(room) && !room.players.p2 ? 'p1' : otherSeat(room.starterSeat);
 export function seatFor(room, uid) {
   return ['p1', 'p2'].find(seat => room?.players?.[seat]?.uid === uid) || null;
 }
@@ -25,8 +27,8 @@ export function changeRoom(room, uid, expectedRevision, command, payload = {}) {
   if (room.revision !== expectedRevision) throw new RoomError('Oda güncellendi. Güncel ekran üzerinden tekrar deneyin.');
   const next = structuredClone(room);
   if (command === 'start') {
-    if (uid !== room.ownerUid || room.status !== 'waiting' || !room.players.p2) {
-      throw new RoomError('Başlatmak için iki oyuncu ve oda sahibi gerekir.');
+    if (uid !== room.ownerUid || room.status !== 'waiting' || (!hasOptionalSpectator(room) && !room.players.p2)) {
+      throw new RoomError('Oyunu oda sahibi başlatır. İki aktif oyunculu modlarda iki oyuncu gerekir.');
     }
     next.game = createGame(room, payload, room.starterSeat);
   } else if (command === 'bid' || command === 'pass') {
@@ -48,7 +50,7 @@ export function changeRoom(room, uid, expectedRevision, command, payload = {}) {
   } else if (command === 'rematch') {
     if (room.status !== 'finished') throw new RoomError('Rövanş için bu turun bitmesi gerekir.');
     next.round = room.round + 1;
-    next.starterSeat = otherSeat(room.starterSeat);
+    next.starterSeat = rematchStarter(room);
     next.game = createGame(room, payload, next.starterSeat);
   } else {
     throw new RoomError('Bilinmeyen hamle.');

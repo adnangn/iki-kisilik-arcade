@@ -157,12 +157,14 @@ test('normalization rejects cards outside the placed prefix and inconsistent sta
   assert.deepEqual(normalizeBlindRanking(valid), valid);
 });
 
-test('the room starts the selected mode only when the owner has a second player', () => {
+test('the owner starts the selected mode with or without a spectator', () => {
   const waiting = waitingRoom();
   assert.throws(() => changeRoom(waiting, GUEST, 0, 'start', { deck }), RoomError);
   const alone = waitingRoom();
   delete alone.players.p2;
-  assert.throws(() => changeRoom(alone, HOST, 0, 'start', { deck }), RoomError);
+  const solo = changeRoom(alone, HOST, 0, 'start', { deck });
+  assert.equal(solo.game.activeSeat, 'p1');
+  assert.equal(solo.players.p2, undefined);
   const started = playingRoom();
   assert.equal(started.mode, 'blind-ranking');
   assert.equal(started.game.activeSeat, 'p1');

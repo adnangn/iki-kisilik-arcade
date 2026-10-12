@@ -1,0 +1,669 @@
+{
+  "cocukluk-cizgifilmleri": [
+    {
+      "id": 11001,
+      "isim": "Heidi",
+      "gorsel": "assets/images/cartoons/heidi.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11002,
+      "isim": "Pepee",
+      "gorsel": "assets/images/cartoons/pepee.svg",
+      "etiket": "Yerli"
+    },
+    {
+      "id": 11003,
+      "isim": "Rafadan Tayfa",
+      "gorsel": "assets/images/cartoons/rafadan-tayfa.svg",
+      "etiket": "Yerli"
+    },
+    {
+      "id": 11004,
+      "isim": "Kaptan Tsubasa",
+      "gorsel": "assets/images/cartoons/kaptan-tsubasa.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11005,
+      "isim": "Pokémon",
+      "gorsel": "assets/images/cartoons/pokemon.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11006,
+      "isim": "Tom ve Jerry",
+      "gorsel": "assets/images/cartoons/tom-ve-jerry.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11007,
+      "isim": "Şirinler",
+      "gorsel": "assets/images/cartoons/sirinler.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11008,
+      "isim": "Taş Devri",
+      "gorsel": "assets/images/cartoons/tas-devri.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11009,
+      "isim": "Jetgiller",
+      "gorsel": "assets/images/cartoons/jetgiller.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11010,
+      "isim": "Scooby-Doo",
+      "gorsel": "assets/images/cartoons/scooby-doo.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11011,
+      "isim": "Looney Tunes",
+      "gorsel": "assets/images/cartoons/looney-tunes.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11012,
+      "isim": "Red Kit",
+      "gorsel": "assets/images/cartoons/red-kit.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11013,
+      "isim": "Temel Reis",
+      "gorsel": "assets/images/cartoons/temel-reis.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11014,
+      "isim": "Arı Maya",
+      "gorsel": "assets/images/cartoons/ari-maya.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11015,
+      "isim": "SüngerBob",
+      "gorsel": "assets/images/cartoons/sungerbob.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11016,
+      "isim": "Sailor Moon",
+      "gorsel": "assets/images/cartoons/sailor-moon.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11017,
+      "isim": "Digimon",
+      "gorsel": "assets/images/cartoons/digimon.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11018,
+      "isim": "Beyblade",
+      "gorsel": "assets/images/cartoons/beyblade.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11019,
+      "isim": "Yu-Gi-Oh!",
+      "gorsel": "assets/images/cartoons/yu-gi-oh.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11020,
+      "isim": "Dragon Ball",
+      "gorsel": "assets/images/cartoons/dragon-ball.svg",
+      "etiket": "Anime"
+    },
+    {
+      "id": 11021,
+      "isim": "Avatar: Son Hava Bükücü",
+      "gorsel": "assets/images/cartoons/avatar.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11022,
+      "isim": "Ben 10",
+      "gorsel": "assets/images/cartoons/ben-10.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11023,
+      "isim": "Powerpuff Girls",
+      "gorsel": "assets/images/cartoons/powerpuff-girls.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11024,
+      "isim": "Samuray Jack",
+      "gorsel": "assets/images/cartoons/samuray-jack.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11025,
+      "isim": "Dexter’ın Laboratuvarı",
+      "gorsel": "assets/images/cartoons/dexterin-laboratuvari.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11026,
+      "isim": "Cesur Korkak Köpek",
+      "gorsel": "assets/images/cartoons/cesur-korkak-kopek.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11027,
+      "isim": "Ed, Edd ve Eddy",
+      "gorsel": "assets/images/cartoons/ed-edd-ve-eddy.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11028,
+      "isim": "Caillou",
+      "gorsel": "assets/images/cartoons/caillou.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11029,
+      "isim": "Arthur",
+      "gorsel": "assets/images/cartoons/arthur.svg",
+      "etiket": "Klasikler"
+    },
+    {
+      "id": 11030,
+      "isim": "Ninja Kaplumbağalar",
+      "gorsel": "assets/images/cartoons/ninja-kaplumbagalar.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11031,
+      "isim": "Afacan Louie",
+      "gorsel": "assets/images/cartoons/afacan-louie.svg",
+      "etiket": "Komedi"
+    },
+    {
+      "id": 11032,
+      "isim": "Niloya",
+      "gorsel": "assets/images/cartoons/niloya.svg",
+      "etiket": "Yerli"
+    },
+    {
+      "id": 11033,
+      "isim": "Keloğlan",
+      "gorsel": "assets/images/cartoons/keloglan.svg",
+      "etiket": "Yerli"
+    },
+    {
+      "id": 11034,
+      "isim": "Maşa ile Koca Ayı",
+      "gorsel": "assets/images/cartoons/masa-ile-koca-ayi.svg",
+      "etiket": "Macera"
+    },
+    {
+      "id": 11035,
+      "isim": "Winnie the Pooh",
+      "gorsel": "assets/images/cartoons/winnie-the-pooh.svg",
+      "etiket": "Klasikler"
+    }
+  ],
+  "doksanlar-nostalji": [
+    {
+      "id": 12001,
+      "isim": "Tamagotchi",
+      "gorsel": "assets/images/nostalgia/tamagotchi.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12002,
+      "isim": "Sakız Kartları",
+      "gorsel": "assets/images/nostalgia/sakiz-kartlari.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12003,
+      "isim": "Kaset",
+      "gorsel": "assets/images/nostalgia/kaset.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12004,
+      "isim": "Tetris El Oyunu",
+      "gorsel": "assets/images/nostalgia/tetris-el-oyunu.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12005,
+      "isim": "Walkman",
+      "gorsel": "assets/images/nostalgia/walkman.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12006,
+      "isim": "Disket",
+      "gorsel": "assets/images/nostalgia/disket.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12007,
+      "isim": "Tüplü Televizyon",
+      "gorsel": "assets/images/nostalgia/tuplu-televizyon.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12008,
+      "isim": "Çevirmeli Telefon",
+      "gorsel": "assets/images/nostalgia/cevirmeli-telefon.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12009,
+      "isim": "VHS Kaset",
+      "gorsel": "assets/images/nostalgia/vhs-kaset.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12010,
+      "isim": "Atari Kaseti",
+      "gorsel": "assets/images/nostalgia/atari-kaseti.svg",
+      "etiket": "Teknoloji"
+    },
+    {
+      "id": 12011,
+      "isim": "Misket",
+      "gorsel": "assets/images/nostalgia/misket.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12012,
+      "isim": "Taso",
+      "gorsel": "assets/images/nostalgia/taso.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12013,
+      "isim": "Yoyo",
+      "gorsel": "assets/images/nostalgia/yoyo.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12014,
+      "isim": "Topaç",
+      "gorsel": "assets/images/nostalgia/topac.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12015,
+      "isim": "Lastik Atlama",
+      "gorsel": "assets/images/nostalgia/lastik-atlama.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12016,
+      "isim": "Seksek",
+      "gorsel": "assets/images/nostalgia/seksek.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12017,
+      "isim": "İp Atlama",
+      "gorsel": "assets/images/nostalgia/ip-atlama.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12018,
+      "isim": "Kâğıt Falcısı",
+      "gorsel": "assets/images/nostalgia/kagit-falcisi.svg",
+      "etiket": "Sokak Oyunu"
+    },
+    {
+      "id": 12019,
+      "isim": "Cin Ali Kitapları",
+      "gorsel": "assets/images/nostalgia/cin-ali-kitaplari.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12020,
+      "isim": "Abaküs",
+      "gorsel": "assets/images/nostalgia/abakus.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12021,
+      "isim": "Döner Kalemtıraş",
+      "gorsel": "assets/images/nostalgia/doner-kalemtiras.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12022,
+      "isim": "Kokulu Silgi",
+      "gorsel": "assets/images/nostalgia/kokulu-silgi.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12023,
+      "isim": "Çok Renkli Kalem",
+      "gorsel": "assets/images/nostalgia/cok-renkli-kalem.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12024,
+      "isim": "Hatıra Defteri",
+      "gorsel": "assets/images/nostalgia/hatira-defteri.svg",
+      "etiket": "Okul"
+    },
+    {
+      "id": 12025,
+      "isim": "Oyun Salonu Jetonu",
+      "gorsel": "assets/images/nostalgia/oyun-salonu-jetonu.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12026,
+      "isim": "Telefon Jetonu",
+      "gorsel": "assets/images/nostalgia/telefon-jetonu.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12027,
+      "isim": "İnternet Kafe",
+      "gorsel": "assets/images/nostalgia/internet-kafe.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12028,
+      "isim": "Atari Salonu",
+      "gorsel": "assets/images/nostalgia/atari-salonu.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12029,
+      "isim": "Soba Üstü Kestane",
+      "gorsel": "assets/images/nostalgia/soba-ustu-kestane.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12030,
+      "isim": "Bakkal Vitrini",
+      "gorsel": "assets/images/nostalgia/bakkal-vitrini.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12031,
+      "isim": "Poşette Meyve Suyu",
+      "gorsel": "assets/images/nostalgia/posette-meyve-suyu.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12032,
+      "isim": "Çekirdek Külahı",
+      "gorsel": "assets/images/nostalgia/cekirdek-kulahi.svg",
+      "etiket": "Mahalle"
+    },
+    {
+      "id": 12033,
+      "isim": "Dondurma Çubuğu Koleksiyonu",
+      "gorsel": "assets/images/nostalgia/dondurma-cubugu-koleksiyonu.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12034,
+      "isim": "Çıkartma Albümü",
+      "gorsel": "assets/images/nostalgia/cikartma-albumu.svg",
+      "etiket": "Koleksiyon"
+    },
+    {
+      "id": 12035,
+      "isim": "Metal Beslenme Çantası",
+      "gorsel": "assets/images/nostalgia/metal-beslenme-cantasi.svg",
+      "etiket": "Okul"
+    }
+  ],
+  "kantin-bakkal": [
+    {
+      "id": 13001,
+      "isim": "ETİ Cin",
+      "gorsel": "assets/images/snacks/eti-cin.svg",
+      "etiket": "Bisküvi",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13002,
+      "isim": "Tadelle",
+      "gorsel": "assets/images/snacks/tadelle.svg",
+      "etiket": "Çikolata",
+      "marka": "Tadelle"
+    },
+    {
+      "id": 13003,
+      "isim": "Metro",
+      "gorsel": "assets/images/snacks/metro.svg",
+      "etiket": "Çikolata",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13004,
+      "isim": "Ülker Çokokrem",
+      "gorsel": "assets/images/snacks/ulker-cokokrem.svg",
+      "etiket": "Çikolata",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13005,
+      "isim": "Ülker Çikolatalı Gofret",
+      "gorsel": "assets/images/snacks/ulker-cikolatali-gofret.svg",
+      "etiket": "Gofret",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13006,
+      "isim": "ETİ Burçak",
+      "gorsel": "assets/images/snacks/eti-burcak.svg",
+      "etiket": "Bisküvi",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13007,
+      "isim": "ETİ Puf",
+      "gorsel": "assets/images/snacks/eti-puf.svg",
+      "etiket": "Bisküvi",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13008,
+      "isim": "ETİ Tutku",
+      "gorsel": "assets/images/snacks/eti-tutku.svg",
+      "etiket": "Bisküvi",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13009,
+      "isim": "ETİ Popkek",
+      "gorsel": "assets/images/snacks/eti-popkek.svg",
+      "etiket": "Kek",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13010,
+      "isim": "ETİ Topkek",
+      "gorsel": "assets/images/snacks/eti-topkek.svg",
+      "etiket": "Kek",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13011,
+      "isim": "ETİ Browni",
+      "gorsel": "assets/images/snacks/eti-browni.svg",
+      "etiket": "Kek",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13012,
+      "isim": "Ülker Albeni",
+      "gorsel": "assets/images/snacks/ulker-albeni.svg",
+      "etiket": "Çikolata",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13013,
+      "isim": "Ülker Halley",
+      "gorsel": "assets/images/snacks/ulker-halley.svg",
+      "etiket": "Bisküvi",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13014,
+      "isim": "Ülker Çokomel",
+      "gorsel": "assets/images/snacks/ulker-cokomel.svg",
+      "etiket": "Çikolata",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13015,
+      "isim": "CocoStar",
+      "gorsel": "assets/images/snacks/cocostar.svg",
+      "etiket": "Çikolata",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13016,
+      "isim": "Ülker Çizi",
+      "gorsel": "assets/images/snacks/ulker-cizi.svg",
+      "etiket": "Tuzlu",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13017,
+      "isim": "Ülker Biskrem",
+      "gorsel": "assets/images/snacks/ulker-biskrem.svg",
+      "etiket": "Bisküvi",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13018,
+      "isim": "Ülker Hanımeller",
+      "gorsel": "assets/images/snacks/ulker-hanimeller.svg",
+      "etiket": "Bisküvi",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13019,
+      "isim": "Ülker Çubuk Kraker",
+      "gorsel": "assets/images/snacks/ulker-cubuk-kraker.svg",
+      "etiket": "Tuzlu",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13020,
+      "isim": "ETİ CraX",
+      "gorsel": "assets/images/snacks/eti-crax.svg",
+      "etiket": "Tuzlu",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13021,
+      "isim": "ETİ Wanted",
+      "gorsel": "assets/images/snacks/eti-wanted.svg",
+      "etiket": "Çikolata",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13022,
+      "isim": "ETİ Hoşbeş",
+      "gorsel": "assets/images/snacks/eti-hosbes.svg",
+      "etiket": "Gofret",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13023,
+      "isim": "ETİ Nero",
+      "gorsel": "assets/images/snacks/eti-nero.svg",
+      "etiket": "Bisküvi",
+      "marka": "ETİ"
+    },
+    {
+      "id": 13024,
+      "isim": "Ülker Çokoprens",
+      "gorsel": "assets/images/snacks/ulker-cokoprens.svg",
+      "etiket": "Bisküvi",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13025,
+      "isim": "Ülker Probis",
+      "gorsel": "assets/images/snacks/ulker-probis.svg",
+      "etiket": "Bisküvi",
+      "marka": "Ülker"
+    },
+    {
+      "id": 13026,
+      "isim": "Sarelle",
+      "gorsel": "assets/images/snacks/sarelle.svg",
+      "etiket": "Çikolata",
+      "marka": "Sarelle"
+    },
+    {
+      "id": 13027,
+      "isim": "Tipitip Sakız",
+      "gorsel": "assets/images/snacks/tipitip-sakiz.svg",
+      "etiket": "Sakız",
+      "marka": "Kent"
+    },
+    {
+      "id": 13028,
+      "isim": "Falım Sakız",
+      "gorsel": "assets/images/snacks/falim-sakiz.svg",
+      "etiket": "Sakız",
+      "marka": "Falım"
+    },
+    {
+      "id": 13029,
+      "isim": "Turbo Sakız",
+      "gorsel": "assets/images/snacks/turbo-sakiz.svg",
+      "etiket": "Sakız"
+    },
+    {
+      "id": 13030,
+      "isim": "Şıpsevdi Sakız",
+      "gorsel": "assets/images/snacks/sipsevdi-sakiz.svg",
+      "etiket": "Sakız",
+      "marka": "Şıpsevdi"
+    },
+    {
+      "id": 13031,
+      "isim": "Capri-Sun",
+      "gorsel": "assets/images/snacks/capri-sun.svg",
+      "etiket": "İçecek",
+      "marka": "Capri-Sun"
+    },
+    {
+      "id": 13032,
+      "isim": "Tang",
+      "gorsel": "assets/images/snacks/tang.svg",
+      "etiket": "İçecek",
+      "marka": "Tang"
+    },
+    {
+      "id": 13033,
+      "isim": "Meybuz",
+      "gorsel": "assets/images/snacks/meybuz.svg",
+      "etiket": "İçecek"
+    },
+    {
+      "id": 13034,
+      "isim": "Leblebi Tozu",
+      "gorsel": "assets/images/snacks/leblebi-tozu.svg",
+      "etiket": "Bakkal"
+    },
+    {
+      "id": 13035,
+      "isim": "Kantin Tostu",
+      "gorsel": "assets/images/snacks/kantin-tostu.svg",
+      "etiket": "Bakkal"
+    }
+  ]
+}

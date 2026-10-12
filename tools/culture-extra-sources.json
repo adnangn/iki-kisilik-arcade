@@ -1,0 +1,398 @@
+{
+  "checkedAt": "2026-10-12",
+  "scope": "İkinci kültür genişlemesi: 50 yeni sanatçı/grup ve İstanbul’un 39 ilçesi.",
+  "selectionNote": "Sanatçılar farklı kuşak ve türlerden editoryal bir seçkidir. Geniş müzik etiketleri oyun gruplarıdır; güncel plak şirketi, grup kadrosu veya popülerlik sıralaması iddiası değildir. Aşağıdaki sanatçı kaynakları yalnız belirtilen örneklerin kimliğini destekler; tüm 50 sanatçının güncel profilinin ayrı ayrı doğrulandığı iddia edilmez.",
+  "artNote": "89 yerel SVG özgün temsili piksel çizimidir. Sanatçı çizimleri fotoğraf veya albüm kapağı değildir; ilçe çizimleri temsili mimari/doğa motifleridir, kesin harita veya sınır iddiası yoktur.",
+  "sources": [
+    {
+      "title": "T.C. İstanbul Valiliği — İstanbul İlçeleri",
+      "url": "https://istanbul.gov.tr/",
+      "cardIds": [
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016,
+        10017,
+        10018,
+        10019,
+        10020,
+        10021,
+        10022,
+        10023,
+        10024,
+        10025,
+        10026,
+        10027,
+        10028,
+        10029,
+        10030,
+        10031,
+        10032,
+        10033,
+        10034,
+        10035,
+        10036,
+        10037,
+        10038,
+        10039
+      ],
+      "coverage": "39 ilçenin eksiksiz listesi, güncel Türkçe ilçe adları; resmi sayfanın arama motoru dizinindeki metni okundu."
+    },
+    {
+      "title": "İBB — Yetki Alanı",
+      "url": "https://ibb.istanbul/ibb/belediye-hakkinda/yetki-alani/",
+      "coverage": "İstanbul ilçe sayısı 39; resmi sayfanın arama motoru dizinindeki metni okundu."
+    },
+    {
+      "title": "DMC — E harfi sanatçı dizini",
+      "url": "https://www.dmc.com.tr/sanatcilar/e",
+      "cardIds": [
+        7057,
+        7073,
+        7095
+      ],
+      "coverage": "Sanatçı sahne adları; dizinde bu isimler yer alıyor."
+    },
+    {
+      "title": "DMC — Sanatçı haberleri",
+      "url": "https://dmc.com.tr/haberler",
+      "cardIds": [
+        7051,
+        7056,
+        7058,
+        7070
+      ],
+      "coverage": "Sanatçı adları ve yayımlanmış müzik çalışmaları; haber tarihleri güncel üyelik kanıtı değildir."
+    },
+    {
+      "title": "DMC — Mustafa Ceceli sanatçı profili",
+      "url": "https://www.dmc.com.tr/sanatcilar/mustafa-ceceli/54",
+      "cardIds": [
+        7064
+      ],
+      "coverage": "Sanatçının kimliği ve yayımlanmış albümleri."
+    },
+    {
+      "title": "Dokuz Sekiz — Albüm kataloğu",
+      "url": "https://www.dokuzsekiz.com.tr/releases/releases-grid-fullwidth/",
+      "cardIds": [
+        7065
+      ],
+      "coverage": "Yaşar adıyla yayımlanan kayıt; güncel şirket üyeliği veya tek tür iddiası değildir."
+    }
+  ],
+  "editorialArtists": [
+    {
+      "id": 7051,
+      "isim": "Mustafa Sandal",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7052,
+      "isim": "Serdar Ortaç",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7053,
+      "isim": "Deniz Seki",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7054,
+      "isim": "Demet Akalın",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7055,
+      "isim": "Hadise",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7056,
+      "isim": "Murat Boz",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7057,
+      "isim": "Edis",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7058,
+      "isim": "Simge",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7059,
+      "isim": "Aleyna Tilki",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7060,
+      "isim": "Zeynep Bastık",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7061,
+      "isim": "İrem Derici",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7062,
+      "isim": "Bengü",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7063,
+      "isim": "Buray",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7064,
+      "isim": "Mustafa Ceceli",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7065,
+      "isim": "Yaşar",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7066,
+      "isim": "Candan Erçetin",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7067,
+      "isim": "Nilüfer",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7068,
+      "isim": "Aşkın Nur Yengi",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7069,
+      "isim": "Ferhat Göçer",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7070,
+      "isim": "Funda Arar",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7071,
+      "isim": "Yalın",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7072,
+      "isim": "Emre Altuğ",
+      "tip": "sanatci",
+      "etiket": "Pop"
+    },
+    {
+      "id": 7073,
+      "isim": "Emre Aydın",
+      "tip": "sanatci",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7074,
+      "isim": "Kıraç",
+      "tip": "sanatci",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7075,
+      "isim": "Dolu Kadehi Ters Tut",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7076,
+      "isim": "Adamlar",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7077,
+      "isim": "Madrigal",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7078,
+      "isim": "Dedublüman",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7079,
+      "isim": "Büyük Ev Ablukada",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7080,
+      "isim": "Kargo",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7081,
+      "isim": "Pentagram",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7082,
+      "isim": "Zakkum",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7083,
+      "isim": "Yeni Türkü",
+      "tip": "grup",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7084,
+      "isim": "Son Feci Bisiklet",
+      "tip": "grup",
+      "etiket": "Rock"
+    },
+    {
+      "id": 7085,
+      "isim": "Erkan Oğur",
+      "tip": "sanatci",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7086,
+      "isim": "Volkan Konak",
+      "tip": "sanatci",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7087,
+      "isim": "Musa Eroğlu",
+      "tip": "sanatci",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7088,
+      "isim": "Arif Sağ",
+      "tip": "sanatci",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7089,
+      "isim": "Kubat",
+      "tip": "sanatci",
+      "etiket": "Halk"
+    },
+    {
+      "id": 7090,
+      "isim": "Cengiz Kurtoğlu",
+      "tip": "sanatci",
+      "etiket": "Arabesk"
+    },
+    {
+      "id": 7091,
+      "isim": "Hakan Altun",
+      "tip": "sanatci",
+      "etiket": "Arabesk"
+    },
+    {
+      "id": 7092,
+      "isim": "Ümit Besen",
+      "tip": "sanatci",
+      "etiket": "Arabesk"
+    },
+    {
+      "id": 7093,
+      "isim": "Mahsun Kırmızıgül",
+      "tip": "sanatci",
+      "etiket": "Arabesk"
+    },
+    {
+      "id": 7094,
+      "isim": "Sibel Can",
+      "tip": "sanatci",
+      "etiket": "Arabesk"
+    },
+    {
+      "id": 7095,
+      "isim": "Eypio",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    },
+    {
+      "id": 7096,
+      "isim": "Şanışer",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    },
+    {
+      "id": 7097,
+      "isim": "Gazapizm",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    },
+    {
+      "id": 7098,
+      "isim": "Norm Ender",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    },
+    {
+      "id": 7099,
+      "isim": "Sefo",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    },
+    {
+      "id": 7100,
+      "isim": "UZI",
+      "tip": "sanatci",
+      "etiket": "Rap"
+    }
+  ]
+}

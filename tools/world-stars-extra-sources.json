@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12",
+  "scope": "50 additional editorial selections for Güncel Dünya Yıldızları; active professional players rather than an official greatness or popularity ranking.",
+  "nationalKits": "Country labels identify the national association. Pixel kit colours and numbers are symbolic and do not assert a current club, current national squad membership or an exact 2026 uniform.",
+  "positionTags": "FV/OF/DF/KL are broad game groups. Versatile players such as Arda Güler, Joshua Kimmich and Dani Olmo are grouped by their familiar club role; the game does not require every tournament's position wording to match.",
+  "availability": "Active includes professionals recovering from injury; it does not claim the player is fit or was selected for the 2026 World Cup. Non-tournament players are supported separately by current official club or UEFA records.",
+  "artwork": "50 original local 96×96 static SVG pixel portraits. No remote photographs, trademarked logos or image downloads.",
+  "sources": [
+    {
+      "id": "fifa-world-cup-2026-squads",
+      "publisher": "FIFA",
+      "title": "FIFA World Cup 2026 official squad lists, 19 July 2026 version",
+      "url": "https://fdp.fifa.org/assetspublic/ce281/pdf/SquadLists-English.pdf",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6051, 6052, 6053, 6054, 6055, 6057, 6059, 6060, 6061, 6062, 6063, 6065, 6068, 6069, 6070, 6071, 6072, 6073, 6074, 6075, 6077, 6078, 6079, 6080, 6081, 6082, 6083, 6084, 6087, 6088, 6089, 6090, 6091, 6092, 6093, 6095, 6096, 6097, 6098, 6099, 6100],
+      "note": "National association, name and professional team registration in the official 2026 tournament list. Club strings are deliberately not imported into game cards."
+    },
+    {
+      "id": "tff-2026-squad",
+      "publisher": "TFF",
+      "title": "2026 FIFA Dünya Kupası A Millî Takım Kadro Sayfası",
+      "url": "https://www.tff.org/Default.aspx?pageId=1776",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6051, 6052, 6053, 6054, 6055]
+    },
+    {
+      "id": "uefa-vlahovic-2026",
+      "publisher": "UEFA",
+      "title": "Dušan Vlahović — Serbia — European Qualifiers 2026",
+      "url": "https://www.uefa.com/european-qualifiers/teams/players/250099180--dusan-vlahovic/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6056]
+    },
+    {
+      "id": "manutd-sesko",
+      "publisher": "Manchester United",
+      "title": "Benjamin Šeško — current men's team profile",
+      "url": "https://www.manutd.com/en/teams/mens-team/benjamin-sesko",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6058]
+    },
+    {
+      "id": "psg-kvaratskhelia",
+      "publisher": "Paris Saint-Germain",
+      "title": "Khvicha Kvaratskhelia — current player profile",
+      "url": "https://www.psg.fr/en/players/khvicha-kvaratskhelia",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6064]
+    },
+    {
+      "id": "chelsea-joao-pedro",
+      "publisher": "Chelsea FC",
+      "title": "Joao Pedro — current player profile, 2026/27",
+      "url": "https://www.chelseafc.com/en/teams/profile/joao-pedro",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6066]
+    },
+    {
+      "id": "chelsea-estevao",
+      "publisher": "Chelsea FC",
+      "title": "Estevao Willian — current player profile, 2026/27",
+      "url": "https://www.chelseafc.com/en/teams/profile/estevao",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6067]
+    },
+    {
+      "id": "chelsea-2026-golden-boy",
+      "publisher": "Chelsea FC",
+      "title": "Chelsea duo nominated for Golden Boy award, 6 October 2026",
+      "url": "https://www.chelseafc.com/en/news/article/chelsea-duo-nominated-for-golden-boy-award",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6067, 6068, 6095]
+    },
+    {
+      "id": "brighton-mitoma",
+      "publisher": "Brighton & Hove Albion",
+      "title": "Kaoru Mitoma — current player profile and 2026 recovery news",
+      "url": "https://www.brightonandhovealbion.com/player-detail-statistics-midfielder/451340",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6076]
+    },
+    {
+      "id": "uefa-italy-2026-nations-league",
+      "publisher": "UEFA",
+      "title": "I convocati dell'Italia per la Nations League, 18 September 2026",
+      "url": "https://it.uefa.com/uefanationsleague/news/02a9-219f55433618-8358aa30519f-1000--i-convocati-dell-italia-per-la-nations-league/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6085]
+    },
+    {
+      "id": "liverpool-szoboszlai-contract",
+      "publisher": "Liverpool FC",
+      "title": "Dominik Szoboszlai signs new long-term Liverpool contract, July 2026",
+      "url": "https://www.liverpoolfc.com/news/dominik-szoboszlai-signs-new-long-term-liverpool-contract",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6086]
+    },
+    {
+      "id": "realmadrid-militao",
+      "publisher": "Real Madrid",
+      "title": "E. Militão — current first team profile, 2026/27",
+      "url": "https://www.realmadrid.com/en-US/football/first-team/players/eder-gabriel-militao/",
+      "accessedAt": "2026-10-12",
+      "cardIds": [6094]
+    }
+  ]
+}

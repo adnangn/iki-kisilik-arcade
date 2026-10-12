@@ -1,0 +1,404 @@
+{
+  "dunya-yildizlari": [
+    {
+      "id": 6051,
+      "isim": "Arda Güler",
+      "gorsel": "assets/images/world-stars/arda-guler.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6052,
+      "isim": "Kenan Yıldız",
+      "gorsel": "assets/images/world-stars/kenan-yildiz.svg",
+      "etiket": "FV",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6053,
+      "isim": "Ferdi Kadıoğlu",
+      "gorsel": "assets/images/world-stars/ferdi-kadioglu.svg",
+      "etiket": "DF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6054,
+      "isim": "Hakan Çalhanoğlu",
+      "gorsel": "assets/images/world-stars/hakan-calhanoglu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6055,
+      "isim": "Orkun Kökçü",
+      "gorsel": "assets/images/world-stars/orkun-kokcu.svg",
+      "etiket": "OF",
+      "takim": "Türkiye",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6056,
+      "isim": "Dušan Vlahović",
+      "gorsel": "assets/images/world-stars/dusan-vlahovic.svg",
+      "etiket": "FV",
+      "takim": "Sırbistan",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6057,
+      "isim": "Viktor Gyökeres",
+      "gorsel": "assets/images/world-stars/viktor-gyokeres.svg",
+      "etiket": "FV",
+      "takim": "İsveç",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6058,
+      "isim": "Benjamin Šeško",
+      "gorsel": "assets/images/world-stars/benjamin-sesko.svg",
+      "etiket": "FV",
+      "takim": "Slovenya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6059,
+      "isim": "Rafael Leão",
+      "gorsel": "assets/images/world-stars/rafael-leao.svg",
+      "etiket": "FV",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6060,
+      "isim": "Marcus Rashford",
+      "gorsel": "assets/images/world-stars/marcus-rashford.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6061,
+      "isim": "Luis Díaz",
+      "gorsel": "assets/images/world-stars/luis-diaz.svg",
+      "etiket": "FV",
+      "takim": "Kolombiya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6062,
+      "isim": "Cody Gakpo",
+      "gorsel": "assets/images/world-stars/cody-gakpo.svg",
+      "etiket": "FV",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6063,
+      "isim": "Désiré Doué",
+      "gorsel": "assets/images/world-stars/desire-doue.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6064,
+      "isim": "Khvicha Kvaratskhelia",
+      "gorsel": "assets/images/world-stars/khvicha-kvaratskhelia.svg",
+      "etiket": "FV",
+      "takim": "Gürcistan",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6065,
+      "isim": "Bradley Barcola",
+      "gorsel": "assets/images/world-stars/bradley-barcola.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6066,
+      "isim": "João Pedro",
+      "gorsel": "assets/images/world-stars/joao-pedro.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6067,
+      "isim": "Estêvão Willian",
+      "gorsel": "assets/images/world-stars/estevao-willian.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6068,
+      "isim": "Endrick",
+      "gorsel": "assets/images/world-stars/endrick.svg",
+      "etiket": "FV",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6069,
+      "isim": "Anthony Gordon",
+      "gorsel": "assets/images/world-stars/anthony-gordon.svg",
+      "etiket": "FV",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6070,
+      "isim": "Michael Olise",
+      "gorsel": "assets/images/world-stars/michael-olise.svg",
+      "etiket": "FV",
+      "takim": "Fransa",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6071,
+      "isim": "Nico Williams",
+      "gorsel": "assets/images/world-stars/nico-williams.svg",
+      "etiket": "FV",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6072,
+      "isim": "Mikel Oyarzabal",
+      "gorsel": "assets/images/world-stars/mikel-oyarzabal.svg",
+      "etiket": "FV",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6073,
+      "isim": "Jonathan David",
+      "gorsel": "assets/images/world-stars/jonathan-david.svg",
+      "etiket": "FV",
+      "takim": "Kanada",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6074,
+      "isim": "Christian Pulisic",
+      "gorsel": "assets/images/world-stars/christian-pulisic.svg",
+      "etiket": "FV",
+      "takim": "ABD",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6075,
+      "isim": "Takefusa Kubo",
+      "gorsel": "assets/images/world-stars/takefusa-kubo.svg",
+      "etiket": "FV",
+      "takim": "Japonya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6076,
+      "isim": "Kaoru Mitoma",
+      "gorsel": "assets/images/world-stars/kaoru-mitoma.svg",
+      "etiket": "FV",
+      "takim": "Japonya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6077,
+      "isim": "Sadio Mané",
+      "gorsel": "assets/images/world-stars/sadio-mane.svg",
+      "etiket": "FV",
+      "takim": "Senegal",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6078,
+      "isim": "Joshua Kimmich",
+      "gorsel": "assets/images/world-stars/joshua-kimmich.svg",
+      "etiket": "OF",
+      "takim": "Almanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6079,
+      "isim": "Vitinha",
+      "gorsel": "assets/images/world-stars/vitinha.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6080,
+      "isim": "João Neves",
+      "gorsel": "assets/images/world-stars/joao-neves.svg",
+      "etiket": "OF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6081,
+      "isim": "Enzo Fernández",
+      "gorsel": "assets/images/world-stars/enzo-fernandez.svg",
+      "etiket": "OF",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6082,
+      "isim": "Alexis Mac Allister",
+      "gorsel": "assets/images/world-stars/alexis-mac-allister.svg",
+      "etiket": "OF",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6083,
+      "isim": "Ryan Gravenberch",
+      "gorsel": "assets/images/world-stars/ryan-gravenberch.svg",
+      "etiket": "OF",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6084,
+      "isim": "Moisés Caicedo",
+      "gorsel": "assets/images/world-stars/moises-caicedo.svg",
+      "etiket": "OF",
+      "takim": "Ekvador",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6085,
+      "isim": "Nicolò Barella",
+      "gorsel": "assets/images/world-stars/nicolo-barella.svg",
+      "etiket": "OF",
+      "takim": "İtalya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6086,
+      "isim": "Dominik Szoboszlai",
+      "gorsel": "assets/images/world-stars/dominik-szoboszlai.svg",
+      "etiket": "OF",
+      "takim": "Macaristan",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6087,
+      "isim": "Martín Zubimendi",
+      "gorsel": "assets/images/world-stars/martin-zubimendi.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6088,
+      "isim": "Dani Olmo",
+      "gorsel": "assets/images/world-stars/dani-olmo.svg",
+      "etiket": "OF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6089,
+      "isim": "Frenkie de Jong",
+      "gorsel": "assets/images/world-stars/frenkie-de-jong.svg",
+      "etiket": "OF",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6090,
+      "isim": "Nuno Mendes",
+      "gorsel": "assets/images/world-stars/nuno-mendes.svg",
+      "etiket": "DF",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6091,
+      "isim": "Denzel Dumfries",
+      "gorsel": "assets/images/world-stars/denzel-dumfries.svg",
+      "etiket": "DF",
+      "takim": "Hollanda",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6092,
+      "isim": "Reece James",
+      "gorsel": "assets/images/world-stars/reece-james.svg",
+      "etiket": "DF",
+      "takim": "İngiltere",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6093,
+      "isim": "Gabriel Magalhães",
+      "gorsel": "assets/images/world-stars/gabriel-magalhaes.svg",
+      "etiket": "DF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6094,
+      "isim": "Éder Militão",
+      "gorsel": "assets/images/world-stars/eder-militao.svg",
+      "etiket": "DF",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6095,
+      "isim": "Pau Cubarsí",
+      "gorsel": "assets/images/world-stars/pau-cubarsi.svg",
+      "etiket": "DF",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6096,
+      "isim": "Alphonso Davies",
+      "gorsel": "assets/images/world-stars/alphonso-davies.svg",
+      "etiket": "DF",
+      "takim": "Kanada",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6097,
+      "isim": "Cristian Romero",
+      "gorsel": "assets/images/world-stars/cristian-romero.svg",
+      "etiket": "DF",
+      "takim": "Arjantin",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6098,
+      "isim": "Unai Simón",
+      "gorsel": "assets/images/world-stars/unai-simon.svg",
+      "etiket": "KL",
+      "takim": "İspanya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6099,
+      "isim": "Ederson",
+      "gorsel": "assets/images/world-stars/ederson.svg",
+      "etiket": "KL",
+      "takim": "Brezilya",
+      "takimTuru": "milli"
+    },
+    {
+      "id": 6100,
+      "isim": "Diogo Costa",
+      "gorsel": "assets/images/world-stars/diogo-costa.svg",
+      "etiket": "KL",
+      "takim": "Portekiz",
+      "takimTuru": "milli"
+    }
+  ]
+}

@@ -1,0 +1,590 @@
+{
+  "yerli-sanatcilar": [
+    {
+      "id": 7051,
+      "isim": "Mustafa Sandal",
+      "gorsel": "assets/images/artists/mustafa-sandal.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7052,
+      "isim": "Serdar Ortaç",
+      "gorsel": "assets/images/artists/serdar-ortac.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7053,
+      "isim": "Deniz Seki",
+      "gorsel": "assets/images/artists/deniz-seki.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7054,
+      "isim": "Demet Akalın",
+      "gorsel": "assets/images/artists/demet-akalin.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7055,
+      "isim": "Hadise",
+      "gorsel": "assets/images/artists/hadise.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7056,
+      "isim": "Murat Boz",
+      "gorsel": "assets/images/artists/murat-boz.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7057,
+      "isim": "Edis",
+      "gorsel": "assets/images/artists/edis.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7058,
+      "isim": "Simge",
+      "gorsel": "assets/images/artists/simge.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7059,
+      "isim": "Aleyna Tilki",
+      "gorsel": "assets/images/artists/aleyna-tilki.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7060,
+      "isim": "Zeynep Bastık",
+      "gorsel": "assets/images/artists/zeynep-bastik.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7061,
+      "isim": "İrem Derici",
+      "gorsel": "assets/images/artists/irem-derici.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7062,
+      "isim": "Bengü",
+      "gorsel": "assets/images/artists/bengu.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7063,
+      "isim": "Buray",
+      "gorsel": "assets/images/artists/buray.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7064,
+      "isim": "Mustafa Ceceli",
+      "gorsel": "assets/images/artists/mustafa-ceceli.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7065,
+      "isim": "Yaşar",
+      "gorsel": "assets/images/artists/yasar.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7066,
+      "isim": "Candan Erçetin",
+      "gorsel": "assets/images/artists/candan-ercetin.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7067,
+      "isim": "Nilüfer",
+      "gorsel": "assets/images/artists/nilufer.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7068,
+      "isim": "Aşkın Nur Yengi",
+      "gorsel": "assets/images/artists/askin-nur-yengi.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7069,
+      "isim": "Ferhat Göçer",
+      "gorsel": "assets/images/artists/ferhat-gocer.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7070,
+      "isim": "Funda Arar",
+      "gorsel": "assets/images/artists/funda-arar.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7071,
+      "isim": "Yalın",
+      "gorsel": "assets/images/artists/yalin.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7072,
+      "isim": "Emre Altuğ",
+      "gorsel": "assets/images/artists/emre-altug.svg",
+      "etiket": "Pop",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7073,
+      "isim": "Emre Aydın",
+      "gorsel": "assets/images/artists/emre-aydin.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7074,
+      "isim": "Kıraç",
+      "gorsel": "assets/images/artists/kirac.svg",
+      "etiket": "Rock",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7075,
+      "isim": "Dolu Kadehi Ters Tut",
+      "gorsel": "assets/images/artists/dolu-kadehi-ters-tut.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7076,
+      "isim": "Adamlar",
+      "gorsel": "assets/images/artists/adamlar.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7077,
+      "isim": "Madrigal",
+      "gorsel": "assets/images/artists/madrigal.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7078,
+      "isim": "Dedublüman",
+      "gorsel": "assets/images/artists/dedubluman.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7079,
+      "isim": "Büyük Ev Ablukada",
+      "gorsel": "assets/images/artists/buyuk-ev-ablukada.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7080,
+      "isim": "Kargo",
+      "gorsel": "assets/images/artists/kargo.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7081,
+      "isim": "Pentagram",
+      "gorsel": "assets/images/artists/pentagram.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7082,
+      "isim": "Zakkum",
+      "gorsel": "assets/images/artists/zakkum.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7083,
+      "isim": "Yeni Türkü",
+      "gorsel": "assets/images/artists/yeni-turku.svg",
+      "etiket": "Halk",
+      "tip": "grup"
+    },
+    {
+      "id": 7084,
+      "isim": "Son Feci Bisiklet",
+      "gorsel": "assets/images/artists/son-feci-bisiklet.svg",
+      "etiket": "Rock",
+      "tip": "grup"
+    },
+    {
+      "id": 7085,
+      "isim": "Erkan Oğur",
+      "gorsel": "assets/images/artists/erkan-ogur.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7086,
+      "isim": "Volkan Konak",
+      "gorsel": "assets/images/artists/volkan-konak.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7087,
+      "isim": "Musa Eroğlu",
+      "gorsel": "assets/images/artists/musa-eroglu.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7088,
+      "isim": "Arif Sağ",
+      "gorsel": "assets/images/artists/arif-sag.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7089,
+      "isim": "Kubat",
+      "gorsel": "assets/images/artists/kubat.svg",
+      "etiket": "Halk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7090,
+      "isim": "Cengiz Kurtoğlu",
+      "gorsel": "assets/images/artists/cengiz-kurtoglu.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7091,
+      "isim": "Hakan Altun",
+      "gorsel": "assets/images/artists/hakan-altun.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7092,
+      "isim": "Ümit Besen",
+      "gorsel": "assets/images/artists/umit-besen.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7093,
+      "isim": "Mahsun Kırmızıgül",
+      "gorsel": "assets/images/artists/mahsun-kirmizigul.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7094,
+      "isim": "Sibel Can",
+      "gorsel": "assets/images/artists/sibel-can.svg",
+      "etiket": "Arabesk",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7095,
+      "isim": "Eypio",
+      "gorsel": "assets/images/artists/eypio.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7096,
+      "isim": "Şanışer",
+      "gorsel": "assets/images/artists/saniser.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7097,
+      "isim": "Gazapizm",
+      "gorsel": "assets/images/artists/gazapizm.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7098,
+      "isim": "Norm Ender",
+      "gorsel": "assets/images/artists/norm-ender.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7099,
+      "isim": "Sefo",
+      "gorsel": "assets/images/artists/sefo.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    },
+    {
+      "id": 7100,
+      "isim": "UZI",
+      "gorsel": "assets/images/artists/uzi.svg",
+      "etiket": "Rap",
+      "tip": "sanatci"
+    }
+  ],
+  "istanbul-ilceleri": [
+    {
+      "id": 10001,
+      "isim": "Adalar",
+      "gorsel": "assets/images/istanbul/adalar.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10002,
+      "isim": "Arnavutköy",
+      "gorsel": "assets/images/istanbul/arnavutkoy.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10003,
+      "isim": "Ataşehir",
+      "gorsel": "assets/images/istanbul/atasehir.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10004,
+      "isim": "Avcılar",
+      "gorsel": "assets/images/istanbul/avcilar.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10005,
+      "isim": "Bağcılar",
+      "gorsel": "assets/images/istanbul/bagcilar.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10006,
+      "isim": "Bahçelievler",
+      "gorsel": "assets/images/istanbul/bahcelievler.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10007,
+      "isim": "Bakırköy",
+      "gorsel": "assets/images/istanbul/bakirkoy.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10008,
+      "isim": "Başakşehir",
+      "gorsel": "assets/images/istanbul/basaksehir.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10009,
+      "isim": "Bayrampaşa",
+      "gorsel": "assets/images/istanbul/bayrampasa.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10010,
+      "isim": "Beşiktaş",
+      "gorsel": "assets/images/istanbul/besiktas.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10011,
+      "isim": "Beykoz",
+      "gorsel": "assets/images/istanbul/beykoz.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10012,
+      "isim": "Beylikdüzü",
+      "gorsel": "assets/images/istanbul/beylikduzu.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10013,
+      "isim": "Beyoğlu",
+      "gorsel": "assets/images/istanbul/beyoglu.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10014,
+      "isim": "Büyükçekmece",
+      "gorsel": "assets/images/istanbul/buyukcekmece.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10015,
+      "isim": "Çatalca",
+      "gorsel": "assets/images/istanbul/catalca.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10016,
+      "isim": "Çekmeköy",
+      "gorsel": "assets/images/istanbul/cekmekoy.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10017,
+      "isim": "Esenler",
+      "gorsel": "assets/images/istanbul/esenler.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10018,
+      "isim": "Esenyurt",
+      "gorsel": "assets/images/istanbul/esenyurt.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10019,
+      "isim": "Eyüpsultan",
+      "gorsel": "assets/images/istanbul/eyupsultan.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10020,
+      "isim": "Fatih",
+      "gorsel": "assets/images/istanbul/fatih.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10021,
+      "isim": "Gaziosmanpaşa",
+      "gorsel": "assets/images/istanbul/gaziosmanpasa.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10022,
+      "isim": "Güngören",
+      "gorsel": "assets/images/istanbul/gungoren.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10023,
+      "isim": "Kadıköy",
+      "gorsel": "assets/images/istanbul/kadikoy.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10024,
+      "isim": "Kağıthane",
+      "gorsel": "assets/images/istanbul/kagithane.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10025,
+      "isim": "Kartal",
+      "gorsel": "assets/images/istanbul/kartal.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10026,
+      "isim": "Küçükçekmece",
+      "gorsel": "assets/images/istanbul/kucukcekmece.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10027,
+      "isim": "Maltepe",
+      "gorsel": "assets/images/istanbul/maltepe.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10028,
+      "isim": "Pendik",
+      "gorsel": "assets/images/istanbul/pendik.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10029,
+      "isim": "Sancaktepe",
+      "gorsel": "assets/images/istanbul/sancaktepe.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10030,
+      "isim": "Sarıyer",
+      "gorsel": "assets/images/istanbul/sariyer.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10031,
+      "isim": "Silivri",
+      "gorsel": "assets/images/istanbul/silivri.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10032,
+      "isim": "Sultanbeyli",
+      "gorsel": "assets/images/istanbul/sultanbeyli.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10033,
+      "isim": "Sultangazi",
+      "gorsel": "assets/images/istanbul/sultangazi.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10034,
+      "isim": "Şile",
+      "gorsel": "assets/images/istanbul/sile.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10035,
+      "isim": "Şişli",
+      "gorsel": "assets/images/istanbul/sisli.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10036,
+      "isim": "Tuzla",
+      "gorsel": "assets/images/istanbul/tuzla.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10037,
+      "isim": "Ümraniye",
+      "gorsel": "assets/images/istanbul/umraniye.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10038,
+      "isim": "Üsküdar",
+      "gorsel": "assets/images/istanbul/uskudar.svg",
+      "etiket": "İstanbul"
+    },
+    {
+      "id": 10039,
+      "isim": "Zeytinburnu",
+      "gorsel": "assets/images/istanbul/zeytinburnu.svg",
+      "etiket": "İstanbul"
+    }
+  ]
+}

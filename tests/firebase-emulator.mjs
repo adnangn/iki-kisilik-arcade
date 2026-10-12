@@ -11,7 +11,7 @@ import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from '..
 
 const ORIGIN = 'http://127.0.0.1:9000';
 const PROJECT = 'demo-iki-kisilik';
-const TEST_CODES = ['918001', '918002', '918003', '918004', '918005'];
+const TEST_CODES = ['918001', '918002', '918003', '918004', '918005', '918006', '918007'];
 const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
 const DECK = DATASETS.superlig.map(card => card.id);
 const BLIND_DECK = DATASETS.futbol.slice(0, 10).map(card => card.id);
@@ -124,6 +124,12 @@ async function join(code) {
   return expectStatus(await writeRoom(joined, 'p2'), 200, 'Join Bob');
 }
 
+async function joinSpectator(code, uid = 'p2') {
+  return expectStatus(await request(`rooms/${code}/players/p2`, {
+    method: 'PUT', uid, value: { uid, name: uid === 'p2' ? 'Bob' : 'Another viewer' },
+  }), 200, 'Claim optional spectator seat');
+}
+
 async function command(room, uid, kind, payload = {}) {
   const next = changeRoom(room, uid, room.revision, kind, payload);
   return expectStatus(await writeRoom(next, uid), 200, `${kind} by ${uid}`);
@@ -165,9 +171,17 @@ try {
       assert.equal(current.game.deck.length, cards.length);
       assert.equal(current.game.currentCardId, cards[0].id);
       assert.equal(current.game.awardCount, 0);
-      const changed = changeRoom(current, 'p2', current.revision, 'bid', { amount: 2 });
-      changed.datasetId = datasetId === 'film' ? 'dizi' : 'film';
-      expectDenied(await writeRoom(changed, 'p2'), 'Changing collection during play');
+      const forbiddenCollections = new Set([datasetId === 'film' ? 'dizi' : 'film',
+        'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
+        'turkiye-sehirleri', 'oyun-evreni', 'ulkeler']);
+      for (const changedId of forbiddenCollections) {
+        if (changedId === datasetId) continue;
+        const changed = changeRoom(current, 'p2', current.revision, 'bid', { amount: 2 });
+        changed.datasetId = changedId;
+        expectDenied(await writeRoom(changed, 'p2'), `Changing collection during play: ${datasetId} to ${changedId}`);
+      }
+      assert.deepEqual(expectStatus(await readRoom(categoryCode), 200), current,
+        'Rejected collection changes must leave the entire room and game untouched.');
       expectStatus(await request(`rooms/${categoryCode}`, { method: 'DELETE', admin: true }), 200);
     }
   });
@@ -621,6 +635,103 @@ try {
     expectStatus(await request(path, { method: 'DELETE', uid: 'p1' }), 200);
     expectStatus(await request(`reactions/${blindCode}/p1`, { method: 'PUT', uid: 'p1', value: { seq: 1, type: 'heart', sentAt: TIMESTAMP } }), 200);
     expectDenied(await request(`reactions/${blindCode}/p2`, { method: 'PUT', uid: 'p1', value: { seq: 1, type: 'laugh', sentAt: TIMESTAMP } }), 'Spectator sender spoof');
+  });
+
+  for (const mode of ['blind-ranking', 'bracket']) {
+    const optionalCode = TEST_CODES[5];
+    const payload = { deck: mode === 'blind-ranking' ? BLIND_DECK : BRACKET_DECK };
+    const move = value => mode === 'blind-ranking' ? ['rank', { slot: value.game.deckIndex + 1 }] : ['choose', { cardId: value.game.currentPair.left }];
+    let solo = await check(`${mode}: owner starts and plays with no spectator`, async () => {
+      let current = expectStatus(await writeRoom(initialRoom(optionalCode, 'futbol', mode), 'p1'), 200);
+      current = await command(current, 'p1', 'start', payload);
+      current = await command(current, 'p1', ...move(current));
+      assert.equal(current.players.p2, undefined);
+      assert.equal(current.game.activeSeat, 'p1');
+      expectStatus(await readRoom(optionalCode, 'p2'), 200, 'A known code exposes the vacant spectator seat');
+      const forged = structuredClone(current);
+      forged.players.p2 = { uid: 'p2', name: 'Bob' };
+      expectDenied(await writeRoom(forged, 'p2'), 'A late join cannot replace the whole game');
+      expectDenied(await request(`rooms/${optionalCode}/players/p2`, { method: 'PUT', uid: 'p2', value: { uid: 'stranger', name: 'Spoof' } }), 'Spectator UID spoof');
+      expectDenied(await request(`rooms/${optionalCode}/players/p2`, { method: 'PUT', uid: 'p1', value: { uid: 'p1', name: 'Duplicate host' } }), 'Host cannot occupy both seats');
+      return current;
+    });
+    solo = await check(`${mode}: solo completion and rematch retain p1 as the active player`, async () => {
+      let current = solo;
+      while (current.status === 'playing') current = await command(current, 'p1', ...move(current));
+      const restart = await command(current, 'p1', 'rematch', payload);
+      assert.equal(restart.game.activeSeat, 'p1');
+      assert.equal(restart.starterSeat, 'p1');
+      assert.equal(restart.round, 2);
+      assert.equal(restart.players.p2, undefined);
+      return restart;
+    });
+    solo = await check(`${mode}: a late spectator joins without changing game, metadata, or revision`, async () => {
+      const previous = expectStatus(await readRoom(optionalCode, 'p1', { 'X-Firebase-ETag': 'true' }), 200);
+      const stale = changeRoom(previous, 'p1', previous.revision, ...move(previous));
+      const snapshot = await readRoom(optionalCode, 'p1', { 'X-Firebase-ETag': 'true' });
+      await joinSpectator(optionalCode);
+      const joined = expectStatus(await readRoom(optionalCode, 'p1'), 200);
+      assert.deepEqual(joined, { ...previous, players: { ...previous.players, p2: { uid: 'p2', name: 'Bob' } } });
+      assert.deepEqual(expectStatus(await readRoom(optionalCode, 'p2'), 200).game, previous.game);
+      if (snapshot.etag) assert.equal((await writeRoom(stale, 'p1', { 'If-Match': snapshot.etag })).status, 412,
+        'A stale whole-room write must retry after a child seat claim.');
+      else { skipped += 1; console.log('SKIP emulator did not return an ETag for late spectator join'); }
+      const afterRetry = await command(joined, 'p1', ...move(joined));
+      assert.deepEqual(afterRetry.players, joined.players);
+      assert.equal(afterRetry.revision, previous.revision + 1);
+      const spectatorChoice = changeRoom(afterRetry, 'p1', afterRetry.revision, ...move(afterRetry));
+      spectatorChoice.lastAction.seat = 'p2';
+      expectDenied(await writeRoom(spectatorChoice, 'p2'), 'A late spectator still cannot make a choice');
+      expectDenied(await request(`rooms/${optionalCode}/players/p2`, { method: 'PUT', uid: 'stranger', value: { uid: 'stranger', name: 'Third player' } }), 'Third player cannot overwrite the seat');
+      expectDenied(await request(`rooms/${optionalCode}/players/p2/name`, { method: 'PUT', uid: 'p2', value: 'Changed' }), 'Saved spectator identity is immutable');
+      expectDenied(await request(`rooms/${optionalCode}/players/p2`, { method: 'DELETE', uid: 'p2' }), 'Spectator cannot free or delete its seat');
+      expectDenied(await readRoom(optionalCode, 'stranger'), 'Full room remains private');
+      return afterRetry;
+    });
+    await check(`${mode}: spectator presence loss does not stop the actor and a rematch swaps roles`, async () => {
+      const presencePath = `presence/${optionalCode}/p2/late-viewer`;
+      expectStatus(await request(presencePath, { method: 'PUT', uid: 'p2', value: { connectedAt: TIMESTAMP } }), 200);
+      expectStatus(await request(presencePath, { method: 'DELETE', uid: 'p2' }), 200);
+      let current = solo;
+      while (current.status === 'playing') current = await command(current, 'p1', ...move(current));
+      const restarted = await command(current, 'p1', 'rematch', payload);
+      assert.equal(restarted.game.activeSeat, 'p2');
+      assert.equal(restarted.starterSeat, 'p2');
+      expectStatus(await request(`rooms/${optionalCode}`, { method: 'DELETE', admin: true }), 200);
+    });
+    await check(`${mode}: a viewer can join after completion and sees the complete results`, async () => {
+      let current = expectStatus(await writeRoom(initialRoom(optionalCode, 'futbol', mode), 'p1'), 200);
+      current = await command(current, 'p1', 'start', payload);
+      while (current.status === 'playing') current = await command(current, 'p1', ...move(current));
+      await joinSpectator(optionalCode);
+      const joined = expectStatus(await readRoom(optionalCode, 'p2'), 200);
+      assert.equal(joined.status, 'finished');
+      assert.deepEqual(joined.game, current.game);
+      assert.equal(joined.revision, current.revision);
+      expectStatus(await request(`rooms/${optionalCode}`, { method: 'DELETE', admin: true }), 200);
+    });
+    await check(`${mode}: joining the vacant waiting seat also preserves the round revision`, async () => {
+      const current = expectStatus(await writeRoom(initialRoom(optionalCode, 'futbol', mode), 'p1'), 200);
+      await joinSpectator(optionalCode);
+      const joined = expectStatus(await readRoom(optionalCode, 'p1'), 200);
+      assert.equal(joined.revision, current.revision);
+      assert.equal(joined.status, 'waiting');
+      await command(joined, 'p1', 'start', payload);
+      expectStatus(await request(`rooms/${optionalCode}`, { method: 'DELETE', admin: true }), 200);
+    });
+  }
+
+  await check('two-active modes still require a second player and reject the optional spectator write route', async () => {
+    const optionalCode = TEST_CODES[6];
+    for (const mode of ['auction', 'team-draft']) {
+      const current = expectStatus(await writeRoom(initialRoom(optionalCode, 'futbol', mode), 'p1'), 200);
+      expectDenied(await request(`rooms/${optionalCode}/players/p2`, { method: 'PUT', uid: 'p2', value: { uid: 'p2', name: 'Bob' } }), 'No child-seat bypass in a two-active game');
+      const withGuest = { ...current, players: { ...current.players, p2: { uid: 'p2', name: 'Bob' } } };
+      const started = changeRoom(withGuest, 'p1', current.revision, 'start', mode === 'auction' ? { deck: DECK } : { triplets: TEAM_TRIPLETS });
+      delete started.players.p2;
+      expectDenied(await writeRoom(started, 'p1'), 'Owner cannot start a two-active game alone');
+      expectStatus(await request(`rooms/${optionalCode}`, { method: 'DELETE', admin: true }), 200);
+    }
   });
 
   const bracketCode = TEST_CODES[3];

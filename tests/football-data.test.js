@@ -41,20 +41,42 @@ for (const [key, count] of Object.entries({ tatli: 100, yemek: 100, dizi: 50, fi
   test(`${key}: exactly ${count} unique cards with original local pixel art`, async () => verifyCards(datasets[key], count));
 }
 
-for (const key of ['turkiye-efsaneleri', 'dunya-yildizlari']) {
-  test(`${key}: 50 football cards use country metadata and local pixel portraits`, async () => {
-    await verifyCards(datasets[key], 50);
+for (const [key, count] of Object.entries({ 'cocukluk-cizgifilmleri': 35, 'doksanlar-nostalji': 35, 'kantin-bakkal': 35, 'turkiye-sehirleri': 81, 'oyun-evreni': 100, ulkeler: 80 })) {
+  test(`${key}: exactly ${count} unique cards with safe local SVG images`, async () => verifyCards(datasets[key], count));
+}
+
+test('new nostalgia pools include the requested childhood titles and snacks', () => {
+  for (const name of ['Heidi', 'Pepee', 'Rafadan Tayfa', 'Kaptan Tsubasa', 'Pokémon']) {
+    assert.ok(datasets['cocukluk-cizgifilmleri'].some(card => card.isim === name), name);
+  }
+  for (const name of ['Tadelle', 'Metro', 'Çokokrem']) {
+    assert.ok(datasets['kantin-bakkal'].some(card => card.isim.includes(name)), name);
+  }
+  assert.ok(datasets['doksanlar-nostalji'].some(card => card.isim.includes('Tamagotchi')));
+});
+
+test('game universe distinguishes sixty characters from forty game titles', () => {
+  const cards = datasets['oyun-evreni'];
+  assert.equal(cards.filter(card => card.tip === 'karakter').length, 60);
+  assert.equal(cards.filter(card => card.tip === 'oyun').length, 40);
+  assert.ok(cards.some(card => card.isim === 'Mario'));
+  assert.ok(cards.some(card => card.isim === 'Kratos'));
+});
+
+for (const [key, count] of Object.entries({ 'turkiye-efsaneleri': 120, 'dunya-yildizlari': 100 })) {
+  test(`${key}: ${count} football cards use historic club or national metadata and local portraits`, async () => {
+    await verifyCards(datasets[key], count);
     for (const card of datasets[key]) {
       assert.ok(['FV', 'OF', 'DF', 'KL'].includes(card.etiket), card.isim);
       assert.ok(card.takim.length > 1, card.isim);
-      assert.equal(card.takimTuru, 'milli');
+      assert.equal(card.takimTuru, key === 'turkiye-efsaneleri' ? 'kulup' : 'milli');
     }
   });
 }
 
-test('yerli-sanatcilar: 50 performers include bands and playable genre trios', async () => {
+test('yerli-sanatcilar: 100 performers include bands and playable genre trios', async () => {
   const cards = datasets['yerli-sanatcilar'];
-  await verifyCards(cards, 50);
+  await verifyCards(cards, 100);
   assert.ok(cards.filter(card => card.tip === 'grup').length >= 8);
   assert.ok(cards.every(card => ['grup', 'sanatci'].includes(card.tip)));
   assert.ok(new Set(cards.map(card => card.etiket)).size >= 4);
@@ -65,6 +87,36 @@ test('ankara-ilceleri: all 25 official districts have distinct local landscapes'
   await verifyCards(cards, 25);
   const names = ['Akyurt', 'Altındağ', 'Ayaş', 'Bala', 'Beypazarı', 'Çamlıdere', 'Çankaya', 'Çubuk', 'Elmadağ', 'Etimesgut', 'Evren', 'Gölbaşı', 'Güdül', 'Haymana', 'Kalecik', 'Kahramankazan', 'Keçiören', 'Kızılcahamam', 'Mamak', 'Nallıhan', 'Polatlı', 'Pursaklar', 'Sincan', 'Şereflikoçhisar', 'Yenimahalle'];
   assert.deepEqual(cards.map(card => card.isim).sort(), names.sort());
+});
+
+test('istanbul-ilceleri: all 39 official districts have distinct local landscapes', async () => {
+  const cards = datasets['istanbul-ilceleri'];
+  await verifyCards(cards, 39);
+  const names = ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar', 'Bahçelievler', 'Bakırköy', 'Başakşehir', 'Bayrampaşa', 'Beşiktaş', 'Beykoz', 'Beylikdüzü', 'Beyoğlu', 'Büyükçekmece', 'Çatalca', 'Çekmeköy', 'Esenler', 'Esenyurt', 'Eyüpsultan', 'Fatih', 'Gaziosmanpaşa', 'Güngören', 'Kadıköy', 'Kağıthane', 'Kartal', 'Küçükçekmece', 'Maltepe', 'Pendik', 'Sancaktepe', 'Sarıyer', 'Silivri', 'Sultanbeyli', 'Sultangazi', 'Şile', 'Şişli', 'Tuzla', 'Ümraniye', 'Üsküdar', 'Zeytinburnu'];
+  assert.deepEqual(cards.map(card => card.isim).sort(), names.sort());
+  assert.ok(cards.every(card => card.etiket === 'İstanbul'));
+});
+
+test('Turkey club icons include the requested players in the first preview', () => {
+  const cards = datasets['turkiye-efsaneleri'];
+  const clubs = { 'İbrahima Yattara': 'Trabzonspor', 'Didier Drogba': 'Galatasaray', 'Gheorghe Hagi': 'Galatasaray', 'Alex de Souza': 'Fenerbahçe' };
+  assert.deepEqual(new Set(cards.slice(0, 4).map(card => card.isim)), new Set(Object.keys(clubs)));
+  for (const [name, club] of Object.entries(clubs)) assert.equal(cards.find(card => card.isim === name)?.takim, club, name);
+});
+
+test('all 725 previously published card identities survive the expansion', async () => {
+  for (const filename of ['expansion-football.json', 'expansion-menu.json', 'expansion-culture.json']) {
+    const earlier = JSON.parse(await readFile(new URL(`tools/${filename}`, root), 'utf8'));
+    for (const [key, cards] of Object.entries(earlier)) {
+      for (const old of cards) {
+        const card = datasets[key].find(value => value.id === old.id);
+        assert.ok(card, `${key}/${old.id}`);
+        if (key === 'turkiye-efsaneleri') {
+          for (const field of ['id', 'isim', 'etiket', 'gorsel']) assert.equal(card[field], old[field], `${key}/${old.id}/${field}`);
+        } else assert.deepEqual(card, old, `${key}/${old.id}`);
+      }
+    }
+  }
 });
 
 test('icecek: 50 drinks keep alcoholic options in the minority', async () => {
@@ -108,7 +160,7 @@ test('requested current stars use their verified club and every club card has a 
   }
 });
 
-test('five categories resolve to eleven separate pools, including category switches', () => {
+test('seven categories resolve to eighteen separate pools, including category switches', () => {
   assert.deepEqual(Object.keys(DATASET_NAMES).sort(), Object.keys(datasets).sort());
   assert.equal(resolveDatasetId('futbol', 'superlig'), 'superlig');
   assert.equal(resolveDatasetId('yemek', 'tatli'), 'tatli');
@@ -124,13 +176,19 @@ test('five categories resolve to eleven separate pools, including category switc
   assert.equal(resolveDatasetId('yemek', 'icecek'), 'icecek');
   assert.equal(resolveDatasetId('muzik', 'film'), 'yerli-sanatcilar');
   assert.equal(resolveDatasetId('ankara', 'icecek'), 'ankara-ilceleri');
-  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 3, 2, 1, 1]);
+  assert.equal(resolveDatasetId('ankara', 'istanbul-ilceleri'), 'istanbul-ilceleri');
+  assert.equal(resolveDatasetId('ankara', 'turkiye-sehirleri'), 'turkiye-sehirleri');
+  assert.equal(resolveDatasetId('ankara', 'ulkeler'), 'ulkeler');
+  assert.equal(resolveDatasetId('nostalji', 'kantin-bakkal'), 'kantin-bakkal');
+  assert.equal(resolveDatasetId('nostalji', 'doksanlar-nostalji'), 'doksanlar-nostalji');
+  assert.equal(resolveDatasetId('oyun', 'futbol'), 'oyun-evreni');
+  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 3, 2, 1, 4, 3, 1]);
   for (const group of Object.values(DATASET_GROUPS)) {
     for (const set of group.sets) assert.ok(Object.hasOwn(TEXT_CATALOG, set.searchKey), set.id);
   }
 });
 
-test('all eleven pools open and award through an auction, including nonconsecutive meal IDs', () => {
+test('all eighteen pools open and award through an auction, including nonconsecutive meal IDs', () => {
   for (const cards of Object.values(datasets)) {
     const game = createAuction(cards.map(card => card.id), 'p1');
     assert.equal(game.highestBid, 1);
