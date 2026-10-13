@@ -15,11 +15,17 @@ import { changeRoom, seatFor, otherSeat, hasOptionalSpectator, rematchStarter, R
 import { connectFirebase } from './js/firebase-room.js';
 import { DATASET_GROUPS, DATASET_NAMES, resolveDatasetId } from './js/datasets.js';
 import { assetUrl } from './js/assets.js';
+import { createNextGameView } from './js/next-game-view.js';
+import { invitationUrl, parseInvite, renderInviteQR } from './js/invites.js';
+import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-command.js';
 
 const $ = id => document.getElementById(id);
 const SESSION_KEY = 'iki-kisilik.room.v1';
 const NAME_KEY = 'iki-kisilik.name.v1';
 const SIGNED_OUT_KEY = 'iki-kisilik.signed-out.v1';
+let pendingInvite = parseInvite(window.location.href);
+let inviteRequested = new URL(window.location.href).searchParams.has('oda');
+let nextGameView = null;
 const REACTIONS = { get laugh() { return t('runtime.copy.ha_ha'); }, get angry() { return t('runtime.copy.grrr'); }, get womp() { return t('runtime.copy.womp_womp'); }, get heart() { return t('runtime.copy.iyi_hamle'); } };
 const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); }, get frequency() { return t('runtime.mode.frequency'); }, get 'double-ranking'() { return t('runtime.mode.double-ranking'); } };
 let datasets = {};
@@ -299,7 +305,7 @@ function connectionChanged(online) {
 function shuffleDeck(datasetId) {
   return shuffledIds(datasets[datasetId]);
 }
-function gamePayload() { return room.mode === 'team-draft' ? { triplets: draftTriplets(datasets[room.datasetId]) } : { deck: shuffleDeck(room.datasetId) }; }
+function gamePayload(config = room) { return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) } : { deck: shuffleDeck(config.datasetId) }; }
 
 function getCard(id) { return datasets[room.datasetId]?.find(card => card.id === id); }
 function nameFor(seat) { return room?.players?.[seat]?.name || t('runtime.copy.oyuncu_bekleniyor'); }
@@ -420,6 +426,15 @@ function resolveDemoCooperative() {
 }
 
 function render() {
+  renderApp();
+  nextGameView?.render();
+  for (const id of ['invite-button', 'result-invite']) $(id).disabled = !room || demo || busy;
+  $('invite-arrival').hidden = !pendingInvite || !!room;
+  if (pendingInvite && !room) $('invite-arrival-title').textContent = t('room.extra.invite_arrived', { code: pendingInvite });
+  if (demo && room?.status === 'finished' && room.nextGame) scheduleBot();
+}
+
+function renderApp() {
   renderBusyButtons();
   $('session-button').textContent = busy && pendingAction === 'session-button' ? t('runtime.copy.bekle') : !isFirebaseConfigured() ? t('runtime.copy.kaydi_temizle') : signedOut || !service ? t('runtime.copy.oyuncu_oturumu_ac') : t('runtime.copy.oturumu_kapat');
   $('session-button').disabled = busy || !!sessionOpening || !Object.keys(datasets).length;
@@ -800,6 +815,8 @@ function watchOpponentReaction() {
 }
 
 async function detach() {
+  $('invite-dialog').close();
+  nextGameView?.reset();
   lifecycle++;
   clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null;
   cooperativeRetryUnit = null; cooperativeRetryCount = 0;
@@ -888,20 +905,33 @@ async function command(kind, payload = {}) {
   const expectedRevision = room.revision;
   const uid = demo ? 'demo-you' : service?.uid;
   const cursor = kind === 'assign' && room.mode === 'team-draft' ? captureTeamCursor(room, uid) : null;
-  const apply = current => cursor ? assignWithTeamCursor(current, uid, cursor, payload) : changeRoom(current, uid, expectedRevision, kind, payload);
+  const readyCursor = kind === 'ready-next' ? captureNextGameCursor(room, uid) : null;
+  const apply = current => readyCursor ? readyWithNextCursor(current, uid, readyCursor, payload)
+    : cursor ? assignWithTeamCursor(current, uid, cursor, payload) : changeRoom(current, uid, expectedRevision, kind, payload);
   if (demo) {
     room = apply(room);
-    if (isCooperativeMode(room.mode) && (kind === 'frequency-next' || kind === 'rematch')) demoSecrets = { p1: null, p2: null };
+    if (isCooperativeMode(room.mode) && (kind === 'frequency-next' || kind === 'rematch' || room.lastAction?.kind === 'next-game')) demoSecrets = { p1: null, p2: null };
     render();
   } else {
-    if (!hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
+    if (!['propose-next', 'ready-next'].includes(kind) && !hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
     const originService = service;
     await originService.mutateRoom(room.code, apply);
   }
 }
 
 function scheduleBot() {
-  if (!demo || busy || botTimer || room?.status !== 'playing') return;
+  if (!demo || busy || botTimer) return;
+  if (room?.status === 'finished' && room.nextGame && !room.nextGame.ready.p2) {
+    const id = room.nextGame.id, generation = lifecycle;
+    botTimer = setTimeout(() => {
+      botTimer = null;
+      if (generation !== lifecycle || !demo || busy || room?.status !== 'finished' || room.nextGame?.id !== id || room.nextGame.ready.p2) { render(); return; }
+      room = changeRoom(room, 'demo-bot', room.revision, 'ready-next', { id, ready: true, ...gamePayload(room.nextGame) });
+      demoSecrets = { p1: null, p2: null }; render();
+    }, 900);
+    return;
+  }
+  if (room?.status !== 'playing') return;
   if (isCooperativeMode(room.mode)) {
     if (room.mode === 'frequency' ? room.game.stage !== 'choosing' || demoSecrets.p2?.locked : demoSecrets.p2?.count === 8) return;
     const generation = lifecycle, round = room.round, index = room.game.roundIndex ?? 0;
@@ -953,6 +983,7 @@ function scheduleBot() {
 
 async function leaveRoom(force = false) {
   actionEpoch++;
+  clearInviteAddress();
   busy = true;
   try { await detach(); room = null; mySeat = null; demo = false; storage.clear(); }
   finally { busy = false; pendingAction = null; connectionChanged(service?.connected || false); }
@@ -1114,6 +1145,50 @@ document.querySelectorAll('[data-draft-role]').forEach(button => button.addEvent
   });
 }));
 $('rematch-button').addEventListener('click', () => void runAction(() => command('rematch', gamePayload()), 'rematch-button'));
+nextGameView = createNextGameView({
+  context: () => ({ room, datasets, mySeat, connected: demo || !!service?.connected, busy, demo, nameFor, onlineSeat }),
+  onPropose: config => void runAction(() => command('propose-next', config), 'propose-next'),
+  onReady: (approval, config) => void runAction(() => command('ready-next', { ...approval, ...gamePayload(config) }), 'next-ready'),
+});
+
+function clearInviteAddress() {
+  pendingInvite = null; inviteRequested = false;
+  const url = new URL(window.location.href);
+  if (url.searchParams.has('oda')) {
+    url.searchParams.delete('oda');
+    history.replaceState(null, '', url.href);
+  }
+}
+
+function openInvite() {
+  if (!room || demo) return;
+  const url = invitationUrl(window.location.href, room.code);
+  $('invite-code').textContent = room.code;
+  $('invite-link').value = url;
+  $('invite-status').textContent = '';
+  $('invite-share').hidden = typeof navigator.share !== 'function';
+  renderInviteQR($('invite-qr'), url, { label: t('room.extra.invite_qr') });
+  $('invite-dialog').showModal();
+  $('invite-close').focus({ preventScroll: true });
+}
+for (const id of ['invite-button', 'result-invite']) $(id).addEventListener('click', openInvite);
+$('invite-close').addEventListener('click', () => $('invite-dialog').close());
+$('invite-copy').addEventListener('click', async () => {
+  const url = $('invite-link').value, generation = lifecycle;
+  try {
+    await navigator.clipboard.writeText(url);
+    if (generation === lifecycle && $('invite-dialog').open) $('invite-status').textContent = t('room.extra.invite_copied');
+  } catch {
+    if (generation !== lifecycle || !$('invite-dialog').open) return;
+    $('invite-link').focus(); $('invite-link').select();
+    $('invite-status').textContent = t('room.extra.invite_copy_fallback');
+  }
+});
+$('invite-share').addEventListener('click', async () => {
+  if (typeof navigator.share !== 'function') return;
+  try { await navigator.share({ title: t('site.name'), text: t('room.extra.invite_title'), url: $('invite-link').value }); }
+  catch (error) { if (error.name !== 'AbortError') $('invite-status').textContent = t('room.extra.invite_copy_fallback'); }
+});
 for (const id of ['leave-room', 'result-leave']) $(id).addEventListener('click', () => void leaveRoom());
 $('copy-code').addEventListener('click', async () => {
   if (!room || demo) return;
@@ -1157,6 +1232,10 @@ async function boot() {
   await loadTexts();
   applyTexts();
   try { $('nickname').value = (localStorage.getItem(NAME_KEY) || '').slice(0, 20); } catch {}
+  if (pendingInvite) {
+    $('room-code').value = pendingInvite;
+    $('join-caption').textContent = t('room.extra.invite_join_hint');
+  } else if (inviteRequested) toast(t('room.extra.invite_invalid'));
   layoutLobby();
   window.matchMedia('(max-width: 760px)').addEventListener('change', layoutLobby);
   document.addEventListener('focusin', () => requestAnimationFrame(keepControlsVisible));
@@ -1193,7 +1272,7 @@ async function boot() {
     render();
     const bootService = service, bootEpoch = actionEpoch;
     const saved = storage.get();
-    if (!demo && saved && saved.uid === service.uid && /^\d{6}$/.test(saved.code)) {
+    if (!demo && saved && saved.uid === service.uid && /^\d{6}$/.test(saved.code) && (!inviteRequested || saved.code === pendingInvite)) {
       $('room-code').value = saved.code;
       // Wait for RTDB's first connected snapshot before attempting recovery.
       const deadline = Date.now() + 10000;
@@ -1203,7 +1282,8 @@ async function boot() {
         await attach(await bootService.joinRoom(saved.code, 'Oyuncu'), bootService, epoch);
         if (room && !demo) toast(t('runtime.copy.tekrar_hos_geldin_kaldigin_yerden_devam'));
       });
-    } else if (saved && !demo) storage.clear();
+    } else if (saved && !demo && !inviteRequested) storage.clear();
+    if (pendingInvite && !room) ($('nickname').value ? $('join-room') : $('nickname')).focus();
   } catch (error) { $('setup-notice').hidden = false; $('setup-notice').textContent = errorMessage(error); toast(errorMessage(error)); }
 }
 void boot();

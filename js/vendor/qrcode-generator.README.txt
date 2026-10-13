@@ -1,0 +1,6 @@
+qrcode-generator by Kazuhiko Arase; MIT license.
+Official source: https://github.com/kazuhikoarase/qrcode-generator
+Upstream commit: 83b7e8fe3fddd3b0368dbafd6ce56995bd25e3c8
+Vendored unchanged from js/dist/qrcode.mjs (renamed .js for browser build tooling).
+
+Used locally to create invitation QR codes; no room data is sent to third parties.

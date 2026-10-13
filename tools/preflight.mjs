@@ -210,7 +210,10 @@ export async function preflight({ online = false, quiet = false } = {}) {
       const imports = new Set([...text.matchAll(/\b(?:from\s+|import(?:\s*\(\s*|\s+))(["'])([^"']+)\1/g)].map(match => match[2]));
       for (const reference of imports) await checkReference(source, reference);
       references.push(...[...text.matchAll(/\bfetch\(\s*(["'])([^"']+)\1/g)].map(match => match[2]));
-      references.push(...[...text.matchAll(/(["'`])((?:\.\/|\.\.\/|assets\/|\/)[^"'`\r\n]*)\1/g)].map(match => match[2]));
+      // A URL separator or SVG closing tag is not a file reference. Imports
+      // and fetch calls are still checked independently, including root paths.
+      references.push(...[...text.matchAll(/(["'`])((?:\.\/|\.\.\/|assets\/|\/)[^"'`\r\n]*)\1/g)].map(match => match[2])
+        .filter(reference => !reference.startsWith('/') || /^\/(?:assets\/|[^<>\s]*\.(?:js|css|json|html|svg|png|jpe?g|webp|gif|mp4|mp3|woff2?|ttf)(?:[?#]|$))/i.test(reference)));
       // DOM src/href assignments and fetch resolve against index.html; module
       // imports resolve against their module file, so check them separately.
       for (const reference of new Set(references)) {

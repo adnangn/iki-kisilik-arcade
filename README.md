@@ -33,6 +33,9 @@ oyun/
 │   ├── text-catalog.js    # Düzenleyici alanları ve varsayılan metin kataloğu
 │   ├── text-catalog-expansion.js # Kategori/koleksiyonlar ve tek oyuncu akışının 84 metin alanı
 │   ├── text-editor.js     # Taslak, arama, önizleme ve JSON aktarımı
+│   ├── invites.js        # Davet bağlantısı, kod ayrıştırma ve yerel QR
+│   ├── next-game-view.js # Sonuç ekranındaki seçim ve hazır onayları
+│   ├── next-game-command.js # Eşzamanlı onaylar ve eski onay koruması
 │   ├── room-state.js      # Üyelik, sürüm kontrolü, tur ve rövanş geçişleri
 │   ├── room-lifecycle.js # 7 günlük süre, kod rezervasyonu ve güvenli temizlik
 │   └── firebase-room.js   # Kalıcı kimlik, transaction, dinleyiciler, presence
@@ -113,7 +116,7 @@ Lobinin altındaki **Metin Atölyesi** bağlantısını açın. Başlık, slogan
 
 **Metinleri indir** bir `metinler.json` dosyası üretir. Herkesin değişiklikleri görmesi için depodaki aynı dosyayı bununla değiştirin ve GitHub Pages yayınının tamamlanmasını bekleyin. Daha sonra bu dosyayı **Dosyadan yükle** ile tekrar düzenleyebilirsiniz. GitHub Pages statik olduğu için düzenleyicideki taslak kaydı doğrudan GitHub'a dosya yazmaz.
 
-Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js`, `js/text-catalog-expansion.js` ve `js/text-catalog-cooperative.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **519 alan** sunar. Birlikte oynama kataloğunun 71 alanı Frekans ve Çifte Sıralama kurallarını, düğmelerini, bekleme mesajlarını ve sonuçlarını özelleştirir. Genişleme kataloğunun 84 alanı yeni kategori/koleksiyonları, Oyun altındaki dört havuzu, Vol. 1/Vol. 2 seçimini ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
+Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js`, `js/text-catalog-expansion.js` ve `js/text-catalog-cooperative.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **552 alan** sunar. Oda ve davet kataloğundaki 33 alan yeni oyun seçimi, hazır onayı ve QR/davet mesajlarını özelleştirir. Birlikte oynama kataloğunun 71 alanı Frekans ve Çifte Sıralama kurallarını, düğmelerini, bekleme mesajlarını ve sonuçlarını özelleştirir. Genişleme kataloğunun 84 alanı yeni kategori/koleksiyonları, Oyun altındaki dört havuzu, Vol. 1/Vol. 2 seçimini ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
 
 ## Oynanabilir modlar
 
@@ -138,6 +141,18 @@ Kör Sıralama, aynı 23 seçilebilir koleksiyonun kartlarını ve yerel görsel
 İki yeni modda gizli kayıtlar, ortak odadan ayrı `privateGames/{code}/r{round}` altında tutulur. Firebase kuralları kendi kaydını okumaya ve ilerleme sayacını paylaşmaya izin verir; diğer oyuncunun seçimleri Frekans eşleşmesinde ikisi kilitlenmeden, sıralamada ikisi sekiz kartı bitirmeden okunamaz. Hamleler transaction kullanır, önceki kartın veya rövanşın gecikmiş tıklaması sonraki karta uygulanmaz. Odadan çıkmak kimliği korur; yenileme ve aynı kodla dönüş kendi gizli seçimlerini geri getirir. Oturum kapatmak anonim kimliği bırakır. Rövanş aynı kodla yeni kartlar ve ayrı bir özel tur kaydı oluşturur. Bir oyuncu kopunca yeni seçim düğmeleri bağlantı geri gelene kadar bekler.
 
 Yeni bir veri setinin altı modda da kullanılabilmesi için 20–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Kör Sıralama motorunun alt sınırı 10, Çifte Sıralama'nın 8'dir. Hazırlık kontrolü 23 seçilebilir koleksiyonu ve eski odalar için korunan bir arşiv havuzunu bu koşullara göre denetler.
+
+## Aynı odada yeni oyun ve davet
+
+Sonuç ekranındaki **Aynı odada devam** bölümünde kategori, koleksiyon, oyun ve gerekirse 16/32 kartlık turnuva seçilir. **Seçimi paylaş** mevcut sonuçları değiştirmeden seçimi iki oyuncuya gösterir. Her oyuncu yalnız kendi **Hazırım** onayını verir; son onay yeni turu tek transaction ile açar. Oda kodu, oyuncu kimlikleri ve bağlantı korunur; tur bir artar, başlangıç/aktif rol değişir. Seçim değiştirilirse iki onay sıfırlanır. Oyuncu kendi onayını geri alabilir. Paylaşılan bir seçim beklerken eski Rövanş düğmesi onayları atlayamaz.
+
+Aynı anda verilen iki onay, aynı seçime ait oldukları sürece birleşir. Eski seçim, aynı oyuncunun çift tıklaması veya hazır/geri alma döngüsünden kalan gecikmiş onay yeni tura taşınmaz. Kör Sıralama/turnuva tek oyuncuyla yeni bir tek oyunculu oyuna geçebilir. İki aktif oyunculu hedef için ikinci oyuncu ve iki onay gerekir. İzleyici sonradan aynı kodla katılabilir. Yenilemede paylaşılan seçim ve onaylar Firebase'den geri gelir. Demoda Atari Bot kendi onayını verir.
+
+Oda ve sonuç ekranlarındaki **Davet et** bağlantıyı ve QR kodunu gösterir. Adres GitHub Pages alt klasörünü korur ve yalnız `?oda=123456` kodunu içerir. Davetle açılan sayfa kodu doldurur; kullanıcı adını yazıp Katıl der. Farklı bir davet açıldığında eski kayıtlı oda kendiliğinden öne geçmez. QR cihazda üretilir, oda kodu bir QR servisine gönderilmez. Destekleyen cihazlarda sistem paylaşım menüsü açılabilir; clipboard kullanılamıyorsa bağlantı seçilerek elle kopyalanır.
+
+QR üretimi resmi MIT lisanslı `qrcode-generator` kaynaklarıyla yapılır. Lisans ve kaynak bilgileri `js/vendor/` içindedir. Orta hata düzeltme ve dört modüllük beyaz boşluk kullanılır. Üretim, yerel, uzun alt klasör ve Türkçe adresleri içeren dört gerçek SVG, bağımsız QR okuyucuyla başarıyla çözüldü.
+
+Bu ekleme **211 birim testi** ve **76 + 24 + 11 + 14 = 125 Firebase emülatör kontrolü** ile doğrulandı. Yeni güvenlik kontrolü 36 mod geçişini, tüm seçilebilir koleksiyonları, sahte onayları, sonuçların değiştirilmesini, eski tur yazılarını ve silme kilidini kapsar. GitHub Pages yayını ile canlı Firebase kural yayını aynı sürüm için tamamlanmalıdır.
 
 ## Yerel önizleme
 

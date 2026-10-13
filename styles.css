@@ -890,3 +890,59 @@ h1[tabindex="-1"]:focus { outline: none; }
   .screen-enter, .card-reveal, .bid-bump, .award-flash, .rank-placed, .arcade-cartridge, .waiting-controller, .status-dot { animation: none !important; }
   .pixel-confetti { display: none; }.reaction-pop, .reaction-bubble { animation: none !important; }
 }
+
+.invite-open { min-height: 44px; padding: 9px 13px; font-size: 11px; }
+.invite-arrival { background: var(--mint, #dcebc8); border: 2px solid var(--ink, #352747); padding: 13px; margin-bottom: 14px; }
+.invite-arrival strong { display: block; font-size: 23px; }
+.invite-arrival p { margin: 7px 0 0; font-size: 21px; }
+.next-game-panel { margin-top: 24px; padding: 24px; background: #eee4f3; }
+.next-game-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.next-game-heading .eyebrow { margin: 0 0 10px; }
+.next-game-heading h2 { font-family: var(--sans); font-size: 24px; font-weight: 400; line-height: 1.35; margin: 0; }
+.next-game-heading > .button { flex-shrink: 0; }
+.next-game-form { margin-top: 22px; }
+.next-game-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; margin-bottom: 17px; }
+.next-game-fields > div { min-width: 0; }
+.next-game-fields select { width: 100%; min-height: 48px; }
+.next-game-fields .field-label { display: block; margin-bottom: 8px; }
+.next-readiness { margin-top: 20px; padding-top: 18px; border-top: 2px dashed #bda7cb; }
+.next-proposal-summary { font-size: 26px; margin: 0 0 12px; }
+.next-player-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.next-player { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 5px 10px; padding: 13px; border: 2px solid #ae99bd; background: #f8f3eb; }
+.next-player .player-token { grid-row: span 2; }
+.next-player strong { font-size: 23px; overflow-wrap: anywhere; }
+.next-player > span:last-child { font-size: 18px; color: #725a8d; }
+.next-player.is-ready { background: #e3edcf; border-color: #73905c; }
+.next-player.is-ready > span:last-child { color: #4d6b3a; }
+.next-player.is-offline strong::after { content: ' · ○'; }
+.next-game-actions { display: flex; gap: 17px; align-items: center; margin-top: 20px; }
+.next-game-actions .button { flex-shrink: 0; }
+.next-game-actions p { margin: 0; font-size: 22px; line-height: 1.3; }
+.invite-dialog { width: min(480px, calc(100% - 28px)); max-height: calc(100dvh - 28px); overflow: auto; padding: 23px; border: 3px solid #352747; background: #f8f1dd; box-shadow: 6px 6px 0 #ad96bd; color: #352747; }
+.invite-dialog::backdrop { background: rgb(45 32 58 / .46); }
+.invite-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.invite-dialog h2 { margin: 0; font-size: 13px; line-height: 1.6; }
+.invite-dialog-heading .icon-button { font-family: var(--sans); font-size: 30px; }
+.invite-dialog > p { font-size: 23px; line-height: 1.25; }
+.invite-code { text-align: center; margin-top: 15px; }
+.invite-code strong { display: block; font-size: 32px; letter-spacing: 5px; margin-top: 4px; }
+.invite-qr { background: #fff; width: 205px; max-width: 100%; margin: 15px auto 20px; border: 2px solid #352747; }
+.invite-qr svg { display: block; width: 100%; height: auto; margin: 0; border: 0; filter: none; }
+.invite-dialog > .field-label { display: block; margin-bottom: 8px; }
+.invite-dialog input { width: 100%; font-size: 19px; min-width: 0; min-height: 44px; }
+.invite-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
+.invite-actions .button { flex: 1 1 auto; }
+#invite-status:empty { display: none; }
+@media (max-width: 600px) {
+  .next-game-panel { padding: 16px; }
+  .next-game-heading { flex-direction: column; gap: 12px; }
+  .next-game-heading h2 { font-size: 22px; }
+  .next-game-fields { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  .next-game-actions { flex-direction: column; align-items: stretch; }
+  .next-player-grid { gap: 8px; }
+  .next-player { padding: 9px; grid-template-columns: minmax(0, 1fr); }
+  .next-player .player-token { display: none; }
+  .next-player strong { font-size: 21px; }
+  .next-player > span:last-child { font-size: 17px; }
+  .invite-dialog { padding: 17px; }
+}
