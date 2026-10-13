@@ -9,11 +9,12 @@ import { createAuction, passTurn } from '../js/auction.js';
 import { createBlindRanking, placeBlindCard } from '../js/blind-ranking.js';
 import { createBracket, chooseBracketCard } from '../js/bracket.js';
 import { createTeamDraft, assignTeamCard } from '../js/team-draft.js';
+import { createCooperative, revealFrequency, advanceFrequency, createPrivateRank, placePrivateRank, revealDoubleRanking } from '../js/cooperative.js';
 import { normalizeTexts } from '../js/texts.js';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
-export const RUNTIME_FILES = ['index.html', 'styles.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
+export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
 export const RUNTIME_DIRECTORIES = ['js', 'assets'];
 
 // Keep exact filename case: Windows accepts case mismatches that Pages rejects.
@@ -67,6 +68,30 @@ function finishAllModes(cards, datasetId) {
   assert.equal(team.phase, 'finished');
   assert.equal(team.assignmentCount, 66);
   for (const seat of ['p1', 'p2']) assert.equal(Object.keys(team.players[seat].selections).length, 11);
+
+  let frequency = createCooperative('frequency', deck);
+  for (let round = 0; round < 10; round++) {
+    const cardId = frequency.deck[round * 2];
+    frequency = revealFrequency(frequency, { p1: cardId, p2: cardId });
+    if (round < 9) frequency = advanceFrequency(frequency);
+  }
+  assert.equal(frequency.phase, 'finished', `${datasetId}: Frekans 10 turda bitmeli.`);
+  assert.equal(frequency.score, 1500, `${datasetId}: tam uyum iki seri bonusu kazanmalı.`);
+  assert.equal(Object.keys(frequency.results).length, 10);
+
+  let double = createCooperative('double-ranking', deck);
+  const rankings = {};
+  for (const seat of ['p1', 'p2']) {
+    let record = createPrivateRank();
+    for (let step = 1; step <= 8; step++) record = placePrivateRank(double.deck, record, seat === 'p1' ? step : 9 - step);
+    assert.equal(record.count, 8);
+    rankings[seat] = record.slots;
+  }
+  double = revealDoubleRanking(double, rankings);
+  assert.equal(double.phase, 'finished', `${datasetId}: Çifte Sıralama iki tam listeyle bitmeli.`);
+  assert.equal(double.result.compatibility, 0);
+  assert.equal(double.result.distance, 32);
+  assert.equal(double.result.differences.length, 8);
 }
 
 function checkOnlineConfig() {
@@ -117,7 +142,7 @@ export async function preflight({ online = false, quiet = false } = {}) {
   const images = new Set();
   let cardCount = 0;
   for (const [datasetId, cards] of Object.entries(datasets)) {
-    assert.ok(Array.isArray(cards) && cards.length >= 16 && cards.length <= 200, `${datasetId}: dört mod için 16–200 kart gerekir.`);
+    assert.ok(Array.isArray(cards) && cards.length >= 20 && cards.length <= 200, `${datasetId}: altı mod için 20–200 kart gerekir.`);
     assert.equal(new Set(cards.map(card => card.id)).size, cards.length, `${datasetId}: kart kimlikleri tekrarlanıyor.`);
     for (const card of cards) {
       assert.ok(Number.isSafeInteger(card.id) && card.id >= 1 && card.id <= 1000000, `${datasetId}: geçersiz kart kimliği.`);
@@ -182,10 +207,10 @@ export async function preflight({ online = false, quiet = false } = {}) {
   for (const name of ['laugh', 'angry', 'womp', 'heart']) await checkReference('index.html', `./assets/images/reactions.svg#${name}`);
   const rules = JSON.parse(await readFile(path.join(PROJECT_ROOT, 'firebase.rules.json'), 'utf8')).rules.rooms.$code;
   for (const datasetId of Object.keys(datasets)) assert.ok(rules.datasetId['.validate'].includes(`'${datasetId}'`), `Firebase koleksiyon izni eksik: ${datasetId}`);
-  for (const mode of ['auction', 'blind-ranking', 'bracket', 'team-draft']) assert.ok(rules.mode['.validate'].includes(`'${mode}'`), `Firebase mod izni eksik: ${mode}`);
+  for (const mode of ['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking']) assert.ok(rules.mode['.validate'].includes(`'${mode}'`), `Firebase mod izni eksik: ${mode}`);
   if (online) checkOnlineConfig();
   const result = { files, datasets, cardCount, imageCount: images.size, referenceCount };
-  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} kart, ${images.size} yerel kart görseli, 4 mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
+  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} kart, ${images.size} yerel kart görseli, 6 mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
   return result;
 }
 

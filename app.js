@@ -4,6 +4,8 @@ import { createAuction, canBuy } from './js/auction.js';
 import { createBlindRanking, normalizeBlindRanking } from './js/blind-ranking.js';
 import { createBracket, normalizeBracket } from './js/bracket.js';
 import { createTeamDraft, normalizeTeamDraft } from './js/team-draft.js';
+import { isCooperativeMode, createCooperative, normalizeCooperative, createPrivateRank, placePrivateRank } from './js/cooperative.js';
+import { renderCooperativePanel, renderCooperativeResults } from './js/cooperative-view.js';
 import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from './js/team-command.js';
 import { shuffledIds, draftTriplets } from './js/game-setup.js';
 import { ROUND_NAMES, ROLE_NAMES, fillCard, renderBracketHistory, renderTeamCandidates, renderLineup } from './js/game-view.js';
@@ -19,7 +21,7 @@ const SESSION_KEY = 'iki-kisilik.room.v1';
 const NAME_KEY = 'iki-kisilik.name.v1';
 const SIGNED_OUT_KEY = 'iki-kisilik.signed-out.v1';
 const REACTIONS = { get laugh() { return t('runtime.copy.ha_ha'); }, get angry() { return t('runtime.copy.grrr'); }, get womp() { return t('runtime.copy.womp_womp'); }, get heart() { return t('runtime.copy.iyi_hamle'); } };
-const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); } };
+const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); }, get frequency() { return t('runtime.mode.frequency'); }, get 'double-ranking'() { return t('runtime.mode.double-ranking'); } };
 let datasets = {};
 const chosenCollections = {};
 let selectedCategory = $('dataset-select').value;
@@ -55,6 +57,15 @@ let draftVisualKey = null;
 let signedOut = false;
 let closingSession = false;
 let sessionOpening = null;
+let cooperativeState = { mine: null, opponentProgress: 0, loaded: false };
+let cooperativeUnsubscribe = null;
+let cooperativeKey = null;
+let cooperativeAttempt = null;
+let cooperativeInFlight = null;
+let cooperativeRetryTimer = null;
+let cooperativeRetryUnit = null;
+let cooperativeRetryCount = 0;
+let demoSecrets = { p1: null, p2: null };
 try { signedOut = localStorage.getItem(SIGNED_OUT_KEY) === 'true'; } catch {}
 
 function animateOnce(element, className) {
@@ -94,7 +105,9 @@ function renderModePreview() {
     auction: t('runtime.copy.20_tl_ile_5_kartlik_kadronu_kur_her_kart_sirayla_bir'),
     'blind-ranking': t('runtime.copy.rastgele_10_karti_sonraki_karti_gormeden_1_10_arasin'),
     bracket: t('runtime.copy.16_karttan_bir_sampiyon_sec_her_eslesmede_iki_kartta'),
-    'team-draft': t('runtime.copy.ikiniz_de_bagimsiz_olarak_11_tur_oynarsiniz_her_tur_')
+    'team-draft': t('runtime.copy.ikiniz_de_bagimsiz_olarak_11_tur_oynarsiniz_her_tur_'),
+    frequency: t('coop.frequency.rules'),
+    'double-ranking': t('coop.double.rules')
   };
   $('how-to-content').textContent = rules[mode];
   const notice = $('setup-notice').querySelector('p');
@@ -203,7 +216,7 @@ function keepControlsVisible() {
 }
 
 function renderBusyButtons() {
-  const demoLabels = { auction: t('action.demo'), 'blind-ranking': t('runtime.copy.kor_siralamayi_dene'), bracket: t('runtime.copy.turnuvayi_dene'), 'team-draft': t('runtime.copy.botla_takim_kur') };
+  const demoLabels = { auction: t('action.demo'), 'blind-ranking': t('runtime.copy.kor_siralamayi_dene'), bracket: t('runtime.copy.turnuvayi_dene'), 'team-draft': t('runtime.copy.botla_takim_kur'), frequency: t('coop.frequency.demo'), 'double-ranking': t('coop.double.demo') };
   const labels = { 'create-room': t('action.create'), 'join-room': t('action.join'), 'demo-button': demoLabels[selectedMode()], 'start-game': t('runtime.copy.oyunu_baslat'), 'bid-button': t('action.bid'), 'pass-button': t('action.pass'), 'rematch-button': t('action.rematch') };
   for (const [id, label] of Object.entries(labels)) {
     const button = $(id), isPending = busy && pendingAction === id;
@@ -257,6 +270,11 @@ function errorMessage(error) {
 }
 
 function connectionChanged(online) {
+  if (online) {
+    cooperativeAttempt = null;
+    cooperativeUnsubscribe?.(); cooperativeUnsubscribe = null; cooperativeKey = null;
+    clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null; cooperativeRetryCount = 0;
+  }
   $('connection-label').textContent = demo ? t('runtime.copy.yerel_demo') : !isFirebaseConfigured() ? t('runtime.copy.demoya_hazir') : signedOut ? t('runtime.copy.oturum_kapali') : online ? t('runtime.copy.cevrimici') : t('runtime.copy.baglanti_bekleniyor');
   $('status-pill').classList.toggle('offline', !online && !demo && isFirebaseConfigured());
   $('status-pill').classList.toggle('is-connected', online && !demo);
@@ -300,6 +318,88 @@ function renderRoster(element, entries = []) {
   }
 }
 
+function cooperativeContext(connected, bothOnline) {
+  return { room, mySeat, privateState: cooperativeState, connected, bothOnline, busy,
+    pendingAction, cardFor: getCard, nameFor };
+}
+
+function retryCooperative(key, generation, originService, restartWatch = false) {
+  if (cooperativeRetryTimer || cooperativeRetryCount >= 3 || !originService.connected) return;
+  const delay = 1000 * 2 ** cooperativeRetryCount++;
+  cooperativeRetryTimer = setTimeout(() => {
+    cooperativeRetryTimer = null;
+    if (generation !== lifecycle || key !== cooperativeKey || originService !== service) return;
+    if (restartWatch) { cooperativeUnsubscribe?.(); cooperativeUnsubscribe = null; cooperativeKey = null; }
+    cooperativeAttempt = null;
+    render();
+  }, delay);
+}
+
+function syncCooperativeWatch() {
+  if (!room || !isCooperativeMode(room.mode) || room.status !== 'playing') {
+    cooperativeUnsubscribe?.(); cooperativeUnsubscribe = null; cooperativeKey = null;
+    return;
+  }
+  if (demo) {
+    cooperativeState = { loaded: true, mine: demoSecrets[mySeat],
+      opponentProgress: room.mode === 'frequency' ? !!demoSecrets[otherSeat(mySeat)]?.locked : demoSecrets[otherSeat(mySeat)]?.count || 0 };
+    return;
+  }
+  const key = `${lifecycle}:${room.code}:${room.createdAt}:${room.round}:${room.mode}:${room.game.roundIndex ?? 0}`;
+  if (key === cooperativeKey) return;
+  if (key !== cooperativeRetryUnit) {
+    cooperativeRetryUnit = key; cooperativeRetryCount = 0;
+    clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null;
+  }
+  cooperativeUnsubscribe?.(); cooperativeKey = key;
+  cooperativeState = { mine: null, opponentProgress: 0, loaded: false };
+  cooperativeAttempt = null;
+  if (!service?.connected) { cooperativeKey = null; cooperativeUnsubscribe = null; return; }
+  const generation = lifecycle, originService = service;
+  cooperativeUnsubscribe = originService.watchCooperative(structuredClone(room), state => {
+    if (generation !== lifecycle || key !== cooperativeKey || originService !== service) return;
+    cooperativeState = state;
+    render();
+  }, error => {
+    if (generation !== lifecycle || key !== cooperativeKey) return;
+    toast(errorMessage(error));
+    // Cancelled Firebase listeners need a new subscription, not just a render.
+    retryCooperative(key, generation, originService, true);
+  });
+}
+
+function reconcileCooperative() {
+  if (demo || !service?.connected || !room || room.status !== 'playing' || !isCooperativeMode(room.mode) || !cooperativeState.revealed) return;
+  if (room.mode === 'frequency' && room.game.stage !== 'choosing') return;
+  const key = `${cooperativeKey}:${room.revision}`;
+  if (cooperativeAttempt === key || cooperativeInFlight === key) return;
+  cooperativeAttempt = key; cooperativeInFlight = key;
+  const snapshot = structuredClone(room), generation = lifecycle, originService = service;
+  const records = structuredClone(cooperativeState.revealed);
+  const kind = snapshot.mode === 'frequency' ? 'frequency-reveal' : 'double-reveal';
+  const payload = snapshot.mode === 'frequency' ? { choices: { p1: records.p1.cardId, p2: records.p2.cardId } }
+    : { rankings: { p1: records.p1.slots, p2: records.p2.slots } };
+  // Both clients may resolve together. One revision can award this result once.
+  void originService.mutateRoom(snapshot.code, current => changeRoom(current, originService.uid, snapshot.revision, kind, payload))
+    .catch(error => {
+      if (generation !== lifecycle || originService !== service) return;
+      if (room?.revision === snapshot.revision) {
+        toast(errorMessage(error));
+        retryCooperative(cooperativeKey, generation, originService);
+      }
+    }).finally(() => { if (cooperativeInFlight === key) cooperativeInFlight = null; });
+}
+
+function resolveDemoCooperative() {
+  if (!demo || !isCooperativeMode(room?.mode) || room.status !== 'playing') return;
+  if (room.mode === 'frequency') {
+    if (room.game.stage !== 'choosing' || !demoSecrets.p1?.locked || !demoSecrets.p2?.locked) return;
+    room = changeRoom(room, 'demo-you', room.revision, 'frequency-reveal', { choices: { p1: demoSecrets.p1.cardId, p2: demoSecrets.p2.cardId } });
+  } else if (demoSecrets.p1?.count === 8 && demoSecrets.p2?.count === 8) {
+    room = changeRoom(room, 'demo-you', room.revision, 'double-reveal', { rankings: { p1: demoSecrets.p1.slots, p2: demoSecrets.p2.slots } });
+  }
+}
+
 function render() {
   renderBusyButtons();
   $('session-button').textContent = busy && pendingAction === 'session-button' ? t('runtime.copy.bekle') : !isFirebaseConfigured() ? t('runtime.copy.kaydi_temizle') : signedOut || !service ? t('runtime.copy.oyuncu_oturumu_ac') : t('runtime.copy.oturumu_kapat');
@@ -321,6 +421,8 @@ function render() {
   const blind = room.mode === 'blind-ranking';
   const bracket = room.mode === 'bracket';
   const teamDraft = room.mode === 'team-draft';
+  const cooperative = isCooperativeMode(room.mode);
+  syncCooperativeWatch();
   $('room-screen').classList.toggle('is-blind', blind && room.status === 'playing');
   $('room-screen').classList.toggle('is-bracket', bracket && room.status === 'playing');
   $('room-screen').classList.toggle('is-team-draft', teamDraft && room.status === 'playing');
@@ -330,7 +432,20 @@ function render() {
     $('blind-results').hidden = !blind;
     $('bracket-results').hidden = !bracket;
     $('team-draft-results').hidden = !teamDraft;
+    $('cooperative-results').hidden = !cooperative;
     $('rematch-note').textContent = blind || bracket ? t('runtime.results.rematch_player', { player: nameFor(rematchStarter(room)) }) : teamDraft ? t('runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide') : t('runtime.copy.ayni_oda_ayni_kod_ilk_hamle_bu_kez_diger_oyuncuda');
+    if (cooperative) {
+      const arrivedFromGame = lastVisualState?.code === room.code && lastVisualState?.round === room.round && lastVisualState?.status === 'playing';
+      setScreen('results-screen');
+      $('results-title').textContent = t(room.mode === 'frequency' ? 'coop.frequency.results_title' : 'coop.double.results_title');
+      $('results-subtitle').textContent = t('runtime.results.subtitle', { code: room.code, round: room.round, dataset: DATASET_NAMES[room.datasetId] });
+      $('rematch-note').textContent = t('coop.rematch');
+      renderCooperativeResults(cooperativeContext(connected, bothOnline));
+      $('rematch-button').disabled = busy || !connected || !bothOnline;
+      if (arrivedFromGame) { celebrate(); beep('win'); }
+      lastVisualState = { code: room.code, round: room.round, status: 'finished' };
+      return;
+    }
     if (blind) {
       renderBlindResults(connected, bothOnline);
       return;
@@ -359,7 +474,7 @@ function render() {
   setScreen('room-screen');
   $('room-code-display').textContent = room.code;
   $('room-title').textContent = t('runtime.room.title', { dataset: DATASET_NAMES[room.datasetId], mode: MODE_NAMES[room.mode] || MODE_NAMES.auction });
-  $('room-subtitle').textContent = demo ? blind || bracket ? t('runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin') : t('runtime.copy.yerel_demo_rakibin_atari_bot') : t('runtime.room.subtitle', { round: room.round, summary: blind ? t('runtime.room.blind_summary') : bracket ? t('runtime.room.bracket_summary') : teamDraft ? t('runtime.room.draft_summary') : t('runtime.room.auction_summary') });
+  $('room-subtitle').textContent = demo ? blind || bracket ? t('runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin') : t('runtime.copy.yerel_demo_rakibin_atari_bot') : t('runtime.room.subtitle', { round: room.round, summary: cooperative ? t(room.mode === 'frequency' ? 'coop.frequency.summary' : 'coop.double.summary') : blind ? t('runtime.room.blind_summary') : bracket ? t('runtime.room.bracket_summary') : teamDraft ? t('runtime.room.draft_summary') : t('runtime.room.auction_summary') });
   setStatusText('opponent-status', opponent ? t('runtime.room.opponent_status', { player: opponent.name, status: onlineSeat(otherSeat(mySeat)) ? t('runtime.room.opponent_online') : t('runtime.room.opponent_reconnecting') }) : t('runtime.copy.arkadasin_icin_bir_koltuk_ayirdik'));
   $('waiting-hint').textContent = hasOptionalSpectator(room) && room.ownerUid === service?.uid ? t('runtime.room.optional_spectator_hint') : !opponent ? t('runtime.copy.kodu_kopyala_ve_arkadasina_gonder_katilinca_oyun_haz') : !bothOnline ? t('runtime.copy.baglanti_bekleniyor_odaniz_guvende') : room.ownerUid === service?.uid ? t('runtime.copy.ikiniz_de_hazirsiniz_oyunu_baslatabilirsin') : t('runtime.copy.oda_sahibi_oyunu_baslattiginda_ilk_kart_acilacak');
   const waiting = room.status === 'waiting';
@@ -369,9 +484,19 @@ function render() {
   $('blind-panel').hidden = waiting || !blind;
   $('bracket-panel').hidden = waiting || !bracket;
   $('team-draft-panel').hidden = waiting || !teamDraft;
+  $('cooperative-panel').hidden = waiting || !cooperative;
   $('start-game').hidden = !waiting || (!demo && service.uid !== room.ownerUid);
   $('start-game').disabled = busy || !connected || (!hasOptionalSpectator(room) && (!opponent || !bothOnline));
   if (waiting) { lastVisualState = { code: room.code, round: room.round, status: 'waiting' }; return; }
+  if (cooperative) {
+    renderCooperativePanel(cooperativeContext(connected, bothOnline));
+    const key = `${room.code}:${room.round}:${room.game.roundIndex ?? 0}:${room.game.stage ?? cooperativeState.mine?.count ?? 0}`;
+    if (lastVisualState?.cardKey !== key) {
+      if (room.game.stage === 'reveal') beep(room.game.results?.[`r${room.game.roundIndex + 1}`]?.match ? 'win' : 'womp');
+    }
+    lastVisualState = { code: room.code, round: room.round, status: 'playing', cardKey: key };
+    reconcileCooperative(); scheduleBot(); return;
+  }
   if (blind) { renderBlind(connected, bothOnline); return; }
   if (bracket) { renderBracket(connected, bothOnline); return; }
   if (teamDraft) { renderTeamDraft(connected, bothOnline); return; }
@@ -645,6 +770,11 @@ function watchOpponentReaction() {
 
 async function detach() {
   lifecycle++;
+  clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null;
+  cooperativeRetryUnit = null; cooperativeRetryCount = 0;
+  cooperativeUnsubscribe?.(); cooperativeUnsubscribe = null; cooperativeKey = null;
+  cooperativeState = { mine: null, opponentProgress: 0, loaded: false };
+  cooperativeAttempt = null; cooperativeInFlight = null; demoSecrets = { p1: null, p2: null };
   clearTimeout(botTimer); botTimer = null;
   subscriptions.forEach(unsubscribe => unsubscribe()); subscriptions = [];
   reactionUnsubscribe?.(); reactionUnsubscribe = null; watchedOpponent = null;
@@ -670,6 +800,7 @@ function assertRoomContent(value) {
     if (!Array.isArray(value.game.deck) || value.game.deck.some(id => !byId.has(id))) throw new RoomError(t('runtime.copy.odanin_kartlari_bu_koleksiyonla_uyusmuyor_veri_dosya'));
     if (value.mode === 'bracket') normalizeBracket(value.game);
     if (value.mode === 'blind-ranking') normalizeBlindRanking(value.game);
+    if (isCooperativeMode(value.mode)) normalizeCooperative(value.mode, value.game);
   }
 }
 
@@ -726,7 +857,9 @@ async function command(kind, payload = {}) {
   const cursor = kind === 'assign' && room.mode === 'team-draft' ? captureTeamCursor(room, uid) : null;
   const apply = current => cursor ? assignWithTeamCursor(current, uid, cursor, payload) : changeRoom(current, uid, expectedRevision, kind, payload);
   if (demo) {
-    room = apply(room); render();
+    room = apply(room);
+    if (isCooperativeMode(room.mode) && (kind === 'frequency-next' || kind === 'rematch')) demoSecrets = { p1: null, p2: null };
+    render();
   } else {
     if (!hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
     const originService = service;
@@ -736,6 +869,25 @@ async function command(kind, payload = {}) {
 
 function scheduleBot() {
   if (!demo || busy || botTimer || room?.status !== 'playing') return;
+  if (isCooperativeMode(room.mode)) {
+    if (room.mode === 'frequency' ? room.game.stage !== 'choosing' || demoSecrets.p2?.locked : demoSecrets.p2?.count === 8) return;
+    const generation = lifecycle, round = room.round, index = room.game.roundIndex ?? 0;
+    botTimer = setTimeout(() => {
+      botTimer = null;
+      if (generation !== lifecycle || !demo || !room || room.status !== 'playing' || room.round !== round || (room.game.roundIndex ?? 0) !== index) return;
+      if (busy) { scheduleBot(); return; }
+      if (room.mode === 'frequency') {
+        if (room.game.stage !== 'choosing' || demoSecrets.p2?.locked) return;
+        demoSecrets.p2 = { locked: true, cardId: room.game.deck[index * 2 + Math.floor(Math.random() * 2)] };
+      } else {
+        const record = demoSecrets.p2 || createPrivateRank();
+        const slots = Array.from({ length: 8 }, (_, i) => i + 1).filter(slot => !record.slots[`s${slot}`]);
+        demoSecrets.p2 = placePrivateRank(room.game.deck, record, slots[Math.floor(Math.random() * slots.length)]);
+      }
+      resolveDemoCooperative(); render();
+    }, 900);
+    return;
+  }
   const blind = room.mode === 'blind-ranking';
   const bracket = room.mode === 'bracket', teamDraft = room.mode === 'team-draft';
   if (teamDraft ? room.game.players.p2.done : (blind || bracket ? room.game.activeSeat : room.game.turnSeat) !== 'p2') return;
@@ -854,10 +1006,37 @@ $('demo-button').addEventListener('click', () => void runAction(async () => {
   room = { version: 1, code: 'DEMO', ownerUid: 'demo-you', datasetId, mode,
     status: 'playing', round: 1, starterSeat: 'p1', revision: 1,
     players: { p1: { uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || 'Oyuncu 1' }, p2: { uid: 'demo-bot', name: 'Atari Bot' } },
-    game: mode === 'team-draft' ? createTeamDraft(draftTriplets(datasets[datasetId])) : mode === 'bracket' ? createBracket(shuffleDeck(datasetId), 'p1') : mode === 'blind-ranking' ? createBlindRanking(shuffleDeck(datasetId), 'p1') : createAuction(shuffleDeck(datasetId), 'p1') };
+    game: isCooperativeMode(mode) ? createCooperative(mode, shuffleDeck(datasetId)) : mode === 'team-draft' ? createTeamDraft(draftTriplets(datasets[datasetId])) : mode === 'bracket' ? createBracket(shuffleDeck(datasetId), 'p1') : mode === 'blind-ranking' ? createBlindRanking(shuffleDeck(datasetId), 'p1') : createAuction(shuffleDeck(datasetId), 'p1') };
   mySeat = 'p1'; connectionChanged(false);
 }, 'demo-button'));
 $('start-game').addEventListener('click', () => void runAction(() => command('start', gamePayload()), 'start-game'));
+$('cooperative-panel').addEventListener('click', event => {
+  const button = event.target.closest('[data-frequency-card], [data-double-slot], [data-frequency-next]');
+  if (!button || button.disabled || busy || !room || room.status !== 'playing' || !isCooperativeMode(room.mode)) return;
+  if (button.hasAttribute('data-frequency-next')) {
+    void runAction(() => command('frequency-next'), button.id); return;
+  }
+  const snapshot = structuredClone(room), generation = lifecycle, originService = service;
+  const count = cooperativeState.mine?.count || 0;
+  const cardId = Number(button.dataset.frequencyCard), slot = Number(button.dataset.doubleSlot);
+  const local = demo;
+  void runAction(async () => {
+    if (local) {
+      if (snapshot.mode === 'frequency') {
+        if (demoSecrets[mySeat]?.locked || snapshot.game.stage !== 'choosing') throw new RoomError('Seçimin zaten kilitlendi.');
+        demoSecrets[mySeat] = { locked: true, cardId };
+      } else demoSecrets[mySeat] = placePrivateRank(snapshot.game.deck, demoSecrets[mySeat] || createPrivateRank(), slot);
+      resolveDemoCooperative(); render();
+    } else {
+      if (!onlineSeat('p1') || !onlineSeat('p2')) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
+      if (snapshot.mode === 'frequency') await originService.chooseFrequency(snapshot, cardId);
+      else await originService.rankCooperative(snapshot, slot, count);
+    }
+  }, button.id).then(() => {
+    if (generation !== lifecycle || originService !== service || !room || room.status !== 'playing') return;
+    $('cooperative-panel').querySelector('[data-double-slot]:not(:disabled), [data-frequency-next]:not(:disabled)')?.focus({ preventScroll: true });
+  });
+});
 $('bid-form').addEventListener('submit', event => {
   event.preventDefault();
   // Capture before rendering busy state, which may reset the suggested minimum.

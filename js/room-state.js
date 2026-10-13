@@ -2,6 +2,7 @@ import { createAuction, placeBid, passTurn } from './auction.js';
 import { createBlindRanking, placeBlindCard } from './blind-ranking.js';
 import { createBracket, chooseBracketCard } from './bracket.js';
 import { createTeamDraft, assignTeamCard } from './team-draft.js';
+import { isCooperativeMode, createCooperative, revealFrequency, advanceFrequency, revealDoubleRanking } from './cooperative.js';
 
 export class RoomError extends Error {}
 export const otherSeat = seat => seat === 'p1' ? 'p2' : 'p1';
@@ -12,6 +13,7 @@ export function seatFor(room, uid) {
 }
 
 function createGame(room, payload, starterSeat) {
+  if (isCooperativeMode(room.mode)) return createCooperative(room.mode, payload.deck);
   if (room.mode === 'blind-ranking') return createBlindRanking(payload.deck, starterSeat);
   if (room.mode === 'bracket') return createBracket(payload.deck, starterSeat);
   if (room.mode === 'team-draft') return createTeamDraft(payload.triplets);
@@ -47,6 +49,12 @@ export function changeRoom(room, uid, expectedRevision, command, payload = {}) {
     if (room.mode !== 'team-draft') throw new RoomError('Bu hamle Start, Bench, Cut modunda kullanılabilir.');
     if (room.status !== 'playing') throw new RoomError('Takım kurma şu an aktif değil.');
     next.game = assignTeamCard(room.game, seat, payload.role, payload.cardId);
+  } else if (command === 'frequency-reveal' || command === 'frequency-next') {
+    if (room.mode !== 'frequency' || room.status !== 'playing') throw new RoomError('Frekans şu an aktif değil.');
+    next.game = command === 'frequency-reveal' ? revealFrequency(room.game, payload.choices) : advanceFrequency(room.game);
+  } else if (command === 'double-reveal') {
+    if (room.mode !== 'double-ranking' || room.status !== 'playing') throw new RoomError('Çifte Sıralama şu an aktif değil.');
+    next.game = revealDoubleRanking(room.game, payload.rankings);
   } else if (command === 'rematch') {
     if (room.status !== 'finished') throw new RoomError('Rövanş için bu turun bitmesi gerekir.');
     next.round = room.round + 1;

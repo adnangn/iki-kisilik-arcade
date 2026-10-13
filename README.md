@@ -6,8 +6,9 @@ HTML, CSS ve Vanilla JavaScript ile geliştirilen, GitHub Pages üzerinde klasö
 
 ```text
 oyun/
-├── index.html             # Lobi, bekleme odası, dört oyun modu, sonuç ekranları
+├── index.html             # Lobi, bekleme odası, altı oyun modu, sonuç ekranları
 ├── styles.css             # Retro tema, Grid/Flex, 100dvh, mobil düzen
+├── cooperative.css        # Frekans ve Çifte Sıralama'nın mobil piksel görünümü
 ├── app.js                 # SPA akışı, DOM, veri fetch, demo, reaksiyonlar
 ├── firebase-config.js     # Adoapp Firebase Web yapılandırması; emulator kapalı
 ├── veri.json              # Tek, salt okunur veri dosyası
@@ -20,6 +21,9 @@ oyun/
 │   ├── bracket.js         # 16 kart / 15 maç / 4 tur eleme ağacı
 │   ├── team-draft.js      # İki bağımsız oyuncu, 11 tur, kilitli roller
 │   ├── team-command.js    # Rakipten bağımsız, kendi eski atamasını reddeden işlem
+│   ├── cooperative.js     # Ortak puan, seri bonusu ve sekiz kartlık uyum motoru
+│   ├── cooperative-online.js # Gizli seçimler, özel sayaçlar ve kilitli kayıtlar
+│   ├── cooperative-view.js # Ortak tur açılışı ve karşılaştırmalı sonuçlar
 │   ├── game-setup.js      # Transaction dışında karıştırma ve aynı etiketli üçlüler
 │   ├── game-view.js       # Turnuva geçmişi, aday kartlar ve takım/saha görünümü
 │   ├── ranking-view.js    # Canlı ve sonuç ekranlarının ortak sıralama görünümü
@@ -62,15 +66,19 @@ oyun/
 │   ├── bracket.test.js
 │   ├── team-draft.test.js
 │   ├── team-command.test.js
+│   ├── cooperative.test.js # Puan, seri, sıra mesafesi ve bozuk durumlar
+│   ├── cooperative-room.test.js # İki aktif oyuncu ve rövanş geçişleri
+│   ├── cooperative-online.test.js # Özel kayıt, eski tıklama ve dinleyici kurtarma
 │   ├── game-setup.test.js
 │   ├── firebase-session.test.js # Bağlantı/kimlik/presence yaşam döngüsü
 │   ├── demo-bot.test.js
 │   ├── room-state.test.js
 │   ├── football-data.test.js # Kart sayıları, metadata ve görsel dosyaları
-│   └── firebase-emulator.mjs # Yerel RTDB kuralları ve eşzamanlı yazma testi
+│   ├── firebase-emulator.mjs # Önceki modların RTDB kuralları ve eşzamanlı yazmaları
+│   └── cooperative-firebase.mjs # Gizli kayıt, sonuç doğrulama ve iki yeni mod
 ├── tools/
 │   ├── serve.mjs          # Sadece bilgisayarda geliştirme önizlemesi
-│   ├── preflight.mjs      # 24 veri havuzu, dört mod, yerel yollar ve çevrimiçi ayarlar
+│   ├── preflight.mjs      # 24 veri havuzu, altı mod, yerel yollar ve çevrimiçi ayarlar
 │   ├── build-site.mjs     # Yalnız çalışma dosyalarını artifacts/site içine kopyalar
 │   ├── expansion-*.json  # Futbol/menü/kültür ek kartları ve kaynak kayıtları
 │   ├── generate-expansion-*.mjs # İlk 12 Ekim genişlemesindeki 325 SVG'nin üreteçleri
@@ -104,11 +112,11 @@ Lobinin altındaki **Metin Atölyesi** bağlantısını açın. Başlık, slogan
 
 **Metinleri indir** bir `metinler.json` dosyası üretir. Herkesin değişiklikleri görmesi için depodaki aynı dosyayı bununla değiştirin ve GitHub Pages yayınının tamamlanmasını bekleyin. Daha sonra bu dosyayı **Dosyadan yükle** ile tekrar düzenleyebilirsiniz. GitHub Pages statik olduğu için düzenleyicideki taslak kaydı doğrudan GitHub'a dosya yazmaz.
 
-Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js` ve `js/text-catalog-expansion.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **431 alan** sunar; genişleme kataloğunun 84 alanı yeni kategori/koleksiyonları, Oyun altındaki dört havuzu, Vol. 1/Vol. 2 seçimini ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
+Varsayılanlar `js/text-catalog-static.js`, `js/text-catalog-runtime.js`, `js/text-catalog-expansion.js` ve `js/text-catalog-cooperative.js` içinde merkezi olarak tutulur; `metinler.json` yalnız değişiklikleri içerir. Düzenleyici **502 alan** sunar. Birlikte oynama kataloğunun 71 alanı Frekans ve Çifte Sıralama kurallarını, düğmelerini, bekleme mesajlarını ve sonuçlarını özelleştirir. Genişleme kataloğunun 84 alanı yeni kategori/koleksiyonları, Oyun altındaki dört havuzu, Vol. 1/Vol. 2 seçimini ve izleyici beklemeden başlama açıklamalarını içerir. 12 Ekim 2026 tarihli `metinler (4).json` aktarımındaki **28 özelleştirme** depodaki `metinler.json` dosyasına uygulanmıştır ve sonraki genişlemelerde korunmuştur. Hiç değişiklik yoksa `{"version":1,"texts":{}}` yeterlidir. Bilinmeyen alan, eksik otomatik alan veya geçersiz metin içeren dosya reddedilir; metinler HTML olarak çalıştırılmaz. Yayın hazırlık kontrolü bu dosyayı da doğrular.
 
 ## Oynanabilir modlar
 
-Lobi, 6 rakamlı kodla oda kurma/katılma, bekleme ekranı, dört oyun modu ve aynı kodla rövanş hazırdır. 23 seçilebilir koleksiyonun tamamı dört modla kullanılabilir. Açık Artırma ve Start, Bench, Cut iki aktif oyuncu bağlanınca başlar. Kör Sıralama ve O mu, Bu mu? odasını kuran oyuncu izleyici gelmeden **Oyunu Başlat** diyebilir ve tek başına devam edebilir; boş ikinci koltuğa aynı kodla sonradan katılan kişi oyunun o anki durumunu izler. Bu katılım oyunu yeniden başlatmaz.
+Lobi, 6 rakamlı kodla oda kurma/katılma, bekleme ekranı, altı oyun modu ve aynı kodla rövanş hazırdır. 23 seçilebilir koleksiyonun tamamı altı modla kullanılabilir. Açık Artırma, Start, Bench, Cut, Frekans ve Çifte Sıralama iki aktif oyuncu bağlanınca başlar. Kör Sıralama ve O mu, Bu mu? odasını kuran oyuncu izleyici gelmeden **Oyunu Başlat** diyebilir ve tek başına devam edebilir; boş ikinci koltuğa aynı kodla sonradan katılan kişi oyunun o anki durumunu izler. Bu katılım oyunu yeniden başlatmaz.
 
 Her oyuncu 20 TL ve beş kartlık kontenjanla başlar. Açılış teklifini sistem 1 TL olarak yapar, hamle diğer oyuncuya geçer. Tam sayı teklif mevcut fiyattan büyük ve oyuncunun bütçesi içinde olmalıdır. Pas, son teklif sahibine kartı verir ve yalnızca kazananın bütçesini düşürür. Yeni kartta açılış sırası değişir. Açılış ve fiyat artırma kart satın almaz; bütçe yalnızca gerçek bir Pas hamlesiyle kapanan açık artırmada düşer. Her Pas en fazla bir kart verir. Bir oyuncunun bütçesi veya kontenjanı dolsa bile sonraki kartlar otomatik dağıtılmaz; o oyuncu sırası geldiğinde Pas diyerek kartı son teklif sahibine bırakır. Teklif veremeyen oyuncunun açılış sırası, açılış yapabilen rakibine geçer. İki oyuncu da kart alamayınca veya deste bitince sonuç ekranı açılır. Puanlama ölçütü tanımlanmadığı için sonuç ekranı kadroları ve kalan bütçeyi karşılaştırır.
 
@@ -120,7 +128,13 @@ Kör Sıralama, aynı 23 seçilebilir koleksiyonun kartlarını ve yerel görsel
 
 Üçlü üretiminde aynı etiketten en az üç kart içeren gruplar kullanılır. Her üçlüde üç farklı kart bulunur. Mevcut uygun havuzdan artık üçlü çıkmıyorsa havuz yeniden karıştırılır; bu nedenle küçük koleksiyonlarda bir kart farklı turlarda tekrar aday olabilir ve farklı Start seçimlerinde yeniden bulunabilir. Bu kural `reusePolicy: 'pool-reset'` olarak odada saklanır; rövanş yeni 11 üçlüyle başlar.
 
-Yeni bir veri setinin dört modda da kullanılabilmesi için 16–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Sadece Kör Sıralama motorunun alt sınırı 10'dur. Hazırlık kontrolü 23 seçilebilir koleksiyonu ve eski odalar için korunan bir arşiv havuzunu bu koşullara göre denetler.
+**Frekans** seçilen koleksiyondan 20 benzersiz kartla 10 bağımsız eşleşme oluşturur. İki oyuncu aynı çiftten gizlice seçim yapar; cevaplar kilitlenir ve ikisi seçince birlikte açılır. Aynı seçim ortak kasaya 100 puan ekler, farklı seçim seriyi sıfırlar. Kesintisiz serinin 5. ve 10. eşleşmeleri ayrıca 250 puan verir; 10 tam uyum 1.500 puandır. Açılan seçimleri görmek için süre baskısı yoktur; iki oyuncudan biri **Sonraki eşleşme** ile ilerletir. Sonuçta ortak puan, uyumlu eşleşme sayısı ve en uzun seri gösterilir.
+
+**Çifte Sıralama** aynı sekiz kartı aynı sırayla tek tek gösterir. İki oyuncu bağımsız hızda kendi gizli 1–8 yuvalarını doldurur; seçilen yuva kilitlenir. Diğerine yalnız tamamlanan kart sayısı görünür. İlk bitiren bekler, iki liste de tamamlanınca yan yana açılır. Uyum yüzdesi kartların sıra farklarının toplamı üzerinden `round(100 × (1 − mesafe / 32))` ile hesaplanır: aynı listeler %100, tam ters listeler %0, bitişik iki kartın yer değiştirmesi %94. Sonuç kartların farklarını büyükten küçüğe gösterir; kişisel kazanan ilan edilmez.
+
+İki yeni modda gizli kayıtlar, ortak odadan ayrı `privateGames/{code}/r{round}` altında tutulur. Firebase kuralları kendi kaydını okumaya ve ilerleme sayacını paylaşmaya izin verir; diğer oyuncunun seçimleri Frekans eşleşmesinde ikisi kilitlenmeden, sıralamada ikisi sekiz kartı bitirmeden okunamaz. Hamleler transaction kullanır, önceki kartın veya rövanşın gecikmiş tıklaması sonraki karta uygulanmaz. Odadan çıkmak kimliği korur; yenileme ve aynı kodla dönüş kendi gizli seçimlerini geri getirir. Oturum kapatmak anonim kimliği bırakır. Rövanş aynı kodla yeni kartlar ve ayrı bir özel tur kaydı oluşturur. Bir oyuncu kopunca yeni seçim düğmeleri bağlantı geri gelene kadar bekler.
+
+Yeni bir veri setinin altı modda da kullanılabilmesi için 20–200 benzersiz kart ve aynı etiketten en az üç kart içeren bir grup gerekir. Kör Sıralama motorunun alt sınırı 10, Çifte Sıralama'nın 8'dir. Hazırlık kontrolü 23 seçilebilir koleksiyonu ve eski odalar için korunan bir arşiv havuzunu bu koşullara göre denetler.
 
 ## Yerel önizleme
 
@@ -137,6 +151,8 @@ npm start
 Kör Sıralama modunu seçince aynı düğme **Kör Sıralamayı Dene** olur. İlk turu sen sıralarsın; rövanşta Atari Bot her kart için boş bir sıra seçerken izlersin. Bir sonraki rövanşta tekrar sen sıralarsın. Yerel demo turu yenilenince sıfırlanır; çevrimiçi odanın sıraları veritabanından geri yüklenir.
 
 Turnuvada **Turnuvayı Dene**, takım kurmada **Botla Takım Kur** düğmeleri kullanılır. Takım kurmada bot kendi 33 rol atamasını yapar; insanın atamalarını değiştirmez. Her iki modun bitişinde rövanş ve lobiye dönüş bulunur.
+
+Frekans ve Çifte Sıralama'nın yerel demolarında bot bağımsız rastgele seçimler yapar; insanın cevabını kopyalamaz. Botun seçimleri de ortak açılış veya sonuç ekranından önce gösterilmez. Demo yenilenince sıfırlanır; çevrimiçi gizli kayıtlar Firebase'den geri yüklenir.
 
 ## 8-bit arayüz
 
@@ -252,7 +268,7 @@ Tablo yalnız lobideki 23 seçeneği gösterir. Oyun ana kategorisindeki dört k
 }
 ```
 
-Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Dört modun tamamıyla kullanmak için yukarıdaki 16 kart ve etiket koşulu geçerlidir. Toplam **1.527 farklı yerel kart görseli** vardır. Vol. 1 seçkileri ve iki ayrı oyun havuzu mevcut kartları kullandığı için 24 JSON havuzundaki kayıt sayısı **1.712**'dir; 185 kayıt mevcut kartların havuz kopyalarıdır, yeni kart veya yeni görsel değildir. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre, sanatçılarda geniş müzik türü, ilçelerde Ankara veya İstanbul, illerde coğrafi bölge, ülkelerde geniş kıta grubu, nostalji ve genel oyun kartlarında geniş konu/tür grupları kullanılır. Valorant Ajanları dört resmi ajan rolünü, LoL Şampiyonları altı resmi sınıfın Türkçe karşılıklarını kullanır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını, sanatçı kartlarındaki `tip` ise `sanatci`/`grup` ayrımını saklar. Oyun havuzlarında `tip`, `karakter` veya `oyun`; coğrafya kartlarında `il` veya `ulke` değeridir. `plaka`, `iso2`, `evren` ve `marka` gibi ek bilgiler ilgili kartın kimliğini açıklar; temel oyun sözleşmesini değiştirmez. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
+Örnek, kart sözleşmesini gösterir; uygulamada her veri seti 10–200 benzersiz kart içermeli, ID'ler 1–1.000.000 arası tam sayı olmalıdır. Altı modun tamamıyla kullanmak için yukarıdaki 20 kart ve etiket koşulu geçerlidir. Toplam **1.527 farklı yerel kart görseli** vardır. Vol. 1 seçkileri ve iki ayrı oyun havuzu mevcut kartları kullandığı için 24 JSON havuzundaki kayıt sayısı **1.712**'dir; 185 kayıt mevcut kartların havuz kopyalarıdır, yeni kart veya yeni görsel değildir. ID'ler havuz içinde benzersizdir; ardışık olma şartı yoktur. `etiket`, kategoriden bağımsızdır; futbol kartlarında FV/OF/DF/KL, yemeklerde tür, ekran yapımlarında tür/genre, sanatçılarda geniş müzik türü, ilçelerde Ankara veya İstanbul, illerde coğrafi bölge, ülkelerde geniş kıta grubu, nostalji ve genel oyun kartlarında geniş konu/tür grupları kullanılır. Valorant Ajanları dört resmi ajan rolünü, LoL Şampiyonları altı resmi sınıfın Türkçe karşılıklarını kullanır. İsteğe bağlı `takim` metni kartta ve kadroda gösterilir; `takimTuru` milli takım/kulüp ayrımını, sanatçı kartlarındaki `tip` ise `sanatci`/`grup` ayrımını saklar. Oyun havuzlarında `tip`, `karakter` veya `oyun`; coğrafya kartlarında `il` veya `ulke` değeridir. `plaka`, `iso2`, `evren` ve `marka` gibi ek bilgiler ilgili kartın kimliğini açıklar; temel oyun sözleşmesini değiştirmez. Kendi JPG/PNG dosyalarınızı `assets/images/` klasörüne koyup `gorsel` değerini değiştirin. Gelen görseller CSS `image-rendering: pixelated` ve hafif kontrastla gösterilir.
 
 Efsaneler, başarı ve geniş bilinirlik gözetilerek hazırlanmış editoryal bir seçkidir; ölçülmüş taraftar sayısı sıralaması değildir. Aktif ve emekli isimler birlikte bulunur. İkonik milli takım renkleriyle gösterilir; ülke bilgisi güncel kulüp iddiası taşımaz. Süper Lig portrelerinde doğrulanmış kulübün renkleri kullanılır. Her futbolcu için farklı saç, ten, sakal ve forma ayrıntıları olan özgün 96×96 SVG vardır.
 
@@ -329,6 +345,10 @@ Kurallar kökten listeleme ve genel yazma iznini kapatır. Oda kodunu bilen anon
 Bu sürüm güvenilir arkadaşlar arasında oyun için hazırlanmıştır. İstemci seçtiği statik desteyi gönderir; sunucu yerel `veri.json` içeriğinin gerçekliğini veya karıştırmanın adilliğini doğrulayamaz. Tarayıcı odayı açmadan önce ID'lerin seçili koleksiyonda bulunduğunu ve takım üçlülerinin gerçek etiketlerini kontrol eder. Kör Sıralama kuralları 10 kartın benzersizliğini ve her hamlede yalnızca bir boş sıranın doldurulmasını doğrular; izleyici hamlesini ve önceki seçimlerin değiştirilmesini reddeder. Turnuvada kurallar mevcut iki adaydan bir kazananı, eleme sırasını ve geçmişin korunmasını denetler. Takım kurmada aynı turdaki rol/kart tekrarları, rakibin seçimlerine müdahale, tur atlama ve bitmiş oyuncunun ek ataması reddedilir. Gelecek kartlar arayüzde gösterilmez, ancak oda üyelerinin okuyabildiği desteyi geliştirici araçlarıyla incelemek mümkündür. Tam kötü niyetli istemci/ödüllü turnuva koruması iddiası yoktur. Odalar otomatik silinmez; artık kullanılmayan odaları Firebase Console'dan temizleyin.
 
 ## Doğrulama
+
+13 Ekim 2026 Frekans ve Çifte Sıralama eklemesinde **166/166 birim testi** ve **69 mevcut + 24 yeni Firebase emülatör kontrolü** geçti; atlama yoktur. Hazırlık kontrolü 24 veri havuzunu altı modda tamamladı. 350 ve 390 piksel mobil ile masaüstü tarayıcı denemelerinde iki demo bitirildi; Frekans'ın seri bonusu ve farklı seçimde seri sıfırlaması, Çifte Sıralama'da ilk bitirenin beklemesi ve iki modun temiz rövanşı doğrulandı. Yeni 71 metin alanı düzenleyiciye eklendi; önceki 28 kişisel metin değişikliği korundu.
+
+Adoapp bulutunda iki ayrı site kökeni (`127.0.0.1` ve `localhost`) ve bağımsız anonim kimliklerle `669525` Frekans odası 10 ortak seçim sonunda iki ekranda 1.500 puanla bitti. Bir seçim kilitlendikten sonra diğer oyuncu sadece hazır bilgisini gördü; sayfa yenileme ve aynı kodla dönüş kendi kilitli seçimini geri getirdi. `269137` Çifte Sıralama odasında ilk oyuncu 8/8 listesiyle bekledi; ikinci oyuncu 3/8'de yenileyip dördüncü karttan devam etti. İki bitmiş listede yalnız bitişik iki kart yer değiştirdi; iki istemci %94 uyum, 6/8 aynı sıra gösterdi. Rövanşlar aynı kodla ikinci tura, sıfır ilerleme ve yeni kartlarla geçti. Tarayıcı uyarı/hata kayıtları boştu. Bunlar aynı bilgisayardaki iki bağımsız istemci kontrolüdür; fiziksel iki cihaz testi değildir. Yeni gizli seçim kuralları Firebase Console'da yayımlandı.
 
 12 Ekim 2026 Oyun kategorisi genişlemesinde **129/129 birim testi** ve **69/69 Firebase emülatör kontrolü** geçti; atlanan kontrol yoktur. Oyunlar, genel oyun karakterleri, Valorant ve LoL havuzları dört modda tamamlanıp aynı kodla rövanşa geçti. RTDB kontrolü yeni havuzlarla oda kurma/başlatma, ilk hamle, sonradan izleyici katılması ve koleksiyonun oyun sırasında değiştirilememesini doğruladı. Hazırlık kontrolü 24 havuzda 1.712 kart kaydı ve 1.527 farklı yerel görseli denetledi; statik paket 1.587 dosya içerir. Adoapp bulutunda `244987` kodlu LoL ve `488959` kodlu Valorant Kör Sıralama odaları tek oyuncuyla başladı; ilk seçimden sonra ikinci karta ilerledi. İstemci hata/uyarı kayıtları boştu. Bu iki oda kontrolü aynı bilgisayardaki tek anonim istemciyle yapıldı; fiziksel iki cihaz testi değildir. Yeni koleksiyon izinleri Firebase Console'da ayrıca yayımlandı.
 

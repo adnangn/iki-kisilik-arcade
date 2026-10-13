@@ -1,5 +1,6 @@
 import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
+import { createCooperativeOnline } from './cooperative-online.js';
 
 const SDK = 'https://www.gstatic.com/firebasejs/13.0.0';
 
@@ -22,6 +23,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   let connected = false;
   let disposed = false;
   const presenceStops = new Set();
+  const cooperativeStops = new Set();
   const joinStops = new Set();
   const connectionListeners = new Set();
   const cancelJoins = () => {
@@ -39,6 +41,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     if (disposed || current?.uid === user.uid) return;
     disposed = true; connected = false;
     unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
+    for (const stop of cooperativeStops) stop();
     dbSDK.goOffline(db);
     onSessionEnded();
   });
@@ -62,10 +65,11 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   };
 
   return {
+    ...createCooperativeOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: cooperativeStops }),
     uid: user.uid,
     get connected() { return connected; },
     async createRoom(name, datasetId, mode = 'auction') {
-      if (!['auction', 'blind-ranking', 'bracket', 'team-draft'].includes(mode)) throw new RoomError('Bu oyun modu henüz oynanabilir değil.');
+      if (!['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'].includes(mode)) throw new RoomError('Bu oyun modu henüz oynanabilir değil.');
       let lastError;
       for (let attempt = 0; attempt < 8; attempt++) {
         const random = crypto.getRandomValues(new Uint32Array(1))[0];
@@ -206,6 +210,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     dispose() {
       disposed = true; connected = false;
       unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
+      for (const stop of cooperativeStops) stop();
       dbSDK.goOffline(db);
     }
   };

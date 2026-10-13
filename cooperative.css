@@ -1,0 +1,131 @@
+/* Square pixels, gentle console colours, and short stepped reveal effects. */
+.cooperative-panel, .cooperative-results { min-width: 0; }
+.coop-topline .game-live { display: inline-flex; align-items: center; gap: 8px; }
+.coop-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 20px; }
+.coop-stats-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.coop-metric { padding: 15px 12px; border: 2px solid var(--ink); background: var(--mint); box-shadow: 3px 3px 0 #9db7a2; text-align: center; }
+.coop-metric:nth-child(2) { background: var(--yellow); box-shadow: 3px 3px 0 #cfb86c; }
+.coop-metric:nth-child(3) { background: var(--lilac); box-shadow: 3px 3px 0 #b4a0c7; }
+.coop-metric .field-label { font-size: 9px; }
+.coop-metric strong { display: block; margin-top: 9px; font-family: var(--mono); font-size: clamp(15px, 3vw, 24px); font-weight: 400; line-height: 1.5; }
+.coop-stage { padding: 24px; text-align: center; }
+.coop-prompt { font-family: var(--mono); font-size: 12px; line-height: 1.9; color: var(--violet-dark); margin-bottom: 20px; }
+.frequency-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 720px; margin: auto; }
+.frequency-panel .coop-stage.is-reveal .frequency-pair { display: none; }
+.frequency-choice { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; padding: 16px 12px; border: 3px solid var(--ink); background: #f4e8d2; box-shadow: 5px 5px 0 #c6b297; }
+.frequency-choice:nth-child(2) { background: #eee4f3; box-shadow: 5px 5px 0 #beaecb; }
+.frequency-choice:not(:disabled):hover { background: #e1efdc; transform: translateY(-3px); }
+.frequency-choice:not(:disabled):active { transform: translate(3px, 3px); box-shadow: none; }
+.frequency-choice.is-selected, .frequency-choice.is-selected:disabled { opacity: 1; background: var(--mint); box-shadow: inset 0 0 0 3px #93af8d, 4px 4px 0 #7b9976; }
+.coop-portrait { position: relative; display: block; width: min(190px, 100%); margin: 0 auto; }
+.coop-portrait .coop-card-image { width: 100%; height: auto; aspect-ratio: 1; border: 2px solid var(--ink); background: #ece1cc; }
+.coop-portrait .card-tag { max-width: 95%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; }
+.coop-card-image { image-rendering: pixelated; object-fit: cover; flex-shrink: 0; }
+.coop-card-name { font-family: var(--mono); font-size: 12px; font-weight: 400; line-height: 1.9; overflow-wrap: anywhere; }
+.coop-card-detail { display: block; color: var(--muted); font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
+.coop-choice-label { width: 100%; min-height: 28px; padding-top: 5px; margin-top: auto; border-top: 2px dashed #b99dba; font-size: 19px; color: var(--violet-dark); }
+.coop-hint { margin-top: 20px; }
+.coop-player-state { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 14px; margin-top: 16px; background: var(--lilac); border: 2px solid #ac95ba; font-size: 18px; }
+.coop-partner-state { color: var(--violet-dark); }
+.coop-privacy-note { margin-top: 15px; font-size: 18px; line-height: 1.3; color: var(--muted); }
+.frequency-reveal { margin-top: 24px; padding: 20px 16px; border: 3px solid var(--ink); background: var(--pink); }
+.frequency-reveal.is-match { background: var(--mint); }
+.frequency-reveal h3 { font-family: var(--mono); font-size: 11px; line-height: 1.9; font-weight: 400; }
+.coop-reveal-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px auto 12px; max-width: 450px; }
+.coop-reveal-choice { display: flex; align-items: center; flex-direction: column; gap: 8px; min-width: 0; }
+.coop-reveal-choice .coop-card-image { width: 72px; height: 72px; border: 2px solid var(--ink); }
+.coop-reveal-choice strong { font-weight: 400; overflow-wrap: anywhere; line-height: 1.2; }
+.coop-round-points { font-size: 25px; color: #365239; }
+.coop-bonus { margin-top: 12px; padding: 9px 12px; border: 2px dashed #ac8b3f; background: #fff3c3; color: #73571b; font-size: 22px; line-height: 1.25; }
+.coop-next { margin-top: 20px; width: min(350px, 100%); }
+.coop-ranking-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 24px; align-items: start; }
+.coop-current-card { margin-top: 20px; }
+.coop-current-card .coop-card-name { margin-top: 14px; }
+.coop-current-card .card-caption { margin-top: 14px; }
+.double-slot-choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
+.double-slot-button { min-height: 48px; border: 2px solid var(--ink); background: var(--yellow); box-shadow: 3px 3px 0 #b49b58; font-family: var(--mono); font-size: 15px; }
+.double-slot-button:not(:disabled):hover { background: var(--mint); }
+.double-slot-button:not(:disabled):active { transform: translate(2px, 2px); box-shadow: none; }
+.double-slot-button.is-filled:disabled { opacity: 1; font-size: 11px; background: #e5dbec; color: #8b7498; box-shadow: none; }
+.coop-ranking-panel { padding: 20px; }
+.coop-ranking-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.coop-ranking-heading h2, .coop-section-title { font-family: var(--mono); font-weight: 400; font-size: 11px; line-height: 1.8; }
+.coop-ranking-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.coop-rank-row { display: flex; align-items: center; gap: 12px; min-height: 57px; padding: 7px 10px; background: #f1e8dc; border: 2px dashed #c9b4c7; }
+.coop-rank-row.is-filled { background: #e6eedb; border: 2px solid #a5b596; }
+.coop-rank-number { display: grid; place-items: center; flex: 0 0 28px; height: 28px; background: #fff9e9; border: 2px solid #b3a082; font-family: var(--mono); font-size: 10px; }
+.coop-rank-row .coop-card-image { width: 42px; height: 42px; border: 1px solid var(--ink); }
+.coop-rank-name { flex: 1; min-width: 0; font-weight: 400; font-size: 20px; line-height: 1.2; overflow-wrap: anywhere; }
+.coop-rank-lock { color: #788465; font-size: 20px; }
+.coop-rank-empty { color: #9a8193; font-size: 19px; }
+.coop-ready { min-height: 270px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.coop-ready-icon { color: #6d915f; font-size: 70px; line-height: 1; text-shadow: 4px 4px 0 #c0d3a9; }
+.coop-ready h2 { font-family: var(--mono); font-size: 13px; line-height: 1.8; }
+.coop-ready p { max-width: 300px; color: var(--muted); }
+.coop-history, .coop-comparison { padding: 22px; }
+.coop-history-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.coop-history-row { min-width: 0; padding: 13px; border: 2px solid #c69e96; background: #f9e3d9; }
+.coop-history-row.is-match { background: #e3eddb; border-color: #a5b596; }
+.coop-history-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-bottom: 2px dashed #c1acb6; padding-bottom: 8px; }
+.coop-match-badge { font-size: 16px; color: #765079; }
+.coop-history-picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.coop-history-pick { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.coop-history-pick .coop-card-image { width: 40px; height: 40px; border: 1px solid var(--ink); }
+.coop-history-pick > div { min-width: 0; }
+.coop-history-pick small { display: block; overflow-wrap: anywhere; font-size: 16px; }
+.coop-history-pick strong { display: block; font-weight: 400; overflow-wrap: anywhere; font-size: 18px; line-height: 1.1; }
+.coop-final-rankings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: 20px 0; }
+.coop-final-rankings .coop-section-title { margin-bottom: 16px; overflow-wrap: anywhere; }
+.coop-conversation { padding: 19px 22px; border: 3px solid #977943; background: #f8e8b2; box-shadow: 4px 4px 0 #cfbb85; }
+.coop-conversation h3 { font-family: var(--mono); font-weight: 400; font-size: 10px; line-height: 1.8; margin-bottom: 10px; }
+.coop-conversation p { line-height: 1.4; overflow-wrap: anywhere; }
+.coop-table-wrap { margin-top: 18px; overflow-x: auto; }
+.coop-comparison-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.coop-comparison-table th, .coop-comparison-table td { padding: 10px 8px; border: 2px solid #c7b3c4; text-align: center; overflow-wrap: anywhere; font-weight: 400; font-size: 20px; }
+.coop-comparison-table thead th { background: var(--lilac); font-size: 18px; }
+.coop-comparison-table th:first-child { width: 42%; text-align: left; }
+.coop-comparison-table tbody .is-same { background: #e3eddb; }
+.coop-comparison-table tbody .is-biggest { background: #f8e4b5; }
+.coop-table-card { display: flex; align-items: center; gap: 10px; }
+.coop-table-card .coop-card-image { width: 36px; height: 36px; border: 1px solid var(--ink); }
+.coop-table-card strong { font-weight: 400; min-width: 0; }
+.coop-arrive { animation: coop-arrive .25s steps(4, end) 1; }
+.coop-result-pop { animation: coop-result-pop .3s steps(4, end) 1; }
+@keyframes coop-arrive { from { transform: translateY(6px); } to { transform: translateY(0); } }
+@keyframes coop-result-pop { from { transform: scale(.97); } to { transform: scale(1); } }
+@media (max-width: 760px) {
+  .coop-ranking-layout { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .coop-final-rankings { gap: 14px; }
+  .coop-final-rankings .coop-ranking-panel { padding: 12px; }
+  .coop-final-rankings .coop-rank-row { gap: 6px; padding: 7px 5px; flex-wrap: wrap; }
+  .coop-final-rankings .coop-rank-name { flex-basis: 70%; }
+  .coop-final-rankings .coop-rank-lock { display: none; }
+  .coop-history-list { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 440px) {
+  .coop-stage { padding: 18px 12px; }
+  .coop-stats { gap: 8px; }
+  .coop-metric { padding: 12px 6px; }
+  .coop-metric .field-label { font-size: 7px; line-height: 2; }
+  .coop-metric strong { font-size: 14px; }
+  .frequency-pair { gap: 12px; }
+  .frequency-choice { padding: 10px 6px; gap: 8px; }
+  .coop-card-name { font-size: 10px; }
+  .coop-card-detail { font-size: 16px; }
+  .coop-choice-label { font-size: 16px; }
+  .coop-prompt { font-size: 10px; }
+  .coop-player-state { justify-content: center; padding: 10px; }
+  .coop-history, .coop-comparison, .coop-ranking-panel { padding: 15px 12px; }
+  .coop-comparison-table th, .coop-comparison-table td { padding: 8px 4px; font-size: 18px; }
+  .coop-comparison-table thead th { font-size: 16px; }
+  .coop-table-card { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .coop-history-pick { gap: 6px; }
+  .coop-history-pick .coop-card-image { width: 32px; height: 32px; }
+  .coop-final-rankings { grid-template-columns: minmax(0, 1fr); }
+  .coop-final-rankings .coop-rank-row { flex-wrap: nowrap; }
+  .coop-final-rankings .coop-rank-name { flex-basis: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coop-arrive, .coop-result-pop { animation: none; }
+  .frequency-choice:not(:disabled):hover { transform: none; }
+}
