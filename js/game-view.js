@@ -1,10 +1,16 @@
 import { t } from './texts.js';
 import { assetUrl } from './assets.js';
+import { bracketRoundSizes } from './bracket.js';
 export const ROUND_NAMES = [];
 Object.defineProperty(ROUND_NAMES, 0, { enumerable: true, get: () => t('runtime.copy.son_16') });
 Object.defineProperty(ROUND_NAMES, 1, { enumerable: true, get: () => t('runtime.copy.ceyrek_final') });
 Object.defineProperty(ROUND_NAMES, 2, { enumerable: true, get: () => t('runtime.copy.yari_final') });
 Object.defineProperty(ROUND_NAMES, 3, { enumerable: true, get: () => t('runtime.copy.final') });
+export function getBracketRoundNames(size = 16) {
+  // Validate before resolving text so malformed room sizes cannot alter the UI.
+  bracketRoundSizes(size);
+  return size === 32 ? [t('runtime.bracket.son_32'), ...ROUND_NAMES] : [...ROUND_NAMES];
+}
 export const ROLE_NAMES = { get start() { return t('runtime.copy.start'); }, get bench() { return t('runtime.copy.bench'); }, get cut() { return t('runtime.copy.cut'); } };
 const cardImage = card => {
   const img = document.createElement('img'); img.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg'); img.alt = ''; img.width = 96; img.height = 96; return img;
@@ -22,10 +28,11 @@ export function renderBracketHistory(element, game, cardFor) {
   const key = `${game.deck.join(',')}:${game.matchIndex}`;
   if (element.dataset.renderKey === key) return;
   element.dataset.renderKey = key;
+  const names = getBracketRoundNames(game.deck.length);
   let match = 1;
-  element.replaceChildren(...[8, 4, 2, 1].map((count, round) => {
+  element.replaceChildren(...bracketRoundSizes(game).map((count, round) => {
     const section = document.createElement('section'); section.className = 'bracket-round';
-    const heading = document.createElement('h3'); heading.textContent = ROUND_NAMES[round];
+    const heading = document.createElement('h3'); heading.textContent = names[round];
     const list = document.createElement('ol'); list.className = 'bracket-history-list';
     for (let index = 0; index < count; index++, match++) {
       const row = document.createElement('li'); row.className = 'bracket-history-item';

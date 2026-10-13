@@ -101,7 +101,7 @@ test("a full ordinary game stops at exactly five cards per player", () => {
   assert.throws(() => passTurn(game, "p1"), errorCode("GAME_FINISHED"));
 });
 
-test("exhausted budgets still require an actual pass for every remaining card", () => {
+test("exhausted budgets require a pass for each paid card, then unused cards complete the empty quota", () => {
   for (const spentSeat of ["p1", "p2"]) {
     const buyer = spentSeat === "p1" ? "p2" : "p1";
     let game = createAuction(deck);
@@ -123,7 +123,7 @@ test("exhausted budgets still require an actual pass for every remaining card", 
     for (let count = 1; count <= 5; count++) {
       const before = deepFreeze(game);
       game = passTurn(before, spentSeat);
-      assert.equal(game.awardCount, before.awardCount + 1);
+      assert.equal(game.awardCount, before.awardCount + (count < 5 ? 1 : 5));
       assert.equal(game.budgets[buyer], 20 - count);
       assert.equal(game.rosters[buyer].length, count);
       assert.deepEqual(game.lastAward, { id: count + 1, seat: buyer, price: 1, sequence: count + 1 });
@@ -132,12 +132,47 @@ test("exhausted budgets still require an actual pass for every remaining card", 
         assert.equal(game.currentCardId, count + 2);
         assert.equal(game.turnSeat, spentSeat);
         assert.equal(game.highestBid, 1);
+        assert.deepEqual(game.completionAwards, []);
+        assert.equal(game.rosters[spentSeat].length, 1);
       }
     }
     assert.equal(game.phase, "finished");
-    assert.equal(game.awardCount, 6);
-    assert.equal(game.deckIndex, 6);
+    assert.equal(game.awardCount, 10);
+    assert.equal(game.deckIndex, 10);
+    assert.equal(game.rosters[spentSeat].length, 5);
+    assert.deepEqual(game.rosters[spentSeat].slice(1), [7, 8, 9, 10].map(id => ({ id, price: 0, source: "completion" })));
+    assert.deepEqual(game.completionAwards, [7, 8, 9, 10].map((id, index) => ({ id, seat: spentSeat, price: 0, sequence: 7 + index })));
+    assert.equal(new Set([...game.rosters.p1, ...game.rosters.p2].map(entry => entry.id)).size, 10);
+    assert.equal(game.budgets[spentSeat], 0);
+    assert.equal(game.budgets[buyer], 15);
+    assert.throws(() => passTurn(game, spentSeat), errorCode("GAME_FINISHED"));
   }
+});
+
+test("when both budgets run out, both five-card quotas are completed without another bid or duplicate", () => {
+  let game = passTurn(placeBid(placeBid(createAuction(deck), "p2", 2), "p1", 18), "p2");
+  game = passTurn(placeBid(placeBid(game, "p1", 2), "p2", 19), "p1");
+  game = passTurn(game, "p2");
+  game = passTurn(game, "p1");
+  assert.deepEqual(game.budgets, { p1: 1, p2: 0 });
+  assert.deepEqual(game.rosters.p1, [{ id: 1, price: 18 }, { id: 3, price: 1 }]);
+  assert.deepEqual(game.rosters.p2, [{ id: 2, price: 19 }, { id: 4, price: 1 }]);
+  assert.deepEqual(game.completionAwards, []);
+  const finalOffer = deepFreeze(game);
+  const finished = passTurn(finalOffer, "p2");
+  assert.deepEqual(finished, passTurn(finalOffer, "p2"));
+  assert.deepEqual(finalOffer, game);
+  assert.equal(finished.phase, "finished");
+  assert.deepEqual(finished.budgets, { p1: 0, p2: 0 });
+  assert.equal(finished.rosters.p1.length, 5);
+  assert.equal(finished.rosters.p2.length, 5);
+  assert.deepEqual(finished.rosters.p1.slice(3), [6, 7].map(id => ({ id, price: 0, source: "completion" })));
+  assert.deepEqual(finished.rosters.p2.slice(2), [8, 9, 10].map(id => ({ id, price: 0, source: "completion" })));
+  assert.deepEqual(finished.lastAward, { id: 5, seat: "p1", price: 1, sequence: 5 });
+  assert.equal(finished.deckIndex, 10);
+  assert.equal(finished.awardCount, 10);
+  assert.deepEqual(normalizeAuction(finished), finished);
+  assert.throws(() => passTurn(finished, "p1"), errorCode("GAME_FINISHED"));
 });
 
 test("a full quota still requires its player to pass for each remaining card", () => {
@@ -184,6 +219,16 @@ test("finite and empty decks finish cleanly", () => {
   assert.equal(single.phase, "finished");
   assert.deepEqual(single.rosters.p2, [{ id: 42, price: 1 }]);
   assert.equal(single.deckIndex, 1);
+  // A tiny development fixture can run out before ten distinct cards exist.
+  // Keep only available cards, even when a quota needs free completion.
+  let short = passTurn(placeBid(placeBid(createAuction([7, 4, 9, 2, 8, 5, 6]), "p2", 2), "p1", 20), "p2");
+  while (short.phase === "playing") short = passTurn(short, short.turnSeat);
+  assert.equal(short.rosters.p1.length, 2);
+  assert.equal(short.rosters.p2.length, 5);
+  assert.deepEqual(short.rosters.p1, [{ id: 7, price: 20 }, { id: 6, price: 0, source: "completion" }]);
+  assert.equal(short.deckIndex, 7);
+  assert.deepEqual(normalizeAuction(short), short);
+  assert.equal(new Set([...short.rosters.p1, ...short.rosters.p2].map(entry => entry.id)).size, 7);
 });
 
 test("invalid moves and out of turn clicks are rejected", () => {
@@ -219,6 +264,7 @@ test("Firebase omitted empty arrays and null fields normalize correctly", () => 
   const firebaseSnapshot = structuredClone(initial);
   delete firebaseSnapshot.rosters;
   delete firebaseSnapshot.lastAward;
+  delete firebaseSnapshot.completionAwards;
   assert.deepEqual(normalizeAuction(firebaseSnapshot), initial);
   assert.deepEqual(passTurn(firebaseSnapshot, "p2"), passTurn(initial, "p2"));
   const ended = createAuction([]);
@@ -227,6 +273,31 @@ test("Firebase omitted empty arrays and null fields normalize correctly", () => 
   delete ended.bidderSeat;
   assert.equal(normalizeAuction(ended).currentCardId, null);
   assert.equal(normalizeAuction(ended).turnSeat, null);
+});
+
+test("completion survives Firebase serialization and rejects fabricated free awards", () => {
+  let game = passTurn(placeBid(createAuction(deck), "p2", 20), "p1");
+  while (game.phase === "playing") game = passTurn(game, game.turnSeat);
+  // Mirrors RTDB omitting null object fields and empty arrays.
+  const snapshot = JSON.parse(JSON.stringify(game, (_key, value) =>
+    value === null || (Array.isArray(value) && value.length === 0) ? undefined : value));
+  assert.deepEqual(normalizeAuction(snapshot), game);
+  const corruptions = [
+    bad => { delete bad.rosters.p2[1].source; },
+    bad => { bad.rosters.p1[0].source = "completion"; },
+    bad => { bad.rosters.p2[1].id = bad.rosters.p1[0].id; },
+    bad => { bad.completionAwards[0].seat = "p1"; },
+    bad => { bad.completionAwards[0].sequence += 1; },
+    bad => { bad.completionAwards = []; },
+    bad => { bad.phase = "playing"; },
+    bad => { bad.budgets.p2 = 1; },
+    bad => { bad.deckIndex -= 1; },
+  ];
+  for (const corrupt of corruptions) {
+    const bad = structuredClone(game);
+    corrupt(bad);
+    assert.throws(() => normalizeAuction(bad), errorCode("INVALID_GAME"));
+  }
 });
 
 test("same-snapshot concurrent clicks are committed once by a room revision guard", () => {

@@ -1,0 +1,20 @@
+const field = (label, value) => ({ group: 'Oyun kuralları', label, value });
+export const REVISION_TEXT_CATALOG = {
+  'revision.bracket.description': field('Turnuva mod kartı açıklaması', '16 veya 32 kart. Favorilerini seç, şampiyonu belirle.'),
+  'revision.bracket.size_label': field('Turnuva büyüklüğü alanı', 'TURNUVA KAÇ KARTLA BAŞLASIN?'),
+  'revision.bracket.size_16': field('16 kart turnuva seçeneği', '16 kart · 4 tur · 15 seçim'),
+  'revision.bracket.size_32': field('32 kart turnuva seçeneği', '32 kart · 5 tur · 31 seçim'),
+  'revision.bracket.size_hint': field('Turnuva büyüklüğü açıklaması', 'Seçtiğin büyüklük odada ve rövanşta korunur.'),
+  'revision.bracket.size_unavailable': field('32 kart için küçük koleksiyon uyarısı', 'Bu koleksiyonda {count} kart var. 32 kartlık turnuva için en az 32 kart gerekir; 16 kartla oynayabilirsin.'),
+  'revision.bracket.rules': field('Turnuva oyun kuralı', '{size} karttan bir şampiyon seç. Her eşleşmede favorine dokun; {rounds} tur ve {picks} seçim sonunda şampiyon belli olsun. İstersen arkadaşın izlesin.'),
+  'revision.bracket.summary': field('Turnuva oda özeti', '{size} kart · {rounds} tur · Tek şampiyon'),
+  'revision.bracket.progress': field('Turnuva maç sayacı', '{round} · SEÇİM {count} / {total}'),
+  'revision.bracket.round_count': field('Şampiyonluk yolu tur sayısı', '{count} TUR'),
+  'revision.bracket.tree_span': field('Turnuva eleme ağacı başlangıcı', '{size} → 1'),
+  'runtime.bracket.son_32': field('Son 32 tur başlığı', 'SON 32'),
+  'revision.auction.completion_label': field('Ücretsiz tamamlanan kart rozeti', 'SÜRPRİZ'),
+  'revision.auction.completion_title': field('Ücretsiz kart açıklaması', 'Bütçe harcamadan kadroyu tamamlayan sürpriz kart.'),
+  'revision.auction.completion_notice': field('Ücretsiz kadro tamamlama sonucu', '{players} için {count} sürpriz kart eklendi. Kadrolar 5 karta tamamlandı; bütçeden para düşmedi.'),
+  'revision.auction.exhausted_hint': field('Parası biten oyuncuya açıklama', 'Bütçen bitti. Rakibinin açık artırmalarına Pas ile devam et; oyun sonunda eksik kadron sürpriz kartlarla 5’e tamamlanacak.'),
+  'revision.draft.goalkeeper_note': field('Tek kaleci turu açıklaması', 'Futbol koleksiyonlarında 11 turun yalnız biri kaleci üçlüsüdür. Diğer turlarda saha oyuncuları gelir.'),
+};

@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { DATASET_GROUPS, DATASET_NAMES } from '../js/datasets.js';
 import { shuffledIds, draftTriplets } from '../js/game-setup.js';
-import { createAuction, passTurn } from '../js/auction.js';
+import { createAuction, passTurn, placeBid } from '../js/auction.js';
 import { createBlindRanking, placeBlindCard } from '../js/blind-ranking.js';
 import { createBracket, chooseBracketCard } from '../js/bracket.js';
 import { createTeamDraft, assignTeamCard } from '../js/team-draft.js';
@@ -40,6 +40,15 @@ function finishAllModes(cards, datasetId) {
   while (auction.phase === 'playing') auction = passTurn(auction, auction.turnSeat);
   assert.equal(auction.awardCount, 10, `${datasetId}: açık artırma 10 ayrı Pas ile bitmeli.`);
   for (const seat of ['p1', 'p2']) assert.equal(auction.rosters[seat].length, 5);
+  let exhausted = placeBid(createAuction(deck, 'p1'), 'p2', 20);
+  exhausted = passTurn(exhausted, 'p1');
+  assert.equal(exhausted.rosters.p2.length, 1, `${datasetId}: sürpriz kartlar rakip bitmeden dağıtılmaz.`);
+  for (let move = 0; move < 5; move++) exhausted = passTurn(exhausted, exhausted.turnSeat);
+  assert.equal(exhausted.phase, 'finished');
+  assert.equal(exhausted.budgets.p2, 0);
+  assert.equal(exhausted.rosters.p2.length, 5);
+  assert.equal(exhausted.completionAwards.length, 4);
+  assert.equal(new Set([...exhausted.rosters.p1, ...exhausted.rosters.p2].map(entry => entry.id)).size, 10);
 
   let blind = createBlindRanking(deck, 'p1');
   for (let slot = 1; slot <= 10; slot++) blind = placeBlindCard(blind, 'p1', slot);
@@ -50,9 +59,17 @@ function finishAllModes(cards, datasetId) {
   for (let match = 0; match < 15; match++) bracket = chooseBracketCard(bracket, 'p1', bracket.currentPair.left);
   assert.equal(bracket.phase, 'finished');
   assert.equal(bracket.winnerId, deck[0]);
+  if (deck.length >= 32) {
+    let expanded = createBracket(deck, 'p1', 32);
+    for (let match = 0; match < 31; match++) expanded = chooseBracketCard(expanded, 'p1', expanded.currentPair.left);
+    assert.equal(expanded.phase, 'finished');
+    assert.equal(expanded.round, 5);
+    assert.equal(expanded.winnerId, deck[0]);
+  } else assert.throws(() => createBracket(deck, 'p1', 32));
 
   const triplets = draftTriplets(cards, pick);
   const byId = new Map(cards.map(card => [card.id, card]));
+  if (cards.filter(card => card.etiket === 'KL').length >= 3) assert.equal(triplets.filter(triple => triple.etiket === 'KL').length, 1, `${datasetId}: kaleci turu bir kez gelmeli.`);
   for (const triple of triplets) {
     assert.equal(new Set(triple.cards).size, 3);
     assert.ok(triple.cards.every(id => byId.get(id)?.etiket === triple.etiket), `${datasetId}: üçlü etiketleri uyuşmuyor.`);

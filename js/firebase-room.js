@@ -1,6 +1,7 @@
 import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
 import { createCooperativeOnline } from './cooperative-online.js';
+import { createRoomLifecycle } from './room-lifecycle.js';
 
 const SDK = 'https://www.gstatic.com/firebasejs/13.0.0';
 
@@ -24,6 +25,11 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   let disposed = false;
   const presenceStops = new Set();
   const cooperativeStops = new Set();
+  const lifecycleStops = new Set();
+  let roomLifecycle = null;
+  const sweep = () => { if (connected && !disposed && roomLifecycle) void roomLifecycle.sweepExpiredRooms().catch(() => {}); };
+  const sweepTimer = setInterval(sweep, 5 * 60 * 1000);
+  sweepTimer.unref?.();
   const joinStops = new Set();
   const connectionListeners = new Set();
   const cancelJoins = () => {
@@ -35,6 +41,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     if (disposed) return;
     connected = snapshot.val() === true;
     onConnection(connected);
+    if (connected) sweep();
     for (const listener of connectionListeners) listener(connected);
   });
   const unwatchAuth = authSDK.onAuthStateChanged(auth, current => {
@@ -42,6 +49,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     disposed = true; connected = false;
     unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
     for (const stop of cooperativeStops) stop();
+    for (const stop of lifecycleStops) stop(); clearInterval(sweepTimer);
     dbSDK.goOffline(db);
     onSessionEnded();
   });
@@ -64,24 +72,31 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     return result.snapshot.val();
   };
 
+  roomLifecycle = createRoomLifecycle({ uid: user.uid, db, dbSDK, transact, assertOnline, stops: lifecycleStops });
+
   return {
     ...createCooperativeOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: cooperativeStops }),
     uid: user.uid,
     get connected() { return connected; },
-    async createRoom(name, datasetId, mode = 'auction') {
+    async createRoom(name, datasetId, mode = 'auction', options = {}) {
       if (!['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'].includes(mode)) throw new RoomError('Bu oyun modu henüz oynanabilir değil.');
+      const bracketSize = options.bracketSize ?? 16;
+      if (mode === 'bracket' && ![16, 32].includes(bracketSize)) throw new RoomError('Turnuva 16 veya 32 kartla oynanabilir.');
       let lastError;
       for (let attempt = 0; attempt < 8; attempt++) {
         const random = crypto.getRandomValues(new Uint32Array(1))[0];
         const code = String(100000 + random % 900000);
-        const initial = { version: 1, code, ownerUid: user.uid, createdAt: serverTimestamp(), datasetId,
-          mode, status: 'waiting', round: 1, starterSeat: 'p1', revision: 0,
-          players: { p1: { uid: user.uid, name } } };
         try {
-          return await transact(`rooms/${code}`, current => {
+          const reservation = await roomLifecycle.reserveRoom(code);
+          const initial = { version: 1, code, ownerUid: user.uid, createdAt: reservation.instance, datasetId,
+            mode, status: 'waiting', round: 1, starterSeat: 'p1', revision: 0,
+            players: { p1: { uid: user.uid, name } }, ...(mode === 'bracket' ? { bracketSize } : {}) };
+          const created = await transact(`rooms/${code}`, current => {
             if (current) throw new RoomError('CODE_COLLISION');
             return initial;
           });
+          await roomLifecycle.touchRoom(created);
+          return created;
         } catch (error) {
           // Occupied rooms may be unreadable to this user. Regenerate the code;
           // after bounded retries retain a real rules/configuration error.
@@ -177,12 +192,18 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
           await onDisconnect(presenceRef).remove();
           if (!active || currentGeneration !== generation) return;
           await transact(path, () => ({ connectedAt: serverTimestamp() }));
+          if (active && currentGeneration === generation) await roomLifecycle.touchCode(code);
         }).catch(onError);
       };
       connectionListeners.add(register);
       register(connected);
+      const heartbeat = setInterval(() => { if (active && connected && !disposed) void roomLifecycle.touchCode(code).catch(onError); }, 60000);
+      heartbeat.unref?.();
+      const stopHeartbeat = () => { active = false; clearInterval(heartbeat); };
       const stop = async () => {
         active = false; generation++;
+        clearInterval(heartbeat);
+        lifecycleStops.delete(stopHeartbeat);
         presenceStops.delete(stop);
         connectionListeners.delete(register);
         await queue;
@@ -192,6 +213,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
         }
       };
       presenceStops.add(stop);
+      lifecycleStops.add(stopHeartbeat);
       return stop;
     },
     async react(code, type) {
@@ -211,6 +233,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
       disposed = true; connected = false;
       unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
       for (const stop of cooperativeStops) stop();
+      for (const stop of lifecycleStops) stop(); lifecycleStops.clear(); clearInterval(sweepTimer);
       dbSDK.goOffline(db);
     }
   };

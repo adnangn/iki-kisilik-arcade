@@ -67,3 +67,20 @@ test('bot cannot bid beyond quota or budget and cannot act after game over', () 
   assert.deepEqual(chooseBotMove(full, 1), { kind: 'pass' });
   assert.equal(chooseBotMove(createAuction([])), null);
 });
+
+test('the exhausted bot passes every human auction before its roster receives four free completion cards', () => {
+  let game = passTurn(placeBid(createAuction(deck), 'p2', 20), 'p1');
+  for (let count = 0; count < 5; count++) {
+    assert.equal(game.turnSeat, 'p2');
+    assert.deepEqual(chooseBotMove(game), { kind: 'pass' });
+    assert.equal(game.rosters.p2.length, 1);
+    assert.deepEqual(game.completionAwards, []);
+    game = passTurn(game, 'p2');
+  }
+  assert.equal(game.phase, 'finished');
+  assert.equal(game.rosters.p1.length, 5);
+  assert.equal(game.rosters.p2.length, 5);
+  assert.deepEqual(game.budgets, { p1: 15, p2: 0 });
+  assert.deepEqual(game.rosters.p2.slice(1), [7, 8, 9, 10].map(id => ({ id, price: 0, source: 'completion' })));
+  assert.equal(chooseBotMove(game), null);
+});

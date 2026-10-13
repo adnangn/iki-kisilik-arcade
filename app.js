@@ -2,13 +2,13 @@ import { t, loadTexts, applyTexts } from './js/texts.js';
 import { isFirebaseConfigured } from './firebase-config.js';
 import { createAuction, canBuy } from './js/auction.js';
 import { createBlindRanking, normalizeBlindRanking } from './js/blind-ranking.js';
-import { createBracket, normalizeBracket } from './js/bracket.js';
+import { createBracket, normalizeBracket, bracketRoundSizes } from './js/bracket.js';
 import { createTeamDraft, normalizeTeamDraft } from './js/team-draft.js';
 import { isCooperativeMode, createCooperative, normalizeCooperative, createPrivateRank, placePrivateRank } from './js/cooperative.js';
 import { renderCooperativePanel, renderCooperativeResults } from './js/cooperative-view.js';
 import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from './js/team-command.js';
 import { shuffledIds, draftTriplets } from './js/game-setup.js';
-import { ROUND_NAMES, ROLE_NAMES, fillCard, renderBracketHistory, renderTeamCandidates, renderLineup } from './js/game-view.js';
+import { getBracketRoundNames, ROLE_NAMES, fillCard, renderBracketHistory, renderTeamCandidates, renderLineup } from './js/game-view.js';
 import { renderRankingList, renderRankChoices } from './js/ranking-view.js';
 import { chooseBotMove } from './js/demo-bot.js';
 import { changeRoom, seatFor, otherSeat, hasOptionalSpectator, rematchStarter, RoomError } from './js/room-state.js';
@@ -98,13 +98,26 @@ function selectedMode() {
   return document.querySelector('input[name="mode"]:checked')?.value || 'auction';
 }
 
+function selectedBracketSize() { return Number($('bracket-size-select').value); }
+
+function renderBracketSizeOptions() {
+  const count = datasets[selectedDatasetId()]?.length || 0;
+  const select = $('bracket-size-select');
+  const tooSmall = count > 0 && count < 32;
+  select.querySelector('option[value="32"]').disabled = tooSmall;
+  if (tooSmall && selectedBracketSize() === 32) select.value = '16';
+  $('bracket-size-field').hidden = selectedMode() !== 'bracket';
+  $('bracket-size-hint').textContent = tooSmall ? t('revision.bracket.size_unavailable', { count }) : t('revision.bracket.size_hint');
+}
+
 function renderModePreview() {
   const mode = selectedMode();
+  renderBracketSizeOptions();
   $('how-to-title').textContent = t('runtime.lobby.how_to_title', { mode: MODE_NAMES[mode] });
   const rules = {
     auction: t('runtime.copy.20_tl_ile_5_kartlik_kadronu_kur_her_kart_sirayla_bir'),
     'blind-ranking': t('runtime.copy.rastgele_10_karti_sonraki_karti_gormeden_1_10_arasin'),
-    bracket: t('runtime.copy.16_karttan_bir_sampiyon_sec_her_eslesmede_iki_kartta'),
+    bracket: t('revision.bracket.rules', { size: selectedBracketSize(), rounds: Math.log2(selectedBracketSize()), picks: selectedBracketSize() - 1 }),
     'team-draft': t('runtime.copy.ikiniz_de_bagimsiz_olarak_11_tur_oynarsiniz_her_tur_'),
     frequency: t('coop.frequency.rules'),
     'double-ranking': t('coop.double.rules')
@@ -189,6 +202,7 @@ function renderDatasetPreview() {
   $('collection-search').value = '';
   renderCollection();
   animateOnce($('dataset-preview-images'), 'card-reveal');
+  renderModePreview();
 }
 
 function layoutLobby() {
@@ -310,10 +324,15 @@ function renderRoster(element, entries = []) {
   for (const entry of entries) {
     const card = getCard(entry.id);
     const item = document.createElement('li'); item.className = 'roster-item';
+    const completion = entry.source === 'completion';
+    item.classList.toggle('is-completion', completion);
     const img = document.createElement('img'); img.className = 'card-mini'; img.alt = ''; img.src = assetUrl(card?.gorsel || 'assets/images/placeholder.svg');
     const label = document.createElement('span'); label.textContent = card?.isim || t('runtime.common.card');
     if (card?.takim) { const team = document.createElement('small'); team.textContent = card.takim; label.append(team); }
-    const price = document.createElement('span'); price.className = 'price'; price.textContent = t('runtime.common.money', { amount: entry.price });
+    const price = document.createElement('span'); price.className = 'price';
+    price.classList.toggle('is-completion', completion);
+    price.textContent = completion ? t('revision.auction.completion_label') : t('runtime.common.money', { amount: entry.price });
+    if (completion) price.title = t('revision.auction.completion_title');
     item.append(img, label, price); element.append(item);
   }
 }
@@ -422,6 +441,7 @@ function render() {
   const bracket = room.mode === 'bracket';
   const teamDraft = room.mode === 'team-draft';
   const cooperative = isCooperativeMode(room.mode);
+  $('auction-completion-note').hidden = true;
   syncCooperativeWatch();
   $('room-screen').classList.toggle('is-blind', blind && room.status === 'playing');
   $('room-screen').classList.toggle('is-bracket', bracket && room.status === 'playing');
@@ -464,6 +484,10 @@ function render() {
       $(`result-budget-${seat}`).textContent = t('runtime.auction.results_budget', { amount: room.game.budgets[seat], count: (room.game.rosters?.[seat] || []).length });
       renderRoster($(`result-roster-${seat}`), room.game.rosters?.[seat]);
     }
+    const completedSeats = ['p1', 'p2'].filter(seat => room.game.rosters?.[seat]?.some(entry => entry.source === 'completion'));
+    const completedCount = completedSeats.reduce((sum, seat) => sum + room.game.rosters[seat].filter(entry => entry.source === 'completion').length, 0);
+    $('auction-completion-note').hidden = completedCount === 0;
+    if (completedCount) $('auction-completion-note').textContent = t('revision.auction.completion_notice', { players: completedSeats.map(nameFor).join(' ve '), count: completedCount });
     if (animateFinal) { animateAward(finalAward.seat, finalAward.id, previousCardRect, $(`result-roster-${finalAward.seat}`).parentElement); beep('win'); }
     if (arrivedFromGame) celebrate();
     lastVisualState = { code: room.code, round: room.round, status: 'finished' };
@@ -474,7 +498,7 @@ function render() {
   setScreen('room-screen');
   $('room-code-display').textContent = room.code;
   $('room-title').textContent = t('runtime.room.title', { dataset: DATASET_NAMES[room.datasetId], mode: MODE_NAMES[room.mode] || MODE_NAMES.auction });
-  $('room-subtitle').textContent = demo ? blind || bracket ? t('runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin') : t('runtime.copy.yerel_demo_rakibin_atari_bot') : t('runtime.room.subtitle', { round: room.round, summary: cooperative ? t(room.mode === 'frequency' ? 'coop.frequency.summary' : 'coop.double.summary') : blind ? t('runtime.room.blind_summary') : bracket ? t('runtime.room.bracket_summary') : teamDraft ? t('runtime.room.draft_summary') : t('runtime.room.auction_summary') });
+  $('room-subtitle').textContent = demo ? blind || bracket ? t('runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin') : t('runtime.copy.yerel_demo_rakibin_atari_bot') : t('runtime.room.subtitle', { round: room.round, summary: cooperative ? t(room.mode === 'frequency' ? 'coop.frequency.summary' : 'coop.double.summary') : blind ? t('runtime.room.blind_summary') : bracket ? t('revision.bracket.summary', { size: room.bracketSize ?? 16, rounds: Math.log2(room.bracketSize ?? 16) }) : teamDraft ? t('runtime.room.draft_summary') : t('runtime.room.auction_summary') });
   setStatusText('opponent-status', opponent ? t('runtime.room.opponent_status', { player: opponent.name, status: onlineSeat(otherSeat(mySeat)) ? t('runtime.room.opponent_online') : t('runtime.room.opponent_reconnecting') }) : t('runtime.copy.arkadasin_icin_bir_koltuk_ayirdik'));
   $('waiting-hint').textContent = hasOptionalSpectator(room) && room.ownerUid === service?.uid ? t('runtime.room.optional_spectator_hint') : !opponent ? t('runtime.copy.kodu_kopyala_ve_arkadasina_gonder_katilinca_oyun_haz') : !bothOnline ? t('runtime.copy.baglanti_bekleniyor_odaniz_guvende') : room.ownerUid === service?.uid ? t('runtime.copy.ikiniz_de_hazirsiniz_oyunu_baslatabilirsin') : t('runtime.copy.oda_sahibi_oyunu_baslattiginda_ilk_kart_acilacak');
   const waiting = room.status === 'waiting';
@@ -540,6 +564,7 @@ function render() {
     button.title = t('runtime.auction.bid_tooltip', { amount });
   });
   if (isTurn && min > game.budgets[mySeat] && bothOnline) $('action-hint').textContent = t('runtime.copy.butcen_daha_yuksek_teklife_yetmiyor_pas_gecerek_deva');
+  if (isTurn && game.budgets[mySeat] === 0 && bothOnline) $('action-hint').textContent = t('revision.auction.exhausted_hint');
   if (isTurn && (game.rosters?.[mySeat] || []).length >= 5 && bothOnline) $('action-hint').textContent = t('runtime.copy.kadron_dolu_bu_kartin_rakibine_gitmesi_icin_pas_gec_');
   for (const seat of ['p1', 'p2']) {
     $(`name-${seat}`).textContent = t('runtime.common.player_label', { player: nameFor(seat), self: seat === mySeat ? t('runtime.common.self_suffix') : '' });
@@ -621,7 +646,8 @@ function renderBracket(connected, bothOnline) {
   const key = `${room.code}:${room.round}:${game.matchIndex}`;
   const sameRound = lastVisualState?.code === room.code && lastVisualState?.round === room.round;
   const changed = sameRound && lastVisualState.matchIndex < game.matchIndex;
-  $('bracket-progress').textContent = t('runtime.bracket.progress', { round: ROUND_NAMES[game.round - 1], count: game.matchIndex + 1 });
+  $('bracket-progress').textContent = t('revision.bracket.progress', { round: getBracketRoundNames(game.deck.length)[game.round - 1], count: game.matchIndex + 1, total: game.deck.length - 1 });
+  $('bracket-tree-size').textContent = t('revision.bracket.tree_span', { size: game.deck.length });
   $('bracket-role').textContent = mySeat === game.activeSeat ? t('runtime.copy.sen_seciyorsun') : t('runtime.copy.izleyici_modu');
   $('bracket-role').classList.toggle('is-viewer', mySeat !== game.activeSeat);
   $('bracket-active-name').textContent = nameFor(game.activeSeat);
@@ -645,6 +671,7 @@ function renderTeamDraft(connected, bothOnline) {
   const game = normalizeTeamDraft(room.game), mine = game.players[mySeat];
   const key = `${room.code}:${room.round}:${mySeat}:${mine.roundIndex}`;
   const canAct = !mine.done && connected && bothOnline && !busy;
+  $('draft-pool-note').textContent = datasets[room.datasetId].some(card => card.etiket === 'KL') ? t('revision.draft.goalkeeper_note') : t('static.101');
   if (draftVisualKey !== key) { selectedDraftId = null; draftVisualKey = key; }
   if (Object.values(mine.pending).includes(selectedDraftId)) selectedDraftId = null;
   $('team-draft-progress').textContent = mine.done ? t('runtime.copy.11_11_tamam') : t('runtime.draft.progress', { round: mine.roundIndex + 1 });
@@ -690,10 +717,14 @@ function renderExtraResults(connected, bothOnline) {
     $('results-title').textContent = t('runtime.copy.sampiyon_belli');
     $('bracket-result-owner').textContent = t('runtime.bracket.result_owner', { player: nameFor(game.activeSeat) });
     fillCard('bracket-winner', getCard(game.winnerId));
+    const sizes = bracketRoundSizes(game.deck.length), names = getBracketRoundNames(game.deck.length);
+    $('bracket-round-count').textContent = t('revision.bracket.round_count', { count: sizes.length });
     const path = Object.entries(game.choices).filter(([, id]) => id === game.winnerId).sort(([a], [b]) => Number(a.slice(1)) - Number(b.slice(1)));
     $('bracket-winner-path').replaceChildren(...path.map(([match]) => {
       const index = Number(match.slice(1)) - 1, row = document.createElement('li'); row.className = 'bracket-history-item';
-      row.textContent = t('runtime.bracket.winner_path', { round: ROUND_NAMES[index < 8 ? 0 : index < 12 ? 1 : index < 14 ? 2 : 3] });
+      let end = 0;
+      const roundIndex = sizes.findIndex(size => { end += size; return index < end; });
+      row.textContent = t('runtime.bracket.winner_path', { round: names[roundIndex] });
       return row;
     }));
   } else {
@@ -791,6 +822,7 @@ async function detach() {
 
 function assertRoomContent(value) {
   if (!value || !MODE_NAMES[value.mode] || !datasets[value.datasetId]) throw new RoomError(t('runtime.copy.oda_ayarlari_bu_surumle_uyumlu_degil'));
+  if (value.mode === 'bracket' && ![16, 32].includes(value.bracketSize ?? 16)) throw new RoomError('Turnuva 16 veya 32 kartla başlamalı.');
   if (!value.game) return;
   const byId = new Map(datasets[value.datasetId].map(card => [card.id, card]));
   if (value.mode === 'team-draft') {
@@ -799,6 +831,7 @@ function assertRoomContent(value) {
   } else {
     if (!Array.isArray(value.game.deck) || value.game.deck.some(id => !byId.has(id))) throw new RoomError(t('runtime.copy.odanin_kartlari_bu_koleksiyonla_uyusmuyor_veri_dosya'));
     if (value.mode === 'bracket') normalizeBracket(value.game);
+    if (value.mode === 'bracket' && value.game.deck.length !== (value.bracketSize ?? 16)) throw new RoomError('Turnuvanın kart sayısı oda seçimiyle uyuşmuyor.');
     if (value.mode === 'blind-ranking') normalizeBlindRanking(value.game);
     if (isCooperativeMode(value.mode)) normalizeCooperative(value.mode, value.game);
   }
@@ -985,7 +1018,7 @@ $('create-form').addEventListener('submit', event => {
     if (!service) throw new RoomError(t('runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin'));
     if (!MODE_NAMES[selectedMode()]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
     const originService = service, epoch = actionEpoch;
-    await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode()), originService, epoch);
+    await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode(), { bracketSize: selectedBracketSize() }), originService, epoch);
   }, 'create-room');
 });
 $('join-form').addEventListener('submit', event => {
@@ -1004,9 +1037,10 @@ $('demo-button').addEventListener('click', () => void runAction(async () => {
   const mode = selectedMode();
   if (!MODE_NAMES[mode]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
   room = { version: 1, code: 'DEMO', ownerUid: 'demo-you', datasetId, mode,
+    ...(mode === 'bracket' ? { bracketSize: selectedBracketSize() } : {}),
     status: 'playing', round: 1, starterSeat: 'p1', revision: 1,
     players: { p1: { uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || 'Oyuncu 1' }, p2: { uid: 'demo-bot', name: 'Atari Bot' } },
-    game: isCooperativeMode(mode) ? createCooperative(mode, shuffleDeck(datasetId)) : mode === 'team-draft' ? createTeamDraft(draftTriplets(datasets[datasetId])) : mode === 'bracket' ? createBracket(shuffleDeck(datasetId), 'p1') : mode === 'blind-ranking' ? createBlindRanking(shuffleDeck(datasetId), 'p1') : createAuction(shuffleDeck(datasetId), 'p1') };
+    game: isCooperativeMode(mode) ? createCooperative(mode, shuffleDeck(datasetId)) : mode === 'team-draft' ? createTeamDraft(draftTriplets(datasets[datasetId])) : mode === 'bracket' ? createBracket(shuffleDeck(datasetId), 'p1', selectedBracketSize()) : mode === 'blind-ranking' ? createBlindRanking(shuffleDeck(datasetId), 'p1') : createAuction(shuffleDeck(datasetId), 'p1') };
   mySeat = 'p1'; connectionChanged(false);
 }, 'demo-button'));
 $('start-game').addEventListener('click', () => void runAction(() => command('start', gamePayload()), 'start-game'));
@@ -1103,6 +1137,7 @@ $('nickname').addEventListener('keydown', event => {
 $('dataset-select').addEventListener('change', event => { selectedCategory = event.target.value; renderDatasetPreview(); });
 $('collection-search').addEventListener('input', renderCollection);
 document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventListener('change', renderModePreview));
+$('bracket-size-select').addEventListener('change', renderModePreview);
 $('sound-toggle').addEventListener('click', () => {
   soundEnabled = !soundEnabled; $('sound-toggle').setAttribute('aria-pressed', String(soundEnabled));
   $('sound-toggle').textContent = soundEnabled ? t('runtime.copy.ses_acik') : t('runtime.copy.ses_kapali'); beep('win');

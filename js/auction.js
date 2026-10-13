@@ -57,12 +57,61 @@ export function normalizeAuction(game) {
     }
     rosters[seat] = roster.map((entry) => {
       if (!entry || !Number.isSafeInteger(entry.id) || entry.id < 1 ||
-          !Number.isSafeInteger(entry.price) || entry.price < 1 || entry.price > INITIAL_BUDGET) {
+          !Number.isSafeInteger(entry.price) || entry.price < 0 || entry.price > INITIAL_BUDGET ||
+          (entry.price === 0 ? entry.source !== "completion" : entry.source != null)) {
         throw new RuleError("INVALID_GAME", "Kadro kartı geçersiz.");
       }
-      return { id: entry.id, price: entry.price };
+      return entry.price === 0 ? { id: entry.id, price: 0, source: "completion" } : { id: entry.id, price: entry.price };
     });
     budgets[seat] = budget;
+    if (rosters[seat].reduce((spent, entry) => spent + entry.price, budget) !== INITIAL_BUDGET) {
+      throw new RuleError("INVALID_GAME", "Kadro fiyatları oyuncu bütçesiyle uyuşmuyor.");
+    }
+  }
+
+  const awardedCards = SEATS.flatMap(seat => rosters[seat].map(entry => ({ ...entry, seat })));
+  const awardCount = game.awardCount ?? awardedCards.length;
+  if (awardCount !== awardedCards.length || game.deckIndex !== awardCount ||
+      new Set(awardedCards.map(entry => entry.id)).size !== awardCount ||
+      awardedCards.some(entry => !game.deck.slice(0, awardCount).includes(entry.id))) {
+    throw new RuleError("INVALID_GAME", "Dağıtılan kartlar desteyle uyuşmuyor.");
+  }
+  const rawCompletion = game.completionAwards ?? [];
+  if (!Array.isArray(rawCompletion)) throw new RuleError("INVALID_GAME", "Tamamlama kartları geçersiz.");
+  const completionAwards = rawCompletion.map(entry => {
+    if (!entry || !SEATS.includes(entry.seat) || entry.price !== 0 ||
+        !Number.isSafeInteger(entry.id) || !Number.isSafeInteger(entry.sequence)) {
+      throw new RuleError("INVALID_GAME", "Tamamlama kartı geçersiz.");
+    }
+    return { id: entry.id, seat: entry.seat, price: 0, sequence: entry.sequence };
+  });
+  const freeCards = awardedCards.filter(entry => entry.source === "completion");
+  const paidCount = awardCount - completionAwards.length;
+  const expectedCompletion = [];
+  let expectedIndex = paidCount;
+  if (completionAwards.length > 0) {
+    for (const seat of SEATS) {
+      const paidCards = rosters[seat].filter(entry => entry.price > 0).length;
+      for (let count = paidCards; count < ROSTER_LIMIT && expectedIndex < game.deck.length; count++) {
+        expectedCompletion.push({ id: game.deck[expectedIndex++], seat, price: 0, sequence: expectedIndex });
+      }
+    }
+  }
+  if (freeCards.length !== completionAwards.length || completionAwards.some((entry, index) =>
+    entry.sequence !== paidCount + index + 1 || game.deck[entry.sequence - 1] !== entry.id ||
+    !freeCards.some(card => card.id === entry.id && card.seat === entry.seat) ||
+    entry.id !== expectedCompletion[index]?.id || entry.seat !== expectedCompletion[index]?.seat) ||
+    expectedCompletion.length !== completionAwards.length ||
+    (completionAwards.length > 0 && (game.phase !== "finished" ||
+      SEATS.some(seat => budgets[seat] > 0 && rosters[seat].length < ROSTER_LIMIT)))) {
+    throw new RuleError("INVALID_GAME", "Tamamlama kartları oyun sonucuyla uyuşmuyor.");
+  }
+  const lastAward = game.lastAward ? { ...game.lastAward } : null;
+  if (lastAward ? !Number.isSafeInteger(lastAward.price) || lastAward.price < 1 ||
+    lastAward.sequence !== paidCount || game.deck[paidCount - 1] !== lastAward.id ||
+    !awardedCards.some(entry => entry.id === lastAward.id && entry.seat === lastAward.seat && entry.price === lastAward.price)
+    : paidCount !== 0) {
+    throw new RuleError("INVALID_GAME", "Son açık artırma sonucu geçersiz.");
   }
 
   return {
@@ -76,8 +125,9 @@ export function normalizeAuction(game) {
     turnSeat: game.turnSeat ?? null,
     budgets,
     rosters,
-    lastAward: game.lastAward ? { ...game.lastAward } : null,
-    awardCount: game.awardCount ?? rosters.p1.length + rosters.p2.length,
+    lastAward,
+    awardCount,
+    completionAwards,
   };
 }
 
@@ -98,6 +148,20 @@ function finish(game) {
   game.turnSeat = null;
 }
 
+// The deck was shuffled before starting the room. Consume its remaining order
+// only after all paid auctions are over, so transaction retries stay identical.
+function completeRosters(game) {
+  for (const seat of SEATS) {
+    while (game.rosters[seat].length < ROSTER_LIMIT && game.deckIndex < game.deck.length) {
+      const id = game.deck[game.deckIndex];
+      game.rosters[seat].push({ id, price: 0, source: "completion" });
+      game.awardCount += 1;
+      game.completionAwards.push({ id, seat, price: 0, sequence: game.awardCount });
+      game.deckIndex += 1;
+    }
+  }
+}
+
 function award(game, seat, price) {
   const id = game.deck[game.deckIndex];
   game.budgets[seat] -= price;
@@ -111,6 +175,7 @@ function award(game, seat, price) {
 function openNextCard(game, preferredSeat) {
   const buyers = SEATS.filter((seat) => eligible(game, seat));
   if (game.deckIndex >= game.deck.length || buyers.length === 0) {
+    if (buyers.length === 0) completeRosters(game);
     finish(game);
     return game;
   }
@@ -143,6 +208,7 @@ export function createAuction(deckIds, starterSeat = "p1") {
     rosters: { p1: [], p2: [] },
     lastAward: null,
     awardCount: 0,
+    completionAwards: [],
   };
   return openNextCard(game, starterSeat);
 }

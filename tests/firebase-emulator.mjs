@@ -12,7 +12,7 @@ import { draftTriplets } from '../js/game-setup.js';
 
 const ORIGIN = 'http://127.0.0.1:9000';
 const PROJECT = 'demo-iki-kisilik';
-const TEST_CODES = ['918001', '918002', '918003', '918004', '918005', '918006', '918007'];
+const TEST_CODES = ['918001', '918002', '918003', '918004', '918005', '918006', '918007', '918008', '918009'];
 const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
 const DECK = DATASETS.superlig.map(card => card.id);
 const BLIND_DECK = DATASETS.futbol.slice(0, 10).map(card => card.id);
@@ -112,6 +112,12 @@ async function readRoom(code, uid = 'p1', headers = {}) {
 }
 
 async function writeRoom(room, uid, headers = {}) {
+  if (room.createdAt?.['.sv'] === 'timestamp') {
+    const current = await request(`rooms/${room.code}`, { admin: true });
+    if (!current.body) await request(`cleanupIndex/${room.code}`, { method: 'DELETE', admin: true });
+    const reservation = await request(`cleanupIndex/${room.code}`, { method: 'PUT', uid, value: { instance: TIMESTAMP, lastActivityAt: TIMESTAMP, state: 'reserved', reserverUid: uid } });
+    if (reservation.status === 200) room = { ...room, createdAt: reservation.body.instance };
+  }
   return request(`rooms/${room.code}`, { method: 'PUT', uid, value: room, headers });
 }
 
@@ -138,7 +144,7 @@ async function command(room, uid, kind, payload = {}) {
 
 async function cleanup() {
   for (const code of TEST_CODES) {
-    for (const root of ['rooms', 'presence', 'reactions']) {
+    for (const root of ['rooms', 'presence', 'reactions', 'cleanupIndex']) {
       expectStatus(await request(`${root}/${code}`, { method: 'DELETE', admin: true }), 200, 'Local test cleanup');
     }
   }
@@ -487,8 +493,8 @@ try {
       assert.equal(current.game.turnSeat, 'p2');
       const previous = current;
       current = await command(current, 'p2', 'pass');
-      assert.equal(current.game.awardCount, previous.game.awardCount + 1);
-      assert.equal(current.game.deckIndex, previous.game.deckIndex + 1);
+      assert.equal(current.game.awardCount, cardId === 6 ? 10 : previous.game.awardCount + 1);
+      assert.equal(current.game.deckIndex, cardId === 6 ? 10 : previous.game.deckIndex + 1);
       assert.equal(current.game.rosters.p1.length, cardId - 1);
       assert.equal(current.game.budgets.p1, 21 - cardId);
       assert.deepEqual(current.game.lastAward, {
@@ -498,9 +504,88 @@ try {
     }
     assert.deepEqual(current.game.budgets, { p1: 15, p2: 0 });
     assert.equal(current.game.rosters.p1.length, 5);
-    assert.deepEqual(current.game.rosters.p2, [{ id: 1, price: 20 }]);
-    assert.equal(current.game.awardCount, 6);
+    assert.deepEqual(current.game.rosters.p2, [{ id: 1, price: 20 }, ...[7, 8, 9, 10].map(id => ({ id, price: 0, source: 'completion' }))]);
+    assert.equal(current.game.awardCount, 10);
+    assert.deepEqual(current.game.completionAwards, [7, 8, 9, 10].map((id, index) => ({ id, seat: 'p2', price: 0, sequence: 7 + index })));
     assert.equal(current.game.lastAward.sequence, 6);
+  });
+
+  await check('auction start rejects duplicate first-ten deck cards', async () => {
+    const fresh = initialRoom(TEST_CODES[7]);
+    expectStatus(await writeRoom(fresh, 'p1'), 200);
+    const joined = await join(fresh.code);
+    const valid = changeRoom(joined, 'p1', joined.revision, 'start', { deck: DECK });
+    const duplicate = structuredClone(valid); duplicate.game.deck[9] = duplicate.game.deck[0];
+    expectDenied(await writeRoom(duplicate, 'p1'), 'Duplicate auction card');
+    expectStatus(await request(`rooms/${fresh.code}`, { method: 'DELETE', admin: true }), 200);
+  });
+  let completion;
+  await check('both budgets may run out and deterministic free cards complete both five-card teams', async () => {
+    const fresh = initialRoom(TEST_CODES[7]);
+    expectStatus(await writeRoom(fresh, 'p1'), 200);
+    let current = await join(fresh.code);
+    current = await command(current, 'p1', 'start', { deck: DECK });
+    current = await command(current, 'p2', 'bid', { amount: 2 });
+    current = await command(current, 'p1', 'bid', { amount: 18 });
+    current = await command(current, 'p2', 'pass');
+    current = await command(current, 'p1', 'bid', { amount: 2 });
+    current = await command(current, 'p2', 'bid', { amount: 19 });
+    current = await command(current, 'p1', 'pass');
+
+    // An unfinished opponent must still auction each card. Completing both
+    // rosters for free while paid buyers remain would hide normal choices.
+    const early = changeRoom(current, 'p2', current.revision, 'pass');
+    const forgedEarly = structuredClone(early);
+    forgedEarly.game.completionAwards = [];
+    for (const seat of ['p1', 'p2']) {
+      while (forgedEarly.game.rosters[seat].length < 5) {
+        const id = forgedEarly.game.deck[forgedEarly.game.deckIndex++];
+        forgedEarly.game.rosters[seat].push({ id, price: 0, source: 'completion' });
+        forgedEarly.game.completionAwards.push({ id, seat, price: 0, sequence: ++forgedEarly.game.awardCount });
+      }
+    }
+    Object.assign(forgedEarly.game, { phase: 'finished', currentCardId: null, highestBid: 0, bidderSeat: null, turnSeat: null });
+    forgedEarly.status = 'finished';
+    expectDenied(await writeRoom(forgedEarly, 'p2'), 'Premature free roster completion');
+    current = await command(current, 'p2', 'pass');
+    current = await command(current, 'p1', 'pass');
+    completion = current;
+    current = await command(current, 'p2', 'pass');
+    assert.equal(current.status, 'finished');
+    assert.deepEqual(current.game.budgets, { p1: 0, p2: 0 });
+    assert.equal(current.game.deckIndex, 10); assert.equal(current.game.awardCount, 10);
+    assert.equal(current.game.rosters.p1.length, 5); assert.equal(current.game.rosters.p2.length, 5);
+    assert.deepEqual(current.game.completionAwards, [6, 7, 8, 9, 10].map((id, index) => ({ id, seat: index < 2 ? 'p1' : 'p2', price: 0, sequence: 6 + index })));
+    assert.deepEqual(current.game.lastAward, { id: 5, seat: 'p1', price: 1, sequence: 5 });
+    assert.equal(new Set([...current.game.rosters.p1, ...current.game.rosters.p2].map(card => card.id)).size, 10);
+    assert.deepEqual(expectStatus(await readRoom(current.code, 'p2'), 200), current);
+  });
+  await check('free completion rejects altered decks, order, owners, prices, metadata, history, and budget refunds', async () => {
+    const valid = changeRoom(completion, 'p2', completion.revision, 'pass');
+    // Test against the same pre-completion state without weakening client rules.
+    expectStatus(await request(`rooms/${completion.code}`, { method: 'PUT', admin: true, value: completion }), 200);
+    const variants = [
+      ['Free-card price', value => { value.game.rosters.p1[3].price = 1; }],
+      ['Missing free-card source', value => { delete value.game.rosters.p1[3].source; }],
+      ['Forged paid-card source', value => { value.game.rosters.p1[0].source = 'completion'; }],
+      ['Free-card reorder', value => { [value.game.rosters.p1[3].id, value.game.rosters.p1[4].id] = [value.game.rosters.p1[4].id, value.game.rosters.p1[3].id]; }],
+      ['Free-card opponent substitution', value => { value.game.rosters.p1[3].id = value.game.rosters.p2[2].id; }],
+      ['Replaced paid history', value => { value.game.rosters.p1[0].id = 99; }],
+      ['Refunded budget', value => { value.game.budgets.p1 = 1; }],
+      ['Paid award replaced by free metadata', value => { value.game.lastAward = value.game.completionAwards.at(-1); }],
+      ['Wrong free owner', value => { value.game.completionAwards[0].seat = 'p2'; }],
+      ['Wrong free sequence', value => { value.game.completionAwards[0].sequence += 1; }],
+      ['Wrong free metadata card', value => { value.game.completionAwards[0].id = 99; }],
+      ['Deleted free metadata', value => { value.game.completionAwards.pop(); }],
+      ['Deleted completion array', value => { delete value.game.completionAwards; }],
+      ['Changed original deck', value => { value.game.deck[9] = 99; }],
+      ['Forged completion field', value => { value.game.completionAwards[0].extra = true; }],
+    ];
+    for (const [label, mutate] of variants) { const forged = structuredClone(valid); mutate(forged); expectDenied(await writeRoom(forged, 'p2'), label); }
+    const finished = await command(completion, 'p2', 'pass');
+    const rematched = await command(finished, 'p1', 'rematch', { deck: [...DECK].reverse() });
+    assert.equal(rematched.game.completionAwards?.length || 0, 0);
+    assert.equal(rematched.game.awardCount, 0); assert.deepEqual(rematched.game.budgets, { p1: 20, p2: 20 });
   });
 
   const blindCode = TEST_CODES[2];
@@ -909,6 +994,85 @@ try {
     expectStatus(await request(path, { method: 'PUT', uid: 'p1', value: { connectedAt: TIMESTAMP } }), 200);
     expectStatus(await request(path, { method: 'DELETE', uid: 'p1' }), 200);
     expectStatus(await request('reactions/' + bracketCode + '/p1', { method: 'PUT', uid: 'p1', value: { seq: 1, type: 'angry', sentAt: TIMESTAMP } }), 200);
+  });
+
+  await check('bracket sizes are restricted to its mode and cannot be added, removed, or changed later', async () => {
+    const sizeCode = TEST_CODES[8];
+    const invalidMode = { ...initialRoom(sizeCode), bracketSize: 32 };
+    expectDenied(await writeRoom(invalidMode, 'p1'), 'Bracket option on an auction');
+    for (const size of [8, 24, 64, '32']) expectDenied(await writeRoom({ ...initialRoom(sizeCode, 'futbol', 'bracket'), bracketSize: size }, 'p1'), 'Invalid bracket size');
+    let current = expectStatus(await writeRoom({ ...initialRoom(sizeCode, 'futbol', 'bracket'), bracketSize: 32 }, 'p1'), 200);
+    const changed = structuredClone(current); changed.bracketSize = 16;
+    expectDenied(await writeRoom(changed, 'p1'), 'Immutable bracket size');
+    const removed = structuredClone(current); delete removed.bracketSize;
+    expectDenied(await writeRoom(removed, 'p1'), 'Removed bracket size');
+    expectStatus(await request(`rooms/${sizeCode}`, { method: 'DELETE', admin: true }), 200);
+    current = expectStatus(await writeRoom(initialRoom(sizeCode, 'futbol', 'bracket'), 'p1'), 200);
+    const appended = { ...current, bracketSize: 32 };
+    expectDenied(await writeRoom(appended, 'p1'), 'Adding size to a legacy sixteen-card room');
+    expectStatus(await request(`rooms/${sizeCode}`, { method: 'DELETE', admin: true }), 200);
+  });
+  let bracket32;
+  await check('a thirty-two-card bracket starts solo and rejects wrong sizes, duplicates, and forged progress', async () => {
+    const sizeCode = TEST_CODES[8];
+    const deck = DATASETS.futbol.slice(0, 32).map(card => card.id);
+    const current = expectStatus(await writeRoom({ ...initialRoom(sizeCode, 'futbol', 'bracket'), bracketSize: 32 }, 'p1'), 200);
+    const valid = changeRoom(current, 'p1', current.revision, 'start', { deck });
+    const variants = [
+      ['Sixteen-card tree in a thirty-two room', value => { value.game.deck = value.game.deck.slice(0, 16); }],
+      ['Thirty-three cards', value => { value.game.deck.push(999); }],
+      ['Repeated tail card', value => { value.game.deck[31] = value.game.deck[0]; }],
+      ['Skipped opening match', value => { value.game.matchIndex = 1; value.game.choices = { m1: deck[0] }; }],
+      ['Wrong initial round', value => { value.game.round = 2; }],
+      ['Out-of-tree initial pair', value => { value.game.currentPair.left = deck[16]; }],
+    ];
+    for (const [label, mutate] of variants) { const forged = structuredClone(valid); mutate(forged); expectDenied(await writeRoom(forged, 'p1'), label); }
+    bracket32 = await command(current, 'p1', 'start', { deck });
+    assert.equal(bracket32.game.deck.length, 32); assert.equal(bracket32.game.round, 1);
+    const shortTree = changeRoom({ ...current, bracketSize: 16 }, 'p1', current.revision, 'start', { deck });
+    expectDenied(await writeRoom(shortTree, 'p1'), 'Changing bracket room size during start');
+  });
+  await check('thirty-two cards pass five rounds and thirty-one choices with a late spectator and exact history', async () => {
+    let current = bracket32;
+    const expectedRound = index => index < 16 ? 1 : index < 24 ? 2 : index < 28 ? 3 : index < 30 ? 4 : 5;
+    while (current.status === 'playing') {
+      assert.equal(current.game.round, expectedRound(current.game.matchIndex));
+      const previous = current;
+      if (current.game.matchIndex === 10) {
+        await joinSpectator(current.code);
+        current = expectStatus(await readRoom(current.code, 'p1'), 200);
+        assert.deepEqual(current.game, previous.game);
+        const forbidden = changeRoom(current, 'p1', current.revision, 'choose', { cardId: current.game.currentPair.left }); forbidden.lastAction.seat = 'p2';
+        expectDenied(await writeRoom(forbidden, 'p2'), 'Late viewer cannot select');
+      }
+      current = await command(current, 'p1', 'choose', { cardId: current.game.currentPair.left });
+      assert.equal(current.game.matchIndex, previous.game.matchIndex + 1);
+      for (const [key, id] of Object.entries(previous.game.choices || {})) assert.equal(current.game.choices[key], id);
+      if (current.players.p2) assert.deepEqual(expectStatus(await readRoom(current.code, 'p2'), 200).game, current.game);
+    }
+    assert.equal(current.game.matchIndex, 31); assert.equal(current.game.round, 5);
+    assert.equal(Object.keys(current.game.choices).length, 31); assert.equal(current.game.winnerId, current.game.choices.m31);
+    const restarted = await command(current, 'p2', 'rematch', { deck: [...current.game.deck].reverse() });
+    assert.equal(restarted.bracketSize, 32); assert.equal(restarted.game.activeSeat, 'p2'); assert.equal(restarted.game.deck.length, 32);
+    assert.equal(restarted.game.matchIndex, 0); assert.equal(restarted.game.choices?.m31 ?? null, null);
+    bracket32 = restarted;
+  });
+  await check('thirty-two-card transitions reject removed history, bulk choices, out-of-tree matches, and extra winners', async () => {
+    let current = await command(bracket32, 'p2', 'choose', { cardId: bracket32.game.currentPair.left });
+    const valid = changeRoom(current, 'p2', current.revision, 'choose', { cardId: current.game.currentPair.right });
+    const variants = [
+      ['Removed history', value => { delete value.game.choices.m1; }],
+      ['Rewritten history', value => { value.game.choices.m1 = current.game.deck[1]; }],
+      ['Bulk future choices', value => { value.game.choices.m3 = current.game.deck[4]; value.game.matchIndex = 3; }],
+      ['Forged future pair', value => { value.game.currentPair.right = current.game.deck[31]; }],
+      ['Premature winner', value => { value.game.winnerId = current.game.deck[0]; }],
+      ['Choice beyond thirty-one', value => { value.game.choices.m32 = current.game.deck[0]; }],
+      ['Changed size', value => { value.bracketSize = 16; }],
+      ['Removed size', value => { delete value.bracketSize; }],
+    ];
+    for (const [label, mutate] of variants) { const forged = structuredClone(valid); mutate(forged); expectDenied(await writeRoom(forged, 'p2'), label); }
+    current = await command(current, 'p2', 'choose', { cardId: current.game.currentPair.right });
+    assert.equal(current.game.matchIndex, 2);
   });
 
   const teamCode = TEST_CODES[4];

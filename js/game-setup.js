@@ -20,11 +20,17 @@ export function draftTriplets(cards, pick = randomIndex) {
   }
   const eligible = [...byTag].filter(([, group]) => group.length >= 3);
   if (!eligible.length) throw new Error('Bu koleksiyonda üçlü oluşturacak aynı etiketten kartlar yok.');
-  let pools = new Map(eligible.map(([tag, group]) => [tag, shuffledIds(group, pick)]));
-  return Array.from({ length: 11 }, () => {
+  const goalkeeperGroup = eligible.find(([tag]) => tag === 'KL');
+  const outfieldGroups = eligible.filter(([tag]) => tag !== 'KL');
+  // Football has one goalkeeper in its first eleven. Choose that trio once;
+  // pool recycling applies only to outfield groups for the remaining rounds.
+  if (goalkeeperGroup && !outfieldGroups.length) throw new Error('İlk 11 için kaleci dışında aynı etiketten üçlü oluşturacak kartlar gerekli.');
+  const selectionGroups = goalkeeperGroup ? outfieldGroups : eligible;
+  let pools = new Map(selectionGroups.map(([tag, group]) => [tag, shuffledIds(group, pick)]));
+  const triples = Array.from({ length: goalkeeperGroup ? 10 : 11 }, () => {
     let choices = [...pools].filter(([, ids]) => ids.length >= 3);
     if (!choices.length) {
-      pools = new Map(eligible.map(([tag, group]) => [tag, shuffledIds(group, pick)]));
+      pools = new Map(selectionGroups.map(([tag, group]) => [tag, shuffledIds(group, pick)]));
       choices = [...pools];
     }
     const index = pick(choices.length);
@@ -32,4 +38,10 @@ export function draftTriplets(cards, pick = randomIndex) {
     const [etiket, ids] = choices[index];
     return { etiket, cards: ids.splice(0, 3) };
   });
+  if (goalkeeperGroup) {
+    const position = pick(11);
+    if (!Number.isInteger(position) || position < 0 || position >= 11) throw new Error('Geçersiz rastgele seçim.');
+    triples.splice(position, 0, { etiket: 'KL', cards: shuffledIds(goalkeeperGroup[1], pick).slice(0, 3) });
+  }
+  return triples;
 }

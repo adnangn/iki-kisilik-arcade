@@ -28,7 +28,15 @@ const denied = response => assert.ok([401,403].includes(response.status),JSON.st
 async function check(label, action) { await action(); passed++; console.log(`PASS ${label}`); }
 const put = (path,value,uid,headers={}) => request(path,{method:'PUT',value,uid,headers});
 const readRoom = (code,uid='p1',headers={}) => request(`rooms/${code}`,{uid,headers});
-const writeRoom = (room,uid='p1',headers={}) => put(`rooms/${room.code}`,room,uid,headers);
+const writeRoom = async (room,uid='p1',headers={}) => {
+  if (room.createdAt?.['.sv']==='timestamp') {
+    const current=await request(`rooms/${room.code}`,{admin:true});
+    if(!current.body) await request(`cleanupIndex/${room.code}`,{method:'DELETE',admin:true});
+    const reservation=await put(`cleanupIndex/${room.code}`,{instance:{'.sv':'timestamp'},lastActivityAt:{'.sv':'timestamp'},state:'reserved',reserverUid:uid},uid);
+    if(reservation.status===200) room={...room,createdAt:reservation.body.instance};
+  }
+  return put(`rooms/${room.code}`,room,uid,headers);
+};
 const base = (code,mode) => ({version:1,code,ownerUid:'p1',createdAt:{'.sv':'timestamp'},datasetId:'futbol',mode,status:'waiting',round:1,starterSeat:'p1',revision:0,players:{p1:{uid:'p1',name:'Alice'}}});
 const privatePath = room => `privateGames/${room.code}/r${room.round}/${room.mode==='frequency'?`frequency/q${room.game.roundIndex}`:'ranking'}`;
 function command(room,kind,game,uid='p1') {
@@ -40,7 +48,7 @@ async function start(code,mode) {
   return ok(await writeRoom(command(room,'start',createCooperative(mode,CARDS))));
 }
 async function cleanup() {
-  for(const code of CODES) for(const root of ['rooms','privateGames','presence','reactions']) {
+  for(const code of CODES) for(const root of ['rooms','privateGames','presence','reactions','cleanupIndex']) {
     ok(await request(`${root}/${code}`,{method:'DELETE',admin:true}));
   }
 }

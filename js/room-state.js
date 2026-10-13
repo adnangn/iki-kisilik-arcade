@@ -15,7 +15,7 @@ export function seatFor(room, uid) {
 function createGame(room, payload, starterSeat) {
   if (isCooperativeMode(room.mode)) return createCooperative(room.mode, payload.deck);
   if (room.mode === 'blind-ranking') return createBlindRanking(payload.deck, starterSeat);
-  if (room.mode === 'bracket') return createBracket(payload.deck, starterSeat);
+  if (room.mode === 'bracket') return createBracket(payload.deck, starterSeat, room.bracketSize ?? 16);
   if (room.mode === 'team-draft') return createTeamDraft(payload.triplets);
   if (room.mode == null || room.mode === 'auction') return createAuction(payload.deck, starterSeat);
   throw new RoomError('Bu oyun modu desteklenmiyor.');

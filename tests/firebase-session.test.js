@@ -45,6 +45,10 @@ function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = fal
     return undefined;
   }
   function writeRecord(path, value) {
+    const resolveTimestamp = item => item && typeof item === 'object'
+      ? item['.sv'] === 'timestamp' ? Date.now() : Array.isArray(item) ? item.map(resolveTimestamp) : Object.fromEntries(Object.entries(item).map(([key, child]) => [key, resolveTimestamp(child)]))
+      : item;
+    value = resolveTimestamp(value);
     const parts = path.split('/');
     for (let end = parts.length - 1; end > 0; end -= 1) {
       const ancestor = parts.slice(0, end).join('/');
@@ -108,6 +112,9 @@ function sdkFixture(initialUser = { uid: 'session-user' }, { coldRoomCache = fal
     goOffline(target) { assert.equal(target, db); events.push({ type: 'go-offline' }); emitConnection(false); },
     // Like the SDK, a completed get() does not retain an unwatched room cache.
     async get(reference) { return snapshot(readRecord(reference.path)); },
+    query: (reference, ...constraints) => ({ ...reference, constraints }),
+    orderByChild: key => ({ key }), endAt: value => ({ endAt: value }), limitToFirst: value => ({ limitToFirst: value }),
+    async update(reference, changes) { for (const [path, value] of Object.entries(changes)) writeRecord(path, value); },
     onValue(reference, callback, onError) {
       const listener = { path: reference.path, callback, ready: false }; dbListeners.add(listener);
       const gate = reference.path.startsWith('rooms/') ? nextRoomValueGate : null;
