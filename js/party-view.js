@@ -359,13 +359,21 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     const game = state.room.game, role = secretRole(), mole = Boolean(role.isMole || role.mole || role.role === 'chameleon' || role.role === 'mole');
     const target = role.targetCardId ?? role.targetId ?? mine().targetCardId, reveal = game.stage === 'reveal';
     const node = panel(reveal ? 'party.done' : mole ? 'party.chameleon.mole' : 'party.chameleon.knower');
-    if (!reveal) node.append(note(mole ? 'party.chameleon.mole_hint' : 'party.chameleon.knower_hint'));
+    const layout = el('div', 'party-chameleon-layout'), console = el('div', 'party-chameleon-console');
+    const result = resultFor(game);
+    if (reveal) console.append(chameleonOutcome(result));
+    else console.append(note(mole ? 'party.chameleon.mole_hint' : 'party.chameleon.knower_hint'));
     if (game.stage === 'clues') {
       const turn = game.turnSeat === state.seat;
-      node.append(note(turn ? 'party.chameleon.your_turn' : 'party.chameleon.turn', { name: nameFor(game.turnSeat) }));
-      if (turn) node.append(clueForm(state, !isLocked()));
-    } else if (game.stage === 'voting') {
-      node.append(copy('h3', 'party-subtitle', 'party.chameleon.vote'), note(isLocked() ? 'party.chameleon.voted' : 'party.chameleon.vote_hint'));
+      console.append(note(turn ? 'party.chameleon.your_turn' : 'party.chameleon.turn', { name: nameFor(game.turnSeat) }));
+      if (turn) console.append(clueForm(state, !isLocked()));
+    } else if (game.stage === 'last-guess') {
+      console.append(note(mole ? 'party.chameleon.last_hint' : 'party.chameleon.last_wait', { name: nameFor(game.caughtSeat) }));
+      if (mole) node.querySelector('h2').textContent = tx('party.chameleon.last_guess');
+    }
+    console.append(chameleonClues(game));
+    if (game.stage === 'voting') {
+      console.append(copy('h3', 'party-subtitle', 'party.chameleon.vote'), note(isLocked() ? 'party.chameleon.voted' : 'party.chameleon.vote_hint'));
       const votes = el('div', 'party-vote-grid');
       for (const seat of game.seats || seatsOf(state.room)) {
         if (seat === state.seat) continue;
@@ -373,33 +381,52 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
         vote.dataset.partyFocus = `vote-${seat}`;
         vote.addEventListener('click', () => { if (!vote.disabled) privateAction('vote', { seat }); }); votes.append(vote);
       }
-      node.append(votes, progressRow(game));
-    } else if (game.stage === 'last-guess') {
-      node.append(note(mole ? 'party.chameleon.last_hint' : 'party.chameleon.last_wait', { name: nameFor(game.caughtSeat) }));
-      if (mole) node.querySelector('h2').textContent = tx('party.chameleon.last_guess');
+      console.append(votes, progressRow(game));
     }
-    const result = resultFor(game), grid = el('div', 'party-choice-grid is-nine');
+    if (reveal) console.append(voteSummary(result), nextButton(game));
+    const grid = el('div', 'party-choice-grid is-nine party-chameleon-board');
     const revealedTarget = reveal ? result.targetCardId ?? result.targetId : target;
     for (const id of safeCards(game)) grid.append(card(id, { choose: game.stage === 'last-guess' && mole ? value => privateAction('guess', { cardId: value }) : undefined, target: id === revealedTarget, picked: reveal && result.guessId === id, blocked: isLocked(), compact: true }));
-    node.append(grid);
+    layout.append(console, grid); node.append(layout);
+    return node;
+  }
+
+  function chameleonClues(game) {
     const clueBox = el('section', 'party-clue-log'); clueBox.append(copy('h3', 'party-subtitle', 'party.chameleon.clues'));
     const list = el('ol');
-    for (const seat of game.seats || seatsOf(state.room)) {
+    const seats = game.seats || seatsOf(context().room);
+    for (const [index, seat] of seats.entries()) {
       const word = game.clues?.[seat]; if (!word) continue;
-      const row = el('li'); row.append(el('strong', '', nameFor(seat)), el('span', '', word?.word ?? word)); list.append(row);
+      const row = el('li'), number = el('span', 'party-clue-seat', index + 1);
+      number.setAttribute('aria-hidden', 'true');
+      row.append(number, el('strong', 'party-clue-player', nameFor(seat)), el('span', 'party-clue-word', word?.word ?? word)); list.append(row);
     }
-    clueBox.append(list); node.append(clueBox);
-    if (reveal) {
-      const moleSeat = result.moleSeat || result.chameleonSeat;
-      node.append(note('party.chameleon.result', { name: nameFor(moleSeat) }), voteSummary(result), note(result.saved || result.guessed || result.guessedCorrectly ? 'party.chameleon.saved' : result.caught ? 'party.chameleon.caught' : 'party.chameleon.escaped'), nextButton(game));
-    }
-    return node;
+    if (list.childElementCount) clueBox.append(list);
+    else clueBox.append(note('party.waiting'));
+    return clueBox;
+  }
+
+  function chameleonOutcome(result) {
+    const outcome = el('div', 'party-chameleon-result');
+    outcome.append(note('party.chameleon.result', { name: nameFor(result.moleSeat || result.chameleonSeat) }),
+      note(result.saved || result.guessed || result.guessedCorrectly ? 'party.chameleon.saved' : result.caught ? 'party.chameleon.caught' : 'party.chameleon.escaped'));
+    return outcome;
   }
 
   function voteSummary(result) {
     const box = el('section', 'party-vote-summary'); box.append(copy('h3', 'party-subtitle', 'party.chameleon.votes'));
-    const votes = el('ul', 'party-pair-scores');
-    for (const [seat, suspect] of Object.entries(result.votes || {})) votes.append(copy('li', '', 'party.chameleon.vote_result', { name: nameFor(seat), suspect: nameFor(suspect) }));
+    const votes = el('ul', 'party-vote-list');
+    for (const [seat, suspect] of Object.entries(result.votes || {})) {
+      const row = el('li', 'party-vote-row');
+      // Keep the editable sentence while styling its player placeholders safely.
+      const sentence = tx('party.chameleon.vote_result', { name: '\u0001name\u0001', suspect: '\u0001suspect\u0001' });
+      for (const part of sentence.split(/(\u0001(?:name|suspect)\u0001)/)) {
+        if (!part) continue;
+        row.append(part === '\u0001name\u0001' ? el('strong', 'party-vote-player', nameFor(seat))
+          : part === '\u0001suspect\u0001' ? el('span', 'party-vote-target', nameFor(suspect)) : el('span', 'party-vote-link', part));
+      }
+      votes.append(row);
+    }
     box.append(votes); return box;
   }
 
@@ -479,7 +506,10 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     else if (state.room.mode === 'detective' && last.targetId != null) {
       node.append(note(last.correct ? 'party.detective.correct' : 'party.detective.wrong'), note('party.detective.final_summary', { giver: nameFor(last.clueGiverSeat), guesser: nameFor(last.guesserSeat) }), copy('p', 'party-word', 'party.detective.clue', { word: last.clue }), guessedCards(last));
     } else if (state.room.mode === 'chameleon' && last.targetId != null) {
-      node.append(note('party.chameleon.result', { name: nameFor(last.moleSeat) }), note(last.guessed ? 'party.chameleon.saved' : last.caught ? 'party.chameleon.caught' : 'party.chameleon.escaped'), guessedCards(last), voteSummary(last));
+      const layout = el('div', 'party-chameleon-layout'), console = el('div', 'party-chameleon-console');
+      const cards = guessedCards(last); cards.classList.add('party-chameleon-board');
+      console.append(chameleonOutcome(last), chameleonClues({ seats: game.seats, clues: last.clues }), voteSummary(last));
+      layout.append(console, cards); node.append(layout);
     }
     const grid = el('div', 'party-final-scores');
     for (const seat of game.seats || seatsOf(state.room)) {

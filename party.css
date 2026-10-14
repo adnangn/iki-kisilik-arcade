@@ -111,6 +111,22 @@ button.party-card:disabled { opacity: .7; }
 .party-word { align-self: flex-start; padding: 12px 18px; background: var(--yellow); color: #654c1f; border: 3px solid var(--ink); box-shadow: 4px 4px 0 #ccb66a; font-size: 31px; overflow-wrap: anywhere; }
 .party-vote-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .party-vote-grid .button { padding: 16px 10px; font-family: var(--sans); font-size: 24px; }
+.party-chameleon-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr); grid-template-areas: "board console"; align-items: start; gap: 24px; }
+.party-chameleon-board { grid-area: board; min-width: 0; }
+.party-chameleon-console { grid-area: console; display: flex; flex-direction: column; gap: 16px; min-width: 0; padding: 18px; background: #f4eee3; border: 2px solid var(--line); box-shadow: 4px 4px 0 #d5c7cf; }
+.party-chameleon-console .party-subtitle { margin-top: 0; }
+.party-chameleon-console .party-note { margin: 0; }
+.party-chameleon-console > .button { width: 100%; }
+.party-chameleon-console .party-vote-grid { grid-template-columns: 1fr; }
+.party-chameleon-console .party-vote-grid .button { min-height: 48px; padding: 10px; }
+.party-chameleon-console .party-clue-form { grid-template-columns: 1fr; }
+.party-chameleon-result { display: grid; gap: 8px; padding: 12px; border: 2px solid var(--violet); background: var(--lilac); }
+.party-chameleon-result .party-note:first-child { color: var(--violet-dark); font-size: 25px; }
+.party-chameleon-console .party-clue-log { padding: 0; border: 0; background: transparent; }
+.party-chameleon-console .party-clue-log li { grid-template-columns: 24px minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 10px; padding: 8px; border: 1px solid var(--line); background: var(--paper); }
+.party-chameleon-console .party-clue-log .party-clue-seat { display: grid; place-items: center; width: 24px; height: 26px; font-size: 18px; background: var(--yellow); border: 1px solid var(--ink); }
+.party-chameleon-console .party-clue-player { min-width: 0; font-size: 20px; line-height: 1.15; }
+.party-chameleon-console .party-clue-log .party-clue-word { min-width: 0; padding: 4px 7px; color: var(--violet-dark); background: var(--lilac); border-left: 2px solid var(--violet); font-size: 23px; line-height: 1.1; }
 .party-clue-log { padding: 16px; border: 2px dashed var(--line); background: #f4eee3; }
 .party-clue-log ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 7px; }
 .party-clue-log li { display: grid; grid-template-columns: minmax(80px, .6fr) minmax(0, 1fr); gap: 14px; }
@@ -124,6 +140,11 @@ button.party-card:disabled { opacity: .7; }
 .party-final-guess-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 230px)); justify-content: center; gap: 18px; }
 .party-final-guess-grid:has(> .party-card:only-child) { grid-template-columns: minmax(0, 230px); }
 .party-vote-summary { display: grid; gap: 10px; }
+.party-vote-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.party-vote-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 9px 10px; border-left: 3px solid var(--violet); background: #f1e8f4; font-size: 20px; line-height: 1.2; }
+.party-vote-player, .party-vote-target { flex: 1 1 80px; min-width: 0; font-weight: 400; overflow-wrap: anywhere; }
+.party-vote-target { color: var(--violet-dark); text-align: right; }
+.party-vote-link { flex: 0 1 auto; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--muted); }
 .party-pair-scores, .party-differences { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .party-pair-scores li, .party-differences li { padding: 8px 12px; border-left: 3px solid var(--violet); background: #f1e8f4; overflow-wrap: anywhere; }
 .party-matrix-scroll { max-width: 100%; overflow-x: auto; }
@@ -150,6 +171,7 @@ button.party-card:disabled { opacity: .7; }
   .party-choice-grid.is-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .party-auction-arena { gap: 24px; }
   .party-card-image { max-height: 210px; }
+  .party-chameleon-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "console" "board"; }
 }
 @media (max-width: 600px) {
   .party-screen { padding-top: 18px; }
@@ -166,6 +188,12 @@ button.party-card:disabled { opacity: .7; }
   .party-player-metrics span { font-size: 14px; }
   .party-players { gap: 8px; margin-bottom: 18px; }
   .party-stage { gap: 16px; padding: 18px 14px; }
+  .party-chameleon-layout { gap: 18px; }
+  .party-chameleon-console { padding: 12px; gap: 12px; }
+  .party-chameleon-console .party-clue-log li { grid-template-columns: 20px minmax(0, 1fr) minmax(0, 1fr); gap: 7px; padding: 7px; }
+  .party-chameleon-console .party-clue-log .party-clue-seat { width: 20px; height: 24px; }
+  .party-chameleon-console .party-clue-player { font-size: 18px; }
+  .party-chameleon-console .party-clue-log .party-clue-word { font-size: 21px; }
   .party-auction-arena { grid-template-columns: 1fr; gap: 20px; }
   .party-auction-arena > .party-card { max-width: 235px; justify-self: center; width: 100%; }
   .party-auction-actions { gap: 16px; }
