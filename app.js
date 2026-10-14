@@ -21,7 +21,7 @@ import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-comma
 import { createPartyView } from './js/party-view.js';
 import { partyCards, partyGameSpec } from './js/party-games.js';
 import { partySubmission } from './js/party-online.js';
-import { isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
+import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
   capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
 const $ = id => document.getElementById(id);
@@ -1441,7 +1441,7 @@ document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventL
 function filterModes(filter, choose = true) {
   const groups = { table: ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'chameleon'],
     duo: ['team-draft', 'frequency', 'double-ranking', 'detective'], solo: ['blind-ranking', 'bracket'] };
-  const visible = filter === 'all' ? Object.keys(MODE_NAMES) : groups[filter];
+  const visible = filter === 'all' ? ALL_MODES : groups[filter];
   for (const input of document.querySelectorAll('input[name="mode"]')) input.closest('.mode-card').hidden = !visible.includes(input.value);
   document.querySelectorAll('[data-mode-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.modeFilter === filter)));
   if (choose && !visible.includes(selectedMode())) {
