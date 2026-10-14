@@ -12,9 +12,10 @@ import { createTeamDraft, assignTeamCard } from '../js/team-draft.js';
 import { createCooperative, revealFrequency, advanceFrequency, createPrivateRank, placePrivateRank, revealDoubleRanking } from '../js/cooperative.js';
 import { normalizeTexts } from '../js/texts.js';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
+import { ALL_MODES } from '../js/party-room-state.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
-export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
+export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
 export const RUNTIME_DIRECTORIES = ['js', 'assets'];
 
 // Keep exact filename case: Windows accepts case mismatches that Pages rejects.
@@ -32,7 +33,7 @@ export async function listFiles(directory, prefix = '') {
   return result.sort();
 }
 
-function finishAllModes(cards, datasetId) {
+function finishLegacyModes(cards, datasetId) {
   // A fixed picker makes this check reproducible without changing game data.
   const pick = () => 0;
   const deck = shuffledIds(cards, pick);
@@ -159,7 +160,7 @@ export async function preflight({ online = false, quiet = false } = {}) {
   const images = new Set();
   let cardCount = 0;
   for (const [datasetId, cards] of Object.entries(datasets)) {
-    assert.ok(Array.isArray(cards) && cards.length >= 20 && cards.length <= 200, `${datasetId}: altı mod için 20–200 kart gerekir.`);
+    assert.ok(Array.isArray(cards) && cards.length >= 20 && cards.length <= 200, `${datasetId}: tüm oyunlar için 20–200 kart gerekir.`);
     assert.equal(new Set(cards.map(card => card.id)).size, cards.length, `${datasetId}: kart kimlikleri tekrarlanıyor.`);
     for (const card of cards) {
       assert.ok(Number.isSafeInteger(card.id) && card.id >= 1 && card.id <= 1000000, `${datasetId}: geçersiz kart kimliği.`);
@@ -169,7 +170,9 @@ export async function preflight({ online = false, quiet = false } = {}) {
       images.add(card.gorsel);
     }
     cardCount += cards.length;
-    finishAllModes(cards, datasetId);
+    // The full 2–4 player completion matrix is covered by party-datasets.test.js.
+    // Keep the original six-mode data checks here without duplicating that suite.
+    finishLegacyModes(cards, datasetId);
   }
 
   let referenceCount = 0;
@@ -225,12 +228,14 @@ export async function preflight({ online = false, quiet = false } = {}) {
   }
   for (const group of Object.values(DATASET_GROUPS)) assert.ok(allowed.has(`assets/images/${group.icon}-icon.svg`), `Kategori simgesi eksik: ${group.icon}`);
   for (const name of ['laugh', 'angry', 'womp', 'heart']) await checkReference('index.html', `./assets/images/reactions.svg#${name}`);
-  const rules = JSON.parse(await readFile(path.join(PROJECT_ROOT, 'firebase.rules.json'), 'utf8')).rules.rooms.$code;
+  const rulesText = await readFile(path.join(PROJECT_ROOT, 'firebase.rules.json'), 'utf8');
+  assert.ok(Buffer.byteLength(rulesText, 'utf8') <= 256 * 1024, 'Firebase kuralları 256 KiB sınırını aşamaz.');
+  const rules = JSON.parse(rulesText).rules.rooms.$code;
   for (const datasetId of Object.keys(datasets)) assert.ok(rules.datasetId['.validate'].includes(`'${datasetId}'`), `Firebase koleksiyon izni eksik: ${datasetId}`);
-  for (const mode of ['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking']) assert.ok(rules.mode['.validate'].includes(`'${mode}'`), `Firebase mod izni eksik: ${mode}`);
+  for (const mode of ALL_MODES) assert.ok(rules.mode['.validate'].includes(`'${mode}'`), `Firebase mod izni eksik: ${mode}`);
   if (online) checkOnlineConfig();
-  const result = { files, datasets, cardCount, imageCount: images.size, referenceCount };
-  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} kart, ${images.size} yerel kart görseli, 6 mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
+  const result = { files, datasets, cardCount, imageCount: images.size, referenceCount, modeCount: ALL_MODES.length };
+  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} kart, ${images.size} yerel kart görseli, ${ALL_MODES.length} mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
   return result;
 }
 

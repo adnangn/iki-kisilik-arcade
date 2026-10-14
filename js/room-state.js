@@ -10,7 +10,7 @@ export const otherSeat = seat => seat === 'p1' ? 'p2' : 'p1';
 export const hasOptionalSpectator = room => room?.mode === 'blind-ranking' || room?.mode === 'bracket';
 export const rematchStarter = room => hasOptionalSpectator(room) && !room.players.p2 ? 'p1' : otherSeat(room.starterSeat);
 export function seatFor(room, uid) {
-  return ['p1', 'p2'].find(seat => room?.players?.[seat]?.uid === uid) || null;
+  return ['p1', 'p2', 'p3', 'p4'].find(seat => room?.players?.[seat]?.uid === uid) || null;
 }
 
 const nextGameModes = new Set(['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking']);

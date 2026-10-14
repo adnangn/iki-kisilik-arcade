@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createCooperative, revealFrequency, advanceFrequency, revealDoubleRanking, placePrivateRank, createPrivateRank } from '../js/cooperative.js';
 
-const ORIGIN = 'http://127.0.0.1:9000';
+const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000';
+assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const PROJECT = 'demo-iki-kisilik';
 const CODES = ['919001', '919002', '919003'];
 const CARDS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8')).futbol.slice(0, 20).map(card => card.id);
@@ -54,7 +55,7 @@ async function cleanup() {
 }
 
 try {
-  await check('upload cooperative rules to local demo emulator',async()=>ok(await request('.settings/rules',{method:'PUT',admin:true,value:JSON.parse(await readFile(new URL('../firebase.rules.json',import.meta.url),'utf8'))})));
+  await check('upload cooperative rules to local demo emulator',async()=>ok(await request('.settings/rules',{method:'PUT',admin:true,value:JSON.parse(await readFile(process.env.DB_RULES_FILE || new URL('../firebase.rules.json',import.meta.url),'utf8'))})));
   await cleanup();
   let frequency;
   await check('two active players create and start Frekans',async()=>{frequency=await start(CODES[0],'frequency');});

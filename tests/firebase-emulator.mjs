@@ -10,7 +10,8 @@ import { changeRoom, seatFor } from '../js/room-state.js';
 import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from '../js/team-command.js';
 import { draftTriplets } from '../js/game-setup.js';
 
-const ORIGIN = 'http://127.0.0.1:9000';
+const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000';
+assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const PROJECT = 'demo-iki-kisilik';
 const TEST_CODES = ['918001', '918002', '918003', '918004', '918005', '918006', '918007', '918008', '918009'];
 const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
@@ -153,7 +154,7 @@ async function cleanup() {
 let cleaned = false;
 try {
   await check('upload repository rules to local demo emulator', async () => {
-    const rules = JSON.parse(await readFile(new URL('../firebase.rules.json', import.meta.url), 'utf8'));
+    const rules = JSON.parse(await readFile(process.env.DB_RULES_FILE || new URL('../firebase.rules.json', import.meta.url), 'utf8'));
     expectStatus(await request('.settings/rules', { method: 'PUT', admin: true, value: rules }), 200);
   });
   await check('reset only named emulator test roots', cleanup);

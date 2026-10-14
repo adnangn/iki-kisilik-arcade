@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { ROOM_RETENTION_MS, cleanupCutoff, purgePaths } from '../js/room-lifecycle.js';
 import { createCooperative } from '../js/cooperative.js';
-const ORIGIN = 'http://127.0.0.1:9000', PROJECT = 'demo-iki-kisilik';
+const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000', PROJECT = 'demo-iki-kisilik';
+assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const CODES = ['947001', '947002', '947003'];
 const now = Date.now(), old = now - ROOM_RETENTION_MS - 10800000, stamp = { '.sv': 'timestamp' };
 const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
@@ -24,7 +25,7 @@ async function cleanup() { for (const code of CODES) for (const node of Object.k
 let passed = 0;
 async function check(label, action) { await action(); passed++; console.log('PASS', label); }
 try {
-  ok(await request('.settings/rules', { method: 'PUT', admin: true, value: JSON.parse(await readFile(new URL('../firebase.rules.json', import.meta.url), 'utf8')) }));
+  ok(await request('.settings/rules', { method: 'PUT', admin: true, value: JSON.parse(await readFile(process.env.DB_RULES_FILE || new URL('../firebase.rules.json', import.meta.url), 'utf8')) }));
   await cleanup();
   const code = CODES[0], freshCode = CODES[1];
   await seed(code); await seed(freshCode, now, now);

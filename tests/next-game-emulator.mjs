@@ -10,7 +10,8 @@ import { createCooperative, revealFrequency, advanceFrequency, revealDoubleRanki
 import { draftTriplets } from '../js/game-setup.js';
 import { DATASET_GROUPS } from '../js/datasets.js';
 
-const ORIGIN = 'http://127.0.0.1:9000', PROJECT = 'demo-iki-kisilik';
+const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000', PROJECT = 'demo-iki-kisilik';
+assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const CODES = ['946001', '946002', '946003'];
 const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
 const MODES = ['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
@@ -61,7 +62,7 @@ async function cleanup() { for (const code of CODES) for (const root of ['rooms'
 
 try {
   await check('new approval rules compile below the Firebase source-size limit', async () => {
-    const source = await readFile(new URL('../firebase.rules.json', import.meta.url), 'utf8'); assert.ok(Buffer.byteLength(source) <= 256 * 1024);
+    const source = await readFile(process.env.DB_RULES_FILE || new URL('../firebase.rules.json', import.meta.url), 'utf8'); assert.ok(Buffer.byteLength(source) <= 256 * 1024);
     ok(await request('.settings/rules', { method: 'PUT', admin: true, value: JSON.parse(source) }));
   });
   await cleanup();

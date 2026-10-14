@@ -1,6 +1,8 @@
 import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
 import { createCooperativeOnline } from './cooperative-online.js';
+import { createPartyOnline } from './party-online.js';
+import { ALL_MODES, createPartyRoom, joinPartyRoom, partySeatFor, encodePartyRoom, decodePartyRoom } from './party-room-state.js';
 import { createRoomLifecycle } from './room-lifecycle.js';
 
 const SDK = 'https://www.gstatic.com/firebasejs/13.0.0';
@@ -25,6 +27,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   let disposed = false;
   const presenceStops = new Set();
   const cooperativeStops = new Set();
+  const partyStops = new Set();
   const lifecycleStops = new Set();
   let roomLifecycle = null;
   const sweep = () => { if (connected && !disposed && roomLifecycle) void roomLifecycle.sweepExpiredRooms().catch(() => {}); };
@@ -49,6 +52,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     disposed = true; connected = false;
     unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
     for (const stop of cooperativeStops) stop();
+    for (const stop of partyStops) stop(); partyStops.clear();
     for (const stop of lifecycleStops) stop(); clearInterval(sweepTimer);
     dbSDK.goOffline(db);
     onSessionEnded();
@@ -76,10 +80,13 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
 
   return {
     ...createCooperativeOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: cooperativeStops }),
+    ...createPartyOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: partyStops }),
     uid: user.uid,
     get connected() { return connected; },
     async createRoom(name, datasetId, mode = 'auction', options = {}) {
-      if (!['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'].includes(mode)) throw new RoomError('Bu oyun modu henüz oynanabilir değil.');
+      const version = options.version === 2 ? 2 : 1;
+      const supported = version === 2 ? ALL_MODES : ['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
+      if (!supported.includes(mode)) throw new RoomError('Bu oyun modu henüz oynanabilir değil.');
       const bracketSize = options.bracketSize ?? 16;
       if (mode === 'bracket' && ![16, 32].includes(bracketSize)) throw new RoomError('Turnuva 16 veya 32 kartla oynanabilir.');
       let lastError;
@@ -88,7 +95,8 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
         const code = String(100000 + random % 900000);
         try {
           const reservation = await roomLifecycle.reserveRoom(code);
-          const initial = { version: 1, code, ownerUid: user.uid, createdAt: reservation.instance, datasetId,
+          const initial = version === 2 ? createPartyRoom({ code, uid: user.uid, name, createdAt: reservation.instance, datasetId, mode, bracketSize })
+            : { version: 1, code, ownerUid: user.uid, createdAt: reservation.instance, datasetId,
             mode, status: 'waiting', round: 1, starterSeat: 'p1', revision: 0,
             players: { p1: { uid: user.uid, name } }, ...(mode === 'bracket' ? { bracketSize } : {}) };
           const created = await transact(`rooms/${code}`, current => {
@@ -96,7 +104,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
             return initial;
           });
           await roomLifecycle.touchRoom(created);
-          return created;
+          return decodePartyRoom(created);
         } catch (error) {
           // Occupied rooms may be unreadable to this user. Regenerate the code;
           // after bounded retries retain a real rules/configuration error.
@@ -128,6 +136,23 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
         assertOnline();
         const current = snapshot.val();
         if (!current) throw new RoomError('Bu kodla bir oda bulunamadı.');
+        if (current.version === 2) {
+          if (partySeatFor(current, user.uid)) return decodePartyRoom(current);
+          try {
+            const joined = await transact(`rooms/${code}`, value => {
+              if (!value) throw new RoomError('Bu kodla bir oda bulunamadı.');
+              if (partySeatFor(value, user.uid)) throw new RoomError('ALREADY_MEMBER');
+              return encodePartyRoom(joinPartyRoom(value, user.uid, name));
+            });
+            return decodePartyRoom(joined);
+          } catch (error) {
+            // Persisted identity in another tab may already own the new seat.
+            if (error.message !== 'ALREADY_MEMBER') throw error;
+            const latest = await get(roomRef);
+            assertOnline();
+            return decodePartyRoom(latest.val());
+          }
+        }
         if (seatFor(current, user.uid)) return current;
         if (hasOptionalSpectator(current)) {
           if (current.players.p2) throw new RoomError('Bu oda dolu veya oyun başladı.');
@@ -168,9 +193,12 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
         stop();
       }
     },
-    mutateRoom(code, reducer) { return transact(`rooms/${code}`, reducer); },
+    mutateRoom(code, reducer) {
+      return transact(`rooms/${code}`, current => encodePartyRoom(reducer(decodePartyRoom(current))))
+        .then(decodePartyRoom);
+    },
     watchRoom(code, onRoom, onError) {
-      return onValue(ref(db, `rooms/${code}`), snapshot => onRoom(snapshot.val()), onError);
+      return onValue(ref(db, `rooms/${code}`), snapshot => onRoom(decodePartyRoom(snapshot.val())), onError);
     },
     watchPresence(code, onPresence, onError) {
       return onValue(ref(db, `presence/${code}`), snapshot => onPresence(snapshot.val() || {}), onError);
@@ -223,6 +251,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
       return onValue(ref(db, `reactions/${code}/${uid}`), snapshot => onReaction(snapshot.val()), onError);
     },
     async signOut() {
+      for (const stop of partyStops) stop(); partyStops.clear();
       // Remove only this tab's presence; disconnect still runs its registered
       // fallback when a cleanup cannot reach the server.
       await Promise.race([Promise.allSettled([...presenceStops].map(stop => stop())), new Promise(resolve => setTimeout(resolve, 1500))]);
@@ -233,6 +262,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
       disposed = true; connected = false;
       unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
       for (const stop of cooperativeStops) stop();
+      for (const stop of partyStops) stop(); partyStops.clear();
       for (const stop of lifecycleStops) stop(); lifecycleStops.clear(); clearInterval(sweepTimer);
       dbSDK.goOffline(db);
     }

@@ -925,6 +925,11 @@ h1[tabindex="-1"]:focus { outline: none; }
 .invite-dialog-heading .icon-button { font-family: var(--sans); font-size: 30px; }
 .invite-dialog > p { font-size: 23px; line-height: 1.25; }
 .invite-code { text-align: center; margin-top: 15px; }
+.mode-filters { display:flex; gap:8px; flex-wrap:wrap; margin: 12px 0 16px; }
+.mode-filters button { min-height:44px; padding:9px 12px; font-family:inherit; font-size:19px; background:var(--paper,#f6eedb); color:var(--ink,#352747); border:2px solid currentColor; cursor:pointer; }
+.mode-filters button[aria-pressed="true"] { background:#7956ad; color:#fff8e7; box-shadow:3px 3px 0 #352747; }
+.mode-card[hidden] { display:none !important; }
+#party-room > .reaction-bar { margin-top:24px; }
 .invite-code strong { display: block; font-size: 32px; letter-spacing: 5px; margin-top: 4px; }
 .invite-qr { background: #fff; width: 205px; max-width: 100%; margin: 15px auto 20px; border: 2px solid #352747; }
 .invite-qr svg { display: block; width: 100%; height: auto; margin: 0; border: 0; filter: none; }

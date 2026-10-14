@@ -18,6 +18,11 @@ import { assetUrl } from './js/assets.js';
 import { createNextGameView } from './js/next-game-view.js';
 import { invitationUrl, parseInvite, renderInviteQR } from './js/invites.js';
 import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-command.js';
+import { createPartyView } from './js/party-view.js';
+import { partyCards, partyGameSpec } from './js/party-games.js';
+import { partySubmission } from './js/party-online.js';
+import { isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
+  capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
 const $ = id => document.getElementById(id);
 const SESSION_KEY = 'iki-kisilik.room.v1';
@@ -26,8 +31,14 @@ const SIGNED_OUT_KEY = 'iki-kisilik.signed-out.v1';
 let pendingInvite = parseInvite(window.location.href);
 let inviteRequested = new URL(window.location.href).searchParams.has('oda');
 let nextGameView = null;
+let partyView = null;
+let partyState = { loaded: false, mine: null, progress: {} };
+let partyUnsubscribe = null, partyKey = null, partyAttempt = null, partyDealAttempt = null;
+let partyRetryTimer = null, partyRetryCount = 0, partyRetryUnit = null;
+let partyDemoRecords = {}, partyDemoDeals = {};
 const REACTIONS = { get laugh() { return t('runtime.copy.ha_ha'); }, get angry() { return t('runtime.copy.grrr'); }, get womp() { return t('runtime.copy.womp_womp'); }, get heart() { return t('runtime.copy.iyi_hamle'); } };
 const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); }, get frequency() { return t('runtime.mode.frequency'); }, get 'double-ranking'() { return t('runtime.mode.double-ranking'); } };
+for (const mode of ['sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon']) Object.defineProperty(MODE_NAMES, mode, { get: () => t(`party.mode.${mode}`) });
 let datasets = {};
 const chosenCollections = {};
 let selectedCategory = $('dataset-select').value;
@@ -126,7 +137,10 @@ function renderModePreview() {
     bracket: t('revision.bracket.rules', { size: selectedBracketSize(), rounds: Math.log2(selectedBracketSize()), picks: selectedBracketSize() - 1 }),
     'team-draft': t('runtime.copy.ikiniz_de_bagimsiz_olarak_11_tur_oynarsiniz_her_tur_'),
     frequency: t('coop.frequency.rules'),
-    'double-ranking': t('coop.double.rules')
+    'double-ranking': t('coop.double.rules'),
+    'sealed-auction': t('party.rules.sealed-auction'),
+    'simultaneous-ranking': t('party.rules.simultaneous-ranking'),
+    telepathy: t('party.rules.telepathy'), detective: t('party.rules.detective'), chameleon: t('party.rules.chameleon')
   };
   $('how-to-content').textContent = rules[mode];
   const notice = $('setup-notice').querySelector('p');
@@ -227,7 +241,8 @@ function keepControlsVisible() {
   const height = viewport?.height || window.innerHeight;
   const offset = viewport?.offsetTop || 0;
   const start = field.getBoundingClientRect().top;
-  const action = field.id === 'bid-input' ? $('pass-button') : field.id === 'nickname' ? (!isFirebaseConfigured() ? $('demo-button') : $('create-room')) : field;
+  const action = field.id.startsWith('party-') ? field.form?.querySelector('button[type="submit"]') || field
+    : field.id === 'bid-input' ? $('pass-button') : field.id === 'nickname' ? (!isFirebaseConfigured() ? $('demo-button') : $('create-room')) : field;
   const end = action.getBoundingClientRect().bottom;
   if (start < offset + 20 || end > offset + height - 20) {
     const desiredTop = offset + Math.max(20, (height - (end - start)) / 2);
@@ -237,7 +252,7 @@ function keepControlsVisible() {
 
 function renderBusyButtons() {
   const demoLabels = { auction: t('action.demo'), 'blind-ranking': t('runtime.copy.kor_siralamayi_dene'), bracket: t('runtime.copy.turnuvayi_dene'), 'team-draft': t('runtime.copy.botla_takim_kur'), frequency: t('coop.frequency.demo'), 'double-ranking': t('coop.double.demo') };
-  const labels = { 'create-room': t('action.create'), 'join-room': t('action.join'), 'demo-button': demoLabels[selectedMode()], 'start-game': t('runtime.copy.oyunu_baslat'), 'bid-button': t('action.bid'), 'pass-button': t('action.pass'), 'rematch-button': t('action.rematch') };
+  const labels = { 'create-room': t('action.create'), 'join-room': t('action.join'), 'demo-button': demoLabels[selectedMode()] || t('party.demo_button'), 'start-game': t('runtime.copy.oyunu_baslat'), 'bid-button': t('action.bid'), 'pass-button': t('action.pass'), 'rematch-button': t('action.rematch') };
   for (const [id, label] of Object.entries(labels)) {
     const button = $(id), isPending = busy && pendingAction === id;
     const text = button.querySelector('span:not([aria-hidden])');
@@ -282,7 +297,7 @@ function toast(message) {
 
 function errorMessage(error) {
   const code = String(error.code || '');
-  if (/permission.denied|permission_denied/i.test(code)) return t('runtime.copy.odaya_erisilemiyor_kodu_ve_firebase_veritabani_kural');
+  if (/permission.denied|permission_denied/i.test(code + ' ' + error.message)) return t('runtime.copy.odaya_erisilemiyor_kodu_ve_firebase_veritabani_kural');
   if (code.includes('operation-not-allowed')) return t('runtime.copy.firebase_console_da_anonim_giris_yontemini_acin');
   if (code.includes('unauthorized-domain')) return t('runtime.copy.bu_alan_adini_firebase_authentication_ayarlarina_ekl');
   if (/network|failed to fetch/i.test(code + error.message)) return t('runtime.copy.baglanti_kurulamadi_internetinizi_kontrol_edin');
@@ -294,6 +309,9 @@ function connectionChanged(online) {
     cooperativeAttempt = null;
     cooperativeUnsubscribe?.(); cooperativeUnsubscribe = null; cooperativeKey = null;
     clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null; cooperativeRetryCount = 0;
+    partyAttempt = null; partyDealAttempt = null;
+    partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null;
+    clearTimeout(partyRetryTimer); partyRetryTimer = null; partyRetryCount = 0;
   }
   $('connection-label').textContent = demo ? t('runtime.copy.yerel_demo') : !isFirebaseConfigured() ? t('runtime.copy.demoya_hazir') : signedOut ? t('runtime.copy.oturum_kapali') : online ? t('runtime.copy.cevrimici') : t('runtime.copy.baglanti_bekleniyor');
   $('status-pill').classList.toggle('offline', !online && !demo && isFirebaseConfigured());
@@ -305,13 +323,20 @@ function connectionChanged(online) {
 function shuffleDeck(datasetId) {
   return shuffledIds(datasets[datasetId]);
 }
-function gamePayload(config = room) { return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) } : { deck: shuffleDeck(config.datasetId) }; }
+function gamePayload(config = room) {
+  return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) }
+    : { deck: shuffleDeck(config.datasetId), ...(config.mode === 'telepathy' ? { criteria: Array.from({ length: 10 }, () => randomIndex(10)) } : {}) };
+}
+function randomIndex(length) { return crypto.getRandomValues(new Uint32Array(1))[0] % length; }
+function changeCurrentRoom(value, uid, revision, kind, payload) {
+  return value?.version === 2 ? changePartyRoom(value, uid, revision, kind, payload) : changeRoom(value, uid, revision, kind, payload);
+}
 
 function getCard(id) { return datasets[room.datasetId]?.find(card => card.id === id); }
 function nameFor(seat) { return room?.players?.[seat]?.name || t('runtime.copy.oyuncu_bekleniyor'); }
 function onlineSeat(seat) { return demo || Object.keys(presence[room?.players?.[seat]?.uid] || {}).length > 0; }
 function setScreen(screenId) {
-  for (const id of ['lobby-screen', 'room-screen', 'results-screen']) $(id).hidden = id !== screenId;
+  for (const id of ['lobby-screen', 'room-screen', 'results-screen', 'party-room']) $(id).hidden = id !== screenId;
   if (activeScreen !== screenId) {
     activeScreen = screenId;
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -405,7 +430,7 @@ function reconcileCooperative() {
   const payload = snapshot.mode === 'frequency' ? { choices: { p1: records.p1.cardId, p2: records.p2.cardId } }
     : { rankings: { p1: records.p1.slots, p2: records.p2.slots } };
   // Both clients may resolve together. One revision can award this result once.
-  void originService.mutateRoom(snapshot.code, current => changeRoom(current, originService.uid, snapshot.revision, kind, payload))
+  void originService.mutateRoom(snapshot.code, current => changeCurrentRoom(current, originService.uid, snapshot.revision, kind, payload))
     .catch(error => {
       if (generation !== lifecycle || originService !== service) return;
       if (room?.revision === snapshot.revision) {
@@ -419,16 +444,178 @@ function resolveDemoCooperative() {
   if (!demo || !isCooperativeMode(room?.mode) || room.status !== 'playing') return;
   if (room.mode === 'frequency') {
     if (room.game.stage !== 'choosing' || !demoSecrets.p1?.locked || !demoSecrets.p2?.locked) return;
-    room = changeRoom(room, 'demo-you', room.revision, 'frequency-reveal', { choices: { p1: demoSecrets.p1.cardId, p2: demoSecrets.p2.cardId } });
+    room = changeCurrentRoom(room, 'demo-you', room.revision, 'frequency-reveal', { choices: { p1: demoSecrets.p1.cardId, p2: demoSecrets.p2.cardId } });
   } else if (demoSecrets.p1?.count === 8 && demoSecrets.p2?.count === 8) {
-    room = changeRoom(room, 'demo-you', room.revision, 'double-reveal', { rankings: { p1: demoSecrets.p1.slots, p2: demoSecrets.p2.slots } });
+    room = changeCurrentRoom(room, 'demo-you', room.revision, 'double-reveal', { rankings: { p1: demoSecrets.p1.slots, p2: demoSecrets.p2.slots } });
   }
+}
+
+function partyContext() {
+  return { room, seat: mySeat, cards: new Map((datasets[room?.datasetId] || []).map(card => [card.id, card])),
+    privateState: partyState, datasets, connected: demo || !!service?.connected, busy, presence,
+    nameFor, t, onlineSeat, demo };
+}
+function partyUnit(value = room) { return `r${value.round}/q${value.game.roundIndex}/${value.game.stage}`; }
+function demoPartyState() {
+  const game = room.game, records = partyDemoRecords[partyUnit()] || {};
+  let deal = partyDemoDeals[`r${room.round}/q${game.roundIndex}`];
+  if (!deal && ['detective', 'chameleon'].includes(room.mode)) {
+    deal = { targetId: partyCards(game)[randomIndex(partyCards(game).length)], moleSeat: game.seats[randomIndex(game.seats.length)] };
+    partyDemoDeals[`r${room.round}/q${game.roundIndex}`] = deal;
+  }
+  const needed = room.mode === 'detective' ? [game.stage === 'clue' ? game.clueGiverSeat : game.guesserSeat]
+    : room.mode === 'chameleon' && game.stage === 'clues' ? [game.turnSeat]
+    : room.mode === 'chameleon' && game.stage === 'last-guess' ? [game.caughtSeat] : game.seats;
+  const role = deal ? room.mode === 'detective' ? { isMole: false, ...(mySeat === game.clueGiverSeat ? { targetId: deal.targetId } : {}) }
+    : { isMole: mySeat === deal.moleSeat, ...(mySeat !== deal.moleSeat ? { targetId: deal.targetId } : {}) } : null;
+  const previous = room.mode === 'simultaneous-ranking' && game.roundIndex > 0
+    ? partyDemoRecords[`r${room.round}/q${game.roundIndex - 1}/choosing`]?.[mySeat]?.slots || {} : {};
+  return { loaded: true, mine: records[mySeat] || null, role, previousSlots: previous,
+    progress: Object.fromEntries(game.seats.map(seat => [seat, !!records[seat]?.locked])),
+    allLocked: needed.every(seat => records[seat]?.locked),
+    recordsForResolution: needed.every(seat => records[seat]?.locked) ? Object.fromEntries(needed.map(seat => [seat, records[seat]])) : null,
+    secretsForResolution: deal || {} };
+}
+function retryParty(key, generation, source, restart = false) {
+  if (partyRetryTimer || partyRetryCount >= 4 || !source?.connected) return;
+  partyRetryTimer = setTimeout(() => {
+    partyRetryTimer = null;
+    if (generation !== lifecycle || source !== service || partyKey !== key) return;
+    if (restart) { partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null; }
+    partyAttempt = null; partyDealAttempt = null; render();
+  }, Math.min(8000, 750 * 2 ** partyRetryCount++));
+}
+function syncPartyWatch() {
+  const privateMode = room?.version === 2 && isPartyMode(room.mode) && partyGameSpec(room.mode).private;
+  if (!privateMode || room.status !== 'playing' || room.game.stage === 'reveal') {
+    clearTimeout(partyRetryTimer); partyRetryTimer = null; partyRetryUnit = null; partyRetryCount = 0;
+    partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null; partyState = { loaded: true, progress: {} }; return;
+  }
+  if (demo) { partyState = demoPartyState(); return; }
+  const key = `${lifecycle}:${room.code}:${room.createdAt}:${room.round}:${room.mode}:${room.game.roundIndex}:${room.game.stage}:${room.game.turnSeat || ''}`;
+  if (key === partyKey) return;
+  if (key !== partyRetryUnit) {
+    partyRetryUnit = key; partyRetryCount = 0;
+    clearTimeout(partyRetryTimer); partyRetryTimer = null;
+  }
+  partyUnsubscribe?.(); partyUnsubscribe = null;
+  partyKey = key; partyAttempt = null; partyDealAttempt = null;
+  partyState = { loaded: false, mine: null, progress: {} };
+  if (!service?.connected) { partyKey = null; return; }
+  const source = service, generation = lifecycle;
+  partyUnsubscribe = source.watchParty(structuredClone(room), state => {
+    if (generation !== lifecycle || key !== partyKey || source !== service) return;
+    partyState = state; render();
+  }, error => {
+    if (generation !== lifecycle || key !== partyKey) return;
+    // A role/turn change may revoke an old listener before the public room
+    // snapshot arrives. Retry that subscription quietly; report a lasting error.
+    if (partyRetryCount >= 4) toast(errorMessage(error));
+    retryParty(key, generation, source, true);
+  });
+}
+function reconcileParty() {
+  if (room?.version !== 2 || !isPartyMode(room.mode) || room.status !== 'playing' || room.game.stage === 'reveal' || !partyGameSpec(room.mode).private) return;
+  if (!demo && !service?.connected) return;
+  const key = demo ? `${lifecycle}:${room.round}:${room.game.roundIndex}:${room.game.stage}:${room.game.turnSeat || ''}:${room.revision}` : `${partyKey}:${room.revision}`;
+  if (!demo && ['detective', 'chameleon'].includes(room.mode) && room.ownerUid === service.uid && !partyState.role && partyDealAttempt !== key) {
+    partyDealAttempt = key;
+    const snapshot = structuredClone(room), source = service, generation = lifecycle, watchKey = partyKey;
+    const cards = partyCards(snapshot.game);
+    const secret = { targetId: cards[randomIndex(cards.length)], ...(snapshot.mode === 'chameleon' ? { moleSeat: snapshot.game.seats[randomIndex(snapshot.game.seats.length)] } : {}) };
+    void source.preparePartySecrets(snapshot, secret).catch(error => {
+      if (generation === lifecycle && source === service && partyKey === watchKey) { toast(errorMessage(error)); retryParty(watchKey, generation, source); }
+    });
+  }
+  if (!partyState.allLocked || !partyState.recordsForResolution || partyAttempt === key) return;
+  const secrets = partyState.secretsForResolution || {};
+  if (room.mode === 'detective' && room.game.stage === 'guess' && secrets.targetId == null) return;
+  if (room.mode === 'chameleon' && ['voting', 'last-guess'].includes(room.game.stage)) {
+    if (secrets.moleSeat == null) return;
+    if (room.game.stage === 'last-guess' && secrets.targetId == null) return;
+    if (room.game.stage === 'voting' && secrets.targetId == null) {
+      const counts = Object.fromEntries(room.game.seats.map(seat => [seat, Object.values(partyState.recordsForResolution).filter(record => record.seat === seat).length]));
+      const leaders = room.game.seats.filter(seat => counts[seat] === Math.max(...Object.values(counts)));
+      if (leaders.length !== 1 || leaders[0] !== secrets.moleSeat) return;
+    }
+  }
+  partyAttempt = key;
+  const snapshot = structuredClone(room), payload = { records: structuredClone(partyState.recordsForResolution), secrets: structuredClone(secrets) };
+  if (demo) {
+    room = changePartyRoom(room, 'demo-you', room.revision, 'party-resolve', payload); queueMicrotask(render); return;
+  }
+  const source = service, generation = lifecycle;
+  const cursor = capturePartyCursor(snapshot, source.uid, 'party-resolve');
+  void source.mutateRoom(snapshot.code, value => withPartyCursor(value, source.uid, cursor, payload)).catch(error => {
+    if (generation !== lifecycle || source !== service || room?.revision !== snapshot.revision) return;
+    toast(errorMessage(error)); retryParty(partyKey, generation, source);
+  });
+}
+async function submitParty(value) {
+  if (!room || room.version !== 2 || !isPartyMode(room.mode)) return;
+  if (demo) {
+    const key = partyUnit();
+    const previous = room.mode === 'simultaneous-ranking' && room.game.roundIndex > 0
+      ? partyDemoRecords[`r${room.round}/q${room.game.roundIndex - 1}/choosing`]?.[mySeat]?.slots || {} : {};
+    const record = partySubmission(room, 'demo-you', value, previous);
+    partyDemoRecords[key] ||= {};
+    if (partyDemoRecords[key][mySeat]) throw new RoomError('Bu seçim zaten kilitlendi.');
+    partyDemoRecords[key][mySeat] = record; render();
+  } else await service.submitParty(structuredClone(room), value);
+  beep('select');
+}
+function schedulePartyBot() {
+  if (!demo || room?.version !== 2 || !isPartyMode(room.mode) || botTimer || busy) return;
+  const snapshot = structuredClone(room), generation = lifecycle;
+  const candidates = snapshot.status === 'finished' && snapshot.nextGame
+    ? roomSeats(snapshot).filter(seat => seat !== mySeat && !snapshot.nextGame.ready[seat])
+    : snapshot.status === 'playing' && snapshot.game.stage !== 'reveal'
+      ? snapshot.mode === 'auction' ? snapshot.game.turnSeat !== mySeat ? [snapshot.game.turnSeat] : []
+        : snapshot.mode === 'detective' ? [(snapshot.game.stage === 'clue' ? snapshot.game.clueGiverSeat : snapshot.game.guesserSeat)]
+          .filter(seat => seat !== mySeat && !partyDemoRecords[partyUnit(snapshot)]?.[seat])
+        : snapshot.mode === 'chameleon' && ['clues', 'last-guess'].includes(snapshot.game.stage)
+          ? [snapshot.game.stage === 'clues' ? snapshot.game.turnSeat : snapshot.game.caughtSeat].filter(seat => seat !== mySeat && !partyDemoRecords[partyUnit(snapshot)]?.[seat])
+          : snapshot.game.seats.filter(seat => seat !== mySeat && !partyDemoRecords[partyUnit(snapshot)]?.[seat]) : [];
+  if (!candidates.length) return;
+  botTimer = setTimeout(() => {
+    botTimer = null;
+    if (generation !== lifecycle || !demo || busy || room?.revision !== snapshot.revision) { render(); return; }
+    const seat = candidates[0], uid = room.players[seat].uid;
+    if (room.status === 'finished') room = changePartyRoom(room, uid, room.revision, 'ready-next', { id: room.nextGame.id, ready: true, ...gamePayload(room.nextGame) });
+    else if (room.mode === 'auction') {
+      const amount = room.game.highestBid + 1;
+      const canBid = amount <= room.game.budgets[seat] && (room.game.rosters[seat] || []).length < 5;
+      const kind = canBid && randomIndex(3) === 0 ? 'bid' : 'pass';
+      room = changePartyRoom(room, uid, room.revision, kind, { amount });
+    } else {
+      const game = room.game, cards = partyCards(game), key = partyUnit();
+      const deal = partyDemoDeals[`r${room.round}/q${game.roundIndex}`];
+      let value, previous = {};
+      if (room.mode === 'sealed-auction') value = { amount: game.rosters[seat]?.length >= 5 ? 0 : randomIndex(Math.min(game.budgets[seat], 4) + 1) };
+      else if (room.mode === 'simultaneous-ranking') {
+        previous = game.roundIndex > 0 ? partyDemoRecords[`r${room.round}/q${game.roundIndex - 1}/choosing`]?.[seat]?.slots || {} : {};
+        const slots = Array.from({ length: 10 }, (_, i) => i + 1).filter(slot => previous[`s${slot}`] == null);
+        value = { slot: slots[randomIndex(slots.length)] };
+      } else if (game.stage === 'clue' || game.stage === 'clues') value = { word: room.mode === 'chameleon' && seat === deal?.moleSeat ? 'Efsane' : (getCard(deal?.targetId)?.etiket || 'Efsane').split(/\s+/)[0].slice(0, 24) };
+      else if (game.stage === 'voting') {
+        const others = game.seats.filter(key => key !== seat); value = { seat: seat !== deal?.moleSeat && randomIndex(2) === 0 ? deal.moleSeat : others[randomIndex(others.length)] };
+      } else value = { cardId: ['guess', 'last-guess'].includes(game.stage) && randomIndex(2) === 0 ? deal.targetId : cards[randomIndex(cards.length)] };
+      partyDemoRecords[key] ||= {}; partyDemoRecords[key][seat] = partySubmission(room, uid, value, previous);
+    }
+    render();
+  }, 550 + randomIndex(450));
 }
 
 function render() {
   renderApp();
-  nextGameView?.render();
+  if (room?.version === 2) {
+    $('next-game-panel').hidden = true;
+    if (!isPartyMode(room.mode) && room.status === 'finished' && partyView) {
+      $('results-screen').append(partyView.nextGameMount); partyView.renderNext();
+    }
+  } else { if (partyView) partyView.nextGameMount.hidden = true; nextGameView?.render(); }
   for (const id of ['invite-button', 'result-invite']) $(id).disabled = !room || demo || busy;
+  document.querySelectorAll('[data-party-invite]').forEach(button => { button.disabled = !room || demo || busy; });
   $('invite-arrival').hidden = !pendingInvite || !!room;
   if (pendingInvite && !room) $('invite-arrival-title').textContent = t('room.extra.invite_arrived', { code: pendingInvite });
   if (demo && room?.status === 'finished' && room.nextGame) scheduleBot();
@@ -447,6 +634,21 @@ function renderApp() {
     $('create-caption').textContent = !isFirebaseConfigured() ? t('runtime.copy.oda_baglantisi_henuz_hazir_degil_demoyla_hemen_oynay') : signedOut ? t('runtime.copy.oyuncu_oturumu_kapali_asagidaki_oturum_dugmesiyle_ye') : !service?.connected ? t('runtime.copy.baglanti_bekleniyor_demoyla_bir_isinma_turu_yapabili') : t('runtime.copy.bir_kod_olustur_arkadasini_oyuna_davet_et');
     setScreen('lobby-screen'); return;
   }
+  if (room.version === 2 && isPartyMode(room.mode)) {
+    syncPartyWatch();
+    setScreen('party-room');
+    if (partyView?.nextGameMount.parentElement !== $('party-room').querySelector('.party-footer')) $('party-room').querySelector('.party-footer')?.append(partyView.nextGameMount);
+    partyView?.render();
+    const reactions = document.querySelector('.reaction-bar'); if (reactions?.parentElement !== $('party-room')) $('party-room').append(reactions);
+    document.querySelectorAll('[data-reaction]').forEach(button => { button.disabled = busy || !(demo || service?.connected) || roomSeats(room).length < 2; });
+    if (lastVisualState?.code === room.code && lastVisualState.round === room.round && lastVisualState.status === 'playing' && room.status === 'finished') { celebrate(); beep('win'); }
+    lastVisualState = { code: room.code, round: room.round, status: room.status };
+    reconcileParty();
+    schedulePartyBot();
+    return;
+  }
+  syncPartyWatch();
+  const reactions = document.querySelector('.reaction-bar'); if (reactions?.parentElement !== $('room-screen')) $('room-screen').append(reactions);
   const connected = demo || !!service?.connected;
   $('copy-code').disabled = demo;
   $('copy-code').title = demo ? t('runtime.copy.demo_yalniz_bu_cihazda_oynanir') : t('runtime.copy.kodu_kopyala');
@@ -801,22 +1003,28 @@ function showReaction(type, sender) {
 
 function watchOpponentReaction() {
   if (demo || !room) return;
-  const opponentUid = room.players[otherSeat(mySeat)]?.uid;
-  if (!opponentUid || watchedOpponent === opponentUid) return;
-  reactionUnsubscribe?.(); watchedOpponent = opponentUid; lastReactionSeq = null;
+  const opponents = roomSeats(room).filter(seat => seat !== mySeat);
+  const key = opponents.map(seat => room.players[seat].uid).join(':');
+  if (watchedOpponent === key) return;
+  reactionUnsubscribe?.(); watchedOpponent = key; lastReactionSeq = {};
   const generation = lifecycle;
-  reactionUnsubscribe = service.watchReaction(room.code, opponentUid, event => {
+  const stops = opponents.map(seat => service.watchReaction(room.code, room.players[seat].uid, event => {
     if (generation !== lifecycle || !room) return;
-    if (!event) { lastReactionSeq = 0; return; }
-    // First snapshot is historical; never replay an old reaction on refresh.
-    if (lastReactionSeq !== null && event.seq > lastReactionSeq) showReaction(event.type, nameFor(otherSeat(mySeat)));
-    lastReactionSeq = event.seq;
-  }, error => { if (generation === lifecycle) toast(errorMessage(error)); });
+    if (!event) { lastReactionSeq[seat] = 0; return; }
+    // The first snapshot is historical; refresh never replays old reactions.
+    if (lastReactionSeq[seat] != null && event.seq > lastReactionSeq[seat]) showReaction(event.type, nameFor(seat));
+    lastReactionSeq[seat] = event.seq;
+  }, error => { if (generation === lifecycle) toast(errorMessage(error)); }));
+  reactionUnsubscribe = () => stops.forEach(stop => stop());
 }
 
 async function detach() {
   $('invite-dialog').close();
   nextGameView?.reset();
+  partyView?.reset(); partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null;
+  clearTimeout(partyRetryTimer); partyRetryTimer = null; partyRetryCount = 0; partyRetryUnit = null;
+  partyState = { loaded: false, mine: null, progress: {} }; partyAttempt = null; partyDealAttempt = null;
+  partyDemoRecords = {}; partyDemoDeals = {};
   lifecycle++;
   clearTimeout(cooperativeRetryTimer); cooperativeRetryTimer = null;
   cooperativeRetryUnit = null; cooperativeRetryCount = 0;
@@ -839,6 +1047,7 @@ async function detach() {
 
 function assertRoomContent(value) {
   if (!value || !MODE_NAMES[value.mode] || !datasets[value.datasetId]) throw new RoomError(t('runtime.copy.oda_ayarlari_bu_surumle_uyumlu_degil'));
+  if (value.version === 2) validatePartyRoom(value);
   if (value.mode === 'bracket' && ![16, 32].includes(value.bracketSize ?? 16)) throw new RoomError('Turnuva 16 veya 32 kartla başlamalı.');
   if (!value.game) return;
   const byId = new Map(datasets[value.datasetId].map(card => [card.id, card]));
@@ -905,28 +1114,31 @@ async function command(kind, payload = {}) {
   const expectedRevision = room.revision;
   const uid = demo ? 'demo-you' : service?.uid;
   const cursor = kind === 'assign' && room.mode === 'team-draft' ? captureTeamCursor(room, uid) : null;
-  const readyCursor = kind === 'ready-next' ? captureNextGameCursor(room, uid) : null;
-  const apply = current => readyCursor ? readyWithNextCursor(current, uid, readyCursor, payload)
+  const partyCursor = room.version === 2 && !cursor ? capturePartyCursor(room, uid, kind) : null;
+  const readyCursor = !partyCursor && kind === 'ready-next' ? captureNextGameCursor(room, uid) : null;
+  const apply = current => partyCursor ? withPartyCursor(current, uid, partyCursor, payload) : readyCursor ? readyWithNextCursor(current, uid, readyCursor, payload)
     : cursor ? assignWithTeamCursor(current, uid, cursor, payload) : changeRoom(current, uid, expectedRevision, kind, payload);
   if (demo) {
     room = apply(room);
     if (isCooperativeMode(room.mode) && (kind === 'frequency-next' || kind === 'rematch' || room.lastAction?.kind === 'next-game')) demoSecrets = { p1: null, p2: null };
     render();
   } else {
-    if (!['propose-next', 'ready-next'].includes(kind) && !hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
+    if (room.version === 2 ? kind === 'start' && roomSeats(room).some(seat => !onlineSeat(seat))
+      : !['propose-next', 'ready-next'].includes(kind) && !hasOptionalSpectator(room) && (!onlineSeat('p1') || !onlineSeat('p2'))) throw new RoomError(t('runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz'));
     const originService = service;
     await originService.mutateRoom(room.code, apply);
   }
 }
 
 function scheduleBot() {
+  if (room?.version === 2 && isPartyMode(room.mode)) { schedulePartyBot(); return; }
   if (!demo || busy || botTimer) return;
   if (room?.status === 'finished' && room.nextGame && !room.nextGame.ready.p2) {
     const id = room.nextGame.id, generation = lifecycle;
     botTimer = setTimeout(() => {
       botTimer = null;
       if (generation !== lifecycle || !demo || busy || room?.status !== 'finished' || room.nextGame?.id !== id || room.nextGame.ready.p2) { render(); return; }
-      room = changeRoom(room, 'demo-bot', room.revision, 'ready-next', { id, ready: true, ...gamePayload(room.nextGame) });
+      room = changeCurrentRoom(room, 'demo-bot', room.revision, 'ready-next', { id, ready: true, ...gamePayload(room.nextGame) });
       demoSecrets = { p1: null, p2: null }; render();
     }, 900);
     return;
@@ -974,7 +1186,7 @@ function scheduleBot() {
     if (!move) return;
     try {
       const payload = { amount: move.amount, slot: move.slot, cardId: move.cardId, role: move.role };
-      room = teamDraft ? assignWithTeamCursor(room, 'demo-bot', botCursor, payload) : changeRoom(room, 'demo-bot', expectedRevision, move.kind, payload);
+      room = teamDraft ? assignWithTeamCursor(room, 'demo-bot', botCursor, payload) : changeCurrentRoom(room, 'demo-bot', expectedRevision, move.kind, payload);
       render();
     }
     catch (error) { toast(errorMessage(error)); }
@@ -1049,7 +1261,7 @@ $('create-form').addEventListener('submit', event => {
     if (!service) throw new RoomError(t('runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin'));
     if (!MODE_NAMES[selectedMode()]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
     const originService = service, epoch = actionEpoch;
-    await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode(), { bracketSize: selectedBracketSize() }), originService, epoch);
+    await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode(), { version: 2, bracketSize: selectedBracketSize() }), originService, epoch);
   }, 'create-room');
 });
 $('join-form').addEventListener('submit', event => {
@@ -1067,11 +1279,16 @@ $('demo-button').addEventListener('click', () => void runAction(async () => {
   const datasetId = selectedDatasetId();
   const mode = selectedMode();
   if (!MODE_NAMES[mode]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
-  room = { version: 1, code: 'DEMO', ownerUid: 'demo-you', datasetId, mode,
-    ...(mode === 'bracket' ? { bracketSize: selectedBracketSize() } : {}),
-    status: 'playing', round: 1, starterSeat: 'p1', revision: 1,
-    players: { p1: { uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || 'Oyuncu 1' }, p2: { uid: 'demo-bot', name: 'Atari Bot' } },
-    game: isCooperativeMode(mode) ? createCooperative(mode, shuffleDeck(datasetId)) : mode === 'team-draft' ? createTeamDraft(draftTriplets(datasets[datasetId])) : mode === 'bracket' ? createBracket(shuffleDeck(datasetId), 'p1', selectedBracketSize()) : mode === 'blind-ranking' ? createBlindRanking(shuffleDeck(datasetId), 'p1') : createAuction(shuffleDeck(datasetId), 'p1') };
+  if (isPartyMode(mode)) {
+    room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0, 20) || 'Oyuncu 1', createdAt: Date.now(), datasetId, mode });
+    const count = mode === 'detective' ? 2 : 4;
+    for (let index = 2; index <= count; index++) room = joinPartyRoom(room, index === 2 ? 'demo-bot' : `demo-bot-${index}`, `Atari Bot ${index - 1}`);
+    room = changePartyRoom(room, 'demo-you', room.revision, 'start', gamePayload(room));
+    mySeat = 'p1'; connectionChanged(false); return;
+  }
+  room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || 'Oyuncu 1', createdAt: Date.now(), datasetId, mode, bracketSize: selectedBracketSize() });
+  room = joinPartyRoom(room, 'demo-bot', 'Atari Bot');
+  room = changePartyRoom(room, 'demo-you', room.revision, 'start', gamePayload(room));
   mySeat = 'p1'; connectionChanged(false);
 }, 'demo-button'));
 $('start-game').addEventListener('click', () => void runAction(() => command('start', gamePayload()), 'start-game'));
@@ -1150,6 +1367,15 @@ nextGameView = createNextGameView({
   onPropose: config => void runAction(() => command('propose-next', config), 'propose-next'),
   onReady: (approval, config) => void runAction(() => command('ready-next', { ...approval, ...gamePayload(config) }), 'next-ready'),
 });
+partyView = createPartyView({ root: $('party-room'), context: partyContext,
+  onAction: (kind, payload) => void runAction(async () => { await command(kind, payload); beep(kind === 'bid' ? 'bid' : 'select'); }, `party-${kind}`),
+  onSecret: (_kind, payload) => void runAction(() => submitParty(payload), 'party-lock'),
+  onStart: () => void runAction(() => command('start', gamePayload()), 'party-start'),
+  onPropose: config => void runAction(() => command('propose-next', config), 'party-propose'),
+  onReady: (approval, config) => void runAction(() => command('ready-next', { ...approval, ...gamePayload(config) }), 'party-ready'),
+  onInvite: openInvite, onLeave: () => void leaveRoom(),
+  onRematch: () => void runAction(() => command('rematch', gamePayload()), 'party-rematch')
+});
 
 function clearInviteAddress() {
   pendingInvite = null; inviteRequested = false;
@@ -1212,6 +1438,18 @@ $('nickname').addEventListener('keydown', event => {
 $('dataset-select').addEventListener('change', event => { selectedCategory = event.target.value; renderDatasetPreview(); });
 $('collection-search').addEventListener('input', renderCollection);
 document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventListener('change', renderModePreview));
+function filterModes(filter, choose = true) {
+  const groups = { table: ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'chameleon'],
+    duo: ['team-draft', 'frequency', 'double-ranking', 'detective'], solo: ['blind-ranking', 'bracket'] };
+  const visible = filter === 'all' ? Object.keys(MODE_NAMES) : groups[filter];
+  for (const input of document.querySelectorAll('input[name="mode"]')) input.closest('.mode-card').hidden = !visible.includes(input.value);
+  document.querySelectorAll('[data-mode-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.modeFilter === filter)));
+  if (choose && !visible.includes(selectedMode())) {
+    document.querySelector(`input[name="mode"][value="${visible[0]}"]`).checked = true; renderModePreview();
+  }
+}
+document.querySelectorAll('[data-mode-filter]').forEach(button => button.addEventListener('click', () => filterModes(button.dataset.modeFilter)));
+filterModes('table', false);
 $('bracket-size-select').addEventListener('change', renderModePreview);
 $('sound-toggle').addEventListener('click', () => {
   soundEnabled = !soundEnabled; $('sound-toggle').setAttribute('aria-pressed', String(soundEnabled));
@@ -1230,6 +1468,7 @@ document.querySelectorAll('[data-reaction]').forEach(button => button.addEventLi
 async function boot() {
   render();
   await loadTexts();
+  document.querySelector('input[name="mode"][value="auction"]').closest('.mode-card').querySelector('.mode-meta').setAttribute('data-text-slots', '1:party.meta.table');
   applyTexts();
   try { $('nickname').value = (localStorage.getItem(NAME_KEY) || '').slice(0, 20); } catch {}
   if (pendingInvite) {

@@ -67,8 +67,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.014": {
     "group": "Lobi",
-    "label": "TWO PLAYER CLUB",
-    "value": "TWO PLAYER CLUB"
+    "label": "PLAYER CLUB",
+    "value": "PLAYER CLUB"
   },
   "static.015": {
     "group": "Lobi",
@@ -82,8 +82,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.017": {
     "group": "Lobi",
-    "label": "PLAYER 1 + PLAYER 2",
-    "value": "PLAYER 1 + PLAYER 2"
+    "label": "2–4 PLAYER PARTY",
+    "value": "2–4 PLAYER PARTY"
   },
   "static.018": {
     "group": "Lobi",
@@ -617,8 +617,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.128": {
     "group": "Marka ve sayfa",
-    "label": "MADE FOR TWO",
-    "value": "MADE FOR TWO"
+    "label": "MADE FOR FRIENDS",
+    "value": "MADE FOR FRIENDS"
   },
   "static.129": {
     "group": "Marka ve sayfa",
