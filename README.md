@@ -493,7 +493,7 @@ Kaynaklar: [Firebase transaction ve okuma/yazma](https://firebase.google.com/doc
 
 ## 15 Ekim 2026 kullanım ve metin revizyonu
 
-Son sürümde **311/311 birim kontrolü** ve çevrimiçi hazırlık kontrolü geçti; statik yayın paketi üretildi. 414×896 ve 360×740 ekranlarda Pas/kart listesi çakışması, tek tıklamayla Pas, hızlı teklif, yeni hamlede tutar sıfırlama, açık listenin korunması ve dört botlu eşzamanlı seçim akışı tarayıcıdan doğrulandı. Bu kontroller gerçek eski Safari cihaz testi değildir.
+Son sürümde **311/311 birim kontrolü** ve çevrimiçi hazırlık kontrolü geçti; statik yayın paketi üretildi. 414×896 ve 360×740 ekranlarda Pas/kart listesi çakışması, tek tıklamayla Pas, hızlı teklif, yeni hamlede tutar sıfırlama, açık listenin korunması ve dört oyunculu eşzamanlı seçim akışı tarayıcıdan doğrulandı. Bu kontroller gerçek eski Safari cihaz testi değildir.
 
 Açık Artırma +1/+2/+3 hızlı teklifleri, teklifin gerçek toplamını ve güncel minimumunu gösterir. Teklif taslağı aynı hamledeki bildirimlerde korunur, gerçek ihale hamlesinde yenilenir. Pas ile kart listesi kontrolü ayrı en az 52 piksel dokunma alanlarına sahiptir; kritik boşluklar eski Safari sürümlerinde flex gap desteğine bağlı değildir. Eksik Object.hasOwn, Array.at ve structuredClone API'leri için yerel uyumluluk modülü bulunur; bu testler fiziksel iPhone veya eski Safari motor testi sayılmaz.
 
