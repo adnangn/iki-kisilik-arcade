@@ -2,8 +2,8 @@
 export const RUNTIME_TEXT_CATALOG = {
   "runtime.mode.auction": {
     "group": "Oyun adları",
-    "label": "Açık artırma oyun adı",
-    "value": "Açık artırma"
+    "label": "Açık Artırma",
+    "value": "Açık Artırma"
   },
   "runtime.mode.blind-ranking": {
     "group": "Oyun adları",
@@ -103,22 +103,22 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.room.blind_summary": {
     "group": "Oda",
     "label": "Kör sıralama özeti",
-    "value": "10 kart · Tek sıralayan · İzleyici isteğe bağlı"
+    "value": "10 kart · 1 oyuncu · İzleyici isteğe bağlı"
   },
   "runtime.room.bracket_summary": {
     "group": "Oda",
     "label": "Turnuva özeti",
-    "value": "16 kart · Tek seçen · İzleyici isteğe bağlı"
+    "value": "16 kart · 1 oyuncu · İzleyici isteğe bağlı"
   },
   "runtime.room.draft_summary": {
     "group": "Oda",
     "label": "Takım kurma özeti",
-    "value": "11 tur · 2 aktif oyuncu"
+    "value": "11 tur · 2 oyuncu"
   },
   "runtime.room.auction_summary": {
     "group": "Oda",
     "label": "Açık artırma özeti",
-    "value": "20 TL bütçe · 5 kartlık kadro"
+    "value": "20 TL bütçe · 5 kart"
   },
   "runtime.room.opponent_status": {
     "group": "Oda",
@@ -128,7 +128,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.room.opponent_online": {
     "group": "Oda",
     "label": "Rakip odada",
-    "value": "odada"
+    "value": "bağlı"
   },
   "runtime.room.opponent_reconnecting": {
     "group": "Oda",
@@ -143,7 +143,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.auction.opening_bid": {
     "group": "Açık artırma",
     "label": "Açılış teklifinin açıklaması",
-    "value": "{player} açtı · Kart henüz satılmadı"
+    "value": "{player} · 1 TL açılış teklifi"
   },
   "runtime.auction.bidder": {
     "group": "Açık artırma",
@@ -153,7 +153,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.auction.opponent_turn": {
     "group": "Açık artırma",
     "label": "Rakibin sırası",
-    "value": "{player} OYNUYOR…"
+    "value": "SIRA: {player}"
   },
   "runtime.auction.bid_increment": {
     "group": "Açık artırma",
@@ -183,7 +183,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.auction.sold_notice": {
     "group": "Açık artırma",
     "label": "Kart satıldığında çıkan bildirim",
-    "value": "{player} pas dedi · SATILDI: {card} → {winner} · {amount} TL"
+    "value": "{player} pas geçti · {card}: {winner} · {amount} TL"
   },
   "runtime.common.card": {
     "group": "Ortak",
@@ -198,7 +198,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.ranking.viewer_hint": {
     "group": "Kör sıralama",
     "label": "İzleyiciye açıklama",
-    "value": "{player} seçiyor. Sıralamayı izle, bir reaksiyon gönder!"
+    "value": "{player} sıralıyor. Seçimler bu ekranda güncellenir."
   },
   "runtime.ranking.results_subtitle": {
     "group": "Kör sıralama",
@@ -288,7 +288,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.error.invalid_dataset": {
     "group": "Hatalar",
     "label": "Geçersiz veri seti uyarısı",
-    "value": "Geçersiz veri seti: {dataset}. 10–200 benzersiz kart ve yerel görseller gerekir."
+    "value": "“{dataset}” koleksiyonu yüklenemedi. Sayfayı yenile veya başka bir koleksiyon seç."
   },
   "runtime.common.card_details": {
     "group": "Ortak",
@@ -298,7 +298,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.bracket.pending_match": {
     "group": "O mu, Bu mu?",
     "label": "Oynanmamış maç açıklaması",
-    "value": "Maç {match} · Bekleniyor"
+    "value": "Eşleşme {match} · Bekleniyor"
   },
   "runtime.draft.card_accessible": {
     "group": "Start, Bench, Cut",
@@ -357,28 +357,28 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.20_tl_ile_5_kartlik_kadronu_kur_her_kart_sirayla_bir": {
     "group": "Lobi",
-    "label": "20 TL ile 5 kartlık kadronu kur. Her kart sırayla bir oyuncunun 1 TL açılış teklifiyle …",
-    "value": "20 TL ile 5 kartlık kadronu kur. Her kart sırayla bir oyuncunun 1 TL açılış teklifiyle başlar; bu bir satın alma değildir. Sonra hamle rakibe geçer. Fiyatı artırdıkça sıra iki oyuncu arasında döner. Kart yalnızca biri Pas dediğinde son teklif sahibine gider. Yeni kartı diğer oyuncu açar."
+    "label": "20 TL bütçeyle 5 kart topla. Her kart bir oyuncunun otomatik 1 TL açılış teklifiyle b…",
+    "value": "Her oyuncu 20 TL bütçeyle 5 kart toplar. Kartlar dönüşümlü 1 TL açılış teklifiyle başlar; açılış teklifi kartı kazandırmaz. Teklif sırası saat yönünde ilerler. Pas dediğinde o kartın ihalesinden çekilirsin. Diğer herkes çekildiğinde kart son teklif sahibine gider. İki oyuncuda 20, üç veya dört oyuncuda 30 kartlık deste kullanılır. Oyun sonunda eksik kartlar sürpriz seçimlerle 5’e tamamlanır."
   },
   "runtime.copy.rastgele_10_karti_sonraki_karti_gormeden_1_10_arasin": {
     "group": "Lobi",
-    "label": "Rastgele 10 kartı, sonraki kartı görmeden 1–10 arasındaki boş sıralara yerleştir. 1 en …",
-    "value": "Rastgele 10 kartı, sonraki kartı görmeden 1–10 arasındaki boş sıralara yerleştir. 1 en iyi, 10 en alt. Her seçim kalıcıdır. Arkadaşın izler; rövanşta roller değişir."
+    "label": "10 sürpriz kartı, sıradaki kartı görmeden 1–10 arasındaki boş sıralara yerleştir. 1 e…",
+    "value": "10 sürpriz kartı, sıradaki kartı görmeden 1–10 arasındaki boş sıralara yerleştir. 1 en yüksek, 10 en düşük sıradır. Yerleştirdiğin kartın sırası değişmez. Tek başına başlayabilir veya bir arkadaşını izleyici olarak davet edebilirsin. Rövanşta roller değişir."
   },
   "runtime.copy.16_karttan_bir_sampiyon_sec_her_eslesmede_iki_kartta": {
     "group": "Lobi",
-    "label": "16 karttan bir şampiyon seç. Her eşleşmede iki karttan birine bas; seçtiğin kart üst tu…",
-    "value": "16 karttan bir şampiyon seç. Her eşleşmede iki karttan birine bas; seçtiğin kart üst tura çıkar. Son 16, çeyrek final, yarı final ve final sonunda şampiyon belli olur. Arkadaşın seçimleri anlık izler; rövanşta roller değişir."
+    "label": "16 karttan bir şampiyon seç. Her eşleşmede favori kartına dokun; seçtiğin kart üst tu…",
+    "value": "16 karttan bir şampiyon seç. Her eşleşmede favori kartına dokun; seçtiğin kart üst tura çıkar. Son 16, çeyrek final, yarı final ve final sonunda şampiyon belirlenir. Bir arkadaşın seçimlerini izleyebilir; rövanşta roller değişir."
   },
   "runtime.copy.ikiniz_de_bagimsiz_olarak_11_tur_oynarsiniz_her_tur_": {
     "group": "Lobi",
-    "label": "İkiniz de bağımsız olarak 11 tur oynarsınız. Her tur aynı etiketten üç kart gelir. Önce…",
-    "value": "İkiniz de bağımsız olarak 11 tur oynarsınız. Her tur aynı etiketten üç kart gelir. Önce kartı seç, sonra START, BENCH veya CUT rolüne yerleştir. Her rol bir kart alır ve kilitlenir. Üç rol bitince sonraki tur açılır. İkinizin de 11 turu bitince sadece START seçimleri karşılıklı sahada gösterilir. Aday havuzu bitince kartlar tekrar gelebilir."
+    "label": "İki oyuncu da birbirinden bağımsız 11 tur oynar. Her tur aynı etiketli üç kart gelir.…",
+    "value": "İki oyuncu da birbirinden bağımsız 11 tur oynar. Her tur aynı etiketli üç kart gelir. Bir kart seçip Start, Bench veya Cut alanına yerleştir. Her alana bir kart yerleşir ve seçim kilitlenir. Üç seçim tamamlandığında sonraki tur açılır. İkiniz de bitirince Start seçimleriniz karşılaştırılır. Havuz tükendiğinde kartlar tekrar çıkabilir."
   },
   "runtime.copy.cevrimici_oynamak_icin_firebase_ayarlarini_ve_guncel": {
     "group": "Lobi",
-    "label": "Çevrimiçi oynamak için Firebase ayarlarını ve güncel veritabanı kurallarını ekle. Dört …",
-    "value": "Çevrimiçi oynamak için Firebase ayarlarını ve güncel veritabanı kurallarını ekle. Dört oyunu da demoyla deneyebilirsin."
+    "label": "Çevrimiçi bağlantı şu anda kullanılamıyor. Bu sırada oyunları botlarla deneyebilirsin.",
+    "value": "Çevrimiçi bağlantı şu anda kullanılamıyor. Bu sırada oyunları botlarla deneyebilirsin."
   },
   "runtime.copy.kartlar_yukleniyor": {
     "group": "Koleksiyonlar",
@@ -422,8 +422,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.botla_takim_kur": {
     "group": "Lobi",
-    "label": "BOTLA TAKIM KUR ↗",
-    "value": "BOTLA TAKIM KUR"
+    "label": "BOTLA DENE",
+    "value": "BOTLA DENE"
   },
   "runtime.copy.oyunu_baslat": {
     "group": "Lobi",
@@ -432,48 +432,48 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.bekle": {
     "group": "Lobi",
-    "label": "BEKLE…",
-    "value": "BEKLE…"
+    "label": "BEKLENİYOR…",
+    "value": "BEKLENİYOR…"
   },
   "runtime.copy.tarayici_oturum_kaydina_izin_vermiyor": {
     "group": "Ortak",
-    "label": "Tarayıcı oturum kaydına izin vermiyor.",
-    "value": "Tarayıcı oturum kaydına izin vermiyor."
+    "label": "Bu tarayıcı oturumunu kaydedemiyor. Oyuna devam etmek için tarayıcının site verilerin…",
+    "value": "Bu tarayıcı oturumunu kaydedemiyor. Oyuna devam etmek için tarayıcının site verilerine izin ver."
   },
   "runtime.copy.odaya_erisilemiyor_kodu_ve_firebase_veritabani_kural": {
     "group": "Hatalar",
-    "label": "Odaya erişilemiyor. Kodu ve Firebase veritabanı kurallarını kontrol edin.",
-    "value": "Odaya erişilemiyor. Kodu ve Firebase veritabanı kurallarını kontrol edin."
+    "label": "Odaya erişilemiyor. Oda kodunu kontrol et ve yeniden dene.",
+    "value": "Odaya erişilemiyor. Oda kodunu kontrol et ve yeniden dene."
   },
   "runtime.copy.firebase_console_da_anonim_giris_yontemini_acin": {
     "group": "Hatalar",
-    "label": "Firebase Console’da anonim giriş yöntemini açın.",
-    "value": "Firebase Console’da anonim giriş yöntemini açın."
+    "label": "Oyuncu oturumu şu anda açılamıyor. Biraz sonra yeniden dene.",
+    "value": "Oyuncu oturumu şu anda açılamıyor. Biraz sonra yeniden dene."
   },
   "runtime.copy.bu_alan_adini_firebase_authentication_ayarlarina_ekl": {
     "group": "Hatalar",
-    "label": "Bu alan adını Firebase Authentication ayarlarına ekleyin.",
-    "value": "Bu alan adını Firebase Authentication ayarlarına ekleyin."
+    "label": "Bu adresten çevrimiçi giriş yapılamıyor. Oyunu resmi site adresinden aç.",
+    "value": "Bu adresten çevrimiçi giriş yapılamıyor. Oyunu resmi site adresinden aç."
   },
   "runtime.copy.baglanti_kurulamadi_internetinizi_kontrol_edin": {
     "group": "Hatalar",
-    "label": "Bağlantı kurulamadı. İnternetinizi kontrol edin.",
-    "value": "Bağlantı kurulamadı. İnternetinizi kontrol edin."
+    "label": "Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.",
+    "value": "Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene."
   },
   "runtime.copy.islem_tamamlanamadi_tekrar_deneyin": {
     "group": "Hatalar",
-    "label": "İşlem tamamlanamadı. Tekrar deneyin.",
-    "value": "İşlem tamamlanamadı. Tekrar deneyin."
+    "label": "İşlem tamamlanamadı. Yeniden dene.",
+    "value": "İşlem tamamlanamadı. Yeniden dene."
   },
   "runtime.copy.yerel_demo": {
     "group": "Ortak",
-    "label": "YEREL DEMO",
-    "value": "YEREL DEMO"
+    "label": "BOTLA OYUN",
+    "value": "BOTLA OYUN"
   },
   "runtime.copy.demoya_hazir": {
     "group": "Ortak",
-    "label": "DEMOYA HAZIR",
-    "value": "DEMOYA HAZIR"
+    "label": "BOTLA OYUNA HAZIR",
+    "value": "BOTLA OYUNA HAZIR"
   },
   "runtime.copy.oturum_kapali": {
     "group": "Ortak",
@@ -497,58 +497,58 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.ilk_kartini_kap_kadronu_kur": {
     "group": "Açık artırma",
-    "label": "İlk kartını kap, kadronu kur.",
-    "value": "İlk kartını kap, kadronu kur."
+    "label": "Kartlarını seç, oyuna katıl.",
+    "value": "Kartlarını seç, oyuna katıl."
   },
   "runtime.copy.kaydi_temizle": {
     "group": "Açık artırma",
-    "label": "KAYDI TEMİZLE",
-    "value": "KAYDI TEMİZLE"
+    "label": "BU CİHAZDAKİ KAYDI SİL",
+    "value": "BU CİHAZDAKİ KAYDI SİL"
   },
   "runtime.copy.oyuncu_oturumu_ac": {
     "group": "Açık artırma",
-    "label": "OYUNCU OTURUMU AÇ",
-    "value": "OYUNCU OTURUMU AÇ"
+    "label": "OTURUM AÇ",
+    "value": "OTURUM AÇ"
   },
   "runtime.copy.bu_cihazdaki_adini_ve_demo_turunu_temizleyebilirsin": {
     "group": "Açık artırma",
-    "label": "Bu cihazdaki adını ve demo turunu temizleyebilirsin.",
-    "value": "Bu cihazdaki adını ve demo turunu temizleyebilirsin."
+    "label": "Bu cihazdaki oyuncu adını ve bot oyununu sıfırlayabilirsin.",
+    "value": "Bu cihazdaki oyuncu adını ve bot oyununu sıfırlayabilirsin."
   },
   "runtime.copy.oturum_kapali_demo_oynayabilir_veya_yeni_bir_oyuncu_": {
     "group": "Açık artırma",
-    "label": "Oturum kapalı. Demo oynayabilir veya yeni bir oyuncu oturumu açabilirsin.",
-    "value": "Oturum kapalı. Demo oynayabilir veya yeni bir oyuncu oturumu açabilirsin."
+    "label": "Oturumun kapalı. Botla oyna veya çevrimiçi oyun için oturum aç.",
+    "value": "Oturumun kapalı. Botla oyna veya çevrimiçi oyun için oturum aç."
   },
   "runtime.copy.odadan_cikmak_kimligini_korur_oturum_kapatmak_eski_o": {
     "group": "Açık artırma",
-    "label": "Odadan çıkmak kimliğini korur. Oturum kapatmak eski odalara dönüşü sonlandırır.",
-    "value": "Odadan çıkmak kimliğini korur. Oturum kapatmak eski odalara dönüşü sonlandırır."
+    "label": "Odadan çıktığında aynı oyuncu olarak geri dönebilirsin. Oturumu kapatırsan önceki oda…",
+    "value": "Odadan çıktığında aynı oyuncu olarak geri dönebilirsin. Oturumu kapatırsan önceki odalara bu oyuncu olarak dönemezsin."
   },
   "runtime.copy.oda_baglantisi_henuz_hazir_degil_demoyla_hemen_oynay": {
     "group": "Açık artırma",
-    "label": "Oda bağlantısı henüz hazır değil. Demoyla hemen oynayabilirsin.",
-    "value": "Oda bağlantısı henüz hazır değil. Demoyla hemen oynayabilirsin."
+    "label": "Çevrimiçi bağlantı henüz hazır değil. Botla hemen oynayabilirsin.",
+    "value": "Çevrimiçi bağlantı henüz hazır değil. Botla hemen oynayabilirsin."
   },
   "runtime.copy.oyuncu_oturumu_kapali_asagidaki_oturum_dugmesiyle_ye": {
     "group": "Açık artırma",
-    "label": "Oyuncu oturumu kapalı. Aşağıdaki oturum düğmesiyle yeni bir oyuncu oturumu açabilirsin.",
-    "value": "Oyuncu oturumu kapalı. Aşağıdaki oturum düğmesiyle yeni bir oyuncu oturumu açabilirsin."
+    "label": "Çevrimiçi oyunlara katılmak için Oturum aç düğmesini kullan.",
+    "value": "Çevrimiçi oyunlara katılmak için Oturum aç düğmesini kullan."
   },
   "runtime.copy.baglanti_bekleniyor_demoyla_bir_isinma_turu_yapabili": {
     "group": "Açık artırma",
-    "label": "Bağlantı bekleniyor. Demoyla bir ısınma turu yapabilirsin.",
-    "value": "Bağlantı bekleniyor. Demoyla bir ısınma turu yapabilirsin."
+    "label": "Çevrimiçi bağlantı bekleniyor. Bu sırada botla oynayabilirsin.",
+    "value": "Çevrimiçi bağlantı bekleniyor. Bu sırada botla oynayabilirsin."
   },
   "runtime.copy.bir_kod_olustur_arkadasini_oyuna_davet_et": {
     "group": "Açık artırma",
-    "label": "Bir kod oluştur, arkadaşını oyuna davet et.",
-    "value": "Bir kod oluştur, arkadaşını oyuna davet et."
+    "label": "Odanı kur ve arkadaşını davet et.",
+    "value": "Odanı kur ve arkadaşını davet et."
   },
   "runtime.copy.demo_yalniz_bu_cihazda_oynanir": {
     "group": "Açık artırma",
-    "label": "Demo yalnız bu cihazda oynanır.",
-    "value": "Demo yalnız bu cihazda oynanır."
+    "label": "Bot oyunları yalnız bu cihazda oynanır.",
+    "value": "Bot oyunları yalnız bu cihazda oynanır."
   },
   "runtime.copy.kodu_kopyala": {
     "group": "Açık artırma",
@@ -557,8 +557,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide": {
     "group": "Açık artırma",
-    "label": "Aynı oda, aynı kod. Yeni üçlülerle iki takım da yeniden kurulacak.",
-    "value": "Aynı oda, aynı kod. Yeni üçlülerle iki takım da yeniden kurulacak."
+    "label": "Oda kodun değişmez. Yeni kartlarla seçimlerinizi yeniden yapın.",
+    "value": "Oda kodun değişmez. Yeni kartlarla seçimlerinizi yeniden yapın."
   },
   "runtime.copy.ayni_oda_ayni_kod_ilk_hamle_bu_kez_diger_oyuncuda": {
     "group": "Açık artırma",
@@ -567,38 +567,38 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.kadrolar_tamam": {
     "group": "Açık artırma",
-    "label": "KADROLAR TAMAM!",
-    "value": "KADROLAR TAMAM!"
+    "label": "KARTLAR TAMAMLANDI",
+    "value": "KARTLAR TAMAMLANDI"
   },
   "runtime.copy.yerel_demo_rovansta_bot_secer_sen_izlersin": {
     "group": "Açık artırma",
-    "label": "Yerel demo · Rövanşta bot seçer, sen izlersin",
-    "value": "Yerel demo · Rövanşta bot seçer, sen izlersin"
+    "label": "Botla oyun · Rövanşta bot seçer, sen izlersin",
+    "value": "Botla oyun · Rövanşta bot seçer, sen izlersin"
   },
   "runtime.copy.yerel_demo_rakibin_atari_bot": {
     "group": "Açık artırma",
-    "label": "Yerel demo · Rakibin Atari Bot",
-    "value": "Yerel demo · Rakibin Atari Bot"
+    "label": "Botla oyun · Rakibin Bot 1",
+    "value": "Botla oyun · Rakibin Bot 1"
   },
   "runtime.copy.arkadasin_icin_bir_koltuk_ayirdik": {
     "group": "Açık artırma",
-    "label": "Arkadaşın için bir koltuk ayırdık.",
-    "value": "Arkadaşın için bir koltuk ayırdık."
+    "label": "Birlikte oynamak için arkadaşını davet et.",
+    "value": "Birlikte oynamak için arkadaşını davet et."
   },
   "runtime.copy.kodu_kopyala_ve_arkadasina_gonder_katilinca_oyun_haz": {
     "group": "Açık artırma",
-    "label": "Kodu kopyala ve arkadaşına gönder. Katılınca oyun hazır!",
-    "value": "Kodu kopyala ve arkadaşına gönder. Katılınca oyun hazır!"
+    "label": "Davet bağlantını veya oda kodunu paylaş. Arkadaşın katılınca oyunu başlatabilirsin.",
+    "value": "Davet bağlantını veya oda kodunu paylaş. Arkadaşın katılınca oyunu başlatabilirsin."
   },
   "runtime.copy.baglanti_bekleniyor_odaniz_guvende": {
     "group": "Açık artırma",
-    "label": "Bağlantı bekleniyor. Odanız güvende.",
-    "value": "Bağlantı bekleniyor. Odanız güvende."
+    "label": "Bağlantı bekleniyor. Odan ve seçimlerin korunuyor.",
+    "value": "Bağlantı bekleniyor. Odan ve seçimlerin korunuyor."
   },
   "runtime.copy.ikiniz_de_hazirsiniz_oyunu_baslatabilirsin": {
     "group": "Açık artırma",
-    "label": "İkiniz de hazırsınız. Oyunu başlatabilirsin!",
-    "value": "İkiniz de hazırsınız. Oyunu başlatabilirsin!"
+    "label": "İki oyuncu da odada. Hazırsan oyunu başlat.",
+    "value": "İki oyuncu da odada. Hazırsan oyunu başlat."
   },
   "runtime.copy.oda_sahibi_oyunu_baslattiginda_ilk_kart_acilacak": {
     "group": "Açık artırma",
@@ -632,33 +632,33 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.sira_sende": {
     "group": "Açık artırma",
-    "label": "SIRA SENDE!",
-    "value": "SIRA SENDE!"
+    "label": "SIRA SENDE",
+    "value": "SIRA SENDE"
   },
   "runtime.copy.oda_ve_kadrolar_korunuyor_iki_oyuncu_baglandiginda_d": {
     "group": "Açık artırma",
-    "label": "Oda ve kadrolar korunuyor. İki oyuncu bağlandığında devam edebilirsiniz.",
-    "value": "Oda ve kadrolar korunuyor. İki oyuncu bağlandığında devam edebilirsiniz."
+    "label": "Oda ve seçilen kartlar korunuyor. İki oyuncu da bağlandığında devam edebilirsiniz.",
+    "value": "Oda ve seçilen kartlar korunuyor. İki oyuncu da bağlandığında devam edebilirsiniz."
   },
   "runtime.copy.teklifi_artir_veya_pas_gec_pas_verirsen_kart_rakibin": {
     "group": "Açık artırma",
-    "label": "Teklifi artır veya pas geç. Pas verirsen kart rakibine gider.",
-    "value": "Teklifi artır veya pas geç. Pas verirsen kart rakibine gider."
+    "label": "Teklifi yükselt veya pas geç. Pas geçtiğinde kart son teklif sahibine gider.",
+    "value": "Teklifi yükselt veya pas geç. Pas geçtiğinde kart son teklif sahibine gider."
   },
   "runtime.copy.rakibinin_hamlesini_bekle_istersen_bir_reaksiyon_gon": {
     "group": "Açık artırma",
-    "label": "Rakibinin hamlesini bekle. İstersen bir reaksiyon gönder!",
-    "value": "Rakibinin hamlesini bekle. İstersen bir reaksiyon gönder!"
+    "label": "Diğer oyuncunun hamlesi bekleniyor.",
+    "value": "Diğer oyuncunun hamlesi bekleniyor."
   },
   "runtime.copy.butcen_daha_yuksek_teklife_yetmiyor_pas_gecerek_deva": {
     "group": "Açık artırma",
-    "label": "Bütçen daha yüksek teklife yetmiyor. Pas geçerek devam et.",
-    "value": "Bütçen daha yüksek teklife yetmiyor. Pas geçerek devam et."
+    "label": "Daha yüksek teklif için bütçen yeterli değil. Pas ile devam et.",
+    "value": "Daha yüksek teklif için bütçen yeterli değil. Pas ile devam et."
   },
   "runtime.copy.kadron_dolu_bu_kartin_rakibine_gitmesi_icin_pas_gec_": {
     "group": "Açık artırma",
-    "label": "Kadron dolu. Bu kartın rakibine gitmesi için Pas geç düğmesine bas.",
-    "value": "Kadron dolu. Bu kartın rakibine gitmesi için Pas geç düğmesine bas."
+    "label": "5 kartın tamamlandı. Bu ihaleyi Pas ile geç.",
+    "value": "5 kartın tamamlandı. Bu ihaleyi Pas ile geç."
   },
   "runtime.copy.izleyici_modu": {
     "group": "Kör sıralama",
@@ -687,8 +687,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.1_en_iyi_10_en_alt_secimin_kalici": {
     "group": "Kör sıralama",
-    "label": "1 en iyi, 10 en alt. Seçimin kalıcı.",
-    "value": "1 en iyi, 10 en alt. Seçimin kalıcı."
+    "label": "1 en yüksek, 10 en düşük sıra. Seçimin değişmez.",
+    "value": "1 en yüksek, 10 en düşük sıra. Seçimin değişmez."
   },
   "runtime.copy.sen_seciyorsun": {
     "group": "O mu, Bu mu?",
@@ -722,13 +722,13 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.ilk_11": {
     "group": "Start, Bench, Cut",
-    "label": "İLK 11",
-    "value": "İLK 11"
+    "label": "START",
+    "value": "START"
   },
   "runtime.copy.disarida": {
     "group": "Start, Bench, Cut",
-    "label": "DIŞARIDA",
-    "value": "DIŞARIDA"
+    "label": "ELENEN",
+    "value": "ELENEN"
   },
   "runtime.copy.baglanti_bekleniyor_secimlerin_korunuyor": {
     "group": "Start, Bench, Cut",
@@ -752,33 +752,33 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.ilk_11_ler_sahada": {
     "group": "Ortak",
-    "label": "İLK 11’LER SAHADA!",
-    "value": "İLK 11’LER SAHADA!"
+    "label": "START SEÇİMLERİ HAZIR",
+    "value": "START SEÇİMLERİ HAZIR"
   },
   "runtime.copy.oda_ayarlari_bu_surumle_uyumlu_degil": {
     "group": "Hatalar",
-    "label": "Oda ayarları bu sürümle uyumlu değil.",
-    "value": "Oda ayarları bu sürümle uyumlu değil."
+    "label": "Bu oda güncel oyun sürümüyle uyumlu değil. Sayfayı yenile veya yeni bir oda kur.",
+    "value": "Bu oda güncel oyun sürümüyle uyumlu değil. Sayfayı yenile veya yeni bir oda kur."
   },
   "runtime.copy.odanin_ucluleri_bu_koleksiyonla_uyusmuyor_veri_dosya": {
     "group": "Hatalar",
-    "label": "Odanın üçlüleri bu koleksiyonla uyuşmuyor. Veri dosyası değişmiş olabilir.",
-    "value": "Odanın üçlüleri bu koleksiyonla uyuşmuyor. Veri dosyası değişmiş olabilir."
+    "label": "Odanın kartları yüklenemedi. Sayfayı yenileyip aynı oda koduyla yeniden katıl.",
+    "value": "Odanın kartları yüklenemedi. Sayfayı yenileyip aynı oda koduyla yeniden katıl."
   },
   "runtime.copy.odanin_kartlari_bu_koleksiyonla_uyusmuyor_veri_dosya": {
     "group": "Hatalar",
-    "label": "Odanın kartları bu koleksiyonla uyuşmuyor. Veri dosyası değişmiş olabilir.",
-    "value": "Odanın kartları bu koleksiyonla uyuşmuyor. Veri dosyası değişmiş olabilir."
+    "label": "Odanın kartları yüklenemedi. Sayfayı yenileyip aynı oda koduyla yeniden katıl.",
+    "value": "Odanın kartları yüklenemedi. Sayfayı yenileyip aynı oda koduyla yeniden katıl."
   },
   "runtime.copy.oyuncu_kimligi_bu_odada_bulunamadi": {
     "group": "Ortak",
-    "label": "Oyuncu kimliği bu odada bulunamadı.",
-    "value": "Oyuncu kimliği bu odada bulunamadı."
+    "label": "Bu oyuncu oturumu odada bulunamadı. Lobiye dönüp yeniden katıl.",
+    "value": "Bu oyuncu oturumu odada bulunamadı. Lobiye dönüp yeniden katıl."
   },
   "runtime.copy.oda_artik_mevcut_degil": {
     "group": "Ortak",
-    "label": "Oda artık mevcut değil.",
-    "value": "Oda artık mevcut değil."
+    "label": "Bu oda artık mevcut değil. Yeni bir oda kur veya geçerli bir davet iste.",
+    "value": "Bu oda artık mevcut değil. Yeni bir oda kur veya geçerli bir davet iste."
   },
   "runtime.copy.iki_oyuncu_da_bagli_oldugunda_devam_edebilirsiniz": {
     "group": "Ortak",
@@ -792,73 +792,73 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.once_firebase_yapilandirmasini_ekleyin": {
     "group": "Oturum",
-    "label": "Önce Firebase yapılandırmasını ekleyin.",
-    "value": "Önce Firebase yapılandırmasını ekleyin."
+    "label": "Çevrimiçi bağlantı şu anda kullanılamıyor. Botla oynayabilir veya daha sonra yeniden …",
+    "value": "Çevrimiçi bağlantı şu anda kullanılamıyor. Botla oynayabilir veya daha sonra yeniden deneyebilirsin."
   },
   "runtime.copy.yerel_kaydi_temizle": {
     "group": "Oturum",
-    "label": "YEREL KAYDI TEMİZLE",
-    "value": "YEREL KAYDI TEMİZLE"
+    "label": "BU CİHAZDAKİ KAYDI SİL",
+    "value": "BU CİHAZDAKİ KAYDI SİL"
   },
   "runtime.copy.anonim_oyuncu_kimligin_kapanir_onceki_odalara_ayni_o": {
     "group": "Oturum",
-    "label": "Anonim oyuncu kimliğin kapanır. Önceki odalara aynı oyuncu olarak dönemezsin. Kimliğini…",
-    "value": "Anonim oyuncu kimliğin kapanır. Önceki odalara aynı oyuncu olarak dönemezsin. Kimliğini korumak için yalnızca Odadan çık seçeneğini kullan. Yine de oturumu kapatmak istiyor musun?"
+    "label": "Oturumu kapatırsan önceki odalara aynı oyuncu olarak dönemezsin. Daha sonra devam etm…",
+    "value": "Oturumu kapatırsan önceki odalara aynı oyuncu olarak dönemezsin. Daha sonra devam etmek için yalnızca Odadan çık seçeneğini kullan. Oturumun kapatılsın mı?"
   },
   "runtime.copy.bu_cihazdaki_oyuncu_adin_ve_acik_demo_turu_temizlene": {
     "group": "Oturum",
-    "label": "Bu cihazdaki oyuncu adın ve açık demo turu temizlenecek. Yeni bir isimle yeniden başlay…",
-    "value": "Bu cihazdaki oyuncu adın ve açık demo turu temizlenecek. Yeni bir isimle yeniden başlayabilirsin."
+    "label": "Bu cihazdaki oyuncu adın ve devam eden bot oyunun silinecek. Daha sonra yeni bir adla…",
+    "value": "Bu cihazdaki oyuncu adın ve devam eden bot oyunun silinecek. Daha sonra yeni bir adla başlayabilirsin."
   },
   "runtime.copy.oturum_kapandi_demo_veya_yeni_bir_oyuncu_oturumu_ile": {
     "group": "Oturum",
-    "label": "Oturum kapandı. Demo veya yeni bir oyuncu oturumu ile devam edebilirsin.",
-    "value": "Oturum kapandı. Demo veya yeni bir oyuncu oturumu ile devam edebilirsin."
+    "label": "Oturum kapatıldı. Botla oynayabilir veya yeni bir oturum açabilirsin.",
+    "value": "Oturum kapatıldı. Botla oynayabilir veya yeni bir oturum açabilirsin."
   },
   "runtime.copy.yerel_kayit_temizlendi_yeni_bir_isimle_baslayabilirs": {
     "group": "Oturum",
-    "label": "Yerel kayıt temizlendi. Yeni bir isimle başlayabilirsin.",
-    "value": "Yerel kayıt temizlendi. Yeni bir isimle başlayabilirsin."
+    "label": "Bu cihazdaki kayıt silindi. Yeni bir oyuncu adıyla başlayabilirsin.",
+    "value": "Bu cihazdaki kayıt silindi. Yeni bir oyuncu adıyla başlayabilirsin."
   },
   "runtime.copy.once_kendine_bir_oyuncu_adi_sec": {
     "group": "Oturum",
-    "label": "Önce kendine bir oyuncu adı seç.",
-    "value": "Önce kendine bir oyuncu adı seç."
+    "label": "Devam etmek için oyuncu adını yaz.",
+    "value": "Devam etmek için oyuncu adını yaz."
   },
   "runtime.copy.once_oyuncu_adini_yaz": {
     "group": "Oturum",
-    "label": "Önce oyuncu adını yaz.",
-    "value": "Önce oyuncu adını yaz."
+    "label": "Devam etmek için oyuncu adını yaz.",
+    "value": "Devam etmek için oyuncu adını yaz."
   },
   "runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin": {
     "group": "Oturum",
-    "label": "Önce Firebase bağlantı ayarlarını ekleyin.",
-    "value": "Önce Firebase bağlantı ayarlarını ekleyin."
+    "label": "Çevrimiçi bağlantı şu anda kullanılamıyor. Botla oynayabilir veya daha sonra yeniden …",
+    "value": "Çevrimiçi bağlantı şu anda kullanılamıyor. Botla oynayabilir veya daha sonra yeniden deneyebilirsin."
   },
   "runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil": {
     "group": "Oturum",
-    "label": "Bu oyun modu henüz oynanabilir değil.",
-    "value": "Bu oyun modu henüz oynanabilir değil."
+    "label": "Bu oyun şu anda kullanılamıyor. Başka bir oyun seç.",
+    "value": "Bu oyun şu anda kullanılamıyor. Başka bir oyun seç."
   },
   "runtime.copy.arkadasinin_gonderdigi_6_rakamli_kodu_gir": {
     "group": "Oturum",
-    "label": "Arkadaşının gönderdiği 6 rakamlı kodu gir.",
-    "value": "Arkadaşının gönderdiği 6 rakamlı kodu gir."
+    "label": "Katılmak için 6 haneli oda kodunu gir.",
+    "value": "Katılmak için 6 haneli oda kodunu gir."
   },
   "runtime.copy.oda_kodu_6_rakam_olmali": {
     "group": "Oturum",
-    "label": "Oda kodu 6 rakam olmalı.",
-    "value": "Oda kodu 6 rakam olmalı."
+    "label": "Oda kodu 6 rakamdan oluşmalı.",
+    "value": "Oda kodu 6 rakamdan oluşmalı."
   },
   "runtime.copy.oda_kodu_kopyalandi_arkadasina_gonder": {
     "group": "Oturum",
-    "label": "Oda kodu kopyalandı. Arkadaşına gönder!",
-    "value": "Oda kodu kopyalandı. Arkadaşına gönder!"
+    "label": "Oda kodu kopyalandı. Arkadaşlarınla paylaşabilirsin.",
+    "value": "Oda kodu kopyalandı. Arkadaşlarınla paylaşabilirsin."
   },
   "runtime.copy.kod_hazir_katil_butonuyla_oyuna_gir": {
     "group": "Oturum",
-    "label": "Kod hazır. Katıl butonuyla oyuna gir.",
-    "value": "Kod hazır. Katıl butonuyla oyuna gir."
+    "label": "Oda kodu hazır. Katıl düğmesiyle devam et.",
+    "value": "Oda kodu hazır. Katıl düğmesiyle devam et."
   },
   "runtime.copy.kod_hazir_oda_baglantisi_acildiginda_katilabilirsin": {
     "group": "Oturum",
@@ -867,13 +867,13 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.kodu_gir_rekabete_kaldigin_yerden_devam_et": {
     "group": "Oturum",
-    "label": "Kodu gir. Rekabete kaldığın yerden devam et.",
-    "value": "Kodu gir. Rekabete kaldığın yerden devam et."
+    "label": "Oda kodunu gir ve kaldığın yerden devam et.",
+    "value": "Oda kodunu gir ve kaldığın yerden devam et."
   },
   "runtime.copy.arkadasin_seni_bu_isimle_gorecek_adini_bu_cihazda_ha": {
     "group": "Oturum",
-    "label": "Arkadaşın seni bu isimle görecek. Adını bu cihazda hatırlarız.",
-    "value": "Arkadaşın seni bu isimle görecek. Adını bu cihazda hatırlarız."
+    "label": "Diğer oyuncular seni bu adla görür. Adın bu cihazda hatırlanır.",
+    "value": "Diğer oyuncular seni bu adla görür. Adın bu cihazda hatırlanır."
   },
   "runtime.copy.ses_acik": {
     "group": "Oturum",
@@ -887,18 +887,18 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.veri_seti_yuklenemedi_sayfayi_bir_web_sunucusu_uzeri": {
     "group": "Ortak",
-    "label": "Veri seti yüklenemedi. Sayfayı bir web sunucusu üzerinden açın.",
-    "value": "Veri seti yüklenemedi. Sayfayı bir web sunucusu üzerinden açın."
+    "label": "Kartlar yüklenemedi. İnternet bağlantını kontrol edip sayfayı yenile.",
+    "value": "Kartlar yüklenemedi. İnternet bağlantını kontrol edip sayfayı yenile."
   },
   "runtime.copy.efsaneler_super_lig_tatli_ana_yemek_dizi_ve_film_ver": {
     "group": "Ortak",
-    "label": "Efsaneler, Süper Lig, tatlı, ana yemek, dizi ve film veri setleri eksik.",
-    "value": "Efsaneler, Süper Lig, tatlı, ana yemek, dizi ve film veri setleri eksik."
+    "label": "Bazı koleksiyonlar yüklenemedi. Sayfayı yenileyip yeniden dene.",
+    "value": "Bazı koleksiyonlar yüklenemedi. Sayfayı yenileyip yeniden dene."
   },
   "runtime.copy.tekrar_hos_geldin_kaldigin_yerden_devam": {
     "group": "Ortak",
-    "label": "Tekrar hoş geldin. Kaldığın yerden devam!",
-    "value": "Tekrar hoş geldin. Kaldığın yerden devam!"
+    "label": "Tekrar hoş geldin. Kaldığın yerden devam edebilirsin.",
+    "value": "Tekrar hoş geldin. Kaldığın yerden devam edebilirsin."
   },
   "runtime.copy.son_16": {
     "group": "O mu, Bu mu?",
@@ -972,13 +972,13 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.1990_2015_yildizlari_da_sahada": {
     "group": "Koleksiyonlar",
-    "label": "1990–2015 yıldızları da sahada.",
-    "value": "1990–2015 yıldızları da sahada."
+    "label": "Futbol tarihinin unutulmaz isimleri.",
+    "value": "Futbol tarihinin unutulmaz isimleri."
   },
   "runtime.copy.tum_zamanlardan_efsaneler_ikonik_milli_takim_renkler": {
     "group": "Koleksiyonlar",
-    "label": "Tüm zamanlardan efsaneler · İkonik milli takım renkleri.",
-    "value": "Tüm zamanlardan efsaneler · İkonik milli takım renkleri."
+    "label": "Farklı dönemlerden dünya futbolunun efsaneleri.",
+    "value": "Farklı dönemlerden dünya futbolunun efsaneleri."
   },
   "runtime.copy.turkiye_super_lig": {
     "group": "Koleksiyonlar",
@@ -987,13 +987,13 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.amed_fk_dahil_guncel_yildizlar": {
     "group": "Koleksiyonlar",
-    "label": "Amed FK dahil, güncel yıldızlar.",
-    "value": "Amed FK dahil, güncel yıldızlar."
+    "label": "Türkiye liglerinden tanınan oyuncular.",
+    "value": "Türkiye liglerinden tanınan oyuncular."
   },
   "runtime.copy.2026_27_kadrolari_kulup_kontrolu_8_9_ekim_2026": {
     "group": "Koleksiyonlar",
-    "label": "2026/27 kadroları · Kulüp kontrolü: 8–9 Ekim 2026.",
-    "value": "2026/27 kadroları · Kulüp kontrolü: 8–9 Ekim 2026."
+    "label": "Türkiye liglerinden futbolcular ve kulüpleri.",
+    "value": "Türkiye liglerinden futbolcular ve kulüpleri."
   },
   "runtime.copy.menunu_sec": {
     "group": "Koleksiyonlar",
@@ -1012,8 +1012,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.50_tatli_tatli_bir_kapisma": {
     "group": "Koleksiyonlar",
-    "label": "100 tatlı · Tatlı bir kapışma.",
-    "value": "100 tatlı · Tatlı bir kapışma."
+    "label": "Türk ve dünya mutfağından 100 tatlı.",
+    "value": "Türk ve dünya mutfağından 100 tatlı."
   },
   "runtime.copy.ana_yemekler": {
     "group": "Koleksiyonlar",
@@ -1042,8 +1042,8 @@ export const RUNTIME_TEXT_CATALOG = {
   },
   "runtime.copy.bir_bolum_daha_bir_tur_daha": {
     "group": "Koleksiyonlar",
-    "label": "Bir bölüm daha, bir tur daha.",
-    "value": "Bir bölüm daha, bir tur daha."
+    "label": "Yerli ve yabancı sevilen diziler.",
+    "value": "Yerli ve yabancı sevilen diziler."
   },
   "runtime.copy.50_dizi_yerli_ve_yabanci_unutulmaz_yapimlar": {
     "group": "Koleksiyonlar",
@@ -1078,7 +1078,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.copy.siralama_tamam": {
     "group": "Kör sıralama",
     "label": "Sıralama sonuç başlığı",
-    "value": "SIRALAMA TAMAM!"
+    "value": "SIRALAMA TAMAMLANDI"
   },
   "runtime.copy.yedek": {
     "group": "Start, Bench, Cut",
@@ -1088,11 +1088,11 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.copy.hazir_misin": {
     "group": "Lobi",
     "label": "Demo giriş başlığı",
-    "value": "HAZIR MISIN?"
+    "value": "BAŞLAMAYA HAZIR MISIN?"
   },
   "runtime.error.unknown_category": {
     "group": "Hatalar",
-    "label": "Bilinmeyen veri kategorisi",
-    "value": "Bilinmeyen veri kategorisi."
+    "label": "Bu kategori bulunamadı. Başka bir kategori seç.",
+    "value": "Bu kategori bulunamadı. Başka bir kategori seç."
   }
 };

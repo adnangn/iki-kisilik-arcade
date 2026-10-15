@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { PROJECT_ROOT, preflight, listFiles } from './preflight.mjs';
 import { versionLocalReferences } from './version-assets.mjs';
+import { publishTexts } from './publish-texts.mjs';
 
 try {
   assert.equal(process.argv.length, 2, 'Kullanım: node tools/build-site.mjs');
@@ -16,6 +17,7 @@ try {
     digest.update('\0');
   }
   const release = digest.digest('hex').slice(0, 12);
+  const publishedTexts = JSON.parse(await readFile(path.join(root, 'metinler.json'), 'utf8'));
   const artifacts = path.join(root, 'artifacts');
   const output = path.join(artifacts, 'site');
   const samePath = (left, right) => process.platform === 'win32' ? left.toLowerCase() === right.toLowerCase() : left === right;
@@ -41,7 +43,9 @@ try {
     const target = path.join(output, file);
     await mkdir(path.dirname(target), { recursive: true });
     if (/\.(?:html|css|js)$/.test(file)) {
-      await writeFile(target, versionLocalReferences(await readFile(path.join(root, file), 'utf8'), release), 'utf8');
+      let source = await readFile(path.join(root, file), 'utf8');
+      if (file === 'index.html') source = publishTexts(source, publishedTexts);
+      await writeFile(target, versionLocalReferences(source, release), 'utf8');
     } else await copyFile(path.join(root, file), target);
   }
   assert.deepEqual(await listFiles(output), checked.files, 'Paket yalnız denetlenmiş çalışma dosyalarını içermeli.');

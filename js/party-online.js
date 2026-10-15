@@ -49,6 +49,17 @@ export function partySubmission(room, uid, value, previousSlots = {}) {
 }
 
 export function createPartyOnline({ uid, db, ref, get, onValue, transact, assertOnline, stops }) {
+  // Only a live subscription to this player's preceding list can warm a
+  // submission. Keep it scoped to the exact room instance, game and card;
+  // stopping the watch also discards the cached authority.
+  const previousRankingSlots = new Map();
+  const rankingKey = (room, game, seat) => JSON.stringify([room.code, room.createdAt, room.round, game.roundIndex, seat]);
+  const validPreviousSlots = (game, slots) => {
+    if (!slots || typeof slots !== 'object' || Array.isArray(slots)) return false;
+    const entries = Object.entries(slots), ids = entries.map(([, id]) => id);
+    return entries.length === game.roundIndex && new Set(ids).size === game.roundIndex &&
+      entries.every(([key]) => /^s([1-9]|10)$/.test(key)) && game.deck.slice(0, game.roundIndex).every(id => ids.includes(id));
+  };
   async function retainedTransaction(path, reducer) {
     assertOnline();
     let unsubscribe = () => {}, rejectRead = () => {}, pending = true;
@@ -92,10 +103,14 @@ export function createPartyOnline({ uid, db, ref, get, onValue, transact, assert
       const { game, seat, root, path } = partyPrivateContext(room, uid);
       let previousSlots = {};
       if (game.mode === 'simultaneous-ranking' && game.roundIndex > 0) {
-        const previous = await get(ref(db, `${root}/submissions/q${game.roundIndex - 1}/choosing/${seat}`));
-        assertOnline();
-        if (!previous.exists()) throw new RoomError('Önceki sıralamanız yüklenemedi. Tekrar bağlanın.');
-        previousSlots = previous.val().slots || {};
+        const cached = previousRankingSlots.get(rankingKey(room, game, seat))?.slots;
+        if (validPreviousSlots(game, cached)) previousSlots = { ...cached };
+        else {
+          const previous = await get(ref(db, `${root}/submissions/q${game.roundIndex - 1}/choosing/${seat}`));
+          assertOnline();
+          if (!previous.exists()) throw new RoomError('Önceki sıralamanız yüklenemedi. Tekrar bağlanın.');
+          previousSlots = previous.val().slots || {};
+        }
       }
       const payload = partySubmission(room, uid, value, previousSlots);
       // The captured room, question, phase and instance stay bound to this
@@ -108,6 +123,9 @@ export function createPartyOnline({ uid, db, ref, get, onValue, transact, assert
     watchParty(room, onState, onError = () => {}) {
       assertOnline();
       const { game, seat, root, path, deal, needed } = partyPrivateContext(room, uid);
+      const previousKey = game.mode === 'simultaneous-ranking' && game.roundIndex > 0 ? rankingKey(room, game, seat) : null;
+      const previousEntry = { slots: null };
+      if (previousKey) previousRankingSlots.set(previousKey, previousEntry);
       let active = true, mine = null, mineLoaded = false, role = null, roleLoaded = !['detective', 'chameleon'].includes(game.mode);
       let previousSlots = {}, records = {}, moleSeat = null, unlockedTarget = null;
       let previousSlotsLoaded = game.mode !== 'simultaneous-ranking' || game.roundIndex===0;
@@ -125,7 +143,9 @@ export function createPartyOnline({ uid, db, ref, get, onValue, transact, assert
           secretsForResolution: secrets });
       };
       const listen = (key, handler, list = listeners) => {
-        const stop = onValue(ref(db, key), snapshot => { if (active) { handler(snapshot.val()); maybeReveal(); emit(); } }, error => { if (active) onError(error); });
+        const stop = onValue(ref(db, key), snapshot => { if (active) { handler(snapshot.val()); maybeReveal(); emit(); } }, error => {
+          if (active) { previousEntry.slots = null; onError(error); }
+        });
         list.push(stop); return stop;
       };
       const maybeReveal = () => {
@@ -159,8 +179,16 @@ export function createPartyOnline({ uid, db, ref, get, onValue, transact, assert
       listen(`${path}/${seat}`, value => { mine = value; mineLoaded = true; });
       for (const actor of needed) listen(`${path}/${actor}/locked`, value => { progress[actor] = value === true; });
       if (['detective', 'chameleon'].includes(game.mode)) listen(`${deal}/views/${seat}`, value => { role = value; roleLoaded = !!value; });
-      if (game.mode === 'simultaneous-ranking' && game.roundIndex > 0) listen(`${root}/submissions/q${game.roundIndex - 1}/choosing/${seat}/slots`, value => { previousSlots = value || {}; previousSlotsLoaded = !!value; });
-      const stop = () => { if (!active) return; active = false; for (const end of listeners) end(); stops.delete(stop); };
+      if (game.mode === 'simultaneous-ranking' && game.roundIndex > 0) listen(`${root}/submissions/q${game.roundIndex - 1}/choosing/${seat}/slots`, value => {
+        previousSlots = value || {}; previousSlotsLoaded = !!value;
+        previousEntry.slots = validPreviousSlots(game, value) ? { ...value } : null;
+      });
+      const stop = () => {
+        if (!active) return;
+        active = false;
+        if (previousKey && previousRankingSlots.get(previousKey) === previousEntry) previousRankingSlots.delete(previousKey);
+        for (const end of listeners) end(); stops.delete(stop);
+      };
       stops.add(stop); return stop;
     },
   };

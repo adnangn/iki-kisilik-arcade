@@ -1,3 +1,4 @@
+import './js/compat.js';
 import { t, loadTexts, applyTexts } from './js/texts.js';
 import { isFirebaseConfigured } from './firebase-config.js';
 import { createAuction, canBuy } from './js/auction.js';
@@ -18,7 +19,7 @@ import { assetUrl } from './js/assets.js';
 import { createNextGameView } from './js/next-game-view.js';
 import { invitationUrl, parseInvite, renderInviteQR } from './js/invites.js';
 import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-command.js';
-import { createPartyView } from './js/party-view.js';
+import { createPartyView, partyModeLimits } from './js/party-view.js';
 import { partyCards, partyGameSpec } from './js/party-games.js';
 import { partySubmission } from './js/party-online.js';
 import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
@@ -129,6 +130,13 @@ function renderBracketSizeOptions() {
 
 function renderModePreview() {
   const mode = selectedMode();
+  const limits = partyModeLimits(mode), demoCount = $('demo-player-count');
+  for (const option of demoCount.options) {
+    option.disabled = Number(option.value) < limits.min || Number(option.value) > limits.max;
+    option.textContent = t('party.demo_count_option', { count: Number(option.value), bots: Number(option.value) - 1 });
+  }
+  if (Number(demoCount.value) < limits.min || Number(demoCount.value) > limits.max) demoCount.value = String(limits.min);
+  $('demo-player-field').hidden = !isPartyMode(mode) || limits.max === limits.min;
   renderBracketSizeOptions();
   $('how-to-title').textContent = t('runtime.lobby.how_to_title', { mode: MODE_NAMES[mode] });
   const rules = {
@@ -580,30 +588,35 @@ function schedulePartyBot() {
   botTimer = setTimeout(() => {
     botTimer = null;
     if (generation !== lifecycle || !demo || busy || room?.revision !== snapshot.revision) { render(); return; }
-    const seat = candidates[0], uid = room.players[seat].uid;
-    if (room.status === 'finished') room = changePartyRoom(room, uid, room.revision, 'ready-next', { id: room.nextGame.id, ready: true, ...gamePayload(room.nextGame) });
-    else if (room.mode === 'auction') {
-      const amount = room.game.highestBid + 1;
-      const canBid = amount <= room.game.budgets[seat] && (room.game.rosters[seat] || []).length < 5;
-      const kind = canBid && randomIndex(3) === 0 ? 'bid' : 'pass';
-      room = changePartyRoom(room, uid, room.revision, kind, { amount });
-    } else {
-      const game = room.game, cards = partyCards(game), key = partyUnit();
-      const deal = partyDemoDeals[`r${room.round}/q${game.roundIndex}`];
-      let value, previous = {};
-      if (room.mode === 'sealed-auction') value = { amount: game.rosters[seat]?.length >= 5 ? 0 : randomIndex(Math.min(game.budgets[seat], 4) + 1) };
-      else if (room.mode === 'simultaneous-ranking') {
-        previous = game.roundIndex > 0 ? partyDemoRecords[`r${room.round}/q${game.roundIndex - 1}/choosing`]?.[seat]?.slots || {} : {};
-        const slots = Array.from({ length: 10 }, (_, i) => i + 1).filter(slot => previous[`s${slot}`] == null);
-        value = { slot: slots[randomIndex(slots.length)] };
-      } else if (game.stage === 'clue' || game.stage === 'clues') value = { word: room.mode === 'chameleon' && seat === deal?.moleSeat ? 'Efsane' : (getCard(deal?.targetId)?.etiket || 'Efsane').split(/\s+/)[0].slice(0, 24) };
-      else if (game.stage === 'voting') {
-        const others = game.seats.filter(key => key !== seat); value = { seat: seat !== deal?.moleSeat && randomIndex(2) === 0 ? deal.moleSeat : others[randomIndex(others.length)] };
-      } else value = { cardId: ['guess', 'last-guess'].includes(game.stage) && randomIndex(2) === 0 ? deal.targetId : cards[randomIndex(cards.length)] };
-      partyDemoRecords[key] ||= {}; partyDemoRecords[key][seat] = partySubmission(room, uid, value, previous);
+    // Private simultaneous choices share one thinking interval. Ordered
+    // turns and public ready transactions still advance one player at a time.
+    const actors = snapshot.status === 'finished' || snapshot.mode === 'auction' ? candidates.slice(0, 1) : candidates;
+    for (const seat of actors) {
+      const uid = room.players[seat].uid;
+      if (room.status === 'finished') room = changePartyRoom(room, uid, room.revision, 'ready-next', { id: room.nextGame.id, ready: true, ...gamePayload(room.nextGame) });
+      else if (room.mode === 'auction') {
+        const amount = room.game.highestBid + 1;
+        const canBid = amount <= room.game.budgets[seat] && (room.game.rosters[seat] || []).length < 5;
+        const kind = canBid && randomIndex(3) === 0 ? 'bid' : 'pass';
+        room = changePartyRoom(room, uid, room.revision, kind, { amount });
+      } else {
+        const game = room.game, cards = partyCards(game), key = partyUnit();
+        const deal = partyDemoDeals[`r${room.round}/q${game.roundIndex}`];
+        let value, previous = {};
+        if (room.mode === 'sealed-auction') value = { amount: game.rosters[seat]?.length >= 5 ? 0 : randomIndex(Math.min(game.budgets[seat], 4) + 1) };
+        else if (room.mode === 'simultaneous-ranking') {
+          previous = game.roundIndex > 0 ? partyDemoRecords[`r${room.round}/q${game.roundIndex - 1}/choosing`]?.[seat]?.slots || {} : {};
+          const slots = Array.from({ length: 10 }, (_, i) => i + 1).filter(slot => previous[`s${slot}`] == null);
+          value = { slot: slots[randomIndex(slots.length)] };
+        } else if (game.stage === 'clue' || game.stage === 'clues') value = { word: room.mode === 'chameleon' && seat === deal?.moleSeat ? 'Efsane' : (getCard(deal?.targetId)?.etiket || 'Efsane').split(/\s+/)[0].slice(0, 24) };
+        else if (game.stage === 'voting') {
+          const others = game.seats.filter(key => key !== seat); value = { seat: seat !== deal?.moleSeat && randomIndex(2) === 0 ? deal.moleSeat : others[randomIndex(others.length)] };
+        } else value = { cardId: ['guess', 'last-guess'].includes(game.stage) && randomIndex(2) === 0 ? deal.targetId : cards[randomIndex(cards.length)] };
+        partyDemoRecords[key] ||= {}; partyDemoRecords[key][seat] = partySubmission(room, uid, value, previous);
+      }
     }
     render();
-  }, 550 + randomIndex(450));
+  }, 350 + randomIndex(250));
 }
 
 function render() {
@@ -1280,14 +1293,15 @@ $('demo-button').addEventListener('click', () => void runAction(async () => {
   const mode = selectedMode();
   if (!MODE_NAMES[mode]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
   if (isPartyMode(mode)) {
-    room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0, 20) || 'Oyuncu 1', createdAt: Date.now(), datasetId, mode });
-    const count = mode === 'detective' ? 2 : 4;
-    for (let index = 2; index <= count; index++) room = joinPartyRoom(room, index === 2 ? 'demo-bot' : `demo-bot-${index}`, `Atari Bot ${index - 1}`);
+    room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0, 20) || t('party.default_name', { number: 1 }), createdAt: Date.now(), datasetId, mode });
+    const limits = partyModeLimits(mode);
+    const count = Math.max(limits.min, Math.min(limits.max, Number($('demo-player-count').value) || limits.min));
+    for (let index = 2; index <= count; index++) room = joinPartyRoom(room, index === 2 ? 'demo-bot' : `demo-bot-${index}`, t('party.bot_name', { number: index - 1 }));
     room = changePartyRoom(room, 'demo-you', room.revision, 'start', gamePayload(room));
     mySeat = 'p1'; connectionChanged(false); return;
   }
-  room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || 'Oyuncu 1', createdAt: Date.now(), datasetId, mode, bracketSize: selectedBracketSize() });
-  room = joinPartyRoom(room, 'demo-bot', 'Atari Bot');
+  room = createPartyRoom({ code: 'DEMO', uid: 'demo-you', name: $('nickname').value.trim().slice(0,20) || t('party.default_name', { number: 1 }), createdAt: Date.now(), datasetId, mode, bracketSize: selectedBracketSize() });
+  room = joinPartyRoom(room, 'demo-bot', t('party.bot_name', { number: 1 }));
   room = changePartyRoom(room, 'demo-you', room.revision, 'start', gamePayload(room));
   mySeat = 'p1'; connectionChanged(false);
 }, 'demo-button'));
@@ -1476,7 +1490,9 @@ async function boot() {
     $('join-caption').textContent = t('room.extra.invite_join_hint');
   } else if (inviteRequested) toast(t('room.extra.invite_invalid'));
   layoutLobby();
-  window.matchMedia('(max-width: 760px)').addEventListener('change', layoutLobby);
+  const mobileLayout = window.matchMedia('(max-width: 760px)');
+  if (mobileLayout.addEventListener) mobileLayout.addEventListener('change', layoutLobby);
+  else mobileLayout.addListener(layoutLobby);
   document.addEventListener('focusin', () => requestAnimationFrame(keepControlsVisible));
   window.visualViewport?.addEventListener('resize', () => requestAnimationFrame(keepControlsVisible));
   if (!isFirebaseConfigured()) {

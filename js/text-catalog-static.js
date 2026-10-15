@@ -3,87 +3,87 @@ export const STATIC_TEXT_CATALOG = {
   "site.description": {
     "group": "Marka ve sayfa",
     "label": "Arama motoru açıklaması",
-    "value": "Bir oda, iki oyuncu, bolca tatlı rekabet. Nostaljik mini oyun platformu."
+    "value": "Adoapp’te arkadaşlarınla aynı odada buluş. Kartları seç, sıralamaları karşılaştır ve birlikte mini oyunlar oyna."
   },
   "site.title": {
     "group": "Marka ve sayfa",
     "label": "Tarayıcı sekmesi başlığı",
-    "value": "İKİ KİŞİLİK — Aynı oda. Tatlı rekabet."
+    "value": "Adoapp · Birlikte oyna"
   },
   "static.003": {
     "group": "Marka ve sayfa",
-    "label": "Erişilebilir açıklama · İki Kişilik ana sayfa",
-    "value": "İki Kişilik ana sayfa"
+    "label": "Erişilebilir açıklama · Adoapp ana sayfa",
+    "value": "Adoapp ana sayfa"
   },
   "site.name": {
     "group": "Marka ve sayfa",
     "label": "Site adı",
-    "value": "İKİ KİŞİLİK"
+    "value": "Adoapp"
   },
   "site.tagline": {
     "group": "Marka ve sayfa",
     "label": "Site sloganı",
-    "value": "Aynı oda. Tatlı rekabet."
+    "value": "Aynı oda. Yeni bir oyun."
   },
   "static.006": {
     "group": "Marka ve sayfa",
-    "label": "MINI OYUN KULÜBÜ",
-    "value": "MINI OYUN KULÜBÜ"
+    "label": "MİNİ OYUN KULÜBÜ",
+    "value": "MİNİ OYUN KULÜBÜ"
   },
   "static.007": {
     "group": "Marka ve sayfa",
-    "label": "VOL. 01",
-    "value": "VOL. 01"
+    "label": "OYUNA HAZIR",
+    "value": "OYUNA HAZIR"
   },
   "static.008": {
     "group": "Lobi",
-    "label": "OYUN ARKADAŞINI ÇAĞIR",
-    "value": "OYUN ARKADAŞINI ÇAĞIR"
+    "label": "ARKADAŞLARINLA BULUŞ",
+    "value": "ARKADAŞLARINLA BULUŞ"
   },
   "lobby.hero.first": {
     "group": "Lobi",
     "label": "Ana başlık · ilk satır",
-    "value": "Bir oda."
+    "value": "Odanı kur."
   },
   "lobby.hero.second": {
     "group": "Lobi",
     "label": "Ana başlık · ikinci satır",
-    "value": "İki kişi."
+    "value": "Arkadaşlarını çağır."
   },
   "lobby.hero.accent": {
     "group": "Lobi",
     "label": "Ana başlık · renkli bölüm",
-    "value": "Bol rekabet."
+    "value": "Birlikte oyna."
   },
   "lobby.hero.description": {
     "group": "Lobi",
     "label": "Karşılama açıklaması",
-    "value": "Seçimini yap, odanı kur, kodu arkadaşına gönder."
+    "value": "Bir koleksiyon ve oyun seç. Davet bağlantını paylaş, aynı odada buluş."
   },
   "lobby.hero.description-end": {
     "group": "Lobi",
     "label": "Karşılama açıklaması · devamı",
-    "value": "Eski usul eğlence, yepyeni kapışmalar."
+    "value": "Her tur yeni kartlar, her seçim yeni bir heyecan."
   },
   "static.014": {
     "group": "Lobi",
-    "label": "PLAYER CLUB",
-    "value": "PLAYER CLUB"
+    "label": "OYUN KULÜBÜ",
+    "value": "OYUN KULÜBÜ"
   },
   "static.015": {
     "group": "Lobi",
-    "label": "INSERT FRIEND",
-    "value": "INSERT FRIEND"
+    "label": "BİRLİKTE OYNA",
+    "value": "BİRLİKTE OYNA"
   },
   "static.016": {
     "group": "Lobi",
-    "label": "LEVEL UP TOGETHER",
-    "value": "LEVEL UP TOGETHER"
+    "label": "YENİ TUR, YENİ HEYECAN",
+    "value": "YENİ TUR, YENİ HEYECAN"
   },
   "static.017": {
     "group": "Lobi",
-    "label": "2–4 PLAYER PARTY",
-    "value": "2–4 PLAYER PARTY"
+    "label": "2–4 OYUNCU",
+    "value": "2–4 OYUNCU"
   },
   "static.018": {
     "group": "Lobi",
@@ -102,8 +102,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.021": {
     "group": "Lobi",
-    "label": "Rekabet başlasın!",
-    "value": "Rekabet başlasın!"
+    "label": "Oyuna başla",
+    "value": "Oyuna başla"
   },
   "static.022": {
     "group": "Lobi",
@@ -112,18 +112,18 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.023": {
     "group": "Lobi",
-    "label": "Bugün ne oynuyoruz?",
-    "value": "Bugün ne oynuyoruz?"
+    "label": "Bir sonraki oyununu seç",
+    "value": "Bir sonraki oyununu seç"
   },
   "static.024": {
     "group": "Lobi",
-    "label": "VERİ SETİ",
-    "value": "VERİ SETİ"
+    "label": "KATEGORİ",
+    "value": "KATEGORİ"
   },
   "static.025": {
     "group": "Lobi",
-    "label": "İlk tercih sende.",
-    "value": "İlk tercih sende."
+    "label": "Hangi kartlarla oynayacaksın?",
+    "value": "Hangi kartlarla oynayacaksın?"
   },
   "static.026": {
     "group": "Lobi",
@@ -142,8 +142,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.029": {
     "group": "Lobi",
-    "label": "Bir kapışma şekli seç.",
-    "value": "Bir kapışma şekli seç."
+    "label": "Oyuncu sayısına uygun bir oyun seç.",
+    "value": "Oyuncu sayısına uygun bir oyun seç."
   },
   "static.030": {
     "group": "Lobi",
@@ -152,18 +152,18 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.031": {
     "group": "Lobi",
-    "label": "20 TL bütçe. 5 kart. En iyi kadro.",
-    "value": "20 TL bütçe. 5 kart. En iyi kadro."
+    "label": "20 TL bütçeyle 5 kart topla.",
+    "value": "20 TL bütçeyle 5 kart topla."
   },
   "static.032": {
     "group": "Lobi",
-    "label": "2 AKTİF OYUNCU",
-    "value": "2 AKTİF OYUNCU"
+    "label": "2 OYUNCU",
+    "value": "2 OYUNCU"
   },
   "static.033": {
     "group": "Lobi",
-    "label": "10 sürpriz kart. Bir seçim. Geri dönüş yok!",
-    "value": "10 sürpriz kart. Bir seçim. Geri dönüş yok!"
+    "label": "10 sürpriz kartı, sıradakini görmeden sırala.",
+    "value": "10 sürpriz kartı, sıradakini görmeden sırala."
   },
   "static.034": {
     "group": "Lobi",
@@ -172,18 +172,18 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.035": {
     "group": "Lobi",
-    "label": "16 kart. 4 tur. Tek şampiyon.",
-    "value": "16 kart. 4 tur. Tek şampiyon."
+    "label": "16 veya 32 karttan tek bir şampiyon seç.",
+    "value": "16 veya 32 karttan tek bir şampiyon seç."
   },
   "static.036": {
     "group": "Lobi",
-    "label": "11 turda takımını kur. Sonra düelloya çık.",
-    "value": "11 turda takımını kur. Sonra düelloya çık."
+    "label": "11 turda Start, Bench ve Cut seçimlerini tamamla.",
+    "value": "11 turda Start, Bench ve Cut seçimlerini tamamla."
   },
   "static.037": {
     "group": "Lobi",
-    "label": "Her veri setiyle aynı oyun, bambaşka rekabet.",
-    "value": "Her veri setiyle aynı oyun, bambaşka rekabet."
+    "label": "Aynı oyunları farklı koleksiyonlarla keşfet.",
+    "value": "Aynı oyunları farklı koleksiyonlarla keşfet."
   },
   "static.038": {
     "group": "Lobi",
@@ -192,8 +192,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.039": {
     "group": "Lobi",
-    "label": "Sahne senin.",
-    "value": "Sahne senin."
+    "label": "Odan seni bekliyor",
+    "value": "Odan seni bekliyor"
   },
   "static.040": {
     "group": "Lobi",
@@ -203,7 +203,7 @@ export const STATIC_TEXT_CATALOG = {
   "static.041": {
     "group": "Lobi",
     "label": "Giriş örneği · Örn. Kaptan",
-    "value": "Örn. Kaptan"
+    "value": "Oyuncu adını yaz"
   },
   "action.create": {
     "group": "Lobi",
@@ -212,8 +212,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.043": {
     "group": "Lobi",
-    "label": "YA DA BİR ARKADAŞINA KATIL",
-    "value": "YA DA BİR ARKADAŞINA KATIL"
+    "label": "VEYA DAVET EDİLDİĞİN ODAYA KATIL",
+    "value": "VEYA DAVET EDİLDİĞİN ODAYA KATIL"
   },
   "static.044": {
     "group": "Lobi",
@@ -232,13 +232,13 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.047": {
     "group": "Lobi",
-    "label": "ARKADAŞINI BEKLERKEN",
-    "value": "ARKADAŞINI BEKLERKEN"
+    "label": "ÖNCE DENEMEK İSTER MİSİN?",
+    "value": "ÖNCE DENEMEK İSTER MİSİN?"
   },
   "action.demo": {
     "group": "Lobi",
     "label": "Botla oyna düğmesi",
-    "value": "Botla hemen oyna"
+    "value": "Botla oyna"
   },
   "static.049": {
     "group": "Lobi",
@@ -247,8 +247,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.050": {
     "group": "Lobi",
-    "label": "Oda bağlantısını etkinleştir",
-    "value": "Oda bağlantısını etkinleştir"
+    "label": "Çevrimiçi bağlantıyı etkinleştir",
+    "value": "Çevrimiçi bağlantıyı etkinleştir"
   },
   "static.051": {
     "group": "Lobi",
@@ -262,33 +262,33 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.053": {
     "group": "Lobi",
-    "label": "Mesafeler oyuna engel değil.",
-    "value": "Mesafeler oyuna engel değil."
+    "label": "Aynı odada buluş.",
+    "value": "Aynı odada buluş."
   },
   "static.054": {
     "group": "Lobi",
-    "label": "Farklı cihazlardan, aynı odada.",
-    "value": "Farklı cihazlardan, aynı odada."
+    "label": "Her oyuncu kendi cihazından katılır.",
+    "value": "Her oyuncu kendi cihazından katılır."
   },
   "static.055": {
     "group": "Lobi",
-    "label": "Biraz da tatlı atışma.",
-    "value": "Biraz da tatlı atışma."
+    "label": "Tepkini paylaş.",
+    "value": "Tepkini paylaş."
   },
   "static.056": {
     "group": "Lobi",
-    "label": "Pikselli reaksiyonlarla cevap ver.",
-    "value": "Pikselli reaksiyonlarla cevap ver."
+    "label": "Oyun sırasında masaya bir reaksiyon gönder.",
+    "value": "Oyun sırasında masaya bir reaksiyon gönder."
   },
   "static.057": {
     "group": "Lobi",
-    "label": "“Son bir el” serbest.",
-    "value": "“Son bir el” serbest."
+    "label": "Yeni oyun, aynı oda.",
+    "value": "Yeni oyun, aynı oda."
   },
   "static.058": {
     "group": "Lobi",
-    "label": "Rövanşla ilk hamle el değiştirir.",
-    "value": "Rövanşla ilk hamle el değiştirir."
+    "label": "Oda kodunu değiştirmeden yeniden oyna.",
+    "value": "Oda kodunu değiştirmeden yeniden oyna."
   },
   "static.059": {
     "group": "Oda ve reaksiyonlar",
@@ -312,13 +312,13 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.064": {
     "group": "Oda ve reaksiyonlar",
-    "label": "PLAYER 2 BEKLENİYOR",
-    "value": "PLAYER 2 BEKLENİYOR"
+    "label": "OYUNCU BEKLENİYOR",
+    "value": "OYUNCU BEKLENİYOR"
   },
   "static.065": {
     "group": "Oda ve reaksiyonlar",
-    "label": "Bir arkadaş, bir iyi oyun.",
-    "value": "Bir arkadaş, bir iyi oyun."
+    "label": "Odan hazır. Arkadaşını davet et.",
+    "value": "Odan hazır. Arkadaşını davet et."
   },
   "static.067": {
     "group": "Açık artırma",
@@ -347,13 +347,13 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.072": {
     "group": "Açık artırma",
-    "label": "KADRO",
-    "value": "KADRO"
+    "label": "KARTLAR",
+    "value": "KARTLAR"
   },
   "static.074": {
     "group": "Açık artırma",
-    "label": "TOPLANAN KARTLAR",
-    "value": "TOPLANAN KARTLAR"
+    "label": "SEÇİLEN KARTLAR",
+    "value": "SEÇİLEN KARTLAR"
   },
   "static.076": {
     "group": "Açık artırma",
@@ -362,8 +362,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.077": {
     "group": "Açık artırma",
-    "label": "KADRONDA YERİ VAR MI?",
-    "value": "KADRONDA YERİ VAR MI?"
+    "label": "BU KARTI İSTER MİSİN?",
+    "value": "BU KARTI İSTER MİSİN?"
   },
   "static.078": {
     "group": "Açık artırma",
@@ -372,8 +372,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.079": {
     "group": "Açık artırma",
-    "label": "Yeni teklifin, TL",
-    "value": "Yeni teklifin, TL"
+    "label": "Teklifin · TL",
+    "value": "Teklifin · TL"
   },
   "action.bid": {
     "group": "Açık artırma",
@@ -383,7 +383,7 @@ export const STATIC_TEXT_CATALOG = {
   "action.pass": {
     "group": "Açık artırma",
     "label": "Pas düğmesi",
-    "value": "Pas geç"
+    "value": "Pas"
   },
   "static.082": {
     "group": "Açık artırma",
@@ -412,8 +412,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.087": {
     "group": "Kör sıralama",
-    "label": "Sonraki kartı göremezsin. Yerleştirdiğin kart taşınmaz.",
-    "value": "Sonraki kartı göremezsin. Yerleştirdiğin kart taşınmaz."
+    "label": "Yerleştirdiğin kartın sırası değişmez. Sıradaki kart henüz gizli.",
+    "value": "Yerleştirdiğin kartın sırası değişmez. Sıradaki kart henüz gizli."
   },
   "static.088": {
     "group": "Kör sıralama",
@@ -457,8 +457,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.096": {
     "group": "Start, Bench, Cut",
-    "label": "Erişilebilir açıklama · İki oyuncunun kadro ilerlemesi",
-    "value": "İki oyuncunun kadro ilerlemesi"
+    "label": "Erişilebilir açıklama · İki oyuncunun seçim ilerlemesi",
+    "value": "İki oyuncunun seçim ilerlemesi"
   },
   "static.097": {
     "group": "Start, Bench, Cut",
@@ -482,23 +482,23 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.101": {
     "group": "Start, Bench, Cut",
-    "label": "Üçlüler aynı etiketten gelir. Adaylar tekrar çıkabilir.",
-    "value": "Üçlüler aynı etiketten gelir. Adaylar tekrar çıkabilir."
+    "label": "Her tur aynı etiketli üç kart gelir. Havuz tükendiğinde kartlar tekrar çıkabilir.",
+    "value": "Her tur aynı etiketli üç kart gelir. Havuz tükendiğinde kartlar tekrar çıkabilir."
   },
   "static.102": {
     "group": "Start, Bench, Cut",
-    "label": "KADRON HAZIR!",
-    "value": "KADRON HAZIR!"
+    "label": "SEÇİMLERİN HAZIR",
+    "value": "SEÇİMLERİN HAZIR"
   },
   "static.103": {
     "group": "Start, Bench, Cut",
-    "label": "Rakibin seçimlerini tamamlayınca iki ilk 11 sahaya çıkacak.",
-    "value": "Rakibin seçimlerini tamamlayınca iki ilk 11 sahaya çıkacak."
+    "label": "Diğer oyuncu da tamamlayınca Start seçimleriniz karşılaştırılacak.",
+    "value": "Diğer oyuncu da tamamlayınca Start seçimleriniz karşılaştırılacak."
   },
   "static.104": {
     "group": "Start, Bench, Cut",
-    "label": "SENİN İLK 11'İN",
-    "value": "SENİN İLK 11'İN"
+    "label": "SENİN START SEÇİMLERİN",
+    "value": "SENİN START SEÇİMLERİN"
   },
   "static.105": {
     "group": "Start, Bench, Cut",
@@ -512,8 +512,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.107": {
     "group": "Oda ve reaksiyonlar",
-    "label": "TATLI ATIŞMA",
-    "value": "TATLI ATIŞMA"
+    "label": "REAKSİYONLAR",
+    "value": "REAKSİYONLAR"
   },
   "static.108": {
     "group": "Oda ve reaksiyonlar",
@@ -522,8 +522,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.109": {
     "group": "Oda ve reaksiyonlar",
-    "label": "İpucu · Piksel kahkaha",
-    "value": "Piksel kahkaha"
+    "label": "İpucu · Kahkaha",
+    "value": "Kahkaha"
   },
   "static.110": {
     "group": "Oda ve reaksiyonlar",
@@ -532,8 +532,8 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.111": {
     "group": "Oda ve reaksiyonlar",
-    "label": "İpucu · Piksel öfke",
-    "value": "Piksel öfke"
+    "label": "İpucu · Kızgınlık",
+    "value": "Kızgınlık"
   },
   "static.112": {
     "group": "Oda ve reaksiyonlar",
@@ -552,13 +552,13 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.115": {
     "group": "Oda ve reaksiyonlar",
-    "label": "İpucu · Tatlı rekabet",
-    "value": "Tatlı rekabet"
+    "label": "İpucu · Kalp",
+    "value": "Kalp"
   },
   "static.116": {
     "group": "Sonuç ve rövanş",
-    "label": "GAME OVER / GÜZEL OYUNDU",
-    "value": "GAME OVER / GÜZEL OYUNDU"
+    "label": "OYUN TAMAMLANDI",
+    "value": "OYUN TAMAMLANDI"
   },
   "static.117": {
     "group": "Sonuç ve rövanş",
@@ -582,28 +582,28 @@ export const STATIC_TEXT_CATALOG = {
   },
   "static.121": {
     "group": "Sonuç ve rövanş",
-    "label": "İKİ TAKIM. BİR SAHA.",
-    "value": "İKİ TAKIM. BİR SAHA."
+    "label": "START SEÇİMLERİ KARŞI KARŞIYA",
+    "value": "START SEÇİMLERİ KARŞI KARŞIYA"
   },
   "static.122": {
     "group": "Sonuç ve rövanş",
-    "label": "İLK 11",
-    "value": "İLK 11"
+    "label": "START SEÇİMLERİ",
+    "value": "START SEÇİMLERİ"
   },
   "static.123": {
     "group": "Sonuç ve rövanş",
-    "label": "Erişilebilir açıklama · Birinci oyuncunun ilk 11'i",
-    "value": "Birinci oyuncunun ilk 11'i"
+    "label": "Erişilebilir açıklama · Birinci oyuncunun Start seçimleri",
+    "value": "Birinci oyuncunun Start seçimleri"
   },
   "static.124": {
     "group": "Sonuç ve rövanş",
-    "label": "Erişilebilir açıklama · İkinci oyuncunun ilk 11'i",
-    "value": "İkinci oyuncunun ilk 11'i"
+    "label": "Erişilebilir açıklama · İkinci oyuncunun Start seçimleri",
+    "value": "İkinci oyuncunun Start seçimleri"
   },
   "action.rematch": {
     "group": "Sonuç ve rövanş",
     "label": "Rövanş düğmesi",
-    "value": "Rövanş zamanı"
+    "value": "Rövanş"
   },
   "action.lobby": {
     "group": "Sonuç ve rövanş",
@@ -613,17 +613,17 @@ export const STATIC_TEXT_CATALOG = {
   "site.footer-tagline": {
     "group": "Marka ve sayfa",
     "label": "Alt bölüm sloganı",
-    "value": "İyi oyunun yaşı yok."
+    "value": "Birlikte oynamanın keyfi."
   },
   "static.128": {
     "group": "Marka ve sayfa",
-    "label": "MADE FOR FRIENDS",
-    "value": "MADE FOR FRIENDS"
+    "label": "ARKADAŞLARINLA OYNA",
+    "value": "ARKADAŞLARINLA OYNA"
   },
   "static.129": {
     "group": "Marka ve sayfa",
-    "label": "PLAY NICE",
-    "value": "PLAY NICE"
+    "label": "YENİDEN BULUŞ",
+    "value": "YENİDEN BULUŞ"
   },
   "static.130": {
     "group": "Oturum",

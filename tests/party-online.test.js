@@ -40,6 +40,81 @@ test('ranking reconnect waits for previous own slots and preserves its committed
   env.emit(`${ctx.root}/submissions/q0/choosing/p1/slots`,{s1:1});
   assert.equal(states.at(-1).loaded,true);assert.deepEqual(states.at(-1).previousSlots,{s1:1});assert.deepEqual(states.at(-1).mine,payload);
 });
+
+async function finishSubmission(env,current,value){
+  const pending=env.service.submitParty(current,value);
+  // A cold reconnect first awaits get(); both paths retain the transaction
+  // listener before writing so its first callback sees the existing record.
+  await Promise.resolve();await Promise.resolve();
+  env.emit(`${partyPrivateContext(current,'p1').path}/p1`,null);
+  return pending;
+}
+
+test('ranking uses its live authoritative preceding slots without another read',async()=>{
+  const current=room();current.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(current,'p1');
+  const states=[];env.service.watchParty(current,state=>states.push(state));
+  env.emit(`${ctx.root}/submissions/q0/choosing/p1/slots`,{s1:1});
+  // A consumer cannot mutate the cached authority through its view model.
+  states.at(-1).previousSlots.s1=999;
+  const saved=await finishSubmission(env,current,{slot:2});
+  assert.deepEqual(saved.slots,{s1:1,s2:2});assert.deepEqual(env.gets,[]);
+});
+
+test('stopped ranking watches fall back to the server and ignore delayed cache callbacks',async()=>{
+  const current=room();current.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(current,'p1');
+  const stop=env.service.watchParty(current,()=>{}),path=`${ctx.root}/submissions/q0/choosing/p1/slots`;
+  env.emit(path,{s1:1});const delayed=env.listeners.find(entry=>entry.path===path).callback;stop();
+  delayed(env.snapshot({s3:1}));env.values.set(`${ctx.root}/submissions/q0/choosing/p1`,{slots:{s2:1}});
+  const saved=await finishSubmission(env,current,{slot:3});
+  assert.deepEqual(saved.slots,{s2:1,s3:2});assert.deepEqual(env.gets,[`${ctx.root}/submissions/q0/choosing/p1`]);
+});
+
+test('overlapping ranking watches retain only the newest active cache',async()=>{
+  const current=room();current.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(current,'p1');
+  const stopOld=env.service.watchParty(current,()=>{});env.service.watchParty(current,()=>{});
+  env.emit(`${ctx.root}/submissions/q0/choosing/p1/slots`,{s1:1});stopOld();
+  const saved=await finishSubmission(env,current,{slot:2});
+  assert.deepEqual(saved.slots,{s1:1,s2:2});assert.deepEqual(env.gets,[]);
+});
+
+test('ranking cache cannot cross room instances, rounds, questions, decks or seats',async()=>{
+  const variations=[
+    value=>{value.code='957100';},value=>{value.createdAt++;},value=>{value.round++;},
+    value=>{value.game.roundIndex=2;},value=>{value.game.deck=[11,12,13,14,15,16,17,18,19,20];},
+    value=>{value.players.p1.uid='other';value.players.p2.uid='p1';}
+  ];
+  for(const vary of variations){
+    const original=room();original.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(original,'p1');
+    env.service.watchParty(original,()=>{});env.emit(`${ctx.root}/submissions/q0/choosing/p1/slots`,{s1:1});
+    const next=structuredClone(original);vary(next);const nextCtx=partyPrivateContext(next,'p1');
+    const previousPath=`${nextCtx.root}/submissions/q${next.game.roundIndex-1}/choosing/${nextCtx.seat}`;
+    env.values.set(previousPath,{slots:Object.fromEntries(next.game.deck.slice(0,next.game.roundIndex).map((id,index)=>[`s${index+1}`,id]))});
+    const pending=env.service.submitParty(next,{slot:next.game.roundIndex+1});await Promise.resolve();await Promise.resolve();
+    env.emit(`${nextCtx.path}/${nextCtx.seat}`,null);await pending;
+    assert.deepEqual(env.gets,[previousPath]);
+  }
+});
+
+test('missing, malformed and revoked ranking cache entries use the server fallback',async()=>{
+  for(const source of[null,{},[],{s1:999},{bad:1},{s1:1,s2:1},'listener-error']){
+    const current=room();current.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(current,'p1');
+    env.service.watchParty(current,()=>{});
+    const path=`${ctx.root}/submissions/q0/choosing/p1/slots`;
+    if(source==='listener-error'){
+      env.emit(path,{s1:1});env.listeners.find(entry=>entry.path===path).error(new Error('permission denied'));
+    }else env.emit(path,source);
+    env.values.set(`${ctx.root}/submissions/q0/choosing/p1`,{slots:{s3:1}});
+    const saved=await finishSubmission(env,current,{slot:2});
+    assert.deepEqual(saved.slots,{s3:1,s2:2});assert.deepEqual(env.gets,[`${ctx.root}/submissions/q0/choosing/p1`]);
+  }
+});
+
+test('a closed session cannot submit using a previously warmed ranking cache',async()=>{
+  const current=room();current.game.roundIndex=1;const env=fake(),ctx=partyPrivateContext(current,'p1');
+  env.service.watchParty(current,()=>{});env.emit(`${ctx.root}/submissions/q0/choosing/p1/slots`,{s1:1});env.close();
+  await assert.rejects(env.service.submitParty(current,{slot:2}),/closed/);
+  assert.equal(env.transactions.length,0);assert.equal(env.stops.size,0);
+});
 test('the first nine ranking rounds expose progress without subscribing to rival choices',()=>{
   const current=room();current.game.roundIndex=4;const env=fake(),states=[],ctx=partyPrivateContext(current,'p1');
   env.service.watchParty(current,state=>states.push(state));

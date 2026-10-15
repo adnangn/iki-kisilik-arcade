@@ -62,3 +62,20 @@ test('every catalog default fits the same import contract', () => {
     assert.doesNotThrow(() => normalizeTexts({ version: 1, texts: { [key]: field.value } }), key);
   }
 });
+
+test('embedded published copy is available immediately without a second network request', async () => {
+  const saved = { document: globalThis.document, window: globalThis.window, fetch: globalThis.fetch };
+  try {
+    globalThis.document = { getElementById: id => id === 'published-texts' ? { textContent: JSON.stringify({ version: 1, texts: { 'site.name': 'Yayın Markası' } }) } : null };
+    globalThis.window = { location: { search: '' } };
+    globalThis.fetch = () => { throw new Error('Published HTML must not fetch the same copy again.'); };
+    const seeded = await import('../js/texts.js?embedded-copy-test');
+    assert.equal(seeded.t('site.name'), 'Yayın Markası');
+    await seeded.loadTexts();
+    assert.equal(seeded.t('site.name'), 'Yayın Markası');
+  } finally {
+    for (const [key, value] of Object.entries(saved)) {
+      if (value === undefined) delete globalThis[key]; else globalThis[key] = value;
+    }
+  }
+});

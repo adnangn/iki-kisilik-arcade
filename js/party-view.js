@@ -3,6 +3,7 @@ import { DATASET_GROUPS, DATASET_NAMES } from './datasets.js';
 import { t as catalogText, formatText } from './texts.js';
 import { PARTY_TEXT_CATALOG } from './text-catalog-party.js';
 import { partyCards, partyGameSpec } from './party-games.js';
+import { auctionControls, auctionDecisionKey } from './auction-controls.js';
 
 export const PARTY_VIEW_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const seatsOf = room => Object.keys(room?.players || {}).filter(seat => /^p[1-4]$/.test(seat)).sort();
@@ -153,7 +154,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
   const nextGameMount = el('section', 'party-next panel');
   const footer = el('div', 'party-footer'); footer.append(nextGameMount);
   root.classList.add('party-screen'); root.replaceChildren(header, players, status, stage, footer);
-  let renderKey = '', stageInstance = '', nextKey = '', nextFields = null;
+  let renderKey = '', stageInstance = '', transitionKey = '', nextKey = '', nextFields = null, rostersOpen = false;
 
   function renderPlayers(state) {
     const room = state.room, game = room.game || {}, seats = seatsOf(room);
@@ -196,7 +197,10 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
 
   function renderRosters(game) {
     const details = el('details', 'party-rosters');
-    details.open = context().room.status === 'finished';
+    details.open = context().room.status === 'finished' || rostersOpen;
+    details.addEventListener('toggle', () => {
+      if (details.isConnected && context().room.status !== 'finished') rostersOpen = details.open;
+    });
     details.append(copy('summary', '', 'party.auction.rosters'));
     const grid = el('div', 'party-roster-grid');
     for (const seat of game.seats || seatsOf(context().room)) {
@@ -212,16 +216,16 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     details.append(grid); return details;
   }
 
-  function amountForm({ min, max, value, submitKey, command, secret, canSubmit = true }) {
+  function amountForm({ min, max, value, submitKey, command, secret, canSubmit = true, validateAmount = () => true }) {
     const form = el('form', 'party-amount-form'), label = copy('label', '', 'party.auction.amount');
-    const input = el('input'); input.type = 'number'; input.inputMode = 'numeric'; input.min = String(min); input.max = String(max); input.step = '1'; input.required = true; input.value = String(value); input.dataset.partyDraft = 'amount'; input.id = 'party-amount';
+    const input = el('input'); input.type = 'number'; input.inputMode = 'numeric'; input.setAttribute('enterkeyhint', 'send'); input.min = String(min); input.max = String(max); input.step = '1'; input.required = true; input.value = String(value); input.dataset.partyDraft = 'amount'; input.id = 'party-amount';
     input.disabled = !active() || !canSubmit; label.htmlFor = input.id;
     const submit = button(submitKey, null); submit.type = 'submit'; submit.disabled = !active() || !canSubmit || max < min;
     form.append(label, input, submit); form.addEventListener('submit', event => {
       event.preventDefault();
       if (submit.disabled || !form.reportValidity()) return;
       const amount = Number(input.value);
-      if (!Number.isSafeInteger(amount) || amount < min || amount > max) return;
+      if (!Number.isSafeInteger(amount) || amount < min || amount > max || !validateAmount(amount)) return;
       if (secret) privateAction(command, { amount }); else publicAction(command, { amount });
     });
     return form;
@@ -229,14 +233,36 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
 
   function renderAuction(state) {
     const game = state.room.game, ownTurn = game.turnSeat === state.seat;
+    const controls = auctionControls(state), decision = auctionDecisionKey(state);
+    const validBid = amount => {
+      const latest = context(), current = auctionControls(latest);
+      return auctionDecisionKey(latest) === decision && current.canBid && amount >= current.minimum && amount <= current.maximum;
+    };
     const node = panel('party.mode.auction'), arena = el('div', 'party-auction-arena');
     const id = game.currentCardId ?? safeCards(game)[0];
     if (id != null) arena.append(card(id));
     const actions = el('div', 'party-auction-actions');
     actions.append(copy('p', 'party-auction-leader', 'party.auction.leader', { name: nameFor(game.bidderSeat), amount: game.highestBid ?? 1 }), note(ownTurn ? 'party.auction.your_turn' : 'party.auction.other_turn', { name: nameFor(game.turnSeat) }));
-    const canBid = ownTurn && (game.rosters?.[state.seat]?.length || 0) < 5 && (game.budgets?.[state.seat] || 0) > (game.highestBid || 0);
-    actions.append(amountForm({ min: (game.highestBid || 0) + 1, max: game.budgets?.[state.seat] ?? 0, value: (game.highestBid || 0) + 1, submitKey: 'party.auction.bid', command: 'bid', canSubmit: canBid }));
-    const pass = disabled(button('party.auction.pass', () => publicAction('pass'), 'button button-secondary')); pass.disabled ||= !ownTurn; actions.append(pass);
+    const quick = el('div', 'party-quick-bids'); quick.setAttribute('role', 'group'); quick.setAttribute('aria-label', tx('party.auction.quick_label'));
+    const quickButtons = el('div', 'party-quick-bid-buttons');
+    for (const offer of controls.quickBids) {
+      const bid = button('party.auction.quick_increment', () => {
+        if (validBid(offer.amount)) publicAction('bid', { amount: offer.amount });
+      }, 'button button-secondary party-quick-bid', offer);
+      bid.replaceChildren(copy('strong', '', 'party.auction.quick_increment', offer), copy('span', '', 'party.auction.quick_amount', offer));
+      bid.dataset.partyFocus = `quick-bid-${offer.increment}`;
+      bid.dataset.bidIncrement = String(offer.increment);
+      bid.setAttribute('aria-label', tx('party.auction.quick_accessible', offer));
+      bid.disabled = offer.disabled; quickButtons.append(bid);
+    }
+    quick.append(copy('p', 'party-quick-bid-label', 'party.auction.quick_label'), quickButtons);
+    actions.append(quick, amountForm({ min: controls.minimum, max: controls.maximum, value: controls.minimum,
+      submitKey: 'party.auction.bid', command: 'bid', canSubmit: controls.canBid, validateAmount: validBid }));
+    const pass = button('party.auction.pass', () => {
+      const latest = context();
+      if (auctionDecisionKey(latest) === decision && auctionControls(latest).canPass) publicAction('pass');
+    }, 'button button-secondary party-auction-pass');
+    pass.disabled = !controls.canPass; actions.append(pass);
     arena.append(actions); node.append(arena, renderRosters(game)); return node;
   }
 
@@ -436,6 +462,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     if (result.guessId != null && result.guessId !== result.targetId) {
       const guess = card(result.guessId, { picked: true, compact: true }); guess.append(copy('span', 'party-choice-label', 'party.detective.guessed')); grid.append(guess);
     }
+    if (grid.childElementCount === 1) grid.classList.add('is-single');
     return grid;
   }
 
@@ -615,7 +642,10 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     renderPlayers(state);
     status.hidden = Boolean(state.connected && state.privateState?.loaded !== false);
     status.textContent = tx(!state.connected ? 'party.reconnect' : 'party.loading');
-    const instance = `${room.code}:${room.createdAt}:${room.round}:${game?.roundIndex}:${game?.stage}:${room.status}`;
+    const instance = room.mode === 'auction' ? auctionDecisionKey(state)
+      : `${room.code}:${room.createdAt}:${room.round}:${game?.roundIndex}:${game?.stage}:${room.status}:${state.seat}`;
+    const transition = JSON.stringify([room.code, room.createdAt, room.round, room.mode, room.status,
+      game?.roundIndex, game?.stage, game?.currentCardId, game?.turnSeat, game?.actions?.length || 0]);
     const privateVisual = { mine: state.privateState?.mine, role: state.privateState?.role,
       previousSlots: state.privateState?.previousSlots, loaded: state.privateState?.loaded,
       ownProgress: state.privateState?.progress?.[state.seat] };
@@ -631,7 +661,12 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       const selection = focusKey && focused.selectionStart != null ? [focused.selectionStart, focused.selectionEnd] : null;
       const builders = { auction: renderAuction, 'sealed-auction': renderSealed, 'simultaneous-ranking': renderRanking, telepathy: renderTelepathy, detective: renderDetective, chameleon: renderChameleon };
       const node = room.status === 'waiting' ? renderWaiting(state) : room.status === 'finished' ? renderFinished(state) : builders[room.mode]?.(state) || panel('party.spectator');
-      stage.replaceChildren(node); renderKey = key; stageInstance = instance;
+      // Busy and private progress redraws must not restart the scene animation.
+      if (transition === transitionKey) {
+        node.classList.remove('party-enter');
+        for (const panel of node.querySelectorAll('.party-enter')) panel.classList.remove('party-enter');
+      }
+      stage.replaceChildren(node); renderKey = key; stageInstance = instance; transitionKey = transition;
       for (const [key, value] of draft) {
         const input = [...stage.querySelectorAll('[data-party-draft]')].find(node => node.dataset.partyDraft === key);
         if (input) input.value = value;
@@ -652,5 +687,5 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     }
     renderNext();
   }
-  return { render, renderNext, nextGameMount, reset() { renderKey = ''; stageInstance = ''; nextKey = ''; nextFields = null; stage.replaceChildren(); nextGameMount.replaceChildren(); } };
+  return { render, renderNext, nextGameMount, reset() { renderKey = ''; stageInstance = ''; transitionKey = ''; nextKey = ''; nextFields = null; rostersOpen = false; stage.replaceChildren(); nextGameMount.replaceChildren(); } };
 }

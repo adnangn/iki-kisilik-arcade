@@ -3,8 +3,16 @@ import { TEXT_CATALOG } from './text-catalog.js';
 export const PREVIEW_KEY = 'arcade.text-preview.v1';
 export const MAX_TEXT_LENGTH = 2000;
 const tokens = text => [...text.matchAll(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g)].map(match => match[1]).sort();
-let published = { version: 1, texts: {} };
+let published = embeddedTexts() || { version: 1, texts: {} };
 let current = published;
+
+function embeddedTexts() {
+  if (typeof document === 'undefined') return null;
+  const seed = document.getElementById('published-texts');
+  if (!seed) return null;
+  try { return normalizeTexts(JSON.parse(seed.textContent)); }
+  catch { return null; }
+}
 
 export function normalizeTexts(candidate) {
   if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate) || candidate.version !== 1 ||
@@ -48,7 +56,7 @@ export async function loadTextFile() {
 }
 
 export async function loadTexts() {
-  try { published = await loadTextFile(); }
+  try { published = embeddedTexts() || await loadTextFile(); }
   catch (error) { published = { version: 1, texts: {} }; console.warn('Varsayılan site metinleri kullanılıyor.', error.message); }
   current = published;
   const preview = new URLSearchParams(window.location.search).get('metin-onizleme') === '1';

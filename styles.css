@@ -38,6 +38,7 @@
 html { min-width: 0; scroll-behavior: smooth; }
 body {
   margin: 0;
+  min-height: 100%;
   min-height: 100dvh;
   font-family: var(--sans);
   font-size: 20px;
@@ -190,6 +191,8 @@ h1[tabindex="-1"]:focus { outline: none; }
 .join-row .button { padding: 10px 12px; font-family: var(--sans); font-size: 23px; gap: 8px; }
 .join-row .button svg { width: 15px; height: 15px; flex-basis: 15px; }
 .demo-entry { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 23px; }
+.demo-player-field { display: grid; gap: 8px; margin-top: 20px; }
+.demo-player-field .input-caption { margin: 0; font-size: 18px; }
 .demo-label { font-size: 18px; line-height: 1.25; color: #94739f; }
 .text-button { min-height: 44px; padding: 8px 2px; border: 0; border-radius: 0; background: transparent; font-family: var(--sans); font-size: 20px; line-height: 1.3; color: var(--violet-dark); }
 .text-button:not(:disabled):hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
