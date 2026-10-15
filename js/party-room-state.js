@@ -95,7 +95,23 @@ export function changePartyRoom(value, uid, revision, kind, payload = {}) {
   if (!room || room.version !== 2 || !seat) throw new RoomError('Bu masanın oyuncusu değilsiniz.');
   if (room.revision !== revision) throw new RoomError('Masa güncellendi. Güncel ekrandan tekrar deneyin.');
   const next = structuredClone(room);
-  if (kind === 'propose-next') {
+  if (kind === 'reset-table') {
+    if (seat !== 'p1' || uid !== room.ownerUid) throw new RoomError('Masayı yalnız oda sahibi düzenleyebilir.');
+    const removeSeats = payload.removeSeats;
+    if (!Array.isArray(removeSeats) || new Set(removeSeats).size !== removeSeats.length
+      || removeSeats.some(key => key === 'p1' || !PARTY_SEATS.includes(key) || !room.players[key]))
+      throw new RoomError('Çıkarılacak oyuncuları güncel masadan seçin.');
+    const config = partyConfig(payload);
+    const survivors = roomSeats(room).filter(key => !removeSeats.includes(key));
+    if (survivors.length > modeLimits(config.mode).max) throw new RoomError('Bu oyun için masada çok fazla oyuncu var.');
+    next.players = Object.fromEntries(survivors.map((key, index) => [PARTY_SEATS[index], structuredClone(room.players[key])]));
+    next.datasetId = config.datasetId; next.mode = config.mode;
+    if (config.bracketSize) next.bracketSize = config.bracketSize; else delete next.bracketSize;
+    // A new round isolates every former seat's private locks and secret roles.
+    // The abandoned game's cards, budgets and results never move to new seats.
+    delete next.game; delete next.partyGame; delete next.nextGame;
+    next.status = 'waiting'; next.round++; next.starterSeat = 'p1';
+  } else if (kind === 'propose-next') {
     if (room.status !== 'finished') throw new RoomError('Oyun seçmek için bu turun bitmesini bekleyin.');
     const config = partyConfig(payload);
     if (roomSeats(room).length > modeLimits(config.mode).max) throw new RoomError('Bu oyun mevcut oyuncu sayısı için uygun değil.');

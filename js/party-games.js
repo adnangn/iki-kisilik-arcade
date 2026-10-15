@@ -1,3 +1,5 @@
+import { TELEPATHY_ROUNDS, validTelepathyCriteria } from './telepathy-questions.js';
+
 /**
  * Deterministic 2–4 player engines. Shuffle/setup belongs to the caller.
  * Public snapshots never contain current private submissions or hidden roles.
@@ -81,8 +83,8 @@ function emptyGame(setup) {
 export function createPartyGame(mode, options) {
   const setup = validateSetup(mode, options);
   if (mode === 'telepathy') {
-    const criteria = options.criteria ?? Array.from({ length: 10 }, (_, index) => index);
-    if (!Array.isArray(criteria) || criteria.length !== 10 || Array.from(criteria).some(value => !integer(value, 0, 9))) fail('INVALID_CRITERIA', 'Telepati için on geçerli soru seçilmelidir.');
+    const criteria = options.criteria ?? Array.from({ length: TELEPATHY_ROUNDS }, (_, index) => index);
+    if (!validTelepathyCriteria(criteria)) fail('INVALID_CRITERIA', 'Telepati için on farklı ve geçerli soru seçilmelidir.');
     setup.criteria = [...criteria];
   }
   const game = emptyGame(setup);
@@ -345,7 +347,10 @@ function applyTelepathyResult(game, result) {
 }
 
 function normalizeTelepathy(game) {
-  const expected = createPartyGame('telepathy', game);
+  // Older rooms drew with replacement from indices 0–9. They can finish with
+  // their original questions; only creation requires a fresh unique sequence.
+  if (!validTelepathyCriteria(game.criteria, { allowLegacyRepeated: true })) fail('INVALID_CRITERIA', 'Telepati soruları geçersiz.');
+  const expected = emptyGame({ ...validateSetup('telepathy', game), criteria: [...game.criteria] });
   const results = resultSource(game);
   for (let index = 0; index < Object.keys(results).length; index += 1) {
     if (index >= 10 || !results[`r${index + 1}`]) fail('INVALID_GAME', 'Telepati tur geçmişi geçersiz.');

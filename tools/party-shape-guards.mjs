@@ -1,3 +1,5 @@
+import { TELEPATHY_QUESTION_COUNT } from '../js/telepathy-questions.js';
+
 /** Close missing-field/deletion and setup-shape gaps left by leaf validators. */
 export function installPartyShapeGuards(document) {
   const room = document.rules.rooms.$code, game = room.partyGame;
@@ -53,7 +55,9 @@ export function installPartyShapeGuards(document) {
   // Telepathy questions are immutable ten-element arrays; metadata for another
   // round cannot silently change the question while selections are being locked.
   append(game.criteria, `${value('newData.parent()', 'mode')}==='telepathy'&&newData.hasChildren(['0','1','2','3','4','5','6','7','8','9'])`);
-  append(game.criteria.$key, `$key.matches(/^[0-9]$/)&&newData.isNumber()&&newData.val()%1===0&&newData.val()>=0&&newData.val()<=9&&(${value('newData.parent().parent().parent()', 'lastAction/kind')}.matches(/^(start|rematch|next-game)$/)||newData.val()===data.val())`);
+  const criteriaInitial = `${value('newData.parent().parent().parent()', 'lastAction/kind')}.matches(/^(start|rematch|next-game)$/)`;
+  const criteriaUnique = Array.from({ length: 10 }, (_, index) => `($key==='${index}'||newData.val()!==newData.parent().child('${index}').val())`).join('&&');
+  append(game.criteria.$key, `$key.matches(/^[0-9]$/)&&newData.isNumber()&&newData.val()%1===0&&newData.val()>=0&&newData.val()<${TELEPATHY_QUESTION_COUNT}&&(${criteriaInitial}?${criteriaUnique}:newData.val()===data.val())`);
 
   // An inverse deck map supplies both uniqueness and complete membership in a
   // single wildcard check, avoiding a quadratic list of comparisons.

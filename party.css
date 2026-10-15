@@ -253,3 +253,52 @@ button.party-card:disabled { opacity: .7; }
   button.party-card:hover:not(:disabled), button.party-card:active:not(:disabled) { transform: none; }
 }
 .party-bonus { background:#f5e6ae; color:#49354b; padding:12px 16px; border:2px dashed #92794c; box-shadow:3px 3px 0 #d0be96; font-size:24px; }
+
+.party-jury { min-width: 0; }
+.party-jury > * + * { margin-top: 16px; }
+.party-jury-title { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--violet); }
+.party-jury-status { display: inline-block; padding: 7px 12px; border: 2px solid var(--line); background: var(--lilac); font-size: 23px; }
+.party-jury-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.party-jury-candidate { min-width: 0; display: flex; flex-direction: column; padding: 14px; border: 3px solid var(--line); box-shadow: var(--shadow); background: var(--paper); }
+.party-jury-candidate h4 { margin: 0; font-size: 25px; overflow-wrap: anywhere; }
+.party-jury-metrics { margin: 8px 0 12px; font-size: 19px; line-height: 1.3; }
+.party-jury-cards { list-style: none; margin: 0 0 16px; padding: 0; }
+.party-jury-cards li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 62px; padding: 5px 0; border-top: 1px dashed var(--line); }
+.party-jury-cards img { width: 54px; height: 54px; object-fit: cover; image-rendering: pixelated; border: 2px solid var(--line); background: var(--lilac); }
+.party-jury-cards strong { font-size: 23px; line-height: 1.1; overflow-wrap: anywhere; }
+.party-jury-price { max-width: 110px; text-align: right; font-size: 18px; line-height: 1.15; }
+.party-jury-vote { width: 100%; margin-top: auto; min-height: 50px; font-size: 10px; }
+.party-jury-candidate.is-chosen { border-color: var(--violet); background: #f0e9f7; }
+.party-jury-candidate.is-favorite { border-color: #55745a; background: #e4efdf; box-shadow: 4px 4px 0 #91a789; }
+.party-jury-vote-count { display: block; margin-top: auto; padding: 9px; border: 2px solid #55745a; text-align: center; font-size: 27px; background: #f6faf2; }
+.party-jury-outcome { padding: 16px; border: 3px solid #55745a; background: #e4efdf; font-size: 26px; line-height: 1.35; overflow-wrap: anywhere; animation: jury-reveal 240ms steps(3, end); }
+@keyframes jury-reveal { from { transform: translateY(5px); opacity: .4; } to { transform: translateY(0); opacity: 1; } }
+@media (max-width: 700px) {
+  .party-jury-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .party-jury-candidate { padding: 12px; }
+  .party-jury-cards li { grid-template-columns: 46px minmax(0, 1fr) auto; gap: 8px; }
+  .party-jury-cards img { width: 46px; height: 46px; }
+  .party-jury-cards strong { font-size: 21px; }
+  .party-jury-price { font-size: 17px; max-width: 90px; }
+}
+@media (prefers-reduced-motion: reduce) { .party-jury-outcome { animation: none; } }
+
+.party-telepathy-history > * + * { margin-top: 12px; }
+.party-telepathy-round { border: 2px solid var(--line); background: var(--paper); }
+.party-telepathy-round > summary { min-height: 54px; padding: 12px; cursor: pointer; display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.party-telepathy-round > summary::after { content: '+'; grid-column: 3; font-size: 22px; justify-self: end; }
+.party-telepathy-round[open] > summary::after { content: '−'; }
+.party-telepathy-round-number { font-family: var(--mono); font-size: 8px; line-height: 1.5; }
+.party-telepathy-round-question { font-size: 23px; line-height: 1.1; }
+.party-telepathy-round-points { grid-column: 2; font-size: 18px; color: var(--muted); }
+.party-telepathy-round-choices { list-style: none; padding: 0 12px 12px; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.party-telepathy-round-choices li { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 8px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; min-width: 0; }
+.party-telepathy-round-choices img { width: 46px; height: 46px; object-fit: cover; image-rendering: pixelated; }
+.party-telepathy-round-choices li > div { display: flex; flex-direction: column; min-width: 0; overflow-wrap: anywhere; font-size: 19px; line-height: 1.1; }
+.party-telepathy-round-choices li > div > span { color: var(--muted); }
+.party-telepathy-personal-points { font-size: 19px; white-space: nowrap; }
+@media (max-width: 600px) {
+  .party-telepathy-round > summary { gap: 7px; padding: 10px; grid-template-columns: 48px minmax(0, 1fr) 20px; }
+  .party-telepathy-round-question { font-size: 22px; }
+  .party-telepathy-round-choices { grid-template-columns: minmax(0, 1fr); }
+}

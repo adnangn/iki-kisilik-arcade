@@ -1,0 +1,26 @@
+const field = (label, value) => ({ group: 'Oyuncu yönetimi', label, value });
+export const TABLE_TEXT_CATALOG = {
+  'table.manage': field('Masa yönetimi başlığı', 'MASAYI YÖNET'),
+  'table.description': field('Masa yönetimi açıklaması', 'Oyuncu koltuklarını düzenle, oyununu seç ve aynı oda koduyla yeni tura hazırlan.'),
+  'table.players': field('Oyuncu seçimi başlığı', 'MASADAKİ OYUNCULAR'),
+  'table.remove': field('Oyuncuyu çıkarma seçeneği', 'Bu oyuncuyu çıkar'),
+  'table.host_fixed': field('Oda sahibi koltuğu açıklaması', 'Oda sahibi · masada kalır'),
+  'table.online': field('Bağlı oyuncu durumu', 'Bağlı'),
+  'table.offline': field('Bağlantısı kesilen oyuncu durumu', 'Bağlantısı yok'),
+  'table.select_offline': field('Bağlı olmayanları seçme düğmesi', 'BAĞLI OLMAYANLARI SEÇ'),
+  'table.remaining': field('Kalacak oyuncu sayısı', 'Yeni masada {count} oyuncu kalacak.'),
+  'table.minimum': field('Eksik oyuncu açıklaması', 'Bu oyun için en az {min} oyuncu gerekir. Başka bir oyun seçebilir veya yeni oyuncu bekleyebilirsin.'),
+  'table.capacity': field('Kapasite açıklaması', 'Bu oyun en fazla {max} oyuncuyla oynanır. Oyuncu seçimini veya oyunu değiştir.'),
+  'table.review': field('Düzenlemeyi inceleme düğmesi', 'YENİ TURU HAZIRLA'),
+  'table.review_title': field('Düzenleme onay başlığı', 'YENİ MASANI KONTROL ET'),
+  'table.remove_summary': field('Çıkarılacak oyuncular özeti', 'Çıkarılacak oyuncular: {names}.'),
+  'table.none_removed': field('Oyuncu çıkarılmayan masa özeti', 'Bütün oyuncular masada kalacak.'),
+  'table.config_summary': field('Yeni oyun özeti', '{dataset} · {mode} · {count} oyuncu'),
+  'table.discard': field('Devam eden tur açıklaması', 'Bu işlem mevcut turu sonlandırır ve seçimlerini sıfırlar. Oda kodu değişmez. Yeni masayı hazır olduğunda sen başlatırsın.'),
+  'table.waiting_summary': field('Bekleyen masa açıklaması', 'Masa bu seçimlerle güncellenecek. Oda kodu değişmez. Oyunu hazır olduğunda başlatabilirsin.'),
+  'table.confirm': field('Yeni masa onayı', 'ONAYLA VE MASAYI HAZIRLA'),
+  'table.cancel': field('Düzenlemeye dönme düğmesi', 'DÜZENLEMEYE DÖN'),
+  'table.guest_hint': field('Bağlantısı kesilen oyuncu için bilgi', '{names} için bağlantı bekleniyor. Oda sahibi masayı düzenleyip kalan oyuncularla yeni tur hazırlayabilir.'),
+  'table.removed': field('Masadan çıkarılan oyuncu bildirimi', 'Oda sahibi masayı yeniden düzenledi. Koltuğun boşaltıldı; yeni bir odaya katılabilirsin.'),
+  'table.prepared': field('Yeni masa hazır bildirimi', 'Masa güncellendi. Hazır olduğunda yeni oyunu başlatabilirsin.')
+};

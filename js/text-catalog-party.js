@@ -1,3 +1,5 @@
+import { TELEPATHY_QUESTIONS } from './telepathy-questions.js';
+
 const field = (label, value) => ({ group: 'Çok oyunculu masa', label, value });
 export const PARTY_TEXT_CATALOG = {
   'party.telepathy.bonus': field('Telepati seri bonusu', '+{bonus} SERİ BONUSU · {count} ikili üst üste 5 ortak seçime ulaştı.'),
@@ -106,16 +108,7 @@ export const PARTY_TEXT_CATALOG = {
   'party.ranking.distance': field('Kart farkı açıklaması', '{card}: {first}. ve {second}. sıra'),
   'party.ranking.all': field('Tüm listeler başlığı', 'LİSTELER AÇILDI'),
   'party.telepathy.prompt': field('Telepati varsayılan sorusu', 'Hangisi daha ikonik?'),
-  'party.telepathy.question.0': field('Telepati soru 1', 'Hangisi daha ikonik?'),
-  'party.telepathy.question.1': field('Telepati soru 2', 'Hangisi daha abartılıyor?'),
-  'party.telepathy.question.2': field('Telepati soru 3', 'Hangisi daha çok mutlu eder?'),
-  'party.telepathy.question.3': field('Telepati soru 4', 'Hangisi daha unutulmaz?'),
-  'party.telepathy.question.4': field('Telepati soru 5', 'Hangisini arkadaşına önerirsin?'),
-  'party.telepathy.question.5': field('Telepati soru 6', 'Hangisi daha nostaljik?'),
-  'party.telepathy.question.6': field('Telepati soru 7', 'Hangisi beklenenden daha iyi?'),
-  'party.telepathy.question.7': field('Telepati soru 8', 'Hangisi birinci olmayı hak eder?'),
-  'party.telepathy.question.8': field('Telepati soru 9', 'Hangisi daha eğlenceli?'),
-  'party.telepathy.question.9': field('Telepati soru 10', 'Hangisini yeniden keşfetmek istersin?'),
+  ...Object.fromEntries(TELEPATHY_QUESTIONS.map((question, index) => [`party.telepathy.question.${index}`, field(`Telepati soru ${index + 1}`, question)])),
   'party.telepathy.wait': field('Telepati seçim bekleme', 'Seçimin kilitlendi. Diğer oyuncuların seçimleri bekleniyor.'),
   'party.telepathy.matches': field('Ortak seçim sonucu', '{count} ikili aynı kartı seçti.'),
   'party.telepathy.no_match': field('Farklı seçim sonucu', 'Bu tur herkes farklı bir kart seçti. Sonraki turda yeniden deneyin.'),

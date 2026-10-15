@@ -22,6 +22,10 @@ import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-comma
 import { createPartyView, partyModeLimits } from './js/party-view.js';
 import { partyCards, partyGameSpec } from './js/party-games.js';
 import { partySubmission } from './js/party-online.js';
+import { createMoveFeedback } from './js/move-feedback.js';
+import { createTableManager } from './js/table-manager.js';
+import { auctionJuryBallot, auctionJuryResult } from './js/auction-jury.js';
+import { shuffledTelepathyCriteria } from './js/telepathy-questions.js';
 import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
   capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
@@ -33,6 +37,10 @@ let pendingInvite = parseInvite(window.location.href);
 let inviteRequested = new URL(window.location.href).searchParams.has('oda');
 let nextGameView = null;
 let partyView = null;
+let tableManager = null;
+let juryState = { loaded: false, mine: null, progress: {} };
+let juryUnsubscribe = null, juryKey = null, juryTimer = null, juryRetryTimer = null;
+let juryRetryCount = 0, demoJuryVotes = {};
 let partyState = { loaded: false, mine: null, progress: {} };
 let partyUnsubscribe = null, partyKey = null, partyAttempt = null, partyDealAttempt = null;
 let partyRetryTimer = null, partyRetryCount = 0, partyRetryUnit = null;
@@ -85,6 +93,11 @@ let cooperativeRetryUnit = null;
 let cooperativeRetryCount = 0;
 let demoSecrets = { p1: null, p2: null };
 try { signedOut = localStorage.getItem(SIGNED_OUT_KEY) === 'true'; } catch {}
+
+const moveFeedback = createMoveFeedback({ text: t, getContext: () => ({
+  room, lifecycle, mySeat, screenId: activeScreen, connected: demo || !!service?.connected, demo,
+  mine: room?.version === 2 && isPartyMode(room.mode) ? partyState.mine : cooperativeState.mine, nameFor
+}) });
 
 function animateOnce(element, className) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -333,7 +346,7 @@ function shuffleDeck(datasetId) {
 }
 function gamePayload(config = room) {
   return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) }
-    : { deck: shuffleDeck(config.datasetId), ...(config.mode === 'telepathy' ? { criteria: Array.from({ length: 10 }, () => randomIndex(10)) } : {}) };
+    : { deck: shuffleDeck(config.datasetId), ...(config.mode === 'telepathy' ? { criteria: shuffledTelepathyCriteria(randomIndex) } : {}) };
 }
 function randomIndex(length) { return crypto.getRandomValues(new Uint32Array(1))[0] % length; }
 function changeCurrentRoom(value, uid, revision, kind, payload) {
@@ -460,8 +473,71 @@ function resolveDemoCooperative() {
 
 function partyContext() {
   return { room, seat: mySeat, cards: new Map((datasets[room?.datasetId] || []).map(card => [card.id, card])),
-    privateState: partyState, datasets, connected: demo || !!service?.connected, busy, presence,
+    privateState: partyState, juryState, datasets, connected: demo || !!service?.connected, busy, presence,
     nameFor, t, onlineSeat, demo };
+}
+
+function clearJuryWatch() {
+  juryUnsubscribe?.(); juryUnsubscribe = null; juryKey = null;
+  clearTimeout(juryTimer); juryTimer = null;
+  clearTimeout(juryRetryTimer); juryRetryTimer = null; juryRetryCount = 0;
+  juryState = { loaded: false, mine: null, progress: {} };
+}
+function syncJuryWatch() {
+  const eligible = room?.version === 2 && room.status === 'finished' && ['auction', 'sealed-auction'].includes(room.mode)
+    && room.game?.seats?.includes(mySeat);
+  if (!eligible) { clearJuryWatch(); juryState = { loaded: true, eligible: false, progress: {} }; return; }
+  const key = `${lifecycle}:${room.code}:${room.createdAt}:${room.round}:${mySeat}`;
+  if (demo) {
+    const votes = demoJuryVotes[key] || {}, seats = room.game.seats;
+    juryState = { eligible: true, loaded: true, mine: votes[mySeat] || null,
+      progress: Object.fromEntries(seats.map(seat => [seat, !!votes[seat]?.locked])),
+      allLocked: seats.every(seat => votes[seat]?.locked), result: auctionJuryResult(seats, votes, room.createdAt) };
+    if (seats.some(seat => seat !== mySeat && !votes[seat]) && !juryTimer) {
+      juryTimer = setTimeout(() => {
+        juryTimer = null;
+        if (!demo || !room || room.status !== 'finished' || key !== `${lifecycle}:${room.code}:${room.createdAt}:${room.round}:${mySeat}`) return;
+        const current = demoJuryVotes[key] ||= {};
+        for (const seat of seats.filter(seat => seat !== mySeat && !current[seat])) {
+          current[seat] = auctionJuryBallot({ ...room, code: '000000' }, room.players[seat].uid, { targetSeat: seats[randomIndex(seats.length)] });
+        }
+        render();
+      }, 500);
+    }
+    return;
+  }
+  if (!service?.connected) return;
+  if (key === juryKey) return;
+  juryUnsubscribe?.(); juryUnsubscribe = null; juryKey = key;
+  juryState = { loaded: false, eligible: true, mine: null, progress: {} };
+  const source = service, generation = lifecycle;
+  const fail = error => {
+    if (juryKey !== key || generation !== lifecycle || service !== source) return;
+    juryState = { loaded: false, eligible: true, mine: null, progress: {} };
+    if (juryRetryCount >= 3) { toast(errorMessage(error)); return; }
+    clearTimeout(juryRetryTimer);
+    juryRetryTimer = setTimeout(() => {
+      juryRetryTimer = null;
+      if (juryKey !== key || generation !== lifecycle || service !== source) return;
+      juryKey = null; render();
+    }, 750 * 2 ** juryRetryCount++);
+  };
+  try {
+    juryUnsubscribe = source.watchJury(structuredClone(room), value => {
+      if (juryKey !== key || generation !== lifecycle || service !== source) return;
+      juryState = { ...value, eligible: true }; render();
+    }, fail);
+  } catch (error) { fail(error); }
+}
+async function submitJury(value) {
+  if (!room || room.status !== 'finished') throw new RoomError('Bu turun oylaması artık açık değil.');
+  if (demo) {
+    const key = `${lifecycle}:${room.code}:${room.createdAt}:${room.round}:${mySeat}`;
+    const votes = demoJuryVotes[key] ||= {};
+    if (votes[mySeat]) throw new RoomError('Oyun zaten kilitlendi.');
+    votes[mySeat] = auctionJuryBallot({ ...room, code: '000000' }, 'demo-you', value); render();
+  } else await service.submitJury(structuredClone(room), value);
+  beep('select');
 }
 function partyUnit(value = room) { return `r${value.round}/q${value.game.roundIndex}/${value.game.stage}`; }
 function demoPartyState() {
@@ -620,6 +696,7 @@ function schedulePartyBot() {
 }
 
 function render() {
+  syncJuryWatch();
   renderApp();
   if (room?.version === 2) {
     $('next-game-panel').hidden = true;
@@ -632,6 +709,14 @@ function render() {
   $('invite-arrival').hidden = !pendingInvite || !!room;
   if (pendingInvite && !room) $('invite-arrival-title').textContent = t('room.extra.invite_arrived', { code: pendingInvite });
   if (demo && room?.status === 'finished' && room.nextGame) scheduleBot();
+  moveFeedback.render();
+  if (tableManager && activeScreen && room) {
+    const screen = $(activeScreen), mount = tableManager.root;
+    const anchor = screen.querySelector('.party-players, .room-header, .results-header');
+    if (anchor && mount.previousElementSibling !== anchor) anchor.after(mount);
+    else if (!anchor && mount.parentElement !== screen) screen.prepend(mount);
+  }
+  tableManager?.render();
 }
 
 function renderApp() {
@@ -1032,6 +1117,8 @@ function watchOpponentReaction() {
 }
 
 async function detach() {
+  moveFeedback.reset();
+  clearJuryWatch(); demoJuryVotes = {}; tableManager?.reset();
   $('invite-dialog').close();
   nextGameView?.reset();
   partyView?.reset(); partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null;
@@ -1093,7 +1180,7 @@ async function attach(nextRoom, originService = service, originEpoch = actionEpo
     try {
       assertRoomContent(value);
       const seat = seatFor(value, originService.uid);
-      if (!seat) throw new RoomError(t('runtime.copy.oyuncu_kimligi_bu_odada_bulunamadi'));
+      if (!seat) { void leaveRoom(true).then(() => toast(t('table.removed'))); return; }
       room = value; mySeat = seat; watchOpponentReaction(); render();
     } catch (error) { void leaveRoom(true).then(() => toast(errorMessage(error))); }
   }, error => {
@@ -1109,12 +1196,17 @@ async function attach(nextRoom, originService = service, originEpoch = actionEpo
   watchOpponentReaction(); render();
 }
 
-async function runAction(action, buttonId = null) {
+async function runAction(action, buttonId = null, feedbackOptions = {}) {
   if (busy) return;
   const epoch = ++actionEpoch;
+  const receipt = moveFeedback.begin(buttonId, feedbackOptions);
   busy = true; pendingAction = buttonId; render();
-  try { await action(); } catch (error) {
+  try {
+    await action();
+    if (epoch === actionEpoch) moveFeedback.succeed(receipt);
+  } catch (error) {
     if (epoch !== actionEpoch) return;
+    moveFeedback.fail(receipt);
     if (buttonId?.startsWith('rank-slot-')) pendingRankFocus = null;
     if (buttonId?.startsWith('bracket-')) pendingBracketFocus = null;
     toast(errorMessage(error));
@@ -1382,14 +1474,23 @@ nextGameView = createNextGameView({
   onReady: (approval, config) => void runAction(() => command('ready-next', { ...approval, ...gamePayload(config) }), 'next-ready'),
 });
 partyView = createPartyView({ root: $('party-room'), context: partyContext,
-  onAction: (kind, payload) => void runAction(async () => { await command(kind, payload); beep(kind === 'bid' ? 'bid' : 'select'); }, `party-${kind}`),
-  onSecret: (_kind, payload) => void runAction(() => submitParty(payload), 'party-lock'),
+  onAction: (kind, payload) => void runAction(async () => { await command(kind, payload); beep(kind === 'bid' ? 'bid' : 'select'); }, `party-${kind}`, { kind }),
+  onSecret: (kind, payload) => void runAction(() => submitParty(payload), 'party-lock', { kind }),
+  onJury: value => void runAction(() => submitJury(value), 'jury-vote', { kind: 'vote' }),
   onStart: () => void runAction(() => command('start', gamePayload()), 'party-start'),
   onPropose: config => void runAction(() => command('propose-next', config), 'party-propose'),
   onReady: (approval, config) => void runAction(() => command('ready-next', { ...approval, ...gamePayload(config) }), 'party-ready'),
   onInvite: openInvite, onLeave: () => void leaveRoom(),
   onRematch: () => void runAction(() => command('rematch', gamePayload()), 'party-rematch')
 });
+const tableManagerRoot = document.createElement('section'); tableManagerRoot.hidden = true;
+tableManager = createTableManager({ root: tableManagerRoot, context: partyContext,
+  onReset: payload => void runAction(async () => {
+    await command('reset-table', payload);
+    toast(t('table.prepared'));
+  }, 'table-reset', { kind: 'next' })
+});
+tableManager.root = tableManagerRoot;
 
 function clearInviteAddress() {
   pendingInvite = null; inviteRequested = false;

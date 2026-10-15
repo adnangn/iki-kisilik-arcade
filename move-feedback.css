@@ -1,0 +1,44 @@
+/* A receipt stays in the document flow; it never covers a game control. */
+.move-feedback {
+  display: flex; align-items: center; padding: 12px 14px; margin: 0 0 18px;
+  min-height: 70px; border: 2px solid var(--ink, #3b314c);
+  box-shadow: 3px 3px 0 rgba(73, 54, 91, .13); background: #f2ecf8; color: var(--ink, #3b314c);
+  text-align: left; overflow-wrap: anywhere;
+}
+.move-feedback[hidden] { display: none; }
+.move-feedback-icon {
+  display: flex; align-items: center; justify-content: center; flex: 0 0 32px;
+  width: 32px; height: 32px; margin-right: 12px; border: 2px solid currentColor;
+  font-size: 21px; line-height: 1; font-weight: 700; color: #7852a2;
+}
+.move-feedback-copy { flex: 1 1 auto; min-width: 0; }
+.move-feedback-copy strong, .move-feedback-copy > span { display: block; }
+.move-feedback-copy strong { font-size: 23px; line-height: 1.15; }
+.move-feedback-copy > span { margin-top: 4px; font-size: 20px; line-height: 1.2; }
+.move-feedback-progress { display: flex; align-items: center; flex: 0 0 auto; margin-left: 12px; }
+.move-feedback-progress i { width: 5px; height: 10px; background: #9678b0; margin-left: 3px; opacity: .2; }
+.move-feedback[data-phase="pending"] .move-feedback-progress i { animation: move-pixel-wait 1.1s steps(1, end) infinite; }
+.move-feedback-progress i:nth-child(2) { animation-delay: .15s; }
+.move-feedback-progress i:nth-child(3) { animation-delay: .3s; }
+.move-feedback-progress i:nth-child(4) { animation-delay: .45s; }
+.move-feedback[data-phase="success"] { background: #edf5ed; }
+.move-feedback[data-phase="success"] .move-feedback-icon { color: #4b8061; }
+.move-feedback[data-phase="success"] .move-feedback-progress { display: none; }
+.move-feedback[data-phase="error"], .move-feedback.is-slow { background: #fff3dc; }
+.move-feedback[data-phase="error"] .move-feedback-icon { color: #9c5a47; }
+.move-feedback[data-phase="error"] .move-feedback-progress { display: none; }
+.move-feedback-arrive .move-feedback-icon { animation: move-receipt-pop .18s steps(2, end) both; }
+.move-control-pending { outline: 3px solid #9678b0; outline-offset: 3px; animation: move-control-press .16s steps(2, end) both; }
+@keyframes move-pixel-wait { 0%, 70%, 100% { opacity: .2; } 25%, 55% { opacity: 1; } }
+@keyframes move-receipt-pop { from { transform: translateY(2px) scale(.9); } to { transform: none; } }
+@keyframes move-control-press { from { filter: brightness(.88); transform: translateY(2px); } to { filter: none; transform: none; } }
+@media (max-width: 420px) {
+  .move-feedback { padding: 10px; }
+  .move-feedback-icon { flex-basis: 27px; width: 27px; height: 27px; margin-right: 9px; }
+  .move-feedback-progress { margin-left: 6px; }
+  .move-feedback-copy > span { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .move-feedback *, .move-feedback-arrive .move-feedback-icon, .move-control-pending { animation: none !important; }
+  .move-feedback[data-phase="pending"] .move-feedback-progress i { opacity: .65; }
+}

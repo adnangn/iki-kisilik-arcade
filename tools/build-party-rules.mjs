@@ -3,6 +3,9 @@ import { compactRuleTree, transformRuleExpression } from './compact-rule-express
 import { compactLegacyGuards } from './compact-legacy-guards.mjs';
 import { installPartyGameGuards } from './party-game-guards.mjs';
 import { installPartyShapeGuards } from './party-shape-guards.mjs';
+import { installTableLifecycleRules } from './table-lifecycle-rules.mjs';
+import { installAuctionJuryRules } from './auction-jury-rules.mjs';
+import { compactLiteralAlternatives } from './compact-literal-alternatives.mjs';
 
 const source = new URL('./firebase-rules-legacy.json', import.meta.url);
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice(9) || new URL('../artifacts/party-rules.json', import.meta.url);
@@ -66,7 +69,11 @@ const n = path => value('newData', path), d = path => value('data', path);
 const eq = path => `${n(path)}===${d(path)}`;
 const and = expressions => `(${expressions.map(expression => `(${expression})`).join('&&')})`;
 const or = expressions => `(${expressions.map(expression => `(${expression})`).join('||')})`;
-const oneOf = (expression, choices) => or(choices.map(choice => `${expression}==='${choice}'`));
+// Anchored literal alternatives are equivalent to repeated string equality,
+// while leaving room in RTDB's 256 KiB source limit for lifecycle controls.
+const oneOf = (expression, choices) => choices.length > 2
+  ? `${expression}.matches(/^(${choices.join('|')})$/)`
+  : or(choices.map(choice => `${expression}==='${choice}'`));
 const number = (minimum, maximum) => `newData.isNumber()&&newData.val()%1===0&&newData.val()>=${minimum}&&newData.val()<=${maximum}`;
 const isParty = expression => oneOf(expression, partyModes);
 const v2 = "newData.child('version').val()===2";
@@ -273,7 +280,10 @@ r.privateGames.$code.$round.party.deals.$question = {
 
 installPartyGameGuards(document);
 installPartyShapeGuards(document);
+installTableLifecycleRules(document);
+installAuctionJuryRules(document);
 compactLegacyGuards(document);
+compactLiteralAlternatives(document);
 compactRuleTree(document);
 const text = JSON.stringify(document)+'\n';
 console.log(`Party rules: ${Buffer.byteLength(text)} bytes; maximum 262144.`);

@@ -2,6 +2,7 @@ import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
 import { createCooperativeOnline } from './cooperative-online.js';
 import { createPartyOnline } from './party-online.js';
+import { createAuctionJury } from './auction-jury.js';
 import { ALL_MODES, createPartyRoom, joinPartyRoom, partySeatFor, encodePartyRoom, decodePartyRoom } from './party-room-state.js';
 import { createRoomLifecycle } from './room-lifecycle.js';
 
@@ -28,6 +29,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   const presenceStops = new Set();
   const cooperativeStops = new Set();
   const partyStops = new Set();
+  const juryStops = new Set();
   const lifecycleStops = new Set();
   let roomLifecycle = null;
   const sweep = () => { if (connected && !disposed && roomLifecycle) void roomLifecycle.sweepExpiredRooms().catch(() => {}); };
@@ -53,6 +55,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
     for (const stop of cooperativeStops) stop();
     for (const stop of partyStops) stop(); partyStops.clear();
+    for (const stop of juryStops) stop(); juryStops.clear();
     for (const stop of lifecycleStops) stop(); clearInterval(sweepTimer);
     dbSDK.goOffline(db);
     onSessionEnded();
@@ -81,6 +84,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   return {
     ...createCooperativeOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: cooperativeStops }),
     ...createPartyOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: partyStops }),
+    ...createAuctionJury({ uid: user.uid, db, ref, onValue, transact, assertOnline, stops: juryStops }),
     uid: user.uid,
     get connected() { return connected; },
     async createRoom(name, datasetId, mode = 'auction', options = {}) {
@@ -252,6 +256,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
     },
     async signOut() {
       for (const stop of partyStops) stop(); partyStops.clear();
+      for (const stop of juryStops) stop(); juryStops.clear();
       // Remove only this tab's presence; disconnect still runs its registered
       // fallback when a cleanup cannot reach the server.
       await Promise.race([Promise.allSettled([...presenceStops].map(stop => stop())), new Promise(resolve => setTimeout(resolve, 1500))]);
@@ -263,6 +268,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
       unwatchConnection(); unwatchAuth(); connectionListeners.clear(); presenceStops.clear(); cancelJoins();
       for (const stop of cooperativeStops) stop();
       for (const stop of partyStops) stop(); partyStops.clear();
+      for (const stop of juryStops) stop(); juryStops.clear();
       for (const stop of lifecycleStops) stop(); lifecycleStops.clear(); clearInterval(sweepTimer);
       dbSDK.goOffline(db);
     }

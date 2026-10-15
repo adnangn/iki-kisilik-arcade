@@ -116,3 +116,56 @@ test('a completed duo can invite two extra members for a shared four-person prop
   assert.equal(value.game.seats.length, 2); assert.equal(Object.keys(value.players).length, 4);
   assert.ok(Object.values(value.nextGame.ready).every(ready => !ready));
 });
+
+test('host can abandon an active table, remove offline seats and reseat surviving members', () => {
+  const playing = move(room('telepathy'), 'u1', 'start', { deck });
+  const cursor = capturePartyCursor(playing, 'u4', 'party-resolve');
+  const reset = move(encodePartyRoom(playing), 'u1', 'reset-table', { removeSeats: ['p2','p3'], datasetId:'tatli',mode:'auction' });
+  assert.deepEqual(reset.players, { p1: playing.players.p1, p2: playing.players.p4 });
+  assert.equal(reset.status, 'waiting'); assert.equal(reset.round, playing.round+1);
+  assert.equal(reset.revision, playing.revision+1); assert.equal(reset.starterSeat, 'p1');
+  assert.equal(reset.code, playing.code); assert.equal(reset.createdAt, playing.createdAt); assert.equal(reset.ownerUid, 'u1');
+  assert.equal(reset.game, undefined); assert.equal(reset.partyGame, undefined); assert.equal(reset.nextGame, undefined);
+  assert.deepEqual(reset.lastAction, {kind:'reset-table',seat:'p1'});
+  assert.equal(validatePartyRoom(reset), reset);
+  assert.throws(() => withPartyCursor(reset, 'u4', cursor, {}));
+  assert.throws(() => move(reset, 'u2', 'start', {deck}));
+  assert.deepEqual(move(reset, 'u1', 'start', {deck}).game.seats, ['p1','p2']);
+});
+
+test('host resets waiting and finished tables without carrying proposals, cards or private round IDs forward', () => {
+  const source = move(finished(), 'u2', 'propose-next', {datasetId:'futbol',mode:'telepathy'});
+  const reset = move(source, 'u1', 'reset-table', {removeSeats:['p2','p3','p4'],datasetId:'futbol',mode:'bracket',bracketSize:32});
+  assert.equal(reset.nextGame, undefined); assert.equal(reset.game, undefined); assert.equal(reset.bracketSize,32);
+  assert.equal(move(reset, 'u1', 'start', {deck}).game.deck.length,32);
+  const again = move(reset, 'u1', 'reset-table', {removeSeats:[],datasetId:'tatli',mode:'chameleon'});
+  assert.equal(again.round, reset.round+1); assert.equal(again.bracketSize, undefined);
+  assert.equal(again.status,'waiting'); assert.throws(() => move(again,'u1','start',{deck}));
+});
+
+test('reset refuses nonhosts, owner removal, stale seats, invalid sets and oversubscribed modes', () => {
+  const source = room();
+  const payload={removeSeats:['p3','p4'],datasetId:'futbol',mode:'auction'};
+  assert.throws(() => move(source,'u2','reset-table',payload));
+  for(const removeSeats of [undefined,{},['p1'],['p5'],['p2','p2']])
+    assert.throws(() => move(source,'u1','reset-table',{...payload,removeSeats}));
+  assert.throws(() => move(room('auction',2),'u1','reset-table',{...payload,removeSeats:['p3']}));
+  assert.throws(() => move(source,'u1','reset-table',{...payload,datasetId:'unknown'}));
+  assert.throws(() => move(source,'u1','reset-table',{...payload,removeSeats:[],mode:'detective'}));
+  assert.throws(() => changePartyRoom(source,'u1',source.revision-1,'reset-table',payload));
+});
+
+test('all survivor subsets compact in order and all supported v2 modes accept a waiting reset', () => {
+  const source=room();
+  for(let mask=0;mask<8;mask++){
+    const removed=['p2','p3','p4'].filter((_seat,index)=>mask&(1<<index));
+    const reset=move(source,'u1','reset-table',{removeSeats:removed,datasetId:'futbol',mode:'telepathy'});
+    const expected=Object.entries(source.players).filter(([seat])=>!removed.includes(seat)).map(([,player])=>player.uid);
+    assert.deepEqual(Object.values(reset.players).map(player=>player.uid),expected);
+    assert.equal(validatePartyRoom(reset),reset);
+  }
+  for(const mode of ['auction','sealed-auction','simultaneous-ranking','telepathy','detective','chameleon','blind-ranking','bracket','team-draft','frequency','double-ranking']){
+    const reset=move(source,'u1','reset-table',{removeSeats:['p3','p4'],datasetId:'futbol',mode,...(mode==='bracket'?{bracketSize:16}:{})});
+    assert.equal(validatePartyRoom(reset),reset);
+  }
+});

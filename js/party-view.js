@@ -4,6 +4,7 @@ import { t as catalogText, formatText } from './texts.js';
 import { PARTY_TEXT_CATALOG } from './text-catalog-party.js';
 import { partyCards, partyGameSpec } from './party-games.js';
 import { auctionControls, auctionDecisionKey } from './auction-controls.js';
+import { JURY_TEXT_CATALOG } from './text-catalog-jury.js';
 
 export const PARTY_VIEW_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const seatsOf = room => Object.keys(room?.players || {}).filter(seat => /^p[1-4]$/.test(seat)).sort();
@@ -45,12 +46,13 @@ const text = (key, params, provided) => {
   try { return source(key, params); }
   catch (error) {
     if (PARTY_TEXT_CATALOG[key]) return formatText(PARTY_TEXT_CATALOG[key].value, params);
+    if (JURY_TEXT_CATALOG[key]) return formatText(JURY_TEXT_CATALOG[key].value, params);
     throw error;
   }
 };
 
 /** A DOM-only view. Commands and private writes remain owned by the room service. */
-export function createPartyView({ root, context, onAction, onSecret, onStart, onPropose, onReady, onInvite, onLeave, onRematch }) {
+export function createPartyView({ root, context, onAction, onSecret, onStart, onPropose, onReady, onInvite, onLeave, onRematch, onJury }) {
   if (!root?.ownerDocument || typeof context !== 'function') throw new TypeError('Masa görünümü için bir DOM alanı ve bağlam gerekli.');
   const doc = root.ownerDocument;
   const el = (tag, className = '', value) => {
@@ -518,11 +520,85 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     node.append(controls, lists); return node;
   }
 
+  function renderAuctionJury(state) {
+    const { game } = state.room, jury = state.juryState || {}, seats = game.seats || seatsOf(state.room);
+    const section = el('section', 'party-jury');
+    section.setAttribute('aria-labelledby', 'party-jury-title');
+    const heading = copy('h3', 'party-jury-title', 'jury.title'); heading.id = 'party-jury-title';
+    section.append(heading, note('jury.description'));
+    const complete = jury.result, ownVote = jury.mine?.targetSeat;
+    const readyCount = seats.filter(seat => jury.progress?.[seat]).length;
+    const eligible = jury.eligible !== false && seats.includes(state.seat);
+    const status = copy('p', 'party-jury-status', !eligible ? 'jury.spectator' : jury.loaded !== true ? 'jury.loading' : 'jury.progress', { count: readyCount, total: seats.length });
+    status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite'); section.append(status);
+    if (complete) {
+      const result = el('div', 'party-jury-outcome');
+      result.append(copy('strong', '', complete.leaders.length === 1 ? 'jury.winner' : 'jury.tie', {
+        name: nameFor(complete.leaders[0]), names: complete.leaders.map(nameFor).join(' · '),
+      }));
+      section.append(result);
+    } else if (ownVote) section.append(note('jury.waiting'));
+    const grid = el('div', 'party-jury-grid');
+    for (const [index, seat] of seats.entries()) {
+      const own = ownVote === seat, leader = complete?.leaders.includes(seat), roster = game.rosters?.[seat] || [];
+      const box = el('article', `party-jury-candidate${own ? ' is-chosen' : ''}${leader ? ' is-favorite' : ''}`);
+      box.dataset.juryCandidate = seat;
+      box.append(copy('h4', '', 'jury.candidate', { letter: String.fromCharCode(65 + index), name: nameFor(seat) }));
+      const spent = roster.reduce((sum, entry) => sum + (entry?.price ?? entry?.amount ?? 0), 0);
+      box.append(copy('p', 'party-jury-metrics', 'jury.metrics', { count: roster.length, spent, remaining: game.budgets?.[seat] ?? 0 }));
+      const list = el('ul', 'party-jury-cards');
+      for (const entry of roster) {
+        const id = entry?.id ?? entry?.cardId ?? entry, row = el('li');
+        row.append(image(id), el('strong', '', cardName(id)), el('span', 'party-jury-price', entry?.source === 'completion' ? tx('jury.free') : `${entry?.price ?? entry?.amount ?? 0} TL`));
+        list.append(row);
+      }
+      box.append(list);
+      if (complete) box.append(copy('strong', 'party-jury-vote-count', 'jury.votes', { count: complete.counts[seat] || 0 }));
+      else if (eligible) {
+        const ballot = button(own ? 'jury.chosen' : 'jury.cast', () => {
+          const current = context();
+          if (current.room?.code === state.room.code && current.room?.createdAt === state.room.createdAt && current.room?.round === state.room.round && current.room?.mode === state.room.mode && current.room?.status === 'finished' &&
+              current.connected && !current.busy && current.juryState?.loaded === true && current.juryState?.eligible !== false && !current.juryState?.mine?.locked && current.room?.game?.seats?.includes(current.seat) && current.room?.game?.seats?.includes(seat)) onJury?.({ targetSeat: seat });
+        }, `button ${own ? 'button-primary' : 'button-secondary'} party-jury-vote`);
+        ballot.disabled = !state.connected || state.busy || !state.seat || jury.loaded !== true || Boolean(jury.mine?.locked) || !onJury;
+        ballot.dataset.partyFocus = `jury-${seat}`; ballot.setAttribute('aria-pressed', String(own));
+        ballot.setAttribute('aria-label', tx(own ? 'jury.chosen' : 'jury.vote_for', { letter: String.fromCharCode(65 + index) })); box.append(ballot);
+      }
+      grid.append(box);
+    }
+    section.append(grid, note('jury.disclaimer'), note('jury.no_wait')); return section;
+  }
+
+  function renderTelepathyHistory(game) {
+    const section = el('section', 'party-telepathy-history');
+    section.append(copy('h3', 'party-subtitle', 'results.telepathy.history'), note('results.telepathy.history_hint'));
+    const rounds = Object.entries(game.results || {}).map(([key, result]) => ({ round: Number(key.slice(1)), result }))
+      .filter(row => Number.isInteger(row.round) && row.round >= 1 && row.round <= 10 && row.result?.choices)
+      .sort((first, second) => first.round - second.round);
+    for (const { round, result } of rounds) {
+      const details = el('details', 'party-telepathy-round'), summary = el('summary');
+      const criterion = game.criteria?.[round - 1] ?? round - 1;
+      summary.append(copy('span', 'party-telepathy-round-number', 'results.telepathy.round', { round }),
+        copy('strong', 'party-telepathy-round-question', `party.telepathy.question.${criterion}`),
+        copy('span', 'party-telepathy-round-points', 'results.telepathy.points', { points: result.points || 0 }));
+      const choices = el('ul', 'party-telepathy-round-choices');
+      for (const seat of game.seats) {
+        const id = result.choices[seat], row = el('li'), label = el('div');
+        label.append(el('strong', '', nameFor(seat)), el('span', '', cardName(id)));
+        row.append(image(id), label, copy('strong', 'party-telepathy-personal-points', 'results.telepathy.points', { points: result.scores?.[seat] || 0 })); choices.append(row);
+      }
+      details.append(summary, choices); section.append(details);
+    }
+    return section;
+  }
+
   function renderFinished(state) {
     const game = state.room.game;
     if (state.room.mode === 'simultaneous-ranking') return renderRankingResults(game);
     const node = panel('party.done');
-    if (game.rosters) node.append(renderRosters(game));
+    const hasJury = ['auction', 'sealed-auction'].includes(state.room.mode);
+    if (hasJury) node.append(renderAuctionJury(state));
+    else if (game.rosters) node.append(renderRosters(game));
     const last = resultFor(game);
     if (['sealed-auction', 'telepathy', 'detective', 'chameleon'].includes(state.room.mode) && Object.keys(last).length) node.append(copy('h3', 'party-subtitle', 'party.last_round'));
     if (state.room.mode === 'sealed-auction' && last.bids) {
@@ -555,7 +631,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       }
       node.append(pairs);
     }
-    if (state.room.mode === 'telepathy') node.append(note('party.best_streak'), el('strong', 'party-final-streak', game.bestStreak || 0));
+    if (state.room.mode === 'telepathy') node.append(note('party.best_streak'), el('strong', 'party-final-streak', game.bestStreak || 0), renderTelepathyHistory(game));
     node.append(note('party.same_room')); return node;
   }
 
@@ -653,7 +729,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     // player's card buttons or text fields during a pointer/keyboard action.
     const key = JSON.stringify([room.code, room.createdAt, room.round, room.status, room.mode, room.players,
       room.status === 'waiting' ? seatsOf(room).map(onlineSeat) : null,
-      game, privateVisual, state.connected, state.busy, state.seat]);
+      game, privateVisual, room.status === 'finished' ? state.juryState : null, state.connected, state.busy, state.seat]);
     if (key !== renderKey) {
       const focused = doc.activeElement, draft = instance === stageInstance ? [...stage.querySelectorAll('[data-party-draft]')].map(input => [input.dataset.partyDraft, input.value]) : [];
       const focusKey = stage.contains(focused) ? focused?.dataset.partyDraft : null;

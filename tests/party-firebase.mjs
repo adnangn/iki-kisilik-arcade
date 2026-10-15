@@ -22,12 +22,12 @@ const put=(path,value,uid='p1',headers={})=>req(path,{method:'PUT',value,uid,hea
 const write=(room,uid='p1',headers={})=>put(`rooms/${room.code}`,encodePartyRoom(room),uid,headers).then(result=>({...result,value:decodePartyRoom(result.value)}));
 async function check(label,fn){if(process.env.PARTY_TEST_FILTER&&label!=='party rules compile under the Firebase source limit'&&!label.includes(process.env.PARTY_TEST_FILTER))return;try{await fn();passed++;console.log('PASS',label);}catch(error){throw new Error(`${label}: ${error.message}`,{cause:error});}}
 async function clean(){for(const code of CODES)for(const branch of ['rooms','privateGames','presence','reactions','cleanupIndex'])ok(await req(`${branch}/${code}`,{method:'DELETE',admin:true}));}
-async function start(mode,count=4,code=CODES[0],mutations=[]){
+async function start(mode,count=4,code=CODES[0],mutations=[],criteria){
   await req(`rooms/${code}`,{method:'DELETE',admin:true});await req(`privateGames/${code}`,{method:'DELETE',admin:true});
   ok(await req(`cleanupIndex/${code}`,{method:'PUT',admin:true,value:{instance:stamp,lastActivityAt:Date.now(),state:'reserved',reserverUid:'p1'}}));
   let room=ok(await write(createPartyRoom({code,uid:'p1',name:'Ada',createdAt:stamp,datasetId:'futbol',mode})));
   for(let index=2;index<=count;index++)room=ok(await write(joinPartyRoom(room,`p${index}`,`Oyuncu ${index}`),`p${index}`));
-  const candidate=changePartyRoom(room,'p1',room.revision,'start',{deck:DECK});
+  const candidate=changePartyRoom(room,'p1',room.revision,'start',{deck:DECK,...(criteria?{criteria}:{})});
   if(mutations.length)await rejectMutations(candidate,mutations);
   return ok(await write(candidate));
 }
@@ -53,13 +53,30 @@ try{
       if(['auction','sealed-auction'].includes(mode))mutations.push(g=>delete g.budgets,g=>g.rosters={p1:[{id:g.deck[0],price:0}]});
       if(mode==='auction')mutations.push(g=>delete g.passed,g=>delete g.highestBid,g=>delete g.openerSeat,g=>delete g.turnSeat);
       if(mode==='simultaneous-ranking')mutations.push(g=>delete g.progress,g=>g.progress.p1=1);
-      if(mode==='telepathy')mutations.push(g=>delete g.scores,g=>delete g.criteria,g=>g.criteria[10]=0,g=>g.criteria[0]=10,g=>delete g.pairScores,g=>delete g.pairStreaks);
+      if(mode==='telepathy')mutations.push(g=>delete g.scores,g=>delete g.criteria,g=>g.criteria[10]=0,g=>g.criteria[0]=40,g=>g.criteria[0]=g.criteria[1],g=>delete g.pairScores,g=>delete g.pairStreaks);
       if(mode==='detective')mutations.push(g=>delete g.clue,g=>delete g.guesserSeat,g=>g.clueGiverSeat='p2');
       if(mode==='chameleon')mutations.push(g=>delete g.scores,g=>g.turnSeat='p2',g=>g.caughtSeat='p1');
       await start(mode,count,CODES[0],mutations);
     }
   });
   await check('all six party modes create and start at every supported player count',async()=>{for(const mode of ['auction','sealed-auction','simultaneous-ranking','telepathy','detective','chameleon'])for(const count of(mode==='detective'?[2]:mode==='chameleon'?[3,4]:[2,3,4])){const room=await start(mode,count);assert.equal(room.game.seats.length,count);assert.equal(room.status,'playing');assert.equal(room.game.deck.length,mode==='auction'||mode==='sealed-auction'?count===2?20:30:mode==='simultaneous-ranking'?10:mode==='telepathy'?40:mode==='detective'?36:45);}});
+  await check('new telepathy games accept the expanded forty-question pool and freeze its unique sequence',async()=>{
+    const criteria=Array.from({length:10},(_,index)=>39-index);
+    let expanded=await start('telepathy',2,CODES[0],[],criteria);
+    assert.deepEqual(expanded.game.criteria,criteria);
+    const records={};for(const seat of expanded.game.seats)records[seat]=await submit(expanded,seat,{cardId:partyCards(expanded.game)[0]});
+    expanded=await resolve(expanded,records);assert.equal(expanded.game.score,100);
+    const next=changePartyRoom(expanded,'p1',expanded.revision,'next');
+    await rejectMutations(next,[g=>g.criteria[0]=20,g=>g.criteria[1]=g.criteria[0]]);
+    expanded=ok(await write(next));assert.deepEqual(expanded.game.criteria,criteria);
+  });
+  await check('already-created legacy telepathy rooms can finish with their original repeated questions',async()=>{
+    let legacy=await start('telepathy',2,CODES[0]);legacy.game.criteria=Array(10).fill(2);
+    ok(await req(`rooms/${legacy.code}`,{method:'PUT',admin:true,value:encodePartyRoom(legacy)}));
+    const records={};for(const seat of legacy.game.seats)records[seat]=await submit(legacy,seat,{cardId:partyCards(legacy.game)[0]});
+    legacy=await resolve(legacy,records);legacy=ok(await write(changePartyRoom(legacy,'p1',legacy.revision,'next')));
+    assert.deepEqual(legacy.game.criteria,Array(10).fill(2));assert.equal(legacy.game.roundIndex,1);
+  });
   let room=await start('telepathy');
   await check('players cannot start another member’s table or join an active party',async()=>{const forged=structuredClone(room);forged.revision++;forged.lastAction={kind:'start',seat:'p2'};denied(await write(forged,'p2'));denied(await req(`rooms/${room.code}`,{uid:'stranger'}));const joined=structuredClone(room);joined.players.p4={uid:'stranger',name:'X'};joined.revision++;joined.lastAction={kind:'join',seat:'p4'};denied(await write(joined,'stranger'));});
   await check('private choices reject strangers, another seat, future rounds and wrong visible cards',async()=>{const value=partySubmission(room,'p1',{cardId:partyCards(room.game)[0]});denied(await put(`${path(room)}/p2`,value));denied(await put(`${path(room)}/p1`,value,'stranger'));denied(await put(`${base(room)}/submissions/q1/choosing/p1`,{...value,roundIndex:1}));denied(await put(`${path(room)}/p1`,{...value,cardId:DECK[20]}));denied(await put(`${path(room)}/p1`,{instance:stamp,stage:'choosing',roundIndex:0,locked:true}));});
