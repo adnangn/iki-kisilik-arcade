@@ -1,0 +1,224 @@
+{
+  "sokak-lezzetleri": [
+    {
+      "id": 900261,
+      "isim": "Sade Ekmek",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-sade-ekmek.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900262,
+      "isim": "Haşlanmış Patates",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-haslanmis-patates.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900263,
+      "isim": "Çiğ Turp",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-cig-turp.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900264,
+      "isim": "Haşlanmış Yumurta",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-haslanmis-yumurta.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900265,
+      "isim": "Haşlanmış Havuç",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-haslanmis-havuc.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900266,
+      "isim": "Haşlanmış Brokoli",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-haslanmis-brokoli.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900267,
+      "isim": "Yeşil Biber",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-yesil-biber.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900268,
+      "isim": "Kereviz Sapı",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-kereviz-sapi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900269,
+      "isim": "Kuru Peksimet",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-kuru-peksimet.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    },
+    {
+      "id": 900270,
+      "isim": "Galeta",
+      "gorsel": "assets/images/consolation/sokak-lezzetleri-galeta.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    }
+  ],
+  "tv-yarismalari": [
+    {
+      "id": 900271,
+      "isim": "Gelin Evi",
+      "gorsel": "assets/images/consolation/tv-yarismalari-gelin-evi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900272,
+      "isim": "Kuaförüm Sensin",
+      "gorsel": "assets/images/consolation/tv-yarismalari-kuaforum-sensin.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900273,
+      "isim": "Temizlik Benim İşim",
+      "gorsel": "assets/images/consolation/tv-yarismalari-temizlik-benim-isim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900274,
+      "isim": "En Hamarat Benim",
+      "gorsel": "assets/images/consolation/tv-yarismalari-en-hamarat-benim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900275,
+      "isim": "Pişir de Görelim",
+      "gorsel": "assets/images/consolation/tv-yarismalari-pisir-de-gorelim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900276,
+      "isim": "Şanslı Pasaport",
+      "gorsel": "assets/images/consolation/tv-yarismalari-sansli-pasaport.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900277,
+      "isim": "Cevap Ver Türkiye",
+      "gorsel": "assets/images/consolation/tv-yarismalari-cevap-ver-turkiye.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900278,
+      "isim": "Ben Eşimi Bilmez Miyim",
+      "gorsel": "assets/images/consolation/tv-yarismalari-ben-esimi-bilmez-miyim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900279,
+      "isim": "Yaparsın Bilirim",
+      "gorsel": "assets/images/consolation/tv-yarismalari-yaparsin-bilirim.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    },
+    {
+      "id": 900280,
+      "isim": "Saba ile Oyuna Geldik",
+      "gorsel": "assets/images/consolation/tv-yarismalari-saba-ile-oyuna-geldik.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    }
+  ],
+  "ikonik-mekanlar": [
+    {
+      "id": 900281,
+      "isim": "Esenler Otogarı",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-esenler-otogari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900282,
+      "isim": "AŞTİ",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-asti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900283,
+      "isim": "Söğütlüçeşme Metrobüs Durağı",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-sogutlucesme-metrobus-duragi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900284,
+      "isim": "Mecidiyeköy Metrobüs Durağı",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-mecidiyekoy-metrobus-duragi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900285,
+      "isim": "Kızılay Meydanı",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-kizilay-meydani.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900286,
+      "isim": "Bornova Metro İstasyonu",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-bornova-metro-istasyonu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900287,
+      "isim": "Konak Vapur İskelesi",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-konak-vapur-iskelesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900288,
+      "isim": "Bostancı Vapur İskelesi",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-bostanci-vapur-iskelesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900289,
+      "isim": "Kadıköy Boğa Heykeli",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-kadikoy-boga-heykeli.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    },
+    {
+      "id": 900290,
+      "isim": "İzmir Saat Kulesi",
+      "gorsel": "assets/images/consolation/ikonik-mekanlar-izmir-saat-kulesi.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    }
+  ]
+}

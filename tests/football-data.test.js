@@ -60,7 +60,8 @@ test('familiar food volumes reuse complete card records and local images from th
   assert.deepEqual(DATASET_GROUPS.yemek.families.map(family => [family.id, family.sets]), [
     ['tatli', ['tatli-vol1', 'tatli']],
     ['yemek', ['yemek-vol1', 'yemek']],
-    ['icecek', ['icecek']]
+    ['icecek', ['icecek']],
+    ['sokak', ['sokak-lezzetleri']]
   ]);
 });
 
@@ -280,10 +281,10 @@ test('requested current stars use their verified club and every club card has a 
   }
 });
 
-test('seven categories resolve to twenty-three visible pools with four distinct Oyun choices and one archived deck', async () => {
+test('eight categories resolve to twenty-eight visible pools with four distinct Oyun choices and one archived deck', async () => {
   assert.deepEqual(Object.keys(DATASET_NAMES).sort(), Object.keys(datasets).sort());
-  assert.equal(Object.keys(DATASET_GROUPS).length, 7);
-  assert.equal(Object.keys(DATASET_NAMES).length, 24);
+  assert.equal(Object.keys(DATASET_GROUPS).length, 8);
+  assert.equal(Object.keys(DATASET_NAMES).length, 29);
   assert.equal(resolveDatasetId('futbol', 'superlig'), 'superlig');
   assert.equal(resolveDatasetId('yemek', 'tatli'), 'tatli');
   assert.equal(resolveDatasetId('yemek', 'yemek'), 'yemek');
@@ -311,10 +312,10 @@ test('seven categories resolve to twenty-three visible pools with four distinct 
   assert.ok(!Object.hasOwn(DATASET_GROUPS, 'video-oyunlari'));
   assert.throws(() => resolveDatasetId('video-oyunlari', 'futbol'));
   assert.deepEqual(DATASET_GROUPS.oyun.sets.map(set => set.id), ['oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari']);
-  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 5, 2, 1, 4, 3, 4]);
+  assert.deepEqual(Object.values(DATASET_GROUPS).map(group => group.sets.length), [4, 6, 3, 1, 6, 3, 4, 1]);
   const visibleIds = Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id));
-  assert.equal(visibleIds.length, 23);
-  assert.equal(new Set(visibleIds).size, 23);
+  assert.equal(visibleIds.length, 28);
+  assert.equal(new Set(visibleIds).size, 28);
   const html = await readFile(new URL('index.html', root), 'utf8');
   assert.equal((html.match(/<option\b[^>]*value="oyun"/g) || []).length, 1, 'The lobby must provide one Oyun parent category.');
   assert.doesNotMatch(html, /<option\b[^>]*value="video-oyunlari"/);
@@ -323,7 +324,7 @@ test('seven categories resolve to twenty-three visible pools with four distinct 
   }
 });
 
-test('all twenty-four pools open and award through an auction, including volume and archived decks', () => {
+test('every pool opens and awards through an auction, including volume and archived decks', () => {
   for (const cards of Object.values(datasets)) {
     const game = createAuction(cards.map(card => card.id), 'p1');
     assert.equal(game.highestBid, 1);

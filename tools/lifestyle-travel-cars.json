@@ -1,0 +1,486 @@
+{
+  "tatil-rotalari": [
+    {
+      "id": 200001,
+      "isim": "Kaş",
+      "gorsel": "assets/images/tatil-rotalari/kas.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200002,
+      "isim": "Bodrum",
+      "gorsel": "assets/images/tatil-rotalari/bodrum.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200003,
+      "isim": "Çeşme",
+      "gorsel": "assets/images/tatil-rotalari/cesme.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200004,
+      "isim": "Alaçatı",
+      "gorsel": "assets/images/tatil-rotalari/alacati.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200005,
+      "isim": "Fethiye",
+      "gorsel": "assets/images/tatil-rotalari/fethiye.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200006,
+      "isim": "Bozcaada",
+      "gorsel": "assets/images/tatil-rotalari/bozcaada.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200007,
+      "isim": "Santorini",
+      "gorsel": "assets/images/tatil-rotalari/santorini.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200008,
+      "isim": "Maldivler",
+      "gorsel": "assets/images/tatil-rotalari/maldivler.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200009,
+      "isim": "Bali",
+      "gorsel": "assets/images/tatil-rotalari/bali.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200010,
+      "isim": "Amalfi",
+      "gorsel": "assets/images/tatil-rotalari/amalfi.svg",
+      "etiket": "Deniz"
+    },
+    {
+      "id": 200011,
+      "isim": "Kapadokya",
+      "gorsel": "assets/images/tatil-rotalari/kapadokya.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200012,
+      "isim": "Pamukkale",
+      "gorsel": "assets/images/tatil-rotalari/pamukkale.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200013,
+      "isim": "Uzungöl",
+      "gorsel": "assets/images/tatil-rotalari/uzungol.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200014,
+      "isim": "Ayder Yaylası",
+      "gorsel": "assets/images/tatil-rotalari/ayder-yaylasi.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200015,
+      "isim": "Kaz Dağları",
+      "gorsel": "assets/images/tatil-rotalari/kaz-daglari.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200016,
+      "isim": "Salda Gölü",
+      "gorsel": "assets/images/tatil-rotalari/salda-golu.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200017,
+      "isim": "Abant",
+      "gorsel": "assets/images/tatil-rotalari/abant.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200018,
+      "isim": "Gökçeada",
+      "gorsel": "assets/images/tatil-rotalari/gokceada.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200019,
+      "isim": "İsviçre Alpleri",
+      "gorsel": "assets/images/tatil-rotalari/isvicre-alpleri.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200020,
+      "isim": "Norveç Fiyortları",
+      "gorsel": "assets/images/tatil-rotalari/norvec-fiyortlari.svg",
+      "etiket": "Doğa"
+    },
+    {
+      "id": 200021,
+      "isim": "İstanbul",
+      "gorsel": "assets/images/tatil-rotalari/istanbul.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200022,
+      "isim": "Paris",
+      "gorsel": "assets/images/tatil-rotalari/paris.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200023,
+      "isim": "Roma",
+      "gorsel": "assets/images/tatil-rotalari/roma.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200024,
+      "isim": "Barselona",
+      "gorsel": "assets/images/tatil-rotalari/barselona.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200025,
+      "isim": "Prag",
+      "gorsel": "assets/images/tatil-rotalari/prag.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200026,
+      "isim": "Amsterdam",
+      "gorsel": "assets/images/tatil-rotalari/amsterdam.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200027,
+      "isim": "Venedik",
+      "gorsel": "assets/images/tatil-rotalari/venedik.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200028,
+      "isim": "Londra",
+      "gorsel": "assets/images/tatil-rotalari/londra.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200029,
+      "isim": "Kyoto",
+      "gorsel": "assets/images/tatil-rotalari/kyoto.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200030,
+      "isim": "Marakeş",
+      "gorsel": "assets/images/tatil-rotalari/marakes.svg",
+      "etiket": "Şehir"
+    },
+    {
+      "id": 200031,
+      "isim": "Uludağ",
+      "gorsel": "assets/images/tatil-rotalari/uludag.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200032,
+      "isim": "Erciyes",
+      "gorsel": "assets/images/tatil-rotalari/erciyes.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200033,
+      "isim": "Palandöken",
+      "gorsel": "assets/images/tatil-rotalari/palandoken.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200034,
+      "isim": "Kartalkaya",
+      "gorsel": "assets/images/tatil-rotalari/kartalkaya.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200035,
+      "isim": "Sarıkamış",
+      "gorsel": "assets/images/tatil-rotalari/sarikamis.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200036,
+      "isim": "Kartepe",
+      "gorsel": "assets/images/tatil-rotalari/kartepe.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200037,
+      "isim": "Ilgaz",
+      "gorsel": "assets/images/tatil-rotalari/ilgaz.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200038,
+      "isim": "Davos",
+      "gorsel": "assets/images/tatil-rotalari/davos.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200039,
+      "isim": "Bansko",
+      "gorsel": "assets/images/tatil-rotalari/bansko.svg",
+      "etiket": "Kış"
+    },
+    {
+      "id": 200040,
+      "isim": "Chamonix",
+      "gorsel": "assets/images/tatil-rotalari/chamonix.svg",
+      "etiket": "Kış"
+    }
+  ],
+  "efsane-otomobiller": [
+    {
+      "id": 201001,
+      "isim": "BMW 320i E30",
+      "gorsel": "assets/images/efsane-otomobiller/bmw-320i-e30.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201002,
+      "isim": "BMW M5 E39",
+      "gorsel": "assets/images/efsane-otomobiller/bmw-m5-e39.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201003,
+      "isim": "Mercedes-Benz W124",
+      "gorsel": "assets/images/efsane-otomobiller/mercedes-benz-w124.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201004,
+      "isim": "Mercedes-Benz 190 E W201",
+      "gorsel": "assets/images/efsane-otomobiller/mercedes-benz-190-e-w201.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201005,
+      "isim": "Mercedes-Benz W140",
+      "gorsel": "assets/images/efsane-otomobiller/mercedes-benz-w140.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201006,
+      "isim": "Tofaş Şahin",
+      "gorsel": "assets/images/efsane-otomobiller/tofas-sahin.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201007,
+      "isim": "Tofaş Doğan SLX",
+      "gorsel": "assets/images/efsane-otomobiller/tofas-dogan-slx.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201008,
+      "isim": "Renault 9 Broadway",
+      "gorsel": "assets/images/efsane-otomobiller/renault-9-broadway.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201009,
+      "isim": "Volvo 240",
+      "gorsel": "assets/images/efsane-otomobiller/volvo-240.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201010,
+      "isim": "Opel Vectra B",
+      "gorsel": "assets/images/efsane-otomobiller/opel-vectra-b.svg",
+      "etiket": "Sedan"
+    },
+    {
+      "id": 201011,
+      "isim": "Toyota Supra A80",
+      "gorsel": "assets/images/efsane-otomobiller/toyota-supra-a80.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201012,
+      "isim": "Nissan Skyline GT-R R34",
+      "gorsel": "assets/images/efsane-otomobiller/nissan-skyline-gt-r-r34.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201013,
+      "isim": "Mazda RX-7 FD",
+      "gorsel": "assets/images/efsane-otomobiller/mazda-rx-7-fd.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201014,
+      "isim": "Honda NSX NA1",
+      "gorsel": "assets/images/efsane-otomobiller/honda-nsx-na1.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201015,
+      "isim": "Honda S2000",
+      "gorsel": "assets/images/efsane-otomobiller/honda-s2000.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201016,
+      "isim": "Mitsubishi Lancer Evolution VI",
+      "gorsel": "assets/images/efsane-otomobiller/mitsubishi-lancer-evolution-vi.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201017,
+      "isim": "Subaru Impreza WRX STI GC8",
+      "gorsel": "assets/images/efsane-otomobiller/subaru-impreza-wrx-sti-gc8.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201018,
+      "isim": "Nissan Silvia S15",
+      "gorsel": "assets/images/efsane-otomobiller/nissan-silvia-s15.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201019,
+      "isim": "Toyota AE86",
+      "gorsel": "assets/images/efsane-otomobiller/toyota-ae86.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201020,
+      "isim": "Nissan 300ZX Z32",
+      "gorsel": "assets/images/efsane-otomobiller/nissan-300zx-z32.svg",
+      "etiket": "Spor"
+    },
+    {
+      "id": 201021,
+      "isim": "Volkswagen Golf GTI Mk1",
+      "gorsel": "assets/images/efsane-otomobiller/volkswagen-golf-gti-mk1.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201022,
+      "isim": "Volkswagen Golf Mk4",
+      "gorsel": "assets/images/efsane-otomobiller/volkswagen-golf-mk4.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201023,
+      "isim": "Peugeot 205 GTI",
+      "gorsel": "assets/images/efsane-otomobiller/peugeot-205-gti.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201024,
+      "isim": "Renault Clio Williams",
+      "gorsel": "assets/images/efsane-otomobiller/renault-clio-williams.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201025,
+      "isim": "Renault 5 Turbo",
+      "gorsel": "assets/images/efsane-otomobiller/renault-5-turbo.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201026,
+      "isim": "Ford Escort RS Cosworth",
+      "gorsel": "assets/images/efsane-otomobiller/ford-escort-rs-cosworth.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201027,
+      "isim": "Honda Civic EK9",
+      "gorsel": "assets/images/efsane-otomobiller/honda-civic-ek9.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201028,
+      "isim": "Opel Corsa GSi A",
+      "gorsel": "assets/images/efsane-otomobiller/opel-corsa-gsi-a.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201029,
+      "isim": "Mini Cooper Klasik",
+      "gorsel": "assets/images/efsane-otomobiller/mini-cooper-klasik.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201030,
+      "isim": "Fiat Uno Turbo",
+      "gorsel": "assets/images/efsane-otomobiller/fiat-uno-turbo.svg",
+      "etiket": "Kompakt"
+    },
+    {
+      "id": 201031,
+      "isim": "Ford Mustang 1967",
+      "gorsel": "assets/images/efsane-otomobiller/ford-mustang-1967.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201032,
+      "isim": "Chevrolet Camaro 1969",
+      "gorsel": "assets/images/efsane-otomobiller/chevrolet-camaro-1969.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201033,
+      "isim": "Dodge Charger 1969",
+      "gorsel": "assets/images/efsane-otomobiller/dodge-charger-1969.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201034,
+      "isim": "Porsche 911 Turbo 930",
+      "gorsel": "assets/images/efsane-otomobiller/porsche-911-turbo-930.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201035,
+      "isim": "Ferrari F40",
+      "gorsel": "assets/images/efsane-otomobiller/ferrari-f40.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201036,
+      "isim": "Lamborghini Countach",
+      "gorsel": "assets/images/efsane-otomobiller/lamborghini-countach.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201037,
+      "isim": "DeLorean DMC-12",
+      "gorsel": "assets/images/efsane-otomobiller/delorean-dmc-12.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201038,
+      "isim": "Volkswagen Beetle",
+      "gorsel": "assets/images/efsane-otomobiller/volkswagen-beetle.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201039,
+      "isim": "Chevrolet Corvette C3",
+      "gorsel": "assets/images/efsane-otomobiller/chevrolet-corvette-c3.svg",
+      "etiket": "Kült"
+    },
+    {
+      "id": 201040,
+      "isim": "Lancia Delta Integrale",
+      "gorsel": "assets/images/efsane-otomobiller/lancia-delta-integrale.svg",
+      "etiket": "Kült"
+    }
+  ]
+}

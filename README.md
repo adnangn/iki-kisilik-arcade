@@ -515,19 +515,37 @@ Telepati'nin soru havuzu **40 genel soruya** çıktı. Her yeni oyun 10 farklı 
 
 Doğrulama: **346 birim testi**, **168 yerel Firebase kontrolü**, çevrimiçi hazırlık ve statik paketleme kontrolleri. Firebase paketi yedi gruptur: 76 eski oyun/oturum, 24 ortak oyun, 11 temizlik, 14 aynı odada devam, 29 parti, 9 masa yönetimi ve 5 sonuç oylaması kontrolü. Son kurallar 258.987 bayttır; 262.144 bayt sınırının altındadır. Gerçek tarayıcı arayüzünde dört bağımsız yerel oturumdan iki kişi çıkarıldı, kalan oyuncunun koltuğu yenilemede korundu ve aynı kodla iki kişilik yeni tur başladı. İki ayrı oturumla oylama ve Ülkeler koleksiyonunda Telepati'nin on farklı sorusu/sonuç geçmişi doğrulandı. 360 piksel mobil görünümde yatay taşma yoktu. Bunlar aynı bilgisayardaki farklı kökenli oturumlar ve tarayıcı boyutlandırma kontrolleridir; iki fiziksel telefon veya eski iOS Safari testi değildir.
 
+## Yeni rota, otomobil ve yaşam koleksiyonları
+
+Beş yeni koleksiyonun her biri 40 normal kart ve Açık Artırma için 8 aktif teselli kartı içerir. Normal havuz toplamı 1.912 karta çıktı; önceki 1.712 kartın kayıtları ve sırası korundu. Lobi 8 ana kategori altında 28 koleksiyon sunar; eski karma oyun havuzu yalnız mevcut odalar için arşivde kalır.
+
+| Koleksiyon | Lobide bulunduğu bölüm | Normal kart |
+| --- | --- | ---: |
+| Tatil & Kaçış Rotaları | Yerler ve Rotalar | 40 |
+| Efsane Kasa Otomobiller | Otomobiller | 40 |
+| Sokak Lezzetleri | Yemekler ve İçecekler → Sokak Lezzetleri | 40 |
+| Unutulmaz TV Yarışmaları | Dizi, Film ve TV | 40 |
+| İkonik Mekânlar | Yerler ve Rotalar | 40 |
+
+Rotalarda Deniz/Doğa/Şehir/Kış; otomobillerde Sedan/Spor/Kompakt/Kült etiketleri kullanılır. Diğer koleksiyonların etiketleri de Start, Bench, Cut üçlülerini destekler. Bütün 11 oyun yeni koleksiyonlarla açılabilir; aynı odada kategori değiştirme ve Açık Artırma teselli havuzları da desteklenir. Kartlar tanınan yer, model, yapım ve lezzet adlarını kullanır; gezi fiyatı, güncel işletme durumu veya nesnel kalite sıralaması iddiası taşımaz.
+
+250 yeni yerel piksel SVG (200 normal + 50 teselli/arşiv çizimi) eklendi. Gerçek fotoğraf, film afişi veya harici resim bağlantısı kullanılmaz. İsim doğrulama kaynakları `tools/lifestyle-travel-cars-sources.json` ve `tools/lifestyle-culture-sources.json` dosyalarındadır. Yeniden üretim sırası: `node tools/generate-lifestyle-travel-cars.mjs`, `node tools/generate-lifestyle-culture.mjs`, `node tools/integrate-lifestyle.mjs`, `node tools/generate-consolation-cards.mjs`, `node tools/install-consolation-cards.mjs`, ardından `node tools/build-party-rules.mjs --output=firebase.rules.json`.
+
+Firebase koleksiyon izinleri veri/lobi tanımlarından türetilir. Kurallardaki ardışık sabit `child('a').child('b')` yolları, aynı düğümü gösteren `child('a/b')` biçiminde kısaltılır; yetki ve hamle koşulları korunur. Böylece yeni beş koleksiyon 256 KiB kaynak sınırına sığar.
+
 ## Açık Artırma teselli havuzları
 
-24 veri havuzunun her birinde yeni turlar için **8 gerçek isimden oluşan teselli kartı** bulunur (23 lobi koleksiyonu ve eski odalar için tutulan arşiv). Yeni tur seçkisinde toplam 192 kart vardır. Dizi ve film havuzlarında Selena, Akasya Durağı, Bez Bebek, Cumali Ceber: Allah Seni Alsın, Laz Kit ve Keloğlan Kara Prens'e Karşı gibi gerçek yapımlar; müzikte Ajdar, Atilla Taş, İsmail YK ve Mustafa Topaloğlu; yemeklerde Pırasa Haşlama ve Çiğ Bamya kullanılır. Özetin Özeti, Kamera Kapağı ve Duş Konseri gibi uydurma başlıklar kaldırılmıştır. Diğer havuzlar da gerçek kişi, eser, ürün, yer veya karakter adlarından oluşur. Teselli seçkisi eğlence amaçlıdır; kartlarda nesnel kalite veya güç puanı yoktur.
+29 veri havuzunun her birinde yeni turlar için **8 gerçek isimden oluşan teselli kartı** bulunur (28 lobi koleksiyonu ve eski odalar için tutulan arşiv). Yeni tur seçkisinde toplam 232 kart vardır. Dizi ve film havuzlarında Selena, Akasya Durağı, Bez Bebek, Cumali Ceber: Allah Seni Alsın, Laz Kit ve Keloğlan Kara Prens'e Karşı gibi gerçek yapımlar; müzikte Ajdar, Atilla Taş, İsmail YK ve Mustafa Topaloğlu; yemeklerde Pırasa Haşlama ve Çiğ Bamya kullanılır. Özetin Özeti, Kamera Kapağı ve Duş Konseri gibi uydurma başlıklar kaldırılmıştır. Diğer havuzlar da gerçek kişi, eser, ürün, yer veya karakter adlarından oluşur. Teselli seçkisi eğlence amaçlıdır; kartlarda nesnel kalite veya güç puanı yoktur.
 
 Tek veri kaynağı `veri.json` içinde teselli kartları `teselli: true` alanıyla ayrılır. `js/consolation.js` normal kartları ve teselli havuzlarını okuma sırasında ayırır. Mevcut 1.712 normal kaydın alanları, sırası ve kimlikleri korunmuştur; lobi sayımları değişmez. Sabit onlu kimlik aralıklarında son iki kart `teselliArsiv: true` ile yalnız eski 10 kartlık oda kayıtlarını okumak için tutulur; yeni tur seçkisine girmez. Böylece eski odaların kimlikleri kaybolmaz. Tekrar üretim için `node tools/generate-consolation-cards.mjs` ardından `node tools/install-consolation-cards.mjs` çalıştırılır; kart adları ve görsel motifleri `tools/consolation-real-pools.mjs` dosyasındadır.
 
 Yeni Açık Artırma turları normal 20/30 kartlık desteden ayrı, bir kez karıştırılmış 8 kartlık `completionDeck` saklar. Bütün ücretli ihaleler bittikten sonra yalnız bütçesi 0 TL olan oyuncunun eksik yerleri bu havuzdan 5'e tamamlanır. İşlem bütçe harcamaz. Teselli kartları normal ihaleye veya başka oyunlara girmez. Dört kişide 8'den fazla teselli gerekirse havuz oyuncular arasında döner; aynı oyuncunun kartlarında tekrar oluşmaz. Sonuçta kartlar altın renk ve `Teselli · 0 TL` etiketiyle gösterilir. Kayıtlı sıra kullanıldığı için eşzamanlı yazma veya yenileme farklı sonuç üretmez.
 
-Firebase kuralları yeni 8 kartlık havuzları ve mevcut 10 kartlık odaları birlikte doğrular. Teselli kimlikleri seçilen koleksiyonun sabit aralığına bağlıdır; havuzun sırası veya büyüklüğünün oyun sırasında değiştirilmesi ve teselli kimliğinin normal desteye eklenmesi reddedilir. Eski, ayrı havuz içermeyen odalar önceki tamamlama biçimleriyle bitebilir; Kapalı Zarf değişmez. Son kurallar 262.072 bayttır.
+Firebase kuralları yeni 8 kartlık havuzları ve mevcut 10 kartlık odaları birlikte doğrular. Teselli kimlikleri seçilen koleksiyonun sabit aralığına bağlıdır; havuzun sırası veya büyüklüğünün oyun sırasında değiştirilmesi ve teselli kimliğinin normal desteye eklenmesi reddedilir. Eski, ayrı havuz içermeyen odalar önceki tamamlama biçimleriyle bitebilir; Kapalı Zarf değişmez. Son kurallar 260.458 bayttır.
 
 Rövanş ve aynı odada hazır onayıyla başlayan yeni tur, ilk hamleyi `(öncekiBaşlayanIndex + 1) % oyuncuSayısı` hesabıyla sıradaki kayıtlı oyuncuya geçirir: 2 kişide P1 → P2 → P1, 3 kişide P1 → P2 → P3 → P1, 4 kişide P1 → P2 → P3 → P4 → P1. Arayüz de aynı `partyRematchStarter` hesabını kullanarak sıradaki oyuncunun adını gösterir. Yeniden bağlanmak için korunan koltuklar sıradan çıkarılmaz; oyuncu çıkarıp masayı düzenleme ayrı bir oda sahibi işlemidir.
 
-Bu revizyonda 363 otomatik test ve 171 yerel Firebase kontrolü geçti. 8 ve eski 10 kartlık havuzlarla 2–4 kişilik bütçe bitişi, yenilemede aynı kartları koruma, havuz/sıra değiştirme girişimleri ve 2–4 kişide rövanş/yeni oyun başlangıcının tam dairesel dönüşleri doğrulandı. Tarayıcıda gerçek dizi tesellileri, görselleri, 5 kart kotası ve sonraki oyuncu açıklaması kontrol edildi.
+Bu revizyonda 368 otomatik test ve 174 yerel Firebase kontrolü geçti. 8 ve eski 10 kartlık havuzlarla 2–4 kişilik bütçe bitişi, yenilemede aynı kartları koruma, havuz/sıra değiştirme girişimleri ve 2–4 kişide rövanş/yeni oyun başlangıcının tam dairesel dönüşleri doğrulandı. Tarayıcıda gerçek dizi tesellileri, görselleri, 5 kart kotası ve sonraki oyuncu açıklaması kontrol edildi.
 
 Yapım adı referansları: [Selena / ATV](https://www.atv.com.tr/selena/hakkinda), [Hepsi 1 / ATV](https://www.atv.com.tr/hepsi-1/bolumler), [Acemi Cadı / Kanal D](https://www.kanald.com.tr/acemi-cadi/bolum/acemi-cadi-1-bolum), [Dünyayı Kurtaran Adamın Oğlu / yapımcı](https://cegproduction.com/tr/projeler/dunyayi-kurtaran).
 

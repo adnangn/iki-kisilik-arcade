@@ -1,0 +1,114 @@
+{
+  "checkedAt": "2026-10-15",
+  "purpose": "Real names and recognizable subject references only. All SVG artwork is original, generated locally; no remote photographs, official logos or external runtime requests are used. Reserve placement is a playful game mechanic, not an objective assessment of quality.",
+  "sources": [
+    {
+      "collection": "sokak-lezzetleri",
+      "publisher": "Türkiye Tourism Promotion and Development Agency / GoTürkiye",
+      "url": "https://goturkiye.com/branding/the-10-most-popular-street-foods-of-istanbul",
+      "supports": ["Döner", "Simit", "Midye Dolma", "Kokoreç", "Kestane Kebabı", "Kumpir", "Tavuk Pilav"]
+    },
+    {
+      "collection": "sokak-lezzetleri",
+      "publisher": "Türkiye Tourism Promotion and Development Agency / GoTürkiye",
+      "url": "https://goturkiye.com/istanbul/street-food",
+      "supports": ["Döner Dürüm", "Tantuni", "Lahmacun", "Börek", "Nohutlu Pilav"]
+    },
+    {
+      "collection": "sokak-lezzetleri",
+      "publisher": "Türkiye Tourism Promotion and Development Agency / GoTürkiye",
+      "url": "https://goturkiye.com/de/gastronomy/blog/10-iconic-street-foods-in-turkiye",
+      "supports": ["Balık Ekmek", "Çiğ Köfte", "Simit", "Kokoreç", "Midye Dolma"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "TV8 official programme archive",
+      "url": "https://www.tv8.com.tr/programlar",
+      "supports": ["Survivor", "MasterChef Türkiye", "O Ses Türkiye", "O Ses Çocuklar", "Yetenek Sizsiniz Türkiye", "Rising Star Türkiye", "Çarkıfelek", "Doya Doya Moda", "İşte Benim Stilim", "Yemekteyiz", "Pişir de Görelim", "Şanslı Pasaport", "Cevap Ver Türkiye", "Ben Eşimi Bilmez Miyim", "Yaparsın Bilirim", "Saba ile Oyuna Geldik"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "ATV",
+      "url": "https://www.atv.com.tr/kim-milyoner-olmak-ister/bolumler",
+      "supports": ["Kim Milyoner Olmak İster?"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "teve2",
+      "url": "https://www.teve2.com.tr/programlar/guncel/kelime-oyunu/kisa-klipler",
+      "supports": ["Kelime Oyunu"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "TRT 1 official programme archive",
+      "url": "https://www.trt1.com.tr/bolum",
+      "supports": ["Lingo Türkiye", "3'te 3", "Sen Türkülerini Söyle"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "TRT Avaz",
+      "url": "https://www.trtavaz.com.tr/program/altin-petek/62519",
+      "supports": ["Altın Petek"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "TRT Avaz",
+      "url": "https://www.trtavaz.com.tr/program/bir-kelime-bir-islem/634",
+      "supports": ["Bir Kelime Bir İşlem"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "Kanal D official programme archive",
+      "url": "https://www.kanald.com.tr/ben-bilmem-esim-bilir/bolumler/07-03-2015-ben-bilmem-esim-bilir",
+      "supports": ["Ben Bilmem Eşim Bilir"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "Kanal D",
+      "url": "https://www.kanald.com.tr/kazanmakicin1dakika/fragman",
+      "supports": ["Kazanmak İçin 1 Dakika"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "Kanal D",
+      "url": "https://www.kanald.com.tr/popstar-2018/performanslar/ayhan-candasi-kaderimin-oyunu",
+      "supports": ["Popstar"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "Kanal D",
+      "url": "https://eurod.kanald.com.tr/seffafoda/haberler/favorisi-beren-saatmis",
+      "supports": ["Türkiye'nin Yıldızları"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "Show TV official programme archive",
+      "url": "https://www.showtv.com.tr/program/videolar/seda-",
+      "supports": ["Gelin Evi", "Kuaförüm Sensin"]
+    },
+    {
+      "collection": "tv-yarismalari",
+      "publisher": "NOW",
+      "url": "https://www.nowtv.com.tr/Temizlik-Benim-Isim/izle",
+      "supports": ["Temizlik Benim İşim"]
+    },
+    {
+      "collection": "ikonik-mekanlar",
+      "publisher": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/",
+      "supports": ["Historic Areas of Istanbul", "Ephesus", "Acropolis, Athens", "Taj Mahal", "Petra", "Machu Picchu", "Chichen-Itza", "Stonehenge", "Great Wall", "Memphis and its Necropolis", "Rapa Nui National Park", "Sydney Opera House", "Alhambra, Generalife and Albayzin, Granada"]
+    },
+    {
+      "collection": "ikonik-mekanlar",
+      "publisher": "Société d'Exploitation de la Tour Eiffel",
+      "url": "https://www.toureiffel.paris/en",
+      "supports": ["Eyfel Kulesi"]
+    },
+    {
+      "collection": "ikonik-mekanlar",
+      "publisher": "UK Parliament",
+      "url": "https://www.parliament.uk/bigben/",
+      "supports": ["Big Ben"]
+    }
+  ]
+}

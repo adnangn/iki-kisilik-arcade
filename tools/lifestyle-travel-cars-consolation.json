@@ -1,0 +1,150 @@
+{
+  "tatil-rotalari": [
+    {
+      "id": 900241,
+      "isim": "Esenler Otogarı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-esenler-otogari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900242,
+      "isim": "AŞTİ",
+      "gorsel": "assets/images/consolation/tatil-rotalari-asti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900243,
+      "isim": "İzmir Otogarı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-izmir-otogari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900244,
+      "isim": "Harem Otogarı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-harem-otogari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900245,
+      "isim": "Sabiha Gökçen Havalimanı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-sabiha-gokcen-havalimani.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900246,
+      "isim": "İstanbul Havalimanı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-istanbul-havalimani.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900247,
+      "isim": "Kadıköy İskelesi",
+      "gorsel": "assets/images/consolation/tatil-rotalari-kadikoy-iskelesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900248,
+      "isim": "Yenikapı İskelesi",
+      "gorsel": "assets/images/consolation/tatil-rotalari-yenikapi-iskelesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900249,
+      "isim": "Haydarpaşa Garı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-haydarpasa-gari.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    },
+    {
+      "id": 900250,
+      "isim": "Sirkeci Garı",
+      "gorsel": "assets/images/consolation/tatil-rotalari-sirkeci-gari.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    }
+  ],
+  "efsane-otomobiller": [
+    {
+      "id": 900251,
+      "isim": "Fiat Multipla",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-fiat-multipla.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900252,
+      "isim": "Renault Thalia",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-renault-thalia.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900253,
+      "isim": "Fiat Albea",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-fiat-albea.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900254,
+      "isim": "Daewoo Matiz",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-daewoo-matiz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900255,
+      "isim": "Hyundai Atos",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-hyundai-atos.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900256,
+      "isim": "Lada Samara",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-lada-samara.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900257,
+      "isim": "Škoda Favorit",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-skoda-favorit.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900258,
+      "isim": "Trabant 601",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-trabant-601.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900259,
+      "isim": "Tata Nano",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-tata-nano.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    },
+    {
+      "id": 900260,
+      "isim": "Peel P50",
+      "gorsel": "assets/images/consolation/efsane-otomobiller-peel-p50.svg",
+      "etiket": "Teselli",
+      "teselli": true,
+      "teselliArsiv": true
+    }
+  ]
+}

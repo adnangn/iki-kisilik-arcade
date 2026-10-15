@@ -26,7 +26,7 @@ import { createMoveFeedback } from './js/move-feedback.js';
 import { createTableManager } from './js/table-manager.js';
 import { auctionJuryBallot, auctionJuryResult } from './js/auction-jury.js';
 import { shuffledTelepathyCriteria } from './js/telepathy-questions.js';
-import { splitCollections, consolationRange, activeConsolationCards, CONSOLATION_POOL_SIZE, CONSOLATION_LEGACY_SIZE } from './js/consolation.js';
+import { splitCollections, consolationRange, activeConsolationCards, isConsolationId, CONSOLATION_POOL_SIZE, CONSOLATION_LEGACY_SIZE } from './js/consolation.js';
 import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
   capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
@@ -1618,7 +1618,7 @@ async function boot() {
     if (!response.ok) throw new Error(t('runtime.copy.veri_seti_yuklenemedi_sayfayi_bir_web_sunucusu_uzeri'));
     ({ datasets, consolationDatasets } = splitCollections(await response.json()));
     for (const [key, cards] of Object.entries(datasets)) {
-      if (!Array.isArray(cards) || cards.length < 10 || cards.length > 200 || new Set(cards.map(card => card.id)).size !== cards.length || cards.some(card => !Number.isSafeInteger(card.id) || card.id < 1 || card.id > 1000000 || card.id >= 900001 && card.id <= 900240 || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) || card.gorsel.includes('..'))) {
+      if (!Array.isArray(cards) || cards.length < 10 || cards.length > 200 || new Set(cards.map(card => card.id)).size !== cards.length || cards.some(card => !Number.isSafeInteger(card.id) || card.id < 1 || card.id > 1000000 || isConsolationId(card.id) || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) || card.gorsel.includes('..'))) {
         throw new Error(t('runtime.error.invalid_dataset', { dataset: key }));
       }
       const pool = consolationDatasets[key], range = consolationRange(key);

@@ -5,11 +5,13 @@ export const CONSOLATION_DATASET_IDS = Object.freeze([
   'dizi', 'film', 'yerli-sanatcilar',
   'ankara-ilceleri', 'istanbul-ilceleri', 'turkiye-sehirleri', 'ulkeler',
   'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
-  'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni'
+  'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni',
+  'tatil-rotalari', 'efsane-otomobiller', 'sokak-lezzetleri', 'tv-yarismalari', 'ikonik-mekanlar'
 ]);
 export const CONSOLATION_POOL_SIZE = 8;
 // Keep the original ten-ID spacing so saved rooms retain valid card identities.
 export const CONSOLATION_LEGACY_SIZE = 10;
+export const isConsolationId = id => id >= 900001 && id <= 900000 + CONSOLATION_DATASET_IDS.length * CONSOLATION_LEGACY_SIZE;
 export function consolationRange(datasetId) {
   const ordinal = CONSOLATION_DATASET_IDS.indexOf(datasetId);
   if (ordinal < 0) throw new Error('Bu koleksiyon için teselli kartı havuzu bulunamadı.');

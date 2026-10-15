@@ -1,14 +1,19 @@
 /** Four-seat fixtures in a local demo RTDB only. No production credentials. */
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { createPartyRoom,joinPartyRoom,changePartyRoom,encodePartyRoom,decodePartyRoom } from '../js/party-room-state.js';
+import { createPartyRoom,joinPartyRoom,changePartyRoom,encodePartyRoom,decodePartyRoom,ALL_MODES,modeLimits } from '../js/party-room-state.js';
 import { partyCards, createPartyGame } from '../js/party-games.js';
 import { partySubmission } from '../js/party-online.js';
-import { playableCollections, consolationRange } from '../js/consolation.js';
+import { playableCollections, consolationRange, splitCollections, activeConsolationCards } from '../js/consolation.js';
+import { draftTriplets } from '../js/game-setup.js';
 const ORIGIN=process.env.DB_EMULATOR_URL||'http://127.0.0.1:9000';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN),'Only local emulator tests are permitted.');
 const PROJECT='demo-iki-kisilik',CODES=['957001','957002','957003','957004','957005','957006','957007','957008'];
-const DECK=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8'))).futbol.map(card=>card.id);
+const RAW=JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8')),DATASETS=playableCollections(RAW);
+const RESERVES=splitCollections(RAW).consolationDatasets;
+const DECK=DATASETS.futbol.map(card=>card.id);
+const NEW_COLLECTIONS=['tatil-rotalari','efsane-otomobiller','sokak-lezzetleri','tv-yarismalari','ikonik-mekanlar'];
+const setupFor=(datasetId,mode)=>mode==='team-draft'?{triplets:draftTriplets(DATASETS[datasetId],length=>length-1)}:{deck:DATASETS[datasetId].map(card=>card.id),...(mode==='auction'?{completionDeck:activeConsolationCards(RESERVES[datasetId]).map(card=>card.id)}:{})};
 const LEGACY_COMPLETION=Array.from({length:10},(_,index)=>consolationRange('futbol').min+index);
 const COMPLETION=LEGACY_COMPLETION.slice(0,8);
 const stamp=Date.now(),encode=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
@@ -25,12 +30,12 @@ const put=(path,value,uid='p1',headers={})=>req(path,{method:'PUT',value,uid,hea
 const write=(room,uid='p1',headers={})=>put(`rooms/${room.code}`,encodePartyRoom(room),uid,headers).then(result=>({...result,value:decodePartyRoom(result.value)}));
 async function check(label,fn){if(process.env.PARTY_TEST_FILTER&&label!=='party rules compile under the Firebase source limit'&&!label.includes(process.env.PARTY_TEST_FILTER))return;try{await fn();passed++;console.log('PASS',label);}catch(error){throw new Error(`${label}: ${error.message}`,{cause:error});}}
 async function clean(){for(const code of CODES)for(const branch of ['rooms','privateGames','presence','reactions','cleanupIndex'])ok(await req(`${branch}/${code}`,{method:'DELETE',admin:true}));}
-async function start(mode,count=4,code=CODES[0],mutations=[],criteria,extra={}){
+async function start(mode,count=4,code=CODES[0],mutations=[],criteria,extra={},datasetId='futbol'){
   await req(`rooms/${code}`,{method:'DELETE',admin:true});await req(`privateGames/${code}`,{method:'DELETE',admin:true});
   ok(await req(`cleanupIndex/${code}`,{method:'PUT',admin:true,value:{instance:stamp,lastActivityAt:Date.now(),state:'reserved',reserverUid:'p1'}}));
-  let room=ok(await write(createPartyRoom({code,uid:'p1',name:'Ada',createdAt:stamp,datasetId:'futbol',mode})));
+  let room=ok(await write(createPartyRoom({code,uid:'p1',name:'Ada',createdAt:stamp,datasetId,mode,...(mode==='bracket'?{bracketSize:32}:{})})));
   for(let index=2;index<=count;index++)room=ok(await write(joinPartyRoom(room,`p${index}`,`Oyuncu ${index}`),`p${index}`));
-  const candidate=changePartyRoom(room,'p1',room.revision,'start',{deck:DECK,...(criteria?{criteria}:{}),...extra});
+  const candidate=changePartyRoom(room,'p1',room.revision,'start',{...(mode==='team-draft'?{triplets:draftTriplets(DATASETS[datasetId],length=>length-1)}:{deck:DATASETS[datasetId].map(card=>card.id)}),...(criteria?{criteria}:{}),...extra});
   if(mutations.length)await rejectMutations(candidate,mutations);
   return ok(await write(candidate));
 }
@@ -64,6 +69,49 @@ try{
     }
   });
   await check('all six party modes create and start at every supported player count',async()=>{for(const mode of ['auction','sealed-auction','simultaneous-ranking','telepathy','detective','chameleon'])for(const count of(mode==='detective'?[2]:mode==='chameleon'?[3,4]:[2,3,4])){const room=await start(mode,count);assert.equal(room.game.seats.length,count);assert.equal(room.status,'playing');assert.equal(room.game.deck.length,mode==='auction'||mode==='sealed-auction'?count===2?20:30:mode==='simultaneous-ranking'?10:mode==='telepathy'?40:mode==='detective'?36:45);}});
+  await check('new collections require exact IDs at creation rather than prefixes or suffixes',async()=>{
+    for(const datasetId of NEW_COLLECTIONS){
+      const code=CODES[7];await req(`rooms/${code}`,{method:'DELETE',admin:true});
+      ok(await req(`cleanupIndex/${code}`,{method:'PUT',admin:true,value:{instance:stamp,lastActivityAt:Date.now(),state:'reserved',reserverUid:'p1'}}));
+      const waiting=createPartyRoom({code,uid:'p1',name:'Ada',createdAt:stamp,datasetId,mode:'auction'});
+      for(const unknown of [`${datasetId}-x`,`x-${datasetId}`,datasetId.toUpperCase(),'unknown-collection'])denied(await put(`rooms/${code}`,{...waiting,datasetId:unknown}));
+      ok(await write(waiting));
+    }
+  });
+  await check('new collections start all eleven modes with their own cards and matching eight-card auction reserves',async()=>{
+    for(const datasetId of NEW_COLLECTIONS)for(const mode of ALL_MODES){
+      const setup=setupFor(datasetId,mode),mutations=[];
+      if(mode==='auction'){
+        const nextId=NEW_COLLECTIONS[(NEW_COLLECTIONS.indexOf(datasetId)+1)%NEW_COLLECTIONS.length];
+        mutations.push(g=>{g.completionDeck=setupFor(nextId,'auction').completionDeck;g.completionIds=Object.fromEntries(g.completionDeck.map((id,index)=>[id,index]));});
+        mutations.push(g=>{const old=g.deck[0],id=setup.completionDeck[0];g.deck[0]=id;delete g.deckIds[old];g.deckIds[id]=0;delete g.visibleCards[old];g.visibleCards[id]=0;g.currentCardId=id;});
+      }
+      const value=await start(mode,modeLimits(mode).min,CODES[0],mutations,undefined,mode==='auction'?{completionDeck:setup.completionDeck}:{},datasetId);
+      assert.equal(value.datasetId,datasetId);assert.equal(value.mode,mode);assert.equal(value.status,'playing');
+      if(mode==='team-draft')assert.deepEqual(value.game.triplets,setup.triplets);
+      else assert.ok(value.game.deck.every(id=>DATASETS[datasetId].some(card=>card.id===id)));
+      if(mode==='auction')assert.deepEqual(value.game.completionDeck,setup.completionDeck);
+    }
+  });
+  await check('new collections support approved same-room changes and owner resets while unknown IDs are rejected',async()=>{
+    let room=await start('auction',2,CODES[4]);
+    for(const datasetId of NEW_COLLECTIONS){
+      let guard=0;while(room.status==='playing'){assert.ok(++guard<100);room=changePartyRoom(room,room.game.turnSeat,room.revision,'pass');}
+      ok(await req(`rooms/${room.code}`,{method:'PUT',admin:true,value:encodePartyRoom(room)}));
+      const proposed=changePartyRoom(room,'p1',room.revision,'propose-next',{datasetId,mode:'auction'});
+      await rejectMutations(proposed,[(_g,r)=>r.nextGame.datasetId=datasetId+'-x']);
+      room=ok(await write(proposed));
+      const setup=setupFor(datasetId,'auction'),id=room.nextGame.id;
+      room=ok(await write(changePartyRoom(room,'p1',room.revision,'ready-next',{id,ready:true,...setup})));
+      room=ok(await write(changePartyRoom(room,'p2',room.revision,'ready-next',{id,ready:true,...setup}),'p2'));
+      assert.equal(room.datasetId,datasetId);assert.deepEqual(room.game.completionDeck,setup.completionDeck);
+      const reset=changePartyRoom(room,'p1',room.revision,'reset-table',{removeSeats:[],datasetId,mode:'auction'});
+      await rejectMutations(reset,[(_g,r)=>r.datasetId=datasetId+'-x']);
+      room=ok(await write(reset));
+      room=ok(await write(changePartyRoom(room,'p1',room.revision,'start',setup)));
+      assert.equal(room.datasetId,datasetId);assert.deepEqual(room.game.completionDeck,setup.completionDeck);
+    }
+  });
   await check('new telepathy games accept the expanded forty-question pool and freeze its unique sequence',async()=>{
     const criteria=Array.from({length:10},(_,index)=>39-index);
     let expanded=await start('telepathy',2,CODES[0],[],criteria);

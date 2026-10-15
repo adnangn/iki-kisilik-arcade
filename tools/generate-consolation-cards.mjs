@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { realConsolationPools } from './consolation-real-pools.mjs';
 import { realConsolationArt } from './consolation-real-art.mjs';
 import { consolationCountryFlag } from './consolation-country-flags.mjs';
-import { playableCollections, CONSOLATION_POOL_SIZE } from '../js/consolation.js';
+import { playableCollections, CONSOLATION_POOL_SIZE, CONSOLATION_DATASET_IDS as ALL_CONSOLATION_DATASET_IDS, consolationRange } from '../js/consolation.js';
 
 // Original, local 96 px art. These playful auction reserves are not a ranking
 // of real people or places. Football colours are symbolic, never current clubs.
@@ -223,5 +223,19 @@ for (const [ordinal, datasetId] of CONSOLATION_DATASET_IDS.entries()) {
 }
 await mkdir(new URL('assets/images/consolation/', root), { recursive: true });
 await Promise.all([...assets].map(([path, svg]) => writeFile(new URL(path, root), svg, 'utf8')));
+// Expansion generators own their artwork; keep all reserve metadata in the
+// same feed without regenerating those illustrations with unrelated motifs.
+for (const source of ['tools/lifestyle-travel-cars-consolation.json', 'tools/lifestyle-culture-consolation.json']) {
+  const extra = JSON.parse(await readFile(new URL(source, root), 'utf8'));
+  for (const [datasetId, reserve] of Object.entries(extra)) {
+    assert.ok(ALL_CONSOLATION_DATASET_IDS.includes(datasetId) && !cards[datasetId], `${datasetId}: unexpected reserve feed.`);
+    const range = consolationRange(datasetId);
+    assert.equal(reserve.length, 10, datasetId);
+    assert.ok(reserve.every(card => card.teselli === true && card.id >= range.min && card.id <= range.max), datasetId);
+    for (const card of reserve) await readFile(new URL(card.gorsel, root));
+    cards[datasetId] = reserve;
+  }
+}
+assert.deepEqual(Object.keys(cards).sort(), [...ALL_CONSOLATION_DATASET_IDS].sort());
 await writeFile(new URL('tools/consolation-cards.json', root), JSON.stringify(cards, null, 2) + '\n', 'utf8');
-console.log(`${Object.values(cards).flat().length} consolation records, ${assets.size} local pixel illustrations.`);
+console.log(`${Object.values(cards).flat().length} consolation records; ${assets.size} base illustrations plus the five collection-specific reserves.`);

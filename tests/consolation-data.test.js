@@ -38,8 +38,8 @@ const baseline = {
   'lol-sampiyonlari': [173, '8d1e2e33d38e1bdd10e4c6313c1f6f865ba7a4372702913ddd8e0b88ed7b36f8']
 };
 
-test('all 24 collections retain their exact normal card records and ordering', () => {
-  assert.deepEqual(Object.keys(datasets).sort(), Object.keys(baseline).sort());
+test('all original 24 collections retain their exact normal card records and ordering', () => {
+  assert.ok(Object.keys(baseline).every(id => Object.hasOwn(datasets, id)));
   let count = 0;
   for (const [id, [length, digest]] of Object.entries(baseline)) {
     assert.equal(datasets[id].length, length, id);
@@ -57,7 +57,8 @@ test('each collection has eight active consolation cards while retaining all ten
     'dizi', 'film', 'yerli-sanatcilar',
     'ankara-ilceleri', 'istanbul-ilceleri', 'turkiye-sehirleri', 'ulkeler',
     'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
-    'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni'
+    'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni',
+    'tatil-rotalari', 'efsane-otomobiller', 'sokak-lezzetleri', 'tv-yarismalari', 'ikonik-mekanlar'
   ]);
   assert.equal(CONSOLATION_POOL_SIZE, 8);
   assert.deepEqual([...CONSOLATION_DATASET_IDS].sort(), Object.keys(raw).sort());
@@ -82,8 +83,8 @@ test('each collection has eight active consolation cards while retaining all ten
     }
     all.push(...cards);
   }
-  assert.equal(all.length, 240);
-  assert.equal(new Set(all.map(card => card.id)).size, 240);
+  assert.equal(all.length, 290);
+  assert.equal(new Set(all.map(card => card.id)).size, 290);
   assert.throws(() => consolationRange('unknown'));
 });
 

@@ -1,0 +1,728 @@
+{
+  "sokak-lezzetleri": [
+    {
+      "id": 202001,
+      "isim": "Döner Dürüm",
+      "gorsel": "assets/images/sokak-lezzetleri/doner-durum.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202002,
+      "isim": "Tavuk Dürüm",
+      "gorsel": "assets/images/sokak-lezzetleri/tavuk-durum.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202003,
+      "isim": "Balık Ekmek",
+      "gorsel": "assets/images/sokak-lezzetleri/balik-ekmek.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202004,
+      "isim": "Kokoreç",
+      "gorsel": "assets/images/sokak-lezzetleri/kokorec.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202005,
+      "isim": "Islak Hamburger",
+      "gorsel": "assets/images/sokak-lezzetleri/islak-hamburger.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202006,
+      "isim": "Ayvalık Tostu",
+      "gorsel": "assets/images/sokak-lezzetleri/ayvalik-tostu.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202007,
+      "isim": "Kumru",
+      "gorsel": "assets/images/sokak-lezzetleri/kumru.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202008,
+      "isim": "Sucuk Ekmek",
+      "gorsel": "assets/images/sokak-lezzetleri/sucuk-ekmek.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202009,
+      "isim": "Köfte Ekmek",
+      "gorsel": "assets/images/sokak-lezzetleri/kofte-ekmek.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202010,
+      "isim": "Tantuni",
+      "gorsel": "assets/images/sokak-lezzetleri/tantuni.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202011,
+      "isim": "Falafel Dürüm",
+      "gorsel": "assets/images/sokak-lezzetleri/falafel-durum.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202012,
+      "isim": "Şavurma",
+      "gorsel": "assets/images/sokak-lezzetleri/savurma.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202013,
+      "isim": "Philly Cheesesteak",
+      "gorsel": "assets/images/sokak-lezzetleri/philly-cheesesteak.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202014,
+      "isim": "Bánh Mì",
+      "gorsel": "assets/images/sokak-lezzetleri/banh-mi.svg",
+      "etiket": "Ekmek Arası"
+    },
+    {
+      "id": 202015,
+      "isim": "Midye Dolma",
+      "gorsel": "assets/images/sokak-lezzetleri/midye-dolma.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202016,
+      "isim": "Kumpir",
+      "gorsel": "assets/images/sokak-lezzetleri/kumpir.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202017,
+      "isim": "Patso",
+      "gorsel": "assets/images/sokak-lezzetleri/patso.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202018,
+      "isim": "Tavuk Pilav",
+      "gorsel": "assets/images/sokak-lezzetleri/tavuk-pilav.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202019,
+      "isim": "Nohutlu Pilav",
+      "gorsel": "assets/images/sokak-lezzetleri/nohutlu-pilav.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202020,
+      "isim": "Söğüş",
+      "gorsel": "assets/images/sokak-lezzetleri/sogus.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202021,
+      "isim": "Arnavut Ciğeri",
+      "gorsel": "assets/images/sokak-lezzetleri/arnavut-cigeri.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202022,
+      "isim": "Çiğ Köfte",
+      "gorsel": "assets/images/sokak-lezzetleri/cig-kofte.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202023,
+      "isim": "Haşlanmış Mısır",
+      "gorsel": "assets/images/sokak-lezzetleri/haslanmis-misir.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202024,
+      "isim": "Köz Mısır",
+      "gorsel": "assets/images/sokak-lezzetleri/koz-misir.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202025,
+      "isim": "Kestane Kebabı",
+      "gorsel": "assets/images/sokak-lezzetleri/kestane-kebabi.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202026,
+      "isim": "Patates Kızartması",
+      "gorsel": "assets/images/sokak-lezzetleri/patates-kizartmasi.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202027,
+      "isim": "Çıtır Tavuk",
+      "gorsel": "assets/images/sokak-lezzetleri/citir-tavuk.svg",
+      "etiket": "Atıştırmalık"
+    },
+    {
+      "id": 202028,
+      "isim": "Simit",
+      "gorsel": "assets/images/sokak-lezzetleri/simit.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202029,
+      "isim": "Poğaça",
+      "gorsel": "assets/images/sokak-lezzetleri/pogaca.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202030,
+      "isim": "Açma",
+      "gorsel": "assets/images/sokak-lezzetleri/acma.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202031,
+      "isim": "Su Böreği",
+      "gorsel": "assets/images/sokak-lezzetleri/su-boregi.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202032,
+      "isim": "Çiğ Börek",
+      "gorsel": "assets/images/sokak-lezzetleri/cig-borek.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202033,
+      "isim": "Lahmacun",
+      "gorsel": "assets/images/sokak-lezzetleri/lahmacun.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202034,
+      "isim": "Etli Ekmek",
+      "gorsel": "assets/images/sokak-lezzetleri/etli-ekmek.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202035,
+      "isim": "Gözleme",
+      "gorsel": "assets/images/sokak-lezzetleri/gozleme.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202036,
+      "isim": "Taco",
+      "gorsel": "assets/images/sokak-lezzetleri/taco.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202037,
+      "isim": "Empanada",
+      "gorsel": "assets/images/sokak-lezzetleri/empanada.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202038,
+      "isim": "Samosa",
+      "gorsel": "assets/images/sokak-lezzetleri/samosa.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202039,
+      "isim": "Dilim Pizza",
+      "gorsel": "assets/images/sokak-lezzetleri/dilim-pizza.svg",
+      "etiket": "Hamur İşi"
+    },
+    {
+      "id": 202040,
+      "isim": "Pretzel",
+      "gorsel": "assets/images/sokak-lezzetleri/pretzel.svg",
+      "etiket": "Hamur İşi"
+    }
+  ],
+  "tv-yarismalari": [
+    {
+      "id": 203001,
+      "isim": "Kim Milyoner Olmak İster?",
+      "gorsel": "assets/images/tv-yarismalari/kim-milyoner-olmak-ister.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203002,
+      "isim": "Kim 500 Milyar İster?",
+      "gorsel": "assets/images/tv-yarismalari/kim-500-milyar-ister.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203003,
+      "isim": "Kim 500 Bin İster?",
+      "gorsel": "assets/images/tv-yarismalari/kim-500-bin-ister.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203004,
+      "isim": "Çarkıfelek",
+      "gorsel": "assets/images/tv-yarismalari/carkifelek.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203005,
+      "isim": "Kelime Oyunu",
+      "gorsel": "assets/images/tv-yarismalari/kelime-oyunu.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203006,
+      "isim": "Passaparola",
+      "gorsel": "assets/images/tv-yarismalari/passaparola.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203007,
+      "isim": "Riziko!",
+      "gorsel": "assets/images/tv-yarismalari/riziko.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203008,
+      "isim": "En Zayıf Halka",
+      "gorsel": "assets/images/tv-yarismalari/en-zayif-halka.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203009,
+      "isim": "3'te 3",
+      "gorsel": "assets/images/tv-yarismalari/3-te-3.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203010,
+      "isim": "Altın Petek",
+      "gorsel": "assets/images/tv-yarismalari/altin-petek.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203011,
+      "isim": "Lingo Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/lingo-turkiye.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203012,
+      "isim": "Aileler Yarışıyor",
+      "gorsel": "assets/images/tv-yarismalari/aileler-yarisiyor.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203013,
+      "isim": "Büyük Risk",
+      "gorsel": "assets/images/tv-yarismalari/buyuk-risk.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203014,
+      "isim": "Bir Kelime Bir İşlem",
+      "gorsel": "assets/images/tv-yarismalari/bir-kelime-bir-islem.svg",
+      "etiket": "Bilgi"
+    },
+    {
+      "id": 203015,
+      "isim": "O Ses Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/o-ses-turkiye.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203016,
+      "isim": "Yetenek Sizsiniz Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/yetenek-sizsiniz-turkiye.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203017,
+      "isim": "Akademi Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/akademi-turkiye.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203018,
+      "isim": "Popstar Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/popstar-turkiye.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203019,
+      "isim": "Popstar Alaturka",
+      "gorsel": "assets/images/tv-yarismalari/popstar-alaturka.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203020,
+      "isim": "Şarkı Söylemek Lazım",
+      "gorsel": "assets/images/tv-yarismalari/sarki-soylemek-lazim.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203021,
+      "isim": "Buzda Dans",
+      "gorsel": "assets/images/tv-yarismalari/buzda-dans.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203022,
+      "isim": "Dans Eder misin?",
+      "gorsel": "assets/images/tv-yarismalari/dans-eder-misin.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203023,
+      "isim": "Bir Şarkısın Sen",
+      "gorsel": "assets/images/tv-yarismalari/bir-sarkisin-sen.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203024,
+      "isim": "Rising Star Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/rising-star-turkiye.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203025,
+      "isim": "O Ses Çocuklar",
+      "gorsel": "assets/images/tv-yarismalari/o-ses-cocuklar.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203026,
+      "isim": "Türkiye'nin Yıldızları",
+      "gorsel": "assets/images/tv-yarismalari/turkiye-nin-yildizlari.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203027,
+      "isim": "Sen Türkülerini Söyle",
+      "gorsel": "assets/images/tv-yarismalari/sen-turkulerini-soyle.svg",
+      "etiket": "Yetenek"
+    },
+    {
+      "id": 203028,
+      "isim": "Survivor",
+      "gorsel": "assets/images/tv-yarismalari/survivor.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203029,
+      "isim": "MasterChef Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/masterchef-turkiye.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203030,
+      "isim": "Yemekteyiz",
+      "gorsel": "assets/images/tv-yarismalari/yemekteyiz.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203031,
+      "isim": "Var mısın Yok musun?",
+      "gorsel": "assets/images/tv-yarismalari/var-misin-yok-musun.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203032,
+      "isim": "Ben Bilmem Eşim Bilir",
+      "gorsel": "assets/images/tv-yarismalari/ben-bilmem-esim-bilir.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203033,
+      "isim": "Yaparsın Aşkım",
+      "gorsel": "assets/images/tv-yarismalari/yaparsin-askim.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203034,
+      "isim": "İşte Benim Stilim",
+      "gorsel": "assets/images/tv-yarismalari/iste-benim-stilim.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203035,
+      "isim": "Doya Doya Moda",
+      "gorsel": "assets/images/tv-yarismalari/doya-doya-moda.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203036,
+      "isim": "Gelinim Mutfakta",
+      "gorsel": "assets/images/tv-yarismalari/gelinim-mutfakta.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203037,
+      "isim": "Zuhal Topal’la Sofrada",
+      "gorsel": "assets/images/tv-yarismalari/zuhal-topal-la-sofrada.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203038,
+      "isim": "Fear Factor Türkiye",
+      "gorsel": "assets/images/tv-yarismalari/fear-factor-turkiye.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203039,
+      "isim": "Kazanmak İçin 1 Dakika",
+      "gorsel": "assets/images/tv-yarismalari/kazanmak-icin-1-dakika.svg",
+      "etiket": "Rekabet"
+    },
+    {
+      "id": 203040,
+      "isim": "Wipeout",
+      "gorsel": "assets/images/tv-yarismalari/wipeout.svg",
+      "etiket": "Rekabet"
+    }
+  ],
+  "ikonik-mekanlar": [
+    {
+      "id": 204001,
+      "isim": "Ayasofya",
+      "gorsel": "assets/images/ikonik-mekanlar/ayasofya.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204002,
+      "isim": "Galata Kulesi",
+      "gorsel": "assets/images/ikonik-mekanlar/galata-kulesi.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204003,
+      "isim": "Kız Kulesi",
+      "gorsel": "assets/images/ikonik-mekanlar/kiz-kulesi.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204004,
+      "isim": "Sultanahmet Camii",
+      "gorsel": "assets/images/ikonik-mekanlar/sultanahmet-camii.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204005,
+      "isim": "Anıtkabir",
+      "gorsel": "assets/images/ikonik-mekanlar/anitkabir.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204006,
+      "isim": "Topkapı Sarayı",
+      "gorsel": "assets/images/ikonik-mekanlar/topkapi-sarayi.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204007,
+      "isim": "Dolmabahçe Sarayı",
+      "gorsel": "assets/images/ikonik-mekanlar/dolmabahce-sarayi.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204008,
+      "isim": "Efes Celsus Kütüphanesi",
+      "gorsel": "assets/images/ikonik-mekanlar/efes-celsus-kutuphanesi.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204009,
+      "isim": "Aspendos Tiyatrosu",
+      "gorsel": "assets/images/ikonik-mekanlar/aspendos-tiyatrosu.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204010,
+      "isim": "Sümela Manastırı",
+      "gorsel": "assets/images/ikonik-mekanlar/sumela-manastiri.svg",
+      "etiket": "Türkiye"
+    },
+    {
+      "id": 204011,
+      "isim": "Eyfel Kulesi",
+      "gorsel": "assets/images/ikonik-mekanlar/eyfel-kulesi.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204012,
+      "isim": "Big Ben",
+      "gorsel": "assets/images/ikonik-mekanlar/big-ben.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204013,
+      "isim": "Kolezyum",
+      "gorsel": "assets/images/ikonik-mekanlar/kolezyum.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204014,
+      "isim": "Pisa Kulesi",
+      "gorsel": "assets/images/ikonik-mekanlar/pisa-kulesi.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204015,
+      "isim": "Sagrada Familia",
+      "gorsel": "assets/images/ikonik-mekanlar/sagrada-familia.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204016,
+      "isim": "Louvre Müzesi",
+      "gorsel": "assets/images/ikonik-mekanlar/louvre-muzesi.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204017,
+      "isim": "Brandenburg Kapısı",
+      "gorsel": "assets/images/ikonik-mekanlar/brandenburg-kapisi.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204018,
+      "isim": "Aziz Vasil Katedrali",
+      "gorsel": "assets/images/ikonik-mekanlar/aziz-vasil-katedrali.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204019,
+      "isim": "Atina Akropolisi",
+      "gorsel": "assets/images/ikonik-mekanlar/atina-akropolisi.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204020,
+      "isim": "Neuschwanstein Şatosu",
+      "gorsel": "assets/images/ikonik-mekanlar/neuschwanstein-satosu.svg",
+      "etiket": "Avrupa"
+    },
+    {
+      "id": 204021,
+      "isim": "Tac Mahal",
+      "gorsel": "assets/images/ikonik-mekanlar/tac-mahal.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204022,
+      "isim": "Gize Piramitleri",
+      "gorsel": "assets/images/ikonik-mekanlar/gize-piramitleri.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204023,
+      "isim": "Çin Seddi",
+      "gorsel": "assets/images/ikonik-mekanlar/cin-seddi.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204024,
+      "isim": "Özgürlük Heykeli",
+      "gorsel": "assets/images/ikonik-mekanlar/ozgurluk-heykeli.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204025,
+      "isim": "Kurtarıcı İsa Heykeli",
+      "gorsel": "assets/images/ikonik-mekanlar/kurtarici-isa-heykeli.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204026,
+      "isim": "Sidney Opera Binası",
+      "gorsel": "assets/images/ikonik-mekanlar/sidney-opera-binasi.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204027,
+      "isim": "Burj Khalifa",
+      "gorsel": "assets/images/ikonik-mekanlar/burj-khalifa.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204028,
+      "isim": "Petra",
+      "gorsel": "assets/images/ikonik-mekanlar/petra.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204029,
+      "isim": "Chichén Itzá",
+      "gorsel": "assets/images/ikonik-mekanlar/chichen-itza.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204030,
+      "isim": "Machu Picchu",
+      "gorsel": "assets/images/ikonik-mekanlar/machu-picchu.svg",
+      "etiket": "Dünya"
+    },
+    {
+      "id": 204031,
+      "isim": "Tower Bridge",
+      "gorsel": "assets/images/ikonik-mekanlar/tower-bridge.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204032,
+      "isim": "Golden Gate Köprüsü",
+      "gorsel": "assets/images/ikonik-mekanlar/golden-gate-koprusu.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204033,
+      "isim": "Boğaziçi Köprüsü",
+      "gorsel": "assets/images/ikonik-mekanlar/bogazici-koprusu.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204034,
+      "isim": "Sydney Harbour Bridge",
+      "gorsel": "assets/images/ikonik-mekanlar/sydney-harbour-bridge.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204035,
+      "isim": "Mostar Köprüsü",
+      "gorsel": "assets/images/ikonik-mekanlar/mostar-koprusu.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204036,
+      "isim": "Stonehenge",
+      "gorsel": "assets/images/ikonik-mekanlar/stonehenge.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204037,
+      "isim": "Moai Heykelleri",
+      "gorsel": "assets/images/ikonik-mekanlar/moai-heykelleri.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204038,
+      "isim": "Rushmore Dağı",
+      "gorsel": "assets/images/ikonik-mekanlar/rushmore-dagi.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204039,
+      "isim": "Büyük Gize Sfenksi",
+      "gorsel": "assets/images/ikonik-mekanlar/buyuk-gize-sfenksi.svg",
+      "etiket": "Köprü ve Anıt"
+    },
+    {
+      "id": 204040,
+      "isim": "Merlion Heykeli",
+      "gorsel": "assets/images/ikonik-mekanlar/merlion-heykeli.svg",
+      "etiket": "Köprü ve Anıt"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ import { normalizeTexts } from '../js/texts.js';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
 import { ALL_MODES } from '../js/party-room-state.js';
 import { ruleLiteralOptions } from './rule-literal-options.mjs';
-import { splitCollections, CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, activeConsolationCards, consolationRange } from '../js/consolation.js';
+import { splitCollections, CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, activeConsolationCards, isConsolationId, consolationRange } from '../js/consolation.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
 export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'table-manager.css', 'move-feedback.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
@@ -182,7 +182,7 @@ export async function preflight({ online = false, quiet = false } = {}) {
     assert.equal(new Set(cards.map(card => card.id)).size, cards.length, `${datasetId}: kart kimlikleri tekrarlanıyor.`);
     for (const card of cards) {
       assert.ok(Number.isSafeInteger(card.id) && card.id >= 1 && card.id <= 1000000, `${datasetId}: geçersiz kart kimliği.`);
-      assert.ok(card.id < 900001 || card.id > 900240, `${datasetId}: teselli kimliği normal koleksiyona karıştı.`);
+      assert.ok(!isConsolationId(card.id), `${datasetId}: teselli kimliği normal koleksiyona karıştı.`);
       for (const key of ['isim', 'etiket']) assert.ok(typeof card[key] === 'string' && card[key].trim(), `${datasetId}/${card.id}: ${key} boş.`);
       assert.ok(typeof card.gorsel === 'string' && /^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) && !card.gorsel.includes('..'), `${datasetId}/${card.id}: yerel görsel yolu gerekli.`);
       assert.ok(allowed.has(card.gorsel), `${datasetId}/${card.id}: görsel eksik veya harf büyüklüğü yanlış: ${card.gorsel}`);

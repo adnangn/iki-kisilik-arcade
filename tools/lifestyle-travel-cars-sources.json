@@ -1,0 +1,27 @@
+{
+  "checkedOn": "2026-10-15",
+  "scope": "Official references consulted for stable place names and historical model identifiers. All SVG artwork is original local pixel illustration; no source images, text, ratings, prices or travel advice are copied. Consolation selection is a playful game contrast, not a quality judgement.",
+  "references": [
+    {"title":"GoTürkiye — Pamukkale", "url":"https://goturkiye.com/tr/pamukkale", "cards":["Pamukkale"]},
+    {"title":"GoTürkiye — Fethiye", "url":"https://goturkiye.com/tr/fethiye", "cards":["Fethiye"]},
+    {"title":"GoTürkiye — Alaçatı, Çeşme & Urla", "url":"https://goturkiye.com/tr/cesme", "cards":["Alaçatı","Çeşme"]},
+    {"title":"GoTürkiye — Skiing in Türkiye", "url":"https://goturkiye.com/skiing", "cards":["Uludağ","Erciyes","Palandöken","Sarıkamış"]},
+    {"title":"UNESCO — World Heritage List", "url":"https://www.unesco.org/en/world-heritage/list", "cards":["İstanbul","Kapadokya","Pamukkale","Paris","Roma","Prag","Amsterdam","Venedik","Londra","Kyoto","Marakeş","Amalfi","Norveç Fiyortları"]},
+    {"title":"UNESCO — Medina of Marrakesh", "url":"https://whc.unesco.org/en/list/331/", "cards":["Marakeş"]},
+    {"title":"BMW M — The M3 E30", "url":"https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-e30-portraet.html", "cards":["BMW 320i E30"], "note":"E30 generation identity; 320i is the non-M3 model represented in the collection."},
+    {"title":"BMW M Heritage", "url":"https://www.bmw-m.com/en/topics/m-heritage.html", "cards":["BMW M5 E39"]},
+    {"title":"Mercedes-Benz — 140 years vehicle icons", "url":"https://group.mercedes-benz.com/company/tradition/company-history/140-years-vehicle-icons.html", "cards":["Mercedes-Benz 190 E W201","Mercedes-Benz W140"]},
+    {"title":"Mercedes-Benz — History of the E-Class", "url":"https://media.mercedes-benz.com/article/80c034f7-82c7-4232-8530-f6176b63405c", "cards":["Mercedes-Benz W124"]},
+    {"title":"Mercedes-Benz — W201 history", "url":"https://media.mercedes-benz.com/article/42432925-6096-4ce8-9b7d-5cb04db4d456", "cards":["Mercedes-Benz 190 E W201"]},
+    {"title":"Toyota — History of the Supra", "url":"https://mag.toyota.co.uk/history-of-the-toyota-supra/comment-page-1/", "cards":["Toyota Supra A80","Mazda RX-7 FD","Nissan 300ZX Z32","Honda NSX NA1"]},
+    {"title":"Toyota — History of Toyota 86", "url":"https://mag.toyota.co.uk/history-of-toyota-86/", "cards":["Toyota AE86"]},
+    {"title":"Nissan — Heritage Gallery", "url":"https://www.nissan-global.com/EN/HERITAGE/GALLERY_LIST/", "cards":["Nissan Skyline GT-R R34","Nissan Silvia S15","Nissan 300ZX Z32"]},
+    {"title":"Honda — Legacy Car Models", "url":"https://www.honda.co.uk/cars/world-of-honda/past/legacy.html", "cards":["Honda NSX NA1","Honda S2000","Honda Civic EK9"]},
+    {"title":"Honda — Type R Timeline and Milestones", "url":"https://hondanews.com/en-US/releases/release-5d911be38cf30e49d54f6cb4520a4d4a-honda-type-r-timeline-and-milestones", "cards":["Honda Civic EK9"]},
+    {"title":"Volkswagen — Golf GTI history", "url":"https://www.volkswagen-newsroom.com/en/the-new-golf-gti-international-media-drive-6282/golf-gti-history-6287", "cards":["Volkswagen Golf GTI Mk1"]},
+    {"title":"Volkswagen — History of the Golf", "url":"https://www.volkswagen-newsroom.com/en/the-new-golf-das-auto-international-driving-presentation-2797/the-new-golf-retrospective-history-of-the-golf-2852", "cards":["Volkswagen Golf Mk4","Volkswagen Beetle"]},
+    {"title":"Opel — Historical Pictures", "url":"https://www.media.stellantis.com/em-en/opel/media-library/press-images/657783", "cards":["Opel Corsa GSi A"], "note":"Model name verification only; none of these images are copied."},
+    {"title":"Lancia — Stratos, Rally 037 and Delta design history", "url":"https://www.media.stellantis.com/it-it/lancia/press/il-viaggio-verso-il-lancia-design-day-il-design-brutale-di-stratos-rally-037-e-delta", "cards":["Lancia Delta Integrale"]},
+    {"title":"Stellantis Heritage — Fiat Multipla", "url":"https://www.media.stellantis.com/em-en/heritage-hub-italy/press/6-seats-for-6-characters-on-board-heritage-presents-the-fiat-multipla-6x6", "cards":["Fiat Multipla"]}
+  ]
+}

@@ -6,12 +6,19 @@ import { installPartyShapeGuards } from './party-shape-guards.mjs';
 import { installTableLifecycleRules } from './table-lifecycle-rules.mjs';
 import { installAuctionJuryRules } from './auction-jury-rules.mjs';
 import { compactLiteralAlternatives } from './compact-literal-alternatives.mjs';
+import { compactSnapshotPaths } from './compact-snapshot-paths.mjs';
 import { CONSOLATION_DATASET_IDS, consolationRange, playableCollections } from '../js/consolation.js';
+import { DATASET_GROUPS } from '../js/datasets.js';
 
 const source = new URL('./firebase-rules-legacy.json', import.meta.url);
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice(9) || new URL('../artifacts/party-rules.json', import.meta.url);
 const document = JSON.parse(await readFile(source, 'utf8'));
 const r = document.rules, room = r.rooms.$code;
+// Keep current and saved-room collection identities in one authoritative list.
+// New-game proposals offer only collections exposed by the lobby.
+const datasetAllowlist = ids => `newData.val().matches(/^(${ids.join('|')})$/)`;
+room.datasetId['.validate'] = `${datasetAllowlist(CONSOLATION_DATASET_IDS)}&&(!data.exists()||newData.val()===data.val()||newData.parent().child('lastAction/kind').val()==='next-game')`;
+room.nextGame.datasetId['.validate'] = datasetAllowlist([...new Set(Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id)))]);
 const catalog=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8')));
 const legacyMaximum=Math.min(200,Math.max(32,...Object.values(catalog).map(cards=>cards.length)));
 room.game['.validate'] = transformRuleExpression(room.game['.validate'], (node, render) => {
@@ -302,6 +309,7 @@ installAuctionJuryRules(document);
 compactLegacyGuards(document);
 compactLiteralAlternatives(document);
 compactRuleTree(document);
+compactSnapshotPaths(document);
 const text = JSON.stringify(document)+'\n';
 console.log(`Party rules: ${Buffer.byteLength(text)} bytes; maximum 262144.`);
 if (Buffer.byteLength(text)>256*1024) throw new RangeError('Firebase rules exceed the 256 KiB source limit; output was not replaced.');
