@@ -120,8 +120,8 @@ test('all four players receive five roster cards even after budgets are exhauste
 });
 
 const completionDeck = Array.from({ length: 10 }, (_, index) => 900001 + index);
-function exhaustAuction(count) {
-  let game = create('auction', count, { completionDeck });
+function exhaustAuction(count, reserve = completionDeck) {
+  let game = create('auction', count, { completionDeck: reserve });
   let guard = 0;
   while (game.phase === 'playing') {
     if (++guard > 200) assert.fail('Consolation auction did not finish');
@@ -154,9 +154,9 @@ test('open auctions keep ten consolation cards out of every paid round and fill 
   accepted(game);
 });
 
-test('two to four exhausted players receive deterministic consolation cards with no own duplicates', () => {
-  for (const count of [2, 3, 4]) {
-    const game = exhaustAuction(count);
+test('two to four exhausted players cycle eight-card and persisted ten-card reserves with no own duplicates', () => {
+  for (const reserve of [completionDeck.slice(0, 8), completionDeck]) for (const count of [2, 3, 4]) {
+    const game = exhaustAuction(count, reserve);
     let cursor = 0;
     for (const seat of game.seats) {
       assert.equal(game.budgets[seat], 0);
@@ -164,7 +164,7 @@ test('two to four exhausted players receive deterministic consolation cards with
       assert.equal(new Set(game.rosters[seat].map(card => card.id)).size, 5);
       const gifts = game.rosters[seat].filter(card => card.source === 'completion');
       assert.equal(gifts.length, 5 - game.rosters[seat].filter(card => !card.source).length);
-      for (const gift of gifts) assert.deepEqual(gift, { id: completionDeck[cursor++ % 10], price: 0, source: 'completion' });
+      for (const gift of gifts) assert.deepEqual(gift, { id: reserve[cursor++ % reserve.length], price: 0, source: 'completion' });
     }
     assert.equal(game.completionAwards.length, count * 4 - 2);
     assert.deepEqual(game.results.r1.id, 1);
@@ -173,9 +173,23 @@ test('two to four exhausted players receive deterministic consolation cards with
   }
 });
 
+test('eight-card and persisted ten-card auctions survive refresh before the last paid round', () => {
+  for (const reserve of [completionDeck.slice(0, 8), completionDeck]) {
+    let game = create('auction', 2, { completionDeck: reserve });
+    game = changePartyGame(game, 'p2', 'bid', { amount: 20 });
+    game = normalizePartyGame(omitted(game));
+    assert.deepEqual(game.completionDeck, reserve);
+    game = changePartyGame(game, 'p1', 'pass');
+    game = normalizePartyGame(omitted(game));
+    while (game.phase === 'playing') game = changePartyGame(game, game.turnSeat, 'pass');
+    assert.deepEqual(game.rosters.p2.slice(1), reserve.slice(0, 4).map(id => ({ id, price: 0, source: 'completion' })));
+    accepted(game);
+  }
+});
+
 test('consolation setup rejects short, sparse, duplicate, paid-card and foreign-mode reserves', () => {
   const sparse = [...completionDeck]; delete sparse[2];
-  for (const reserve of [completionDeck.slice(1), [...completionDeck, 910000], sparse,
+  for (const reserve of [completionDeck.slice(0, 7), completionDeck.slice(1), [...completionDeck, 910000], sparse,
     completionDeck.map((id, index) => index === 1 ? completionDeck[0] : id), [1, ...completionDeck.slice(1)]]) {
     assert.throws(() => create('auction', 2, { completionDeck: reserve }), PartyGameError);
   }

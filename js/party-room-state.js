@@ -75,7 +75,7 @@ export function joinPartyRoom(value, uid, name) {
   next.lastAction = { kind: 'join', seat };
   return next;
 }
-function rotate(room) {
+export function partyRematchStarter(room) {
   const seats = roomSeats(room);
   return seats[(seats.indexOf(room.starterSeat) + 1) % seats.length];
 }
@@ -129,7 +129,7 @@ export function changePartyRoom(value, uid, revision, kind, payload = {}) {
       const config = partyConfig(proposal);
       next.datasetId = config.datasetId; next.mode = config.mode;
       if (config.bracketSize) next.bracketSize = config.bracketSize; else delete next.bracketSize;
-      next.round++; next.starterSeat = rotate(room);
+      next.round++; next.starterSeat = partyRematchStarter(room);
       next.game = initialGame(next, payload); delete next.nextGame;
       kind = 'next-game';
     }
@@ -137,7 +137,7 @@ export function changePartyRoom(value, uid, revision, kind, payload = {}) {
     if (kind === 'start' && (uid !== room.ownerUid || room.status !== 'waiting')) throw new RoomError('Masayı oda sahibi başlatır.');
     if (kind === 'rematch' && (room.status !== 'finished' || room.nextGame)) throw new RoomError('Önce yeni oyun seçimini tamamlayın.');
     requireCount(room);
-    if (kind === 'rematch') { next.round++; next.starterSeat = rotate(room); }
+    if (kind === 'rematch') { next.round++; next.starterSeat = partyRematchStarter(room); }
     next.game = initialGame(next, payload);
   } else {
     if (room.status !== 'playing') throw new RoomError('Bu tur şu an aktif değil.');

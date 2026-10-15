@@ -14,7 +14,7 @@ import { normalizeTexts } from '../js/texts.js';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
 import { ALL_MODES } from '../js/party-room-state.js';
 import { ruleLiteralOptions } from './rule-literal-options.mjs';
-import { splitCollections, CONSOLATION_DATASET_IDS, consolationRange } from '../js/consolation.js';
+import { splitCollections, CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, activeConsolationCards, consolationRange } from '../js/consolation.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
 export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'table-manager.css', 'move-feedback.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
@@ -161,10 +161,12 @@ export async function preflight({ online = false, quiet = false } = {}) {
   }
   assert.deepEqual(Object.keys(datasets).sort(), Object.keys(DATASET_NAMES).sort(), 'Koleksiyonlar lobi seçenekleriyle uyuşmuyor.');
   const images = new Set();
-  let consolationCount = 0;
+  let consolationCount = 0, activeConsolationCount = 0;
   for (const datasetId of CONSOLATION_DATASET_IDS) {
     const cards = consolationDatasets[datasetId], range = consolationRange(datasetId);
-    assert.equal(cards?.length, 10, `${datasetId}: 10 teselli kartı gerekli.`);
+    assert.equal(cards?.length, 10, `${datasetId}: eski oda kimlikleri eksik.`);
+    assert.equal(activeConsolationCards(cards).length, CONSOLATION_POOL_SIZE, `${datasetId}: 8 aktif teselli kartı gerekli.`);
+    activeConsolationCount += activeConsolationCards(cards).length;
     assert.equal(new Set(cards.map(card => card.id)).size, 10, `${datasetId}: teselli kimlikleri tekrarlanıyor.`);
     for (const card of cards) {
       assert.ok(Number.isInteger(card.id) && card.id >= range.min && card.id <= range.max && card.teselli === true, `${datasetId}: teselli kimliği aralık dışında.`);
@@ -253,7 +255,7 @@ export async function preflight({ online = false, quiet = false } = {}) {
   for (const mode of ALL_MODES) assert.ok(allowedModes.has(mode), `Firebase mod izni eksik: ${mode}`);
   if (online) checkOnlineConfig();
   const result = { files, datasets, cardCount: cardCount + consolationCount, playableCardCount: cardCount, consolationCount, imageCount: images.size, referenceCount, modeCount: ALL_MODES.length };
-  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} normal + ${consolationCount} teselli kartı, ${images.size} yerel kart görseli, ${ALL_MODES.length} mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
+  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} normal + ${activeConsolationCount} aktif teselli + ${consolationCount - activeConsolationCount} eski oda kartı, ${images.size} yerel kart görseli, ${ALL_MODES.length} mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
   return result;
 }
 

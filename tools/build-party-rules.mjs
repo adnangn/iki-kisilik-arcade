@@ -175,9 +175,10 @@ const visibleCount = `(${visibleGame}.child('mode').val()==='telepathy'?4:${visi
 pg.visibleCards = { '$cardId': { '.validate': `${number(0,8)}&&newData.val()<${visibleCount}&&$cardId===${visibleGame}.child('deck').child(((${visibleGame}.child('roundIndex').val()*${visibleCount}+newData.val())%${visibleGame}.child('deckSize').val())+'').val()+''` } };
 pg.deckIds = { '$cardId': { '.validate': `${number(0,44)}&&$cardId===newData.parent().parent().child('deck').child(newData.val()+'').val()+''` } };
 // The optional reserve is absent in existing rooms. New open auctions keep
-// their ten consolation cards outside the paid deck and freeze their order.
+// their eight consolation cards outside the paid deck and freeze their order.
+// Existing ten-card reserves stay valid until that match has finished.
 pg.completionDeck = {
-  '.validate': `newData.parent().child('mode').val()==='auction'&&newData.hasChildren(['0','1','2','3','4','5','6','7','8','9'])`,
+  '.validate': `newData.parent().child('mode').val()==='auction'&&newData.hasChildren(['0','1','2','3','4','5','6','7'])&&newData.hasChild('8')===newData.hasChild('9')`,
   '$index': { '.validate': `$index.matches(/^[0-9]$/)&&${number(1,1000000)}&&newData.parent().parent().child('completionIds').child(newData.val()+'').val()+''===$index&&!newData.parent().parent().child('deckIds').hasChild(newData.val()+'')&&(${oneOf(value('newData.parent().parent().parent()', 'lastAction/kind'), ['start','rematch','next-game'])}||newData.val()===data.val())` },
 };
 const completionDataset = CONSOLATION_DATASET_IDS.map((id, index) => index === CONSOLATION_DATASET_IDS.length - 1

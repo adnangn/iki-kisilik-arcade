@@ -26,7 +26,7 @@ import { createMoveFeedback } from './js/move-feedback.js';
 import { createTableManager } from './js/table-manager.js';
 import { auctionJuryBallot, auctionJuryResult } from './js/auction-jury.js';
 import { shuffledTelepathyCriteria } from './js/telepathy-questions.js';
-import { splitCollections, consolationRange } from './js/consolation.js';
+import { splitCollections, consolationRange, activeConsolationCards, CONSOLATION_POOL_SIZE, CONSOLATION_LEGACY_SIZE } from './js/consolation.js';
 import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
   capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
@@ -349,7 +349,7 @@ function shuffleDeck(datasetId) {
 function gamePayload(config = room) {
   return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) }
     : { deck: shuffleDeck(config.datasetId),
-      ...(config.mode === 'auction' ? { completionDeck: shuffledIds(consolationDatasets[config.datasetId] || []) } : {}),
+      ...(config.mode === 'auction' ? { completionDeck: shuffledIds(activeConsolationCards(consolationDatasets[config.datasetId])) } : {}),
       ...(config.mode === 'telepathy' ? { criteria: shuffledTelepathyCriteria(randomIndex) } : {}) };
 }
 function randomIndex(length) { return crypto.getRandomValues(new Uint32Array(1))[0] % length; }
@@ -772,7 +772,7 @@ function renderApp() {
     $('bracket-results').hidden = !bracket;
     $('team-draft-results').hidden = !teamDraft;
     $('cooperative-results').hidden = !cooperative;
-    $('rematch-note').textContent = blind || bracket ? t('runtime.results.rematch_player', { player: nameFor(rematchStarter(room)) }) : teamDraft ? t('runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide') : t('runtime.copy.ayni_oda_ayni_kod_ilk_hamle_bu_kez_diger_oyuncuda');
+    $('rematch-note').textContent = blind || bracket ? t('runtime.results.rematch_player', { player: nameFor(rematchStarter(room)) }) : teamDraft ? t('runtime.copy.ayni_oda_ayni_kod_yeni_uclulerle_iki_takim_da_yenide') : t('revision.room.next_starter', { player: nameFor(rematchStarter(room)) });
     if (cooperative) {
       const arrivedFromGame = lastVisualState?.code === room.code && lastVisualState?.round === room.round && lastVisualState?.status === 'playing';
       setScreen('results-screen');
@@ -1156,8 +1156,8 @@ function assertRoomContent(value) {
   if (!value.game) return;
   if (value.game.completionDeck !== undefined) {
     const pool = consolationDatasets[value.datasetId] || [], range = consolationRange(value.datasetId);
-    if (value.version !== 2 || value.mode !== 'auction' || !Array.isArray(value.game.completionDeck) || value.game.completionDeck.length !== 10
-      || new Set(value.game.completionDeck).size !== 10 || value.game.completionDeck.some(id => id < range.min || id > range.max || !pool.some(card => card.id === id)))
+    if (value.version !== 2 || value.mode !== 'auction' || !Array.isArray(value.game.completionDeck) || ![CONSOLATION_POOL_SIZE, CONSOLATION_LEGACY_SIZE].includes(value.game.completionDeck.length)
+      || new Set(value.game.completionDeck).size !== value.game.completionDeck.length || value.game.completionDeck.some(id => id < range.min || id > range.max || !pool.some(card => card.id === id)))
       throw new RoomError('Odanın teselli kartları bu koleksiyonla uyuşmuyor.');
   }
   const byId = new Map(datasets[value.datasetId].map(card => [card.id, card]));
@@ -1622,7 +1622,7 @@ async function boot() {
         throw new Error(t('runtime.error.invalid_dataset', { dataset: key }));
       }
       const pool = consolationDatasets[key], range = consolationRange(key);
-      if (pool.length !== 10 || new Set(pool.map(card => card.id)).size !== 10 || pool.some(card => !Number.isSafeInteger(card.id) || card.id < range.min || card.id > range.max || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/consolation\/[a-z0-9-]+\.svg$/.test(card.gorsel)))
+      if (pool.length !== CONSOLATION_LEGACY_SIZE || activeConsolationCards(pool).length !== CONSOLATION_POOL_SIZE || new Set(pool.map(card => card.id)).size !== CONSOLATION_LEGACY_SIZE || pool.some(card => !Number.isSafeInteger(card.id) || card.id < range.min || card.id > range.max || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/consolation\/[a-z0-9-]+\.svg$/.test(card.gorsel)))
         throw new Error(t('runtime.error.invalid_dataset', { dataset: key }));
     }
     if (Object.keys(DATASET_NAMES).some(key => !datasets[key])) throw new Error(t('runtime.copy.efsaneler_super_lig_tatli_ana_yemek_dizi_ve_film_ver'));

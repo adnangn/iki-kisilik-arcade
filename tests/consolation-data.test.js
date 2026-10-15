@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, consolationRange,
+import { CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, activeConsolationCards, consolationRange,
   splitCollections, playableCollections } from '../js/consolation.js';
 import { shuffledIds, draftTriplets } from '../js/game-setup.js';
 import { createPartyGame, partyCards } from '../js/party-games.js';
@@ -50,7 +50,7 @@ test('all 24 collections retain their exact normal card records and ordering', (
   assert.equal(count, 1712);
 });
 
-test('each collection has exactly ten separately marked consolation cards in its immutable ID range', () => {
+test('each collection has eight active consolation cards while retaining all ten saved-room identities', () => {
   assert.deepEqual(CONSOLATION_DATASET_IDS, [
     'futbol', 'superlig', 'turkiye-efsaneleri', 'dunya-yildizlari',
     'tatli-vol1', 'tatli', 'yemek-vol1', 'yemek', 'icecek',
@@ -59,7 +59,7 @@ test('each collection has exactly ten separately marked consolation cards in its
     'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
     'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni'
   ]);
-  assert.equal(CONSOLATION_POOL_SIZE, 10);
+  assert.equal(CONSOLATION_POOL_SIZE, 8);
   assert.deepEqual([...CONSOLATION_DATASET_IDS].sort(), Object.keys(raw).sort());
   const all = [];
   for (const id of CONSOLATION_DATASET_IDS) {
@@ -67,6 +67,9 @@ test('each collection has exactly ten separately marked consolation cards in its
     const { min, max } = consolationRange(id);
     assert.equal(min, 900001 + CONSOLATION_DATASET_IDS.indexOf(id) * 10, id);
     assert.equal(cards.length, 10, id);
+    assert.equal(activeConsolationCards(cards).length, 8, id);
+    assert.deepEqual(activeConsolationCards(cards).map(card => card.id), Array.from({ length: 8 }, (_, index) => min + index), id);
+    assert.equal(cards.filter(card => card.teselliArsiv === true).length, 2, id);
     assert.equal(max - min + 1, 10, id);
     assert.deepEqual(cards.map(card => card.id).sort((a, b) => a - b), Array.from({ length: 10 }, (_, i) => min + i), id);
     assert.equal(new Set(cards.map(card => card.isim)).size, 10, id);
@@ -82,6 +85,15 @@ test('each collection has exactly ten separately marked consolation cards in its
   assert.equal(all.length, 240);
   assert.equal(new Set(all.map(card => card.id)).size, 240);
   assert.throws(() => consolationRange('unknown'));
+});
+
+test('requested real series, films, musicians and foods replace fictional consolation placeholders', () => {
+  const names = id => activeConsolationCards(consolationDatasets[id]).map(card => card.isim);
+  for (const name of ['Selena', 'Akasya Durağı', 'Bez Bebek', 'Deniz Yıldızı', 'Hepsi 1']) assert.ok(names('dizi').includes(name), name);
+  for (const name of ['Cumali Ceber: Allah Seni Alsın', 'Laz Kit', "Keloğlan Kara Prens'e Karşı", 'Çılgın Dersane', 'Dünyayı Kurtaran Adamın Oğlu']) assert.ok(names('film').includes(name), name);
+  assert.ok(names('yerli-sanatcilar').includes('Ajdar'));
+  for (const id of ['yemek', 'yemek-vol1']) for (const name of ['Pırasa Haşlama', 'Çiğ Bamya']) assert.ok(names(id).includes(name), `${id}/${name}`);
+  for (const name of ['Özetin Özeti', 'Kamera Kapağı', 'Duş Konseri', 'Valizistan', 'Dünkü Makarna', 'Boş Şarjör']) assert.ok(!Object.values(consolationDatasets).flat().some(card => card.isim === name), name);
 });
 
 test('every consolation card renders from a safe local crisp SVG without remote dependencies', async () => {
@@ -112,6 +124,7 @@ test('splitting collections preserves source objects and includes only explicit 
   assert.equal(split.datasets.sample[0], normal);
   assert.equal(split.consolationDatasets.sample[0], reserve);
   assert.deepEqual(playableCollections(input), split.datasets);
+  assert.deepEqual(activeConsolationCards([normal, lookalike, reserve, { id: 5, teselli: true, teselliArsiv: true }]), [reserve]);
   assert.throws(() => splitCollections({ invalid: null }));
 });
 

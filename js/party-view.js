@@ -5,6 +5,7 @@ import { PARTY_TEXT_CATALOG } from './text-catalog-party.js';
 import { partyCards, partyGameSpec } from './party-games.js';
 import { auctionControls, auctionDecisionKey } from './auction-controls.js';
 import { JURY_TEXT_CATALOG } from './text-catalog-jury.js';
+import { partyRematchStarter } from './party-room-state.js';
 
 export const PARTY_VIEW_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const seatsOf = room => Object.keys(room?.players || {}).filter(seat => /^p[1-4]$/.test(seat)).sort();
@@ -522,7 +523,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       });
       controls.append(tab); lists.append(list);
     }
-    node.append(controls, lists); return node;
+    node.append(controls, lists, note('revision.room.next_starter', { player: nameFor(partyRematchStarter(context().room)) })); return node;
   }
 
   function renderAuctionJury(state) {
@@ -645,7 +646,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       node.append(pairs);
     }
     if (state.room.mode === 'telepathy') node.append(note('party.best_streak'), el('strong', 'party-final-streak', game.bestStreak || 0), renderTelepathyHistory(game));
-    node.append(note('party.same_room')); return node;
+    node.append(note('party.same_room'), note('revision.room.next_starter', { player: nameFor(partyRematchStarter(state.room)) })); return node;
   }
 
   function selectedNext() {

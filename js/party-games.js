@@ -57,9 +57,9 @@ function validateSetup(mode, options) {
   const setup = { mode, seats: [...options.seats], deck: options.deck.slice(0, maximum), starterSeat };
   if (options.completionDeck !== undefined) {
     const reserve = options.completionDeck;
-    if (mode !== 'auction' || !Array.isArray(reserve) || reserve.length !== 10 ||
-        Array.from(reserve).some(id => !validId(id) || setup.deck.includes(id)) || new Set(reserve).size !== 10) {
-      fail('INVALID_COMPLETION_DECK', 'Bütçe tamamlaması için ana desteden ayrı on benzersiz kart seçilmelidir.');
+    if (mode !== 'auction' || !Array.isArray(reserve) || ![8, 10].includes(reserve.length) ||
+        Array.from(reserve).some(id => !validId(id) || setup.deck.includes(id)) || new Set(reserve).size !== reserve.length) {
+      fail('INVALID_COMPLETION_DECK', 'Bütçe tamamlaması için ana desteden ayrı sekiz benzersiz kart seçilmelidir.');
     }
     setup.completionDeck = [...reserve];
   }
@@ -165,7 +165,8 @@ function finishAuction(game) {
 
 function completeRosters(game) {
   if (game.mode === 'auction' && game.completionDeck) {
-    // A four-player table can need sixteen gifts from a ten-card reserve.
+    // A four-player table can need sixteen gifts from an eight-card reserve.
+    // Persisted ten-card reserves retain the same order and cycle length.
     // Cycle across seats while keeping each player's own gifts distinct.
     let reserveIndex = 0;
     for (const seat of game.seats) while (game.budgets[seat] === 0 && hasSpace(game, seat)) {

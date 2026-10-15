@@ -1,166 +1,15 @@
 import assert from 'node:assert/strict';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { realConsolationPools } from './consolation-real-pools.mjs';
+import { realConsolationArt } from './consolation-real-art.mjs';
+import { consolationCountryFlag } from './consolation-country-flags.mjs';
+import { playableCollections, CONSOLATION_POOL_SIZE } from '../js/consolation.js';
 
 // Original, local 96 px art. These playful auction reserves are not a ranking
 // of real people or places. Football colours are symbolic, never current clubs.
-// Every dataset owns a distinct ten-card ID range, including shared volumes.
+// Eight active cards plus two saved-room cards share each stable ten-ID range.
 const root = new URL('../', import.meta.url);
-const football = [
-  ['Sabri Sarıoğlu', 'portrait:spikes:olive:red:22'],
-  ['Nicklas Bendtner', 'portrait:side:light:blue:52'],
-  ['Emile Heskey', 'portrait:buzz:deep:white:18'],
-  ['Bebé', 'portrait:short:brown:red:33'],
-  ['Ali Dia', 'portrait:short:deep:blue:14'],
-  ['Massimo Taibi', 'portrait:long:olive:green:1'],
-  ['Yaya Sanogo', 'portrait:short:deep:red:22'],
-  ['Boško Balaban', 'portrait:side:light:blue:19'],
-  ['Park Chu-young', 'portrait:long:light:red:9'],
-  ['Marouane Chamakh', 'portrait:crest:olive:white:29']
-];
-const turkey = [
-  ['Orhan Şam', 'portrait:short:olive:yellow:67'],
-  ['Bekir İrtegün', 'portrait:spikes:olive:yellow:4'],
-  ['Serdar Kesimal', 'portrait:side:light:blue:53'],
-  ['Alper Potuk', 'portrait:long:olive:yellow:26'],
-  ['Sezer Öztürk', 'portrait:short:light:red:10'],
-  ['Oğuzhan Özyakup', 'portrait:side:light:white:15'],
-  ['Serdar Özkan', 'portrait:spikes:olive:white:21'],
-  ['Aydın Yılmaz', 'portrait:short:light:red:7'],
-  ['Batuhan Karadeniz', 'portrait:crest:light:white:9'],
-  ['Yekta Kurtuluş', 'portrait:long:olive:red:35']
-];
-const dessert = [
-  ['Bayat Bisküvi', 'cookie'], ['Erimiş Dondurma', 'melt'],
-  ['Şekersiz Keşkül', 'bowl'], ['Sönmüş Sufle', 'cupcake'],
-  ['Tek Lokma Helva', 'cube'], ['Kremasız Pasta', 'cake'],
-  ['Kırık Külah', 'cone'], ['Dibi Tutmuş Puding', 'pudding'],
-  ['İçi Boş Profiterol', 'puff'], ['Yarım Gofret', 'wafer']
-];
-const meal = [
-  ['Dünkü Makarna', 'pasta'], ['Tuzsuz Pilav', 'rice'],
-  ['Soğumuş Patates', 'fries'], ['Tek Zeytin', 'olive'],
-  ['Kuru Tost', 'toast'], ['Sossuz Salata', 'salad'],
-  ['Son Dilim Ekmek', 'bread'], ['Dibi Tutmuş Çorba', 'soup'],
-  ['İçi Boş Sandviç', 'sandwich'], ['Minik Turşu', 'pickle']
-];
-const games = [
-  ['Yükleme Ekranı', 'loading'], ['Bitmeyen Eğitim', 'book'],
-  ['Bağlantı Bekleniyor', 'antenna'], ['Tek Tuş Macerası', 'button'],
-  ['Kaydetmeyi Unuttum', 'floppy'], ['Piksel Çiftliği', 'sprout'],
-  ['Menüde Kaybolmak', 'maze'], ['Demo Bitti', 'gamepad'],
-  ['Tuşları Karıştırdım', 'keyboard'], ['Son Can Gitti', 'heart']
-];
-const characters = [
-  ['Acemi Bot', 'robot'], ['Eğitim Kuklası', 'dummy'],
-  ['Bir Canlı NPC', 'heart'], ['Yavaş Salyangoz', 'snail'],
-  ['Boş Sandık Bekçisi', 'chest'], ['Tahta Kılıçlı Çırak', 'sword'],
-  ['Görevsiz Köylü', 'farmer'], ['Kalkanını Unutan', 'shield'],
-  ['Uykulu Muhafız', 'guard'], ['Kaçan Tavuk', 'chicken']
-];
-const rows = {
-  futbol: football,
-  superlig: turkey,
-  'turkiye-efsaneleri': turkey,
-  'dunya-yildizlari': football,
-  'tatli-vol1': dessert,
-  tatli: dessert,
-  'yemek-vol1': meal,
-  yemek: meal,
-  icecek: [
-    ['Soğuk Çay', 'tea'], ['Gazı Kaçmış Gazoz', 'bottle'],
-    ['Buzsuz Limonata', 'lemonade'], ['Ilık Su', 'water'],
-    ['Telve Sürprizi', 'coffee'], ['Sulanmış Ayran', 'milk'],
-    ['Yarım Meyve Suyu', 'juice'], ['Köpüksüz Kahve', 'mug'],
-    ['Pipeti Kaybolmuş', 'pouch'], ['Son Yudum', 'glass']
-  ],
-  dizi: [
-    ['Özetin Özeti', 'television'], ['Bitmeyen Reklam', 'clapper'],
-    ['Eksik Bölüm', 'filmstrip'], ['Finali Gelmeyen', 'clock'],
-    ['Dolgu Bölüm', 'cushion'], ['Aynı Sahne Yine', 'repeat'],
-    ['Altyazı Kaymış', 'caption'], ['Kumanda Kimde?', 'remote'],
-    ['Sezon Arası', 'calendar'], ['Jeneriği Atlayamadım', 'cassette']
-  ],
-  film: [
-    ['Fragmanı Daha İyi', 'clapper'], ['Kamera Kapağı', 'camera'],
-    ['Patlamamış Mısır', 'popcorn'], ['Sonu Rüya Çıktı', 'cloud'],
-    ['Yanlış Salon', 'door'], ['Beş Saat Jenerik', 'filmstrip'],
-    ['Bütçesiz Uzaylı', 'alien'], ['Yeşil Perde Kaldı', 'screen'],
-    ['Dublaj Kaymış', 'speaker'], ['Boş Koltuk', 'chair']
-  ],
-  'yerli-sanatcilar': [
-    ['Duş Konseri', 'shower'], ['Komşunun Matkabı', 'drill'],
-    ['Bozuk Flüt', 'flute'], ['Tek Kişilik Koro', 'microphone'],
-    ['Akortsuz Gitar', 'guitar'], ['Mutfak Orkestrası', 'pot'],
-    ['Mırıldanan Yolcu', 'headphones'], ['Boş Pil Davulu', 'drum'],
-    ['Karaoke Kazası', 'speaker'], ['Ritim Kaçtı', 'metronome']
-  ],
-  'ankara-ilceleri': [
-    ['Kayıp Dolmuş Durağı', 'busstop'], ['Bitmeyen Yokuş', 'hill'],
-    ['Hayali İlçe', 'map'], ['Ters Yön Sokağı', 'sign'],
-    ['Son Sefer Kaçtı', 'bus'], ['Yanlış Metro Çıkışı', 'stairs'],
-    ['Boş Çay Bahçesi', 'bench'], ['Döner Kavşak', 'roundabout'],
-    ['Navigasyon Şaştı', 'compass'], ['Uzak Peron', 'station']
-  ],
-  'istanbul-ilceleri': [
-    ['Ters İskele', 'pier'], ['Vapuru Kaçırdım', 'boat'],
-    ['Hayali Semt', 'map'], ['Bitmeyen Aktarma', 'train'],
-    ['Kayıp Akbil', 'ticket'], ['Martıya Giden Simit', 'seagull'],
-    ['Yanlış Köprü', 'bridge'], ['Yokuş Sonu Yokuş', 'hill'],
-    ['Son Dolmuş', 'bus'], ['İsimsiz Sokak', 'sign']
-  ],
-  'turkiye-sehirleri': [
-    ['Navigasyonda Yok', 'compass'], ['Hayali Şehir', 'map'],
-    ['Tabelasız Yol', 'sign'], ['Uzak Otogar', 'station'],
-    ['Son Otobüs', 'bus'], ['Kaybolan Bavul', 'suitcase'],
-    ['Boş Kartpostal', 'postcard'], ['Ters Pusula', 'compass'],
-    ['Mola Tesisi', 'teahouse'], ['Yol Kapalı', 'barrier']
-  ],
-  ulkeler: [
-    ['Hayali Cumhuriyet', 'flag'], ['Kayıp Ada', 'island'],
-    ['Pasaport Evde', 'passport'], ['Valizistan', 'suitcase'],
-    ['Ters Haritalar Ülkesi', 'map'], ['Boş Elçilik', 'building'],
-    ['Rötar Krallığı', 'plane'], ['Pusulasız Diyarı', 'compass'],
-    ['Vizesiz Bulut', 'cloud'], ['Minik Prenslik', 'castle']
-  ],
-  'cocukluk-cizgifilmleri': [
-    ['Jenerikte Kaldık', 'television'], ['Figüran Bulut', 'cloud'],
-    ['Kaybolan Kumanda', 'remote'], ['Pijamalı Süper Kahraman', 'hero'],
-    ['Uykucu Robot', 'robot'], ['Kötü Çizilmiş Patates', 'potato'],
-    ['Tek Kare Macera', 'frame'], ['Teneffüs Canavarı', 'monster'],
-    ['Konuşmayan Yan Karakter', 'dummy'], ['Pelerini Kısa Kaptan', 'cape']
-  ],
-  'doksanlar-nostalji': [
-    ['Sarmış Kaset', 'cassette'], ['Tek Pil', 'battery'],
-    ['Çalışmayan Jeton', 'coin'], ['Tek Eş Çorap', 'sock'],
-    ['Kırık Anten', 'antenna'], ['Boş Sakız Kâğıdı', 'wrapper'],
-    ['Silgisiz Kalem', 'pencil'], ['Düğümlü Kulaklık', 'headphones'],
-    ['Etiketsiz Disket', 'floppy'], ['Kaybolan Taso', 'pogs']
-  ],
-  'kantin-bakkal': [
-    ['Bayat Kraker', 'cracker'], ['Kuru Poğaça', 'bun'],
-    ['Kırık Gofret', 'wafer'], ['Son Leblebi', 'chickpea'],
-    ['Gazsız Gazoz', 'bottle'], ['Sakızsız Fal', 'wrapper'],
-    ['Ezilmiş Sandviç', 'sandwich'], ['Tek Çubuk Kraker', 'stick'],
-    ['Yarım Simit', 'bagel'], ['İçi Boş Jelibon Paketi', 'pouch']
-  ],
-  oyunlar: games,
-  'oyun-karakterleri': characters,
-  'valorant-ajanlari': [
-    ['Eğitim Botu', 'robot'], ['Boş Şarjör', 'magazine'],
-    ['Duvara Flaş', 'flash'], ['Dumanın Dışında', 'smoke'],
-    ['Spike Nerede?', 'device'], ['Bıçağı Unutan', 'dagger'],
-    ['Yanlış Kurulum', 'toolbox'], ['Isınma Turisti', 'target'],
-    ['Haritayı Açık Unutan', 'map'], ['Zıplayan Acemi', 'boots']
-  ],
-  'lol-sampiyonlari': [
-    ['Yakın Dövüş Minyonu', 'sword'], ['Uzakçı Minyon', 'staff'],
-    ['Boş Totem', 'totem'], ['Nehir Yengeci', 'crab'],
-    ['Üsse Dönen Çırak', 'boots'], ['Eksik Altın', 'coin'],
-    ['İksirsiz Maceracı', 'potion'], ['Yanlış Rün', 'rune'],
-    ['Uyuyan Ormancı', 'sprout'], ['Tahta Kalkan', 'shield']
-  ],
-  'oyun-evreni': [...games.slice(0, 5), ...characters.slice(0, 5)]
-};
+const rows = realConsolationPools;
 
 export const CONSOLATION_DATASET_IDS = Object.keys(rows);
 assert.equal(CONSOLATION_DATASET_IDS.length, 24);
@@ -168,6 +17,8 @@ const ink = '#4c445a', cream = '#f8edce', white = '#fff9e9';
 const palette = ['#af8bc2', '#7eaaa4', '#d5a35e', '#a0ad77', '#c58e99', '#8cacc6', '#c7b474', '#b4977e', '#a59fc7', '#83a991'];
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]);
 function art(name, kind, variant) {
+  if (kind.startsWith('real:')) return realConsolationArt(name, kind, variant);
+  if (kind.startsWith('flag:')) return consolationCountryFlag(name, kind.slice(5));
   const accent = palette[variant % palette.length];
   const parts = [];
   const r = (x, y, w, h, fill = ink) => parts.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"/>`);
@@ -204,6 +55,22 @@ function art(name, kind, variant) {
     r(16, 25, 9, 10, cream); text('?', 20.5, 33, 9); // a surprise reserve, not a quality rating
   } else {
     switch (kind) {
+      case 'page': page('#ddd5bd'); break;
+      case 'sling':
+        p('M29 22h8l13 20 12-20h8L54 49v23H44V49z', '#a3845c');
+        p('M32 23l15 11 17-11 3 4-20 14-18-14z', '#b47f6b');
+        r(44, 32, 7, 7, '#777d79'); break;
+      case 'carob':
+        plate(); p('M23 36l14 3 11 11 16 2 9 8-5 6-19-6-15-14-13-3z', '#725940');
+        p('M27 26l14 4 12 10 16 3 7 8-6 4-17-7-17-12-12-3z', '#88694c'); break;
+      case 'candy':
+        plate(); for (const [x,y,c] of [[29,43,'#c78483'],[46,34,'#d8b16c'],[58,50,'#a3b67d']]) {
+          r(x,y,13,13,c); r(x+3,y-3,7,19,c); r(x+3,y+2,4,3,white);
+        } break;
+      case 'seed':
+        plate(); for (const [x,y] of [[26,42],[40,34],[54,40],[35,54],[54,55]]) {
+          p(`M${x} ${y}l5-8 6 8-2 9h-7z`, '#d4d3b6'); r(x+4,y-3,2,9,'#8a9479');
+        } break;
       case 'cookie': case 'cracker': case 'chickpea':
         plate(); r(27, 30, 42, 33, '#bb8e56'); r(23, 37, 50, 18, '#cda76c');
         for (const [x, y] of [[33, 38], [47, 34], [57, 44], [38, 51], [53, 55]]) r(x, y, kind === 'chickpea' ? 6 : 4, 4, '#8a684b');
@@ -332,18 +199,27 @@ function art(name, kind, variant) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="${esc(name)} için temsili piksel çizim" shape-rendering="crispEdges"><title>${esc(name)} — teselli kartı</title>${parts.join('')}</svg>\n`;
 }
 
+const normal = playableCollections(JSON.parse(await readFile(new URL('veri.json', root), 'utf8')));
 const cards = {};
 const assets = new Map();
 for (const [ordinal, datasetId] of CONSOLATION_DATASET_IDS.entries()) {
   assert.equal(rows[datasetId].length, 10, datasetId);
   assert.equal(new Set(rows[datasetId].map(([name]) => name)).size, 10, datasetId);
-  cards[datasetId] = rows[datasetId].map(([isim, icon], offset) => {
+  cards[datasetId] = [];
+  for (const [offset, [isim, icon]] of rows[datasetId].entries()) {
     const stem = isim.toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const gorsel = `assets/images/consolation/${stem}.svg`;
     // Repeated names in volume pairs or football decks use exactly the same art.
-    if (!assets.has(gorsel)) assets.set(gorsel, art(isim, icon, offset));
-    return { id: 900001 + ordinal * 10 + offset, isim, gorsel, etiket: 'Teselli', teselli: true };
-  });
+    if (!assets.has(gorsel)) {
+      if (icon === 'source') {
+        const source = normal[datasetId].find(card => card.isim === isim);
+        assert.ok(source, datasetId + ': illustration source missing for ' + isim);
+        const original = await readFile(new URL(source.gorsel, root), 'utf8');
+        assets.set(gorsel, original.replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(isim) + ' — teselli kartı</title>').replace('</svg>', '<rect x="2" y="2" width="92" height="92" fill="none" stroke="#d5b66d" stroke-width="4"/><rect x="16" y="79" width="64" height="12" fill="#f8edce"/><text x="48" y="88" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#4c445a">TESELLI</text></svg>'));
+      } else assets.set(gorsel, art(isim, icon, offset));
+    }
+    cards[datasetId].push({ id: 900001 + ordinal * 10 + offset, isim, gorsel, etiket: 'Teselli', teselli: true, ...(offset >= CONSOLATION_POOL_SIZE ? { teselliArsiv: true } : {}) });
+  }
 }
 await mkdir(new URL('assets/images/consolation/', root), { recursive: true });
 await Promise.all([...assets].map(([path, svg]) => writeFile(new URL(path, root), svg, 'utf8')));

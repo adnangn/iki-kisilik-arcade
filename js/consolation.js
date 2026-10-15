@@ -7,12 +7,15 @@ export const CONSOLATION_DATASET_IDS = Object.freeze([
   'cocukluk-cizgifilmleri', 'doksanlar-nostalji', 'kantin-bakkal',
   'oyunlar', 'oyun-karakterleri', 'valorant-ajanlari', 'lol-sampiyonlari', 'oyun-evreni'
 ]);
-export const CONSOLATION_POOL_SIZE = 10;
+export const CONSOLATION_POOL_SIZE = 8;
+// Keep the original ten-ID spacing so saved rooms retain valid card identities.
+export const CONSOLATION_LEGACY_SIZE = 10;
 export function consolationRange(datasetId) {
   const ordinal = CONSOLATION_DATASET_IDS.indexOf(datasetId);
   if (ordinal < 0) throw new Error('Bu koleksiyon için teselli kartı havuzu bulunamadı.');
-  return { min: 900001 + ordinal * CONSOLATION_POOL_SIZE, max: 900010 + ordinal * CONSOLATION_POOL_SIZE };
+  return { min: 900001 + ordinal * CONSOLATION_LEGACY_SIZE, max: 900010 + ordinal * CONSOLATION_LEGACY_SIZE };
 }
+export const activeConsolationCards = cards => (cards || []).filter(card => card.teselli === true && card.teselliArsiv !== true);
 export function splitCollections(raw) {
   const datasets = {}, consolationDatasets = {};
   for (const [id, cards] of Object.entries(raw)) {

@@ -2,14 +2,15 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createPartyRoom,joinPartyRoom,changePartyRoom,encodePartyRoom,decodePartyRoom } from '../js/party-room-state.js';
-import { partyCards } from '../js/party-games.js';
+import { partyCards, createPartyGame } from '../js/party-games.js';
 import { partySubmission } from '../js/party-online.js';
 import { playableCollections, consolationRange } from '../js/consolation.js';
 const ORIGIN=process.env.DB_EMULATOR_URL||'http://127.0.0.1:9000';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN),'Only local emulator tests are permitted.');
 const PROJECT='demo-iki-kisilik',CODES=['957001','957002','957003','957004','957005','957006','957007','957008'];
 const DECK=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8'))).futbol.map(card=>card.id);
-const COMPLETION=Array.from({length:10},(_,index)=>consolationRange('futbol').min+index);
+const LEGACY_COMPLETION=Array.from({length:10},(_,index)=>consolationRange('futbol').min+index);
+const COMPLETION=LEGACY_COMPLETION.slice(0,8);
 const stamp=Date.now(),encode=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
 let passed=0;
 function token(uid){const now=Math.floor(Date.now()/1000);return `${encode({alg:'none',typ:'JWT'})}.${encode({iss:`https://securetoken.google.com/${PROJECT}`,aud:PROJECT,sub:uid,uid,user_id:uid,iat:now,exp:now+3600,auth_time:now,firebase:{identities:{},sign_in_provider:'anonymous'}})}.`;}
@@ -141,29 +142,32 @@ try{
     }
     assert.equal(Object.values(room.game.rosters).flat().length,20);assert.ok(Object.values(room.game.rosters).every(cards=>cards.length===5));assert.equal(Object.values(room.game.budgets).filter(budget=>budget===0).length,3);
   });
-  await check('consolation reserves require ten unique matching-category cards and immutable order',async()=>{
-    const withInverse=g=>{g.completionIds=Object.fromEntries(g.completionDeck.map((id,index)=>[id,index]));};
+  await check('consolation reserves require eight or ten unique matching-category cards with immutable size and order',async()=>{
+    const withInverse=g=>{g.completionIds=Object.fromEntries(g.completionDeck.flatMap((id,index)=>[[id,index]]));};
+    for(const reserve of [COMPLETION,LEGACY_COMPLETION]){
     room=await start('auction',2,CODES[4],[
       g=>delete g.completionIds,
       g=>delete g.completionDeck,
       g=>{g.completionDeck.pop();withInverse(g);},
       g=>{g.completionDeck.push(900011);withInverse(g);},
+      g=>{g.completionDeck[9]=LEGACY_COMPLETION[9];delete g.completionDeck[8];withInverse(g);},
       g=>{g.completionDeck[1]=g.completionDeck[0];withInverse(g);},
       g=>{g.completionDeck[1]=g.deck[0];withInverse(g);},
       g=>{g.completionDeck=g.completionDeck.map(id=>id+10);withInverse(g);},
       g=>g.completionIds[999999]=0,
-    ],undefined,{completionDeck:COMPLETION});
+    ],undefined,{completionDeck:reserve});
     const bid=changePartyRoom(room,'p2',room.revision,'bid',{amount:20});
-    await rejectMutations(bid,[g=>{g.completionDeck.reverse();withInverse(g);},g=>{delete g.completionDeck;delete g.completionIds;}],'p2');
+    await rejectMutations(bid,[g=>{g.completionDeck.reverse();withInverse(g);},g=>{g.completionDeck=reserve.length===8?LEGACY_COMPLETION:COMPLETION;withInverse(g);},g=>{delete g.completionDeck;delete g.completionIds;}],'p2');
     room=ok(await write(bid,'p2'));
+    }
     await start('sealed-auction',2,CODES[5],[g=>{g.completionDeck=COMPLETION;g.completionIds=Object.fromEntries(COMPLETION.map((id,index)=>[id,index]));}]);
   });
-  await check('consolation open auctions fill exhausted two-to-four-player teams and safely cycle the reserve',async()=>{
-    for(const count of [2,3,4]){
-      room=await start('auction',count,CODES[4],[],undefined,{completionDeck:COMPLETION});
+  await check('consolation open auctions fill exhausted two-to-four-player teams and safely cycle eight or ten reserves',async()=>{
+    for(const reserve of [COMPLETION,LEGACY_COMPLETION])for(const count of [2,3,4]){
+      room=await start('auction',count,CODES[4],[],undefined,{completionDeck:reserve});
       let guard=0;
       while(room.status==='playing'){
-        assert.ok(++guard<200);assert.ok(!COMPLETION.includes(room.game.currentCardId));
+        assert.ok(++guard<200);assert.ok(!reserve.includes(room.game.currentCardId));
         const actor=room.game.turnSeat,winners=[...room.game.seats.slice(1),'p1'],target=winners[room.game.roundIndex],amount=room.game.roundIndex===count-2?18:20;
         const command=actor===target&&room.game.highestBid<amount?'bid':target&&room.game.bidderSeat===target&&room.game.highestBid<2&&room.game.budgets[actor]>=2?'bid':'pass';
         const payload=command==='bid'?{amount:actor===target?amount:2}:{};
@@ -173,7 +177,7 @@ try{
           const index=candidate.game.rosters[owner].findIndex(card=>card.source==='completion');
           await rejectMutations(candidate,[
             g=>g.rosters[owner][index].id=g.deck[20-1],
-            g=>g.rosters[owner][index].id=COMPLETION[1],
+            g=>g.rosters[owner][index].id=reserve[1],
             g=>g.rosters[owner][index].price=1,
             g=>delete g.rosters[owner][index].source,
             g=>g.rosters[owner].pop(),
@@ -181,14 +185,47 @@ try{
           ],actor);
         }
         room=ok(await write(candidate,actor));
+        room=decodePartyRoom(JSON.parse(JSON.stringify(encodePartyRoom(room))));
+        assert.deepEqual(room.game.completionDeck,reserve);
       }
       let cursor=0;
       for(const seat of room.game.seats){
         assert.equal(room.game.budgets[seat],0);assert.equal(room.game.rosters[seat].length,5);
         assert.equal(new Set(room.game.rosters[seat].map(card=>card.id)).size,5);
-        for(const card of room.game.rosters[seat].filter(card=>card.source==='completion'))assert.equal(card.id,COMPLETION[cursor++%10]);
+        for(const card of room.game.rosters[seat].filter(card=>card.source==='completion'))assert.equal(card.id,reserve[cursor++%reserve.length]);
       }
       assert.equal(cursor,count*4-2);
+    }
+  });
+  await check('circular rematch and approved-next starters cover every two-to-four-player seat and reject skips',async()=>{
+    for(const action of ['rematch','ready-next'])for(const count of [2,3,4]){
+      room=await start('auction',count,CODES[4]);
+      for(let index=0;index<count;index++){
+        assert.equal(room.starterSeat,`p${index+1}`);
+        let guard=0;
+        while(room.status==='playing'){
+          assert.ok(++guard<100);
+          room=changePartyRoom(room,room.game.turnSeat,room.revision,'pass');
+        }
+        // Seed a canonical completed game locally: this check isolates starter
+        // validation, while the public bid/pass ledger is exercised above.
+        ok(await req(`rooms/${room.code}`,{method:'PUT',admin:true,value:encodePartyRoom(room)}));
+        let payload={deck:DECK};
+        if(action==='ready-next'){
+          room=ok(await write(changePartyRoom(room,'p1',room.revision,'propose-next',{datasetId:'futbol',mode:'auction'})));
+          payload={...payload,id:room.nextGame.id,ready:true};
+          for(const seat of room.game.seats.slice(0,-1))room=ok(await write(changePartyRoom(room,seat,room.revision,action,payload),seat));
+        }
+        const actor=`p${count}`,candidate=changePartyRoom(room,actor,room.revision,action,payload);
+        assert.equal(candidate.starterSeat,`p${(index+1)%count+1}`);
+        assert.equal(candidate.game.bidderSeat,candidate.starterSeat);
+        for(const wrong of candidate.game.seats.filter(seat=>seat!==candidate.starterSeat)){
+          const forged=encodePartyRoom({...candidate,starterSeat:wrong,game:createPartyGame('auction',{seats:candidate.game.seats,deck:candidate.game.deck,starterSeat:wrong})});
+          denied(await put(`rooms/${candidate.code}`,forged,actor));
+        }
+        room=ok(await write(candidate,actor));
+      }
+      assert.equal(room.starterSeat,'p1');assert.equal(room.round,count+1);
     }
   });
   await check('sealed winners, burns and payments are derived from all four actual bids',async()=>{

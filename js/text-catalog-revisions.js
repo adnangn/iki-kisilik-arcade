@@ -1,5 +1,6 @@
 const field = (label, value) => ({ group: 'Oyun kuralları', label, value });
 export const REVISION_TEXT_CATALOG = {
+  'revision.room.next_starter': field('Yeni turda ilk hamle açıklaması', 'Yeni turda ilk hamle: {player}. Başlangıç sırası masada sırayla ilerler.'),
   'revision.bracket.description': field('Turnuva mod kartı açıklaması', '16 veya 32 kart. Favorilerini seç, şampiyonu belirle.'),
   'revision.bracket.size_label': field('Turnuva büyüklüğü alanı', 'TURNUVA KAÇ KARTLA BAŞLASIN?'),
   'revision.bracket.size_16': field('16 kart turnuva seçeneği', '16 kart · 4 tur · 15 seçim'),

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createPartyRoom, joinPartyRoom, changePartyRoom, encodePartyRoom, decodePartyRoom,
-  capturePartyCursor, withPartyCursor, validatePartyRoom } from '../js/party-room-state.js';
+  capturePartyCursor, withPartyCursor, validatePartyRoom, partyRematchStarter } from '../js/party-room-state.js';
 const deck = Array.from({ length: 100 }, (_, i) => i + 1);
 const room = (mode = 'telepathy', count = 4) => {
   let value = createPartyRoom({ code: '123456', uid: 'u1', name: 'Bir', createdAt: 1000, datasetId: 'futbol', mode });
@@ -44,6 +44,72 @@ test('host can start with two or wait for four; chameleon needs three', () => {
   assert.equal(move(room('auction', 4), 'u1', 'start', { deck }).game.seats.length, 4);
   assert.throws(() => move(room('chameleon', 2), 'u1', 'start', { deck }));
   assert.throws(() => move(room(), 'u2', 'start', { deck }));
+});
+function finishAuctionTable(value) {
+  let guard = 0;
+  while (value.status === 'playing') {
+    assert.ok(++guard < 100, 'Auction must finish while every player passes');
+    value = move(value, value.players[value.game.turnSeat].uid, 'pass');
+  }
+  return decodePartyRoom(JSON.parse(JSON.stringify(encodePartyRoom(value))));
+}
+function assertAuctionStarter(value, expected) {
+  const seats = Object.keys(value.players);
+  assert.equal(value.starterSeat, expected);
+  assert.equal(value.game.starterSeat, expected);
+  assert.equal(value.game.openerSeat, expected);
+  assert.equal(value.game.bidderSeat, expected);
+  assert.equal(value.game.turnSeat, seats[(seats.indexOf(expected) + 1) % seats.length]);
+}
+test('rematches rotate the initial starter through every registered seat for two full cycles at two to four players', () => {
+  for (const count of [2, 3, 4]) {
+    let value = move(room('auction', count), 'u1', 'start', { deck });
+    const originalCode = value.code, originalInstance = value.createdAt;
+    for (let index = 0; index <= count * 2; index++) {
+      const expected = `p${index % count + 1}`;
+      assertAuctionStarter(value, expected);
+      value = finishAuctionTable(value);
+      assert.equal(partyRematchStarter(value), `p${(index + 1) % count + 1}`);
+      assert.equal(value.round, index + 1);
+      assert.equal(value.code, originalCode); assert.equal(value.createdAt, originalInstance);
+      if (index < count * 2) value = move(value, `u${count}`, 'rematch', { deck });
+    }
+  }
+});
+test('same-room approvals rotate the initial starter through two full cycles for two to four players', () => {
+  for (const count of [2, 3, 4]) {
+    let value = move(room('auction', count), 'u1', 'start', { deck });
+    for (let index = 0; index < count * 2; index++) {
+      assertAuctionStarter(value, `p${index % count + 1}`);
+      value = finishAuctionTable(value);
+      const datasetId = index % 2 ? 'futbol' : 'tatli';
+      value = move(value, `u${count}`, 'propose-next', { datasetId, mode: 'auction' });
+      const id = value.nextGame.id;
+      for (let player = count; player > 0; player--) value = move(value, `u${player}`, 'ready-next', { id, ready: true, deck });
+      assert.equal(value.lastAction.kind, 'next-game');
+      assert.equal(value.datasetId, datasetId);
+      assert.equal(value.round, index + 2);
+      assert.equal(value.code, '123456');
+    }
+    assertAuctionStarter(value, 'p1');
+  }
+});
+test('removed seats are compacted before rematch rotation and retained disconnected seats keep their place', () => {
+  const source = move(room('auction', 4), 'u1', 'start', { deck });
+  for (const removed of [['p2', 'p3'], ['p3'], []]) {
+    let value = move(source, 'u1', 'reset-table', { removeSeats: removed, datasetId: 'futbol', mode: 'auction' });
+    const survivors = Object.values(source.players).filter((_player, index) => !removed.includes(`p${index + 1}`));
+    assert.deepEqual(Object.values(value.players), survivors);
+    value = move(value, 'u1', 'start', { deck });
+    for (let index = 0; index < survivors.length; index++) {
+      assertAuctionStarter(value, `p${index + 1}`);
+      value = finishAuctionTable(value);
+      assert.equal(partyRematchStarter({ ...value, presence: {} }), `p${(index + 1) % survivors.length + 1}`);
+      value = move(value, 'u1', 'rematch', { deck });
+    }
+    assertAuctionStarter(value, 'p1');
+    assert.deepEqual(Object.values(value.players), survivors);
+  }
 });
 test('wire format keeps party state apart from legacy validators without changing the code', () => {
   const value = move(room(), 'u1', 'start', { deck });
