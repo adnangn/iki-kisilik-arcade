@@ -2,12 +2,13 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createCooperative, revealFrequency, advanceFrequency, revealDoubleRanking, placePrivateRank, createPrivateRank } from '../js/cooperative.js';
+import { playableCollections } from '../js/consolation.js';
 
 const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const PROJECT = 'demo-iki-kisilik';
 const CODES = ['919001', '919002', '919003'];
-const CARDS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8')).futbol.slice(0, 20).map(card => card.id);
+const CARDS = playableCollections(JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'))).futbol.slice(0, 20).map(card => card.id);
 let passed = 0;
 const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
 function token(uid) {

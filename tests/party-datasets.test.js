@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createPartyGame, changePartyGame, resolvePartyRound, normalizePartyGame,
   partyCards, partyClue, advancePartyRanking } from '../js/party-games.js';
+import { playableCollections } from '../js/consolation.js';
 
-const datasets = JSON.parse(readFileSync(new URL('../veri.json', import.meta.url), 'utf8'));
+const datasets = playableCollections(JSON.parse(readFileSync(new URL('../veri.json', import.meta.url), 'utf8')));
 const allSeats = ['p1', 'p2', 'p3', 'p4'];
 const records = (game, make) => Object.fromEntries(game.seats.map((seat, index) => [seat, make(seat, index)]));
 const fresh = (mode, cards, count) => createPartyGame(mode, { seats: allSeats.slice(0, count), deck: cards.map(card => card.id) });

@@ -210,7 +210,9 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       const list = el('ul', 'party-mini-list');
       for (const entry of game.rosters?.[seat] || []) {
         const row = el('li'); const id = entry?.id ?? entry?.cardId ?? entry;
-        const price = el('span', entry?.source === 'completion' ? 'party-free-card' : '', entry?.source === 'completion' ? tx('revision.auction.completion_label') : `${entry?.price ?? entry?.amount ?? 0} TL`);
+        const consolation = entry?.source === 'completion' && cardFor(id)?.teselli === true;
+        const price = el('span', entry?.source === 'completion' ? 'party-free-card' : '', entry?.source === 'completion' ? tx(consolation ? 'revision.auction.consolation_label' : 'revision.auction.completion_label') : `${entry?.price ?? entry?.amount ?? 0} TL`);
+        row.classList.toggle('is-consolation-card', consolation);
         row.append(image(id), el('strong', '', cardName(id)), price); list.append(row);
       }
       box.append(list); grid.append(box);
@@ -244,7 +246,10 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     const id = game.currentCardId ?? safeCards(game)[0];
     if (id != null) arena.append(card(id));
     const actions = el('div', 'party-auction-actions');
-    actions.append(copy('p', 'party-auction-leader', 'party.auction.leader', { name: nameFor(game.bidderSeat), amount: game.highestBid ?? 1 }), note(ownTurn ? 'party.auction.your_turn' : 'party.auction.other_turn', { name: nameFor(game.turnSeat) }));
+    const passOnly = (game.budgets?.[state.seat] ?? 0) <= (game.highestBid ?? 1) || (game.rosters?.[state.seat]?.length || 0) >= 5;
+    actions.append(copy('p', 'party-auction-leader', 'party.auction.leader', { name: nameFor(game.bidderSeat), amount: game.highestBid ?? 1 }), note(ownTurn ? passOnly ? 'party.auction.pass_only' : 'party.auction.your_turn' : 'party.auction.other_turn', { name: nameFor(game.turnSeat) }));
+    if (game.completionDeck && game.budgets?.[state.seat] === 0 && (game.rosters?.[state.seat]?.length || 0) < 5)
+      actions.append(note('revision.auction.consolation_wait'));
     const quick = el('div', 'party-quick-bids'); quick.setAttribute('role', 'group'); quick.setAttribute('aria-label', tx('party.auction.quick_label'));
     const quickButtons = el('div', 'party-quick-bid-buttons');
     for (const offer of controls.quickBids) {
@@ -549,7 +554,9 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       const list = el('ul', 'party-jury-cards');
       for (const entry of roster) {
         const id = entry?.id ?? entry?.cardId ?? entry, row = el('li');
-        row.append(image(id), el('strong', '', cardName(id)), el('span', 'party-jury-price', entry?.source === 'completion' ? tx('jury.free') : `${entry?.price ?? entry?.amount ?? 0} TL`));
+        const consolation = entry?.source === 'completion' && cardFor(id)?.teselli === true;
+        row.classList.toggle('is-consolation-card', consolation);
+        row.append(image(id), el('strong', '', cardName(id)), el('span', 'party-jury-price', entry?.source === 'completion' ? tx(consolation ? 'revision.auction.consolation_price' : 'jury.free') : `${entry?.price ?? entry?.amount ?? 0} TL`));
         list.append(row);
       }
       box.append(list);
@@ -596,6 +603,12 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     const game = state.room.game;
     if (state.room.mode === 'simultaneous-ranking') return renderRankingResults(game);
     const node = panel('party.done');
+    const consolationCount = game.completionDeck ? Object.values(game.rosters || {}).flat().filter(entry => entry.source === 'completion').length : 0;
+    if (consolationCount) {
+      const notice = el('section', 'party-consolation-reveal');
+      notice.append(copy('h3', '', 'revision.auction.consolation_reveal'), note('revision.auction.consolation_summary', { count: consolationCount }));
+      node.append(notice);
+    }
     const hasJury = ['auction', 'sealed-auction'].includes(state.room.mode);
     if (hasJury) node.append(renderAuctionJury(state));
     else if (game.rosters) node.append(renderRosters(game));

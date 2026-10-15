@@ -9,6 +9,21 @@ const room = (mode = 'telepathy', count = 4) => {
   return value;
 };
 const move = (value, uid, command, payload) => changePartyRoom(value, uid, value.revision, command, payload);
+test('auction room snapshots retain the private-free consolation deck and restore its gifts on reconnect', () => {
+  const completionDeck = Array.from({ length: 10 }, (_, index) => 900001 + index);
+  let value = move(room('auction', 2), 'u1', 'start', { deck, completionDeck });
+  const original = structuredClone(value), wire = encodePartyRoom(value);
+  assert.deepEqual(value, original);
+  assert.deepEqual(wire.partyGame.completionIds, Object.fromEntries(completionDeck.map((id, index) => [id, index])));
+  assert.deepEqual(decodePartyRoom(wire), original);
+  value = move(value, 'u2', 'bid', { amount: 20 });
+  while (value.status === 'playing') value = move(value, value.players[value.game.turnSeat].uid, 'pass');
+  const restored = decodePartyRoom(JSON.parse(JSON.stringify(encodePartyRoom(value))));
+  assert.deepEqual(restored, value);
+  assert.equal(restored.game.rosters.p2.filter(entry => entry.source === 'completion').length, 4);
+  assert.deepEqual(restored.game.rosters.p2.slice(1).map(entry => entry.id), completionDeck.slice(0, 4));
+  assert.equal('completionIds' in restored.game, false);
+});
 const finished = () => {
   let value = move(room(), 'u1', 'start', { deck });
   for (let i = 0; i < 10; i++) {

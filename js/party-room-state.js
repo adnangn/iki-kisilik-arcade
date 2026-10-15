@@ -39,6 +39,7 @@ export function encodePartyRoom(room) {
     deckIds: Object.fromEntries(wire.game.deck.map((id, index) => [id, index])) }; delete wire.game;
     // Rankings are the stored authority; the compatibility matrix is derived.
     if (wire.mode === 'simultaneous-ranking') delete wire.partyGame.result;
+    if (wire.partyGame.completionDeck) wire.partyGame.completionIds = Object.fromEntries(wire.partyGame.completionDeck.map((id, index) => [id, index]));
     if (['auction', 'sealed-auction'].includes(wire.mode)) delete wire.partyGame.completionAwards;
   }
   return wire;
@@ -46,6 +47,7 @@ export function encodePartyRoom(room) {
 export function decodePartyRoom(room) {
   if (!room || room.version !== 2 || !room.partyGame) return room;
   const decoded = { ...room, game: { ...room.partyGame } }; delete decoded.partyGame; delete decoded.game.deckSize; delete decoded.game.visibleCards; delete decoded.game.deckIds; delete decoded.game.resultCount; delete decoded.game.actionCount;
+  delete decoded.game.completionIds;
   if (room.mode === 'simultaneous-ranking') decoded.game.result = decoded.game.phase === 'finished' ? rankingMatrix(decoded.game.deck, decoded.game.rankings, decoded.game.seats) : null;
   if (['auction', 'sealed-auction'].includes(room.mode)) decoded.game.completionAwards = decoded.game.seats.flatMap(seat =>
     (Object.values(decoded.game.rosters?.[seat] || {})).filter(entry => entry.source === 'completion').map(entry => ({ id: entry.id, seat, price: 0 })));

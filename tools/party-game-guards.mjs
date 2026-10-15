@@ -151,17 +151,20 @@ export function installPartyGameGuards(document) {
   const moleIsLeader=A(seats.map(seat=>`${mole}==='${seat}'||!${present('newData',seat)}||${voteCount(chVotes,mole)}>${voteCount(chVotes,`'${seat}'`)}`));
   const allClues=A(seats.map(seat=>`!${present('newData',seat)}||${H('newData',`clues/${seat}`)}`));
   pg['.validate']+=`&&(${root.mode}==='chameleon'?${root.init}?newData.child('turnSeat').val()===newData.child('starterSeat').val()&&!newData.hasChild('clues')&&!newData.hasChild('votes')&&!newData.hasChild('caughtSeat'):${frozen}?true:${act}==='next'?newData.child('turnSeat').val()===newData.child('seats').child(((${seatIndex(V('newData','starterSeat'))}+newData.child('roundIndex').val())%${seatCount('newData')})+'').val()&&!newData.hasChild('clues')&&!newData.hasChild('votes')&&!newData.hasChild('caughtSeat'):${oldStage}==='clues'?${newStage}===(${allClues}?'voting':'clues')&&(${newStage}==='clues'?newData.child('turnSeat').val()===${nextSeat('newData',V('data','turnSeat'))}:!newData.hasChild('turnSeat')):${oldStage}==='voting'?(${moleIsLeader}?${newStage}==='last-guess'&&${V('newData','caughtSeat')}===${mole}&&${V('newData','turnSeat')}===${mole}:${newStage}==='reveal'&&!newData.hasChild('caughtSeat')&&!newData.hasChild('turnSeat')):${oldStage}==='last-guess'?${newStage}==='reveal'&&!newData.hasChild('turnSeat')&&${V('newData','caughtSeat')}===${mole}:true:true)`;
-  // Complete seats in order from the unseen deck tail. A burnt card is already
-  // behind deckIndex and can never enter this deterministic completion chain.
+  // Complete seats in order. Existing games use their unseen deck tail;
+  // new open auctions cycle a separate ten-card reserve between players.
+  // No player can receive the same consolation card twice in five slots.
   const rosterC=context(3),previousRoster="$index==='1'?'0':$index==='2'?'1':$index==='3'?'2':'3'";
   const ownPrevious=`newData.parent().child(${previousRoster})`;
   const predecessors=[
     {when:`$index!=='0'&&${ownPrevious}.child('source').val()==='completion'`,entry:ownPrevious},
     ...seats.slice(0,3).reverse().map(seat=>({when:`${O(seats.slice(seats.indexOf(seat)+1).map(later=>`$seat==='${later}'`))}&&${V(rosterC.G,`rosters/${seat}/4/source`)}==='completion'`,entry:`${rosterC.G}.child('rosters/${seat}/4')`})),
   ];
-  const nextFreeIndex=predecessors.map(({when,entry})=>`(${when})?${rosterC.G}.child('deckIds').child(${entry}.child('id').val()+'').val()+1:`).join('')+V(rosterC.G,'deckIndex');
+  const hasReserve=`${rosterC.G}.hasChild('completionDeck')`;
+  const reserveMap=`${rosterC.G}.child(${hasReserve}?'completionIds':'deckIds')`;
+  const nextFreeIndex=predecessors.map(({when,entry})=>`(${when})?${reserveMap}.child(${entry}.child('id').val()+'').val()+1:`).join('')+`(${hasReserve}?0:${V(rosterC.G,'deckIndex')})`;
   const earlierFull=A(seats.slice(0,3).map(seat=>`${O(seats.slice(0,seats.indexOf(seat)+1).map(earlier=>`$seat==='${earlier}'`))}||${H(rosterC.G,`rosters/${seat}/4`)}`));
-  pg.rosters.$seat.$index['.validate']+=`&&(newData.child('source').val()==='completion'?${rosterC.G}.child('deckIds').child(newData.child('id').val()+'').val()===(${nextFreeIndex})&&${earlierFull}:true)`;
+  pg.rosters.$seat.$index['.validate']+=`&&(newData.child('source').val()==='completion'?${reserveMap}.child(newData.child('id').val()+'').val()===(${nextFreeIndex})%(${hasReserve}?10:1000000)&&${earlierFull}:true)`;
   // If the reserve cannot fill every seat, its final card must still have been
   // consumed. Combined with the contiguous chain this prevents skipped gifts.
   const deckC=context(2),allFull=A(seats.map(seat=>`!${present(deckC.G,seat)}||${H(deckC.G,`rosters/${seat}/4`)}`));

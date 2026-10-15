@@ -7,9 +7,10 @@ import { DATASET_GROUPS, DATASET_NAMES, LEGACY_DATASET_IDS, resolveDatasetId } f
 import { createAuction, passTurn } from '../js/auction.js';
 import { changeRoom } from '../js/room-state.js';
 import { draftTriplets } from '../js/game-setup.js';
+import { playableCollections } from '../js/consolation.js';
 
 const root = new URL('../', import.meta.url);
-const datasets = JSON.parse(await readFile(new URL('veri.json', root), 'utf8'));
+const datasets = playableCollections(JSON.parse(await readFile(new URL('veri.json', root), 'utf8')));
 
 async function verifyCards(cards, count) {
   assert.equal(cards.length, count);

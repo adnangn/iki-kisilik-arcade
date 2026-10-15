@@ -4,10 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { createPartyRoom,joinPartyRoom,changePartyRoom,encodePartyRoom,decodePartyRoom } from '../js/party-room-state.js';
 import { partyCards } from '../js/party-games.js';
 import { partySubmission } from '../js/party-online.js';
+import { playableCollections, consolationRange } from '../js/consolation.js';
 const ORIGIN=process.env.DB_EMULATOR_URL||'http://127.0.0.1:9000';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN),'Only local emulator tests are permitted.');
 const PROJECT='demo-iki-kisilik',CODES=['957001','957002','957003','957004','957005','957006','957007','957008'];
-const DECK=JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8')).futbol.map(card=>card.id);
+const DECK=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8'))).futbol.map(card=>card.id);
+const COMPLETION=Array.from({length:10},(_,index)=>consolationRange('futbol').min+index);
 const stamp=Date.now(),encode=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
 let passed=0;
 function token(uid){const now=Math.floor(Date.now()/1000);return `${encode({alg:'none',typ:'JWT'})}.${encode({iss:`https://securetoken.google.com/${PROJECT}`,aud:PROJECT,sub:uid,uid,user_id:uid,iat:now,exp:now+3600,auth_time:now,firebase:{identities:{},sign_in_provider:'anonymous'}})}.`;}
@@ -22,12 +24,12 @@ const put=(path,value,uid='p1',headers={})=>req(path,{method:'PUT',value,uid,hea
 const write=(room,uid='p1',headers={})=>put(`rooms/${room.code}`,encodePartyRoom(room),uid,headers).then(result=>({...result,value:decodePartyRoom(result.value)}));
 async function check(label,fn){if(process.env.PARTY_TEST_FILTER&&label!=='party rules compile under the Firebase source limit'&&!label.includes(process.env.PARTY_TEST_FILTER))return;try{await fn();passed++;console.log('PASS',label);}catch(error){throw new Error(`${label}: ${error.message}`,{cause:error});}}
 async function clean(){for(const code of CODES)for(const branch of ['rooms','privateGames','presence','reactions','cleanupIndex'])ok(await req(`${branch}/${code}`,{method:'DELETE',admin:true}));}
-async function start(mode,count=4,code=CODES[0],mutations=[],criteria){
+async function start(mode,count=4,code=CODES[0],mutations=[],criteria,extra={}){
   await req(`rooms/${code}`,{method:'DELETE',admin:true});await req(`privateGames/${code}`,{method:'DELETE',admin:true});
   ok(await req(`cleanupIndex/${code}`,{method:'PUT',admin:true,value:{instance:stamp,lastActivityAt:Date.now(),state:'reserved',reserverUid:'p1'}}));
   let room=ok(await write(createPartyRoom({code,uid:'p1',name:'Ada',createdAt:stamp,datasetId:'futbol',mode})));
   for(let index=2;index<=count;index++)room=ok(await write(joinPartyRoom(room,`p${index}`,`Oyuncu ${index}`),`p${index}`));
-  const candidate=changePartyRoom(room,'p1',room.revision,'start',{deck:DECK,...(criteria?{criteria}:{})});
+  const candidate=changePartyRoom(room,'p1',room.revision,'start',{deck:DECK,...(criteria?{criteria}:{}),...extra});
   if(mutations.length)await rejectMutations(candidate,mutations);
   return ok(await write(candidate));
 }
@@ -50,6 +52,7 @@ try{
     for(const mode of ['auction','sealed-auction','simultaneous-ranking','telepathy','detective','chameleon']){
       const count=mode==='detective'?2:4;
       const mutations=[g=>delete g.deckSize,g=>delete g.deckIds,g=>delete g.visibleCards,g=>g.deck[1]=g.deck[0],g=>delete g.deck[1],g=>g.deckIds[g.deck[0]]=1,g=>g.deckIds[999999]=0,g=>g.roundIndex=1,g=>g.phase='finished',g=>g.stage='reveal',g=>g.result={score:99},g=>g.lastAward={evil:1},g=>g.completionAwards=[{id:DECK[10],seat:'p1',price:0}]];
+      mutations.push(g=>{const old=g.deck[0],id=consolationRange('superlig').min;g.deck[0]=id;delete g.deckIds[old];g.deckIds[id]=0;delete g.visibleCards[old];g.visibleCards[id]=0;if(g.currentCardId)g.currentCardId=id;});
       if(['auction','sealed-auction'].includes(mode))mutations.push(g=>delete g.budgets,g=>g.rosters={p1:[{id:g.deck[0],price:0}]});
       if(mode==='auction')mutations.push(g=>delete g.passed,g=>delete g.highestBid,g=>delete g.openerSeat,g=>delete g.turnSeat);
       if(mode==='simultaneous-ranking')mutations.push(g=>delete g.progress,g=>g.progress.p1=1);
@@ -137,6 +140,56 @@ try{
       }
     }
     assert.equal(Object.values(room.game.rosters).flat().length,20);assert.ok(Object.values(room.game.rosters).every(cards=>cards.length===5));assert.equal(Object.values(room.game.budgets).filter(budget=>budget===0).length,3);
+  });
+  await check('consolation reserves require ten unique matching-category cards and immutable order',async()=>{
+    const withInverse=g=>{g.completionIds=Object.fromEntries(g.completionDeck.map((id,index)=>[id,index]));};
+    room=await start('auction',2,CODES[4],[
+      g=>delete g.completionIds,
+      g=>delete g.completionDeck,
+      g=>{g.completionDeck.pop();withInverse(g);},
+      g=>{g.completionDeck.push(900011);withInverse(g);},
+      g=>{g.completionDeck[1]=g.completionDeck[0];withInverse(g);},
+      g=>{g.completionDeck[1]=g.deck[0];withInverse(g);},
+      g=>{g.completionDeck=g.completionDeck.map(id=>id+10);withInverse(g);},
+      g=>g.completionIds[999999]=0,
+    ],undefined,{completionDeck:COMPLETION});
+    const bid=changePartyRoom(room,'p2',room.revision,'bid',{amount:20});
+    await rejectMutations(bid,[g=>{g.completionDeck.reverse();withInverse(g);},g=>{delete g.completionDeck;delete g.completionIds;}],'p2');
+    room=ok(await write(bid,'p2'));
+    await start('sealed-auction',2,CODES[5],[g=>{g.completionDeck=COMPLETION;g.completionIds=Object.fromEntries(COMPLETION.map((id,index)=>[id,index]));}]);
+  });
+  await check('consolation open auctions fill exhausted two-to-four-player teams and safely cycle the reserve',async()=>{
+    for(const count of [2,3,4]){
+      room=await start('auction',count,CODES[4],[],undefined,{completionDeck:COMPLETION});
+      let guard=0;
+      while(room.status==='playing'){
+        assert.ok(++guard<200);assert.ok(!COMPLETION.includes(room.game.currentCardId));
+        const actor=room.game.turnSeat,winners=[...room.game.seats.slice(1),'p1'],target=winners[room.game.roundIndex],amount=room.game.roundIndex===count-2?18:20;
+        const command=actor===target&&room.game.highestBid<amount?'bid':target&&room.game.bidderSeat===target&&room.game.highestBid<2&&room.game.budgets[actor]>=2?'bid':'pass';
+        const payload=command==='bid'?{amount:actor===target?amount:2}:{};
+        const candidate=changePartyRoom(room,actor,room.revision,command,payload);
+        if(candidate.status==='finished'){
+          const owner=candidate.game.seats.find(seat=>candidate.game.rosters[seat].some(card=>card.source==='completion'));
+          const index=candidate.game.rosters[owner].findIndex(card=>card.source==='completion');
+          await rejectMutations(candidate,[
+            g=>g.rosters[owner][index].id=g.deck[20-1],
+            g=>g.rosters[owner][index].id=COMPLETION[1],
+            g=>g.rosters[owner][index].price=1,
+            g=>delete g.rosters[owner][index].source,
+            g=>g.rosters[owner].pop(),
+            g=>g.budgets[owner]=1,
+          ],actor);
+        }
+        room=ok(await write(candidate,actor));
+      }
+      let cursor=0;
+      for(const seat of room.game.seats){
+        assert.equal(room.game.budgets[seat],0);assert.equal(room.game.rosters[seat].length,5);
+        assert.equal(new Set(room.game.rosters[seat].map(card=>card.id)).size,5);
+        for(const card of room.game.rosters[seat].filter(card=>card.source==='completion'))assert.equal(card.id,COMPLETION[cursor++%10]);
+      }
+      assert.equal(cursor,count*4-2);
+    }
   });
   await check('sealed winners, burns and payments are derived from all four actual bids',async()=>{
     room=await start('sealed-auction',4,CODES[5]);

@@ -1,4 +1,5 @@
 import { TELEPATHY_ROUNDS, validTelepathyCriteria } from './telepathy-questions.js';
+import { CONSOLATION_DATASET_IDS, consolationRange } from './consolation.js';
 
 /**
  * Deterministic 2–4 player engines. Shuffle/setup belongs to the caller.
@@ -12,6 +13,8 @@ export class PartyGameError extends Error {
 }
 const fail = (code, message) => { throw new PartyGameError(code, message); };
 const SEATS = ['p1', 'p2', 'p3', 'p4'];
+const RESERVE_MIN = consolationRange(CONSOLATION_DATASET_IDS[0]).min;
+const RESERVE_MAX = consolationRange(CONSOLATION_DATASET_IDS[CONSOLATION_DATASET_IDS.length - 1]).max;
 const MODES = {
   auction: { minPlayers: 2, maxPlayers: 4, cards: 1, rounds: null, private: false },
   'sealed-auction': { minPlayers: 2, maxPlayers: 4, cards: 1, rounds: null, private: true },
@@ -44,14 +47,23 @@ function validateSetup(mode, options) {
       Array.from(options.seats).some((seat, index) => seat !== SEATS[index])) fail('INVALID_SEATS', 'Oyuncu koltukları p1’den başlayarak sıralı olmalıdır.');
   const minimum = mode === 'auction' || mode === 'sealed-auction' ? options.seats.length * 5 : mode === 'simultaneous-ranking' ? 10 : spec.cards;
   if (!Array.isArray(options.deck) || options.deck.length < minimum || options.deck.length > 2000 ||
-      Array.from(options.deck).some(id => !validId(id)) || new Set(options.deck).size !== options.deck.length) fail('INVALID_DECK', 'Yeterli sayıda benzersiz kart seçilmelidir.');
+      Array.from(options.deck).some(id => !validId(id) || (id >= RESERVE_MIN && id <= RESERVE_MAX)) || new Set(options.deck).size !== options.deck.length) fail('INVALID_DECK', 'Yeterli sayıda benzersiz kart seçilmelidir.');
   const starterSeat = options.starterSeat ?? options.seats[0];
   if (!options.seats.includes(starterSeat)) fail('INVALID_SEAT', 'Başlayan oyuncu masada bulunmalıdır.');
   let maximum = options.deck.length;
   if (mode === 'auction' || mode === 'sealed-auction') maximum = options.seats.length === 2 ? 20 : 30;
   if (mode === 'simultaneous-ranking') maximum = 10;
   if (['telepathy', 'detective', 'chameleon'].includes(mode)) maximum = spec.cards * spec.rounds;
-  return { mode, seats: [...options.seats], deck: options.deck.slice(0, maximum), starterSeat };
+  const setup = { mode, seats: [...options.seats], deck: options.deck.slice(0, maximum), starterSeat };
+  if (options.completionDeck !== undefined) {
+    const reserve = options.completionDeck;
+    if (mode !== 'auction' || !Array.isArray(reserve) || reserve.length !== 10 ||
+        Array.from(reserve).some(id => !validId(id) || setup.deck.includes(id)) || new Set(reserve).size !== 10) {
+      fail('INVALID_COMPLETION_DECK', 'Bütçe tamamlaması için ana desteden ayrı on benzersiz kart seçilmelidir.');
+    }
+    setup.completionDeck = [...reserve];
+  }
+  return setup;
 }
 
 function emptyGame(setup) {
@@ -152,6 +164,18 @@ function finishAuction(game) {
 }
 
 function completeRosters(game) {
+  if (game.mode === 'auction' && game.completionDeck) {
+    // A four-player table can need sixteen gifts from a ten-card reserve.
+    // Cycle across seats while keeping each player's own gifts distinct.
+    let reserveIndex = 0;
+    for (const seat of game.seats) while (game.budgets[seat] === 0 && hasSpace(game, seat)) {
+      const id = game.completionDeck[reserveIndex++ % game.completionDeck.length];
+      game.rosters[seat].push({ id, price: 0, source: 'completion' });
+      game.completionAwards.push({ id, seat, price: 0 });
+    }
+    finishAuction(game);
+    return;
+  }
   // Consume only the unseen shuffled tail. Burnt sealed-bid cards stay burnt.
   const owned = new Set(game.seats.flatMap(seat => game.rosters[seat].map(entry => entry.id)));
   const reserve = game.deck.slice(game.deckIndex).filter(id => !owned.has(id));

@@ -1,0 +1,1730 @@
+{
+  "futbol": [
+    {
+      "id": 900001,
+      "isim": "Sabri Sarıoğlu",
+      "gorsel": "assets/images/consolation/sabri-sarioglu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900002,
+      "isim": "Nicklas Bendtner",
+      "gorsel": "assets/images/consolation/nicklas-bendtner.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900003,
+      "isim": "Emile Heskey",
+      "gorsel": "assets/images/consolation/emile-heskey.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900004,
+      "isim": "Bebé",
+      "gorsel": "assets/images/consolation/bebe.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900005,
+      "isim": "Ali Dia",
+      "gorsel": "assets/images/consolation/ali-dia.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900006,
+      "isim": "Massimo Taibi",
+      "gorsel": "assets/images/consolation/massimo-taibi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900007,
+      "isim": "Yaya Sanogo",
+      "gorsel": "assets/images/consolation/yaya-sanogo.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900008,
+      "isim": "Boško Balaban",
+      "gorsel": "assets/images/consolation/bosko-balaban.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900009,
+      "isim": "Park Chu-young",
+      "gorsel": "assets/images/consolation/park-chu-young.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900010,
+      "isim": "Marouane Chamakh",
+      "gorsel": "assets/images/consolation/marouane-chamakh.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "superlig": [
+    {
+      "id": 900011,
+      "isim": "Orhan Şam",
+      "gorsel": "assets/images/consolation/orhan-sam.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900012,
+      "isim": "Bekir İrtegün",
+      "gorsel": "assets/images/consolation/bekir-irtegun.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900013,
+      "isim": "Serdar Kesimal",
+      "gorsel": "assets/images/consolation/serdar-kesimal.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900014,
+      "isim": "Alper Potuk",
+      "gorsel": "assets/images/consolation/alper-potuk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900015,
+      "isim": "Sezer Öztürk",
+      "gorsel": "assets/images/consolation/sezer-ozturk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900016,
+      "isim": "Oğuzhan Özyakup",
+      "gorsel": "assets/images/consolation/oguzhan-ozyakup.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900017,
+      "isim": "Serdar Özkan",
+      "gorsel": "assets/images/consolation/serdar-ozkan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900018,
+      "isim": "Aydın Yılmaz",
+      "gorsel": "assets/images/consolation/aydin-yilmaz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900019,
+      "isim": "Batuhan Karadeniz",
+      "gorsel": "assets/images/consolation/batuhan-karadeniz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900020,
+      "isim": "Yekta Kurtuluş",
+      "gorsel": "assets/images/consolation/yekta-kurtulus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "turkiye-efsaneleri": [
+    {
+      "id": 900021,
+      "isim": "Orhan Şam",
+      "gorsel": "assets/images/consolation/orhan-sam.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900022,
+      "isim": "Bekir İrtegün",
+      "gorsel": "assets/images/consolation/bekir-irtegun.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900023,
+      "isim": "Serdar Kesimal",
+      "gorsel": "assets/images/consolation/serdar-kesimal.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900024,
+      "isim": "Alper Potuk",
+      "gorsel": "assets/images/consolation/alper-potuk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900025,
+      "isim": "Sezer Öztürk",
+      "gorsel": "assets/images/consolation/sezer-ozturk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900026,
+      "isim": "Oğuzhan Özyakup",
+      "gorsel": "assets/images/consolation/oguzhan-ozyakup.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900027,
+      "isim": "Serdar Özkan",
+      "gorsel": "assets/images/consolation/serdar-ozkan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900028,
+      "isim": "Aydın Yılmaz",
+      "gorsel": "assets/images/consolation/aydin-yilmaz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900029,
+      "isim": "Batuhan Karadeniz",
+      "gorsel": "assets/images/consolation/batuhan-karadeniz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900030,
+      "isim": "Yekta Kurtuluş",
+      "gorsel": "assets/images/consolation/yekta-kurtulus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "dunya-yildizlari": [
+    {
+      "id": 900031,
+      "isim": "Sabri Sarıoğlu",
+      "gorsel": "assets/images/consolation/sabri-sarioglu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900032,
+      "isim": "Nicklas Bendtner",
+      "gorsel": "assets/images/consolation/nicklas-bendtner.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900033,
+      "isim": "Emile Heskey",
+      "gorsel": "assets/images/consolation/emile-heskey.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900034,
+      "isim": "Bebé",
+      "gorsel": "assets/images/consolation/bebe.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900035,
+      "isim": "Ali Dia",
+      "gorsel": "assets/images/consolation/ali-dia.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900036,
+      "isim": "Massimo Taibi",
+      "gorsel": "assets/images/consolation/massimo-taibi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900037,
+      "isim": "Yaya Sanogo",
+      "gorsel": "assets/images/consolation/yaya-sanogo.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900038,
+      "isim": "Boško Balaban",
+      "gorsel": "assets/images/consolation/bosko-balaban.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900039,
+      "isim": "Park Chu-young",
+      "gorsel": "assets/images/consolation/park-chu-young.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900040,
+      "isim": "Marouane Chamakh",
+      "gorsel": "assets/images/consolation/marouane-chamakh.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "tatli-vol1": [
+    {
+      "id": 900041,
+      "isim": "Bayat Bisküvi",
+      "gorsel": "assets/images/consolation/bayat-biskuvi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900042,
+      "isim": "Erimiş Dondurma",
+      "gorsel": "assets/images/consolation/erimis-dondurma.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900043,
+      "isim": "Şekersiz Keşkül",
+      "gorsel": "assets/images/consolation/sekersiz-keskul.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900044,
+      "isim": "Sönmüş Sufle",
+      "gorsel": "assets/images/consolation/sonmus-sufle.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900045,
+      "isim": "Tek Lokma Helva",
+      "gorsel": "assets/images/consolation/tek-lokma-helva.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900046,
+      "isim": "Kremasız Pasta",
+      "gorsel": "assets/images/consolation/kremasiz-pasta.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900047,
+      "isim": "Kırık Külah",
+      "gorsel": "assets/images/consolation/kirik-kulah.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900048,
+      "isim": "Dibi Tutmuş Puding",
+      "gorsel": "assets/images/consolation/dibi-tutmus-puding.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900049,
+      "isim": "İçi Boş Profiterol",
+      "gorsel": "assets/images/consolation/ici-bos-profiterol.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900050,
+      "isim": "Yarım Gofret",
+      "gorsel": "assets/images/consolation/yarim-gofret.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "tatli": [
+    {
+      "id": 900051,
+      "isim": "Bayat Bisküvi",
+      "gorsel": "assets/images/consolation/bayat-biskuvi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900052,
+      "isim": "Erimiş Dondurma",
+      "gorsel": "assets/images/consolation/erimis-dondurma.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900053,
+      "isim": "Şekersiz Keşkül",
+      "gorsel": "assets/images/consolation/sekersiz-keskul.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900054,
+      "isim": "Sönmüş Sufle",
+      "gorsel": "assets/images/consolation/sonmus-sufle.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900055,
+      "isim": "Tek Lokma Helva",
+      "gorsel": "assets/images/consolation/tek-lokma-helva.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900056,
+      "isim": "Kremasız Pasta",
+      "gorsel": "assets/images/consolation/kremasiz-pasta.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900057,
+      "isim": "Kırık Külah",
+      "gorsel": "assets/images/consolation/kirik-kulah.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900058,
+      "isim": "Dibi Tutmuş Puding",
+      "gorsel": "assets/images/consolation/dibi-tutmus-puding.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900059,
+      "isim": "İçi Boş Profiterol",
+      "gorsel": "assets/images/consolation/ici-bos-profiterol.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900060,
+      "isim": "Yarım Gofret",
+      "gorsel": "assets/images/consolation/yarim-gofret.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "yemek-vol1": [
+    {
+      "id": 900061,
+      "isim": "Dünkü Makarna",
+      "gorsel": "assets/images/consolation/dunku-makarna.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900062,
+      "isim": "Tuzsuz Pilav",
+      "gorsel": "assets/images/consolation/tuzsuz-pilav.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900063,
+      "isim": "Soğumuş Patates",
+      "gorsel": "assets/images/consolation/sogumus-patates.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900064,
+      "isim": "Tek Zeytin",
+      "gorsel": "assets/images/consolation/tek-zeytin.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900065,
+      "isim": "Kuru Tost",
+      "gorsel": "assets/images/consolation/kuru-tost.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900066,
+      "isim": "Sossuz Salata",
+      "gorsel": "assets/images/consolation/sossuz-salata.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900067,
+      "isim": "Son Dilim Ekmek",
+      "gorsel": "assets/images/consolation/son-dilim-ekmek.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900068,
+      "isim": "Dibi Tutmuş Çorba",
+      "gorsel": "assets/images/consolation/dibi-tutmus-corba.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900069,
+      "isim": "İçi Boş Sandviç",
+      "gorsel": "assets/images/consolation/ici-bos-sandvic.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900070,
+      "isim": "Minik Turşu",
+      "gorsel": "assets/images/consolation/minik-tursu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "yemek": [
+    {
+      "id": 900071,
+      "isim": "Dünkü Makarna",
+      "gorsel": "assets/images/consolation/dunku-makarna.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900072,
+      "isim": "Tuzsuz Pilav",
+      "gorsel": "assets/images/consolation/tuzsuz-pilav.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900073,
+      "isim": "Soğumuş Patates",
+      "gorsel": "assets/images/consolation/sogumus-patates.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900074,
+      "isim": "Tek Zeytin",
+      "gorsel": "assets/images/consolation/tek-zeytin.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900075,
+      "isim": "Kuru Tost",
+      "gorsel": "assets/images/consolation/kuru-tost.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900076,
+      "isim": "Sossuz Salata",
+      "gorsel": "assets/images/consolation/sossuz-salata.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900077,
+      "isim": "Son Dilim Ekmek",
+      "gorsel": "assets/images/consolation/son-dilim-ekmek.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900078,
+      "isim": "Dibi Tutmuş Çorba",
+      "gorsel": "assets/images/consolation/dibi-tutmus-corba.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900079,
+      "isim": "İçi Boş Sandviç",
+      "gorsel": "assets/images/consolation/ici-bos-sandvic.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900080,
+      "isim": "Minik Turşu",
+      "gorsel": "assets/images/consolation/minik-tursu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "icecek": [
+    {
+      "id": 900081,
+      "isim": "Soğuk Çay",
+      "gorsel": "assets/images/consolation/soguk-cay.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900082,
+      "isim": "Gazı Kaçmış Gazoz",
+      "gorsel": "assets/images/consolation/gazi-kacmis-gazoz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900083,
+      "isim": "Buzsuz Limonata",
+      "gorsel": "assets/images/consolation/buzsuz-limonata.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900084,
+      "isim": "Ilık Su",
+      "gorsel": "assets/images/consolation/ilik-su.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900085,
+      "isim": "Telve Sürprizi",
+      "gorsel": "assets/images/consolation/telve-surprizi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900086,
+      "isim": "Sulanmış Ayran",
+      "gorsel": "assets/images/consolation/sulanmis-ayran.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900087,
+      "isim": "Yarım Meyve Suyu",
+      "gorsel": "assets/images/consolation/yarim-meyve-suyu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900088,
+      "isim": "Köpüksüz Kahve",
+      "gorsel": "assets/images/consolation/kopuksuz-kahve.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900089,
+      "isim": "Pipeti Kaybolmuş",
+      "gorsel": "assets/images/consolation/pipeti-kaybolmus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900090,
+      "isim": "Son Yudum",
+      "gorsel": "assets/images/consolation/son-yudum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "dizi": [
+    {
+      "id": 900091,
+      "isim": "Özetin Özeti",
+      "gorsel": "assets/images/consolation/ozetin-ozeti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900092,
+      "isim": "Bitmeyen Reklam",
+      "gorsel": "assets/images/consolation/bitmeyen-reklam.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900093,
+      "isim": "Eksik Bölüm",
+      "gorsel": "assets/images/consolation/eksik-bolum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900094,
+      "isim": "Finali Gelmeyen",
+      "gorsel": "assets/images/consolation/finali-gelmeyen.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900095,
+      "isim": "Dolgu Bölüm",
+      "gorsel": "assets/images/consolation/dolgu-bolum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900096,
+      "isim": "Aynı Sahne Yine",
+      "gorsel": "assets/images/consolation/ayni-sahne-yine.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900097,
+      "isim": "Altyazı Kaymış",
+      "gorsel": "assets/images/consolation/altyazi-kaymis.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900098,
+      "isim": "Kumanda Kimde?",
+      "gorsel": "assets/images/consolation/kumanda-kimde.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900099,
+      "isim": "Sezon Arası",
+      "gorsel": "assets/images/consolation/sezon-arasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900100,
+      "isim": "Jeneriği Atlayamadım",
+      "gorsel": "assets/images/consolation/jenerigi-atlayamadim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "film": [
+    {
+      "id": 900101,
+      "isim": "Fragmanı Daha İyi",
+      "gorsel": "assets/images/consolation/fragmani-daha-iyi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900102,
+      "isim": "Kamera Kapağı",
+      "gorsel": "assets/images/consolation/kamera-kapagi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900103,
+      "isim": "Patlamamış Mısır",
+      "gorsel": "assets/images/consolation/patlamamis-misir.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900104,
+      "isim": "Sonu Rüya Çıktı",
+      "gorsel": "assets/images/consolation/sonu-ruya-cikti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900105,
+      "isim": "Yanlış Salon",
+      "gorsel": "assets/images/consolation/yanlis-salon.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900106,
+      "isim": "Beş Saat Jenerik",
+      "gorsel": "assets/images/consolation/bes-saat-jenerik.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900107,
+      "isim": "Bütçesiz Uzaylı",
+      "gorsel": "assets/images/consolation/butcesiz-uzayli.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900108,
+      "isim": "Yeşil Perde Kaldı",
+      "gorsel": "assets/images/consolation/yesil-perde-kaldi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900109,
+      "isim": "Dublaj Kaymış",
+      "gorsel": "assets/images/consolation/dublaj-kaymis.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900110,
+      "isim": "Boş Koltuk",
+      "gorsel": "assets/images/consolation/bos-koltuk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "yerli-sanatcilar": [
+    {
+      "id": 900111,
+      "isim": "Duş Konseri",
+      "gorsel": "assets/images/consolation/dus-konseri.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900112,
+      "isim": "Komşunun Matkabı",
+      "gorsel": "assets/images/consolation/komsunun-matkabi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900113,
+      "isim": "Bozuk Flüt",
+      "gorsel": "assets/images/consolation/bozuk-flut.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900114,
+      "isim": "Tek Kişilik Koro",
+      "gorsel": "assets/images/consolation/tek-kisilik-koro.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900115,
+      "isim": "Akortsuz Gitar",
+      "gorsel": "assets/images/consolation/akortsuz-gitar.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900116,
+      "isim": "Mutfak Orkestrası",
+      "gorsel": "assets/images/consolation/mutfak-orkestrasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900117,
+      "isim": "Mırıldanan Yolcu",
+      "gorsel": "assets/images/consolation/mirildanan-yolcu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900118,
+      "isim": "Boş Pil Davulu",
+      "gorsel": "assets/images/consolation/bos-pil-davulu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900119,
+      "isim": "Karaoke Kazası",
+      "gorsel": "assets/images/consolation/karaoke-kazasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900120,
+      "isim": "Ritim Kaçtı",
+      "gorsel": "assets/images/consolation/ritim-kacti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "ankara-ilceleri": [
+    {
+      "id": 900121,
+      "isim": "Kayıp Dolmuş Durağı",
+      "gorsel": "assets/images/consolation/kayip-dolmus-duragi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900122,
+      "isim": "Bitmeyen Yokuş",
+      "gorsel": "assets/images/consolation/bitmeyen-yokus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900123,
+      "isim": "Hayali İlçe",
+      "gorsel": "assets/images/consolation/hayali-ilce.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900124,
+      "isim": "Ters Yön Sokağı",
+      "gorsel": "assets/images/consolation/ters-yon-sokagi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900125,
+      "isim": "Son Sefer Kaçtı",
+      "gorsel": "assets/images/consolation/son-sefer-kacti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900126,
+      "isim": "Yanlış Metro Çıkışı",
+      "gorsel": "assets/images/consolation/yanlis-metro-cikisi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900127,
+      "isim": "Boş Çay Bahçesi",
+      "gorsel": "assets/images/consolation/bos-cay-bahcesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900128,
+      "isim": "Döner Kavşak",
+      "gorsel": "assets/images/consolation/doner-kavsak.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900129,
+      "isim": "Navigasyon Şaştı",
+      "gorsel": "assets/images/consolation/navigasyon-sasti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900130,
+      "isim": "Uzak Peron",
+      "gorsel": "assets/images/consolation/uzak-peron.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "istanbul-ilceleri": [
+    {
+      "id": 900131,
+      "isim": "Ters İskele",
+      "gorsel": "assets/images/consolation/ters-iskele.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900132,
+      "isim": "Vapuru Kaçırdım",
+      "gorsel": "assets/images/consolation/vapuru-kacirdim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900133,
+      "isim": "Hayali Semt",
+      "gorsel": "assets/images/consolation/hayali-semt.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900134,
+      "isim": "Bitmeyen Aktarma",
+      "gorsel": "assets/images/consolation/bitmeyen-aktarma.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900135,
+      "isim": "Kayıp Akbil",
+      "gorsel": "assets/images/consolation/kayip-akbil.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900136,
+      "isim": "Martıya Giden Simit",
+      "gorsel": "assets/images/consolation/martiya-giden-simit.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900137,
+      "isim": "Yanlış Köprü",
+      "gorsel": "assets/images/consolation/yanlis-kopru.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900138,
+      "isim": "Yokuş Sonu Yokuş",
+      "gorsel": "assets/images/consolation/yokus-sonu-yokus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900139,
+      "isim": "Son Dolmuş",
+      "gorsel": "assets/images/consolation/son-dolmus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900140,
+      "isim": "İsimsiz Sokak",
+      "gorsel": "assets/images/consolation/isimsiz-sokak.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "turkiye-sehirleri": [
+    {
+      "id": 900141,
+      "isim": "Navigasyonda Yok",
+      "gorsel": "assets/images/consolation/navigasyonda-yok.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900142,
+      "isim": "Hayali Şehir",
+      "gorsel": "assets/images/consolation/hayali-sehir.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900143,
+      "isim": "Tabelasız Yol",
+      "gorsel": "assets/images/consolation/tabelasiz-yol.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900144,
+      "isim": "Uzak Otogar",
+      "gorsel": "assets/images/consolation/uzak-otogar.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900145,
+      "isim": "Son Otobüs",
+      "gorsel": "assets/images/consolation/son-otobus.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900146,
+      "isim": "Kaybolan Bavul",
+      "gorsel": "assets/images/consolation/kaybolan-bavul.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900147,
+      "isim": "Boş Kartpostal",
+      "gorsel": "assets/images/consolation/bos-kartpostal.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900148,
+      "isim": "Ters Pusula",
+      "gorsel": "assets/images/consolation/ters-pusula.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900149,
+      "isim": "Mola Tesisi",
+      "gorsel": "assets/images/consolation/mola-tesisi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900150,
+      "isim": "Yol Kapalı",
+      "gorsel": "assets/images/consolation/yol-kapali.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "ulkeler": [
+    {
+      "id": 900151,
+      "isim": "Hayali Cumhuriyet",
+      "gorsel": "assets/images/consolation/hayali-cumhuriyet.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900152,
+      "isim": "Kayıp Ada",
+      "gorsel": "assets/images/consolation/kayip-ada.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900153,
+      "isim": "Pasaport Evde",
+      "gorsel": "assets/images/consolation/pasaport-evde.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900154,
+      "isim": "Valizistan",
+      "gorsel": "assets/images/consolation/valizistan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900155,
+      "isim": "Ters Haritalar Ülkesi",
+      "gorsel": "assets/images/consolation/ters-haritalar-ulkesi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900156,
+      "isim": "Boş Elçilik",
+      "gorsel": "assets/images/consolation/bos-elcilik.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900157,
+      "isim": "Rötar Krallığı",
+      "gorsel": "assets/images/consolation/rotar-kralligi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900158,
+      "isim": "Pusulasız Diyarı",
+      "gorsel": "assets/images/consolation/pusulasiz-diyari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900159,
+      "isim": "Vizesiz Bulut",
+      "gorsel": "assets/images/consolation/vizesiz-bulut.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900160,
+      "isim": "Minik Prenslik",
+      "gorsel": "assets/images/consolation/minik-prenslik.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "cocukluk-cizgifilmleri": [
+    {
+      "id": 900161,
+      "isim": "Jenerikte Kaldık",
+      "gorsel": "assets/images/consolation/jenerikte-kaldik.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900162,
+      "isim": "Figüran Bulut",
+      "gorsel": "assets/images/consolation/figuran-bulut.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900163,
+      "isim": "Kaybolan Kumanda",
+      "gorsel": "assets/images/consolation/kaybolan-kumanda.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900164,
+      "isim": "Pijamalı Süper Kahraman",
+      "gorsel": "assets/images/consolation/pijamali-super-kahraman.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900165,
+      "isim": "Uykucu Robot",
+      "gorsel": "assets/images/consolation/uykucu-robot.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900166,
+      "isim": "Kötü Çizilmiş Patates",
+      "gorsel": "assets/images/consolation/kotu-cizilmis-patates.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900167,
+      "isim": "Tek Kare Macera",
+      "gorsel": "assets/images/consolation/tek-kare-macera.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900168,
+      "isim": "Teneffüs Canavarı",
+      "gorsel": "assets/images/consolation/teneffus-canavari.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900169,
+      "isim": "Konuşmayan Yan Karakter",
+      "gorsel": "assets/images/consolation/konusmayan-yan-karakter.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900170,
+      "isim": "Pelerini Kısa Kaptan",
+      "gorsel": "assets/images/consolation/pelerini-kisa-kaptan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "doksanlar-nostalji": [
+    {
+      "id": 900171,
+      "isim": "Sarmış Kaset",
+      "gorsel": "assets/images/consolation/sarmis-kaset.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900172,
+      "isim": "Tek Pil",
+      "gorsel": "assets/images/consolation/tek-pil.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900173,
+      "isim": "Çalışmayan Jeton",
+      "gorsel": "assets/images/consolation/calismayan-jeton.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900174,
+      "isim": "Tek Eş Çorap",
+      "gorsel": "assets/images/consolation/tek-es-corap.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900175,
+      "isim": "Kırık Anten",
+      "gorsel": "assets/images/consolation/kirik-anten.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900176,
+      "isim": "Boş Sakız Kâğıdı",
+      "gorsel": "assets/images/consolation/bos-sakiz-kagidi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900177,
+      "isim": "Silgisiz Kalem",
+      "gorsel": "assets/images/consolation/silgisiz-kalem.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900178,
+      "isim": "Düğümlü Kulaklık",
+      "gorsel": "assets/images/consolation/dugumlu-kulaklik.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900179,
+      "isim": "Etiketsiz Disket",
+      "gorsel": "assets/images/consolation/etiketsiz-disket.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900180,
+      "isim": "Kaybolan Taso",
+      "gorsel": "assets/images/consolation/kaybolan-taso.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "kantin-bakkal": [
+    {
+      "id": 900181,
+      "isim": "Bayat Kraker",
+      "gorsel": "assets/images/consolation/bayat-kraker.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900182,
+      "isim": "Kuru Poğaça",
+      "gorsel": "assets/images/consolation/kuru-pogaca.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900183,
+      "isim": "Kırık Gofret",
+      "gorsel": "assets/images/consolation/kirik-gofret.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900184,
+      "isim": "Son Leblebi",
+      "gorsel": "assets/images/consolation/son-leblebi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900185,
+      "isim": "Gazsız Gazoz",
+      "gorsel": "assets/images/consolation/gazsiz-gazoz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900186,
+      "isim": "Sakızsız Fal",
+      "gorsel": "assets/images/consolation/sakizsiz-fal.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900187,
+      "isim": "Ezilmiş Sandviç",
+      "gorsel": "assets/images/consolation/ezilmis-sandvic.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900188,
+      "isim": "Tek Çubuk Kraker",
+      "gorsel": "assets/images/consolation/tek-cubuk-kraker.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900189,
+      "isim": "Yarım Simit",
+      "gorsel": "assets/images/consolation/yarim-simit.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900190,
+      "isim": "İçi Boş Jelibon Paketi",
+      "gorsel": "assets/images/consolation/ici-bos-jelibon-paketi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "oyunlar": [
+    {
+      "id": 900191,
+      "isim": "Yükleme Ekranı",
+      "gorsel": "assets/images/consolation/yukleme-ekrani.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900192,
+      "isim": "Bitmeyen Eğitim",
+      "gorsel": "assets/images/consolation/bitmeyen-egitim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900193,
+      "isim": "Bağlantı Bekleniyor",
+      "gorsel": "assets/images/consolation/baglanti-bekleniyor.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900194,
+      "isim": "Tek Tuş Macerası",
+      "gorsel": "assets/images/consolation/tek-tus-macerasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900195,
+      "isim": "Kaydetmeyi Unuttum",
+      "gorsel": "assets/images/consolation/kaydetmeyi-unuttum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900196,
+      "isim": "Piksel Çiftliği",
+      "gorsel": "assets/images/consolation/piksel-ciftligi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900197,
+      "isim": "Menüde Kaybolmak",
+      "gorsel": "assets/images/consolation/menude-kaybolmak.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900198,
+      "isim": "Demo Bitti",
+      "gorsel": "assets/images/consolation/demo-bitti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900199,
+      "isim": "Tuşları Karıştırdım",
+      "gorsel": "assets/images/consolation/tuslari-karistirdim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900200,
+      "isim": "Son Can Gitti",
+      "gorsel": "assets/images/consolation/son-can-gitti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "oyun-karakterleri": [
+    {
+      "id": 900201,
+      "isim": "Acemi Bot",
+      "gorsel": "assets/images/consolation/acemi-bot.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900202,
+      "isim": "Eğitim Kuklası",
+      "gorsel": "assets/images/consolation/egitim-kuklasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900203,
+      "isim": "Bir Canlı NPC",
+      "gorsel": "assets/images/consolation/bir-canli-npc.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900204,
+      "isim": "Yavaş Salyangoz",
+      "gorsel": "assets/images/consolation/yavas-salyangoz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900205,
+      "isim": "Boş Sandık Bekçisi",
+      "gorsel": "assets/images/consolation/bos-sandik-bekcisi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900206,
+      "isim": "Tahta Kılıçlı Çırak",
+      "gorsel": "assets/images/consolation/tahta-kilicli-cirak.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900207,
+      "isim": "Görevsiz Köylü",
+      "gorsel": "assets/images/consolation/gorevsiz-koylu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900208,
+      "isim": "Kalkanını Unutan",
+      "gorsel": "assets/images/consolation/kalkanini-unutan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900209,
+      "isim": "Uykulu Muhafız",
+      "gorsel": "assets/images/consolation/uykulu-muhafiz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900210,
+      "isim": "Kaçan Tavuk",
+      "gorsel": "assets/images/consolation/kacan-tavuk.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "valorant-ajanlari": [
+    {
+      "id": 900211,
+      "isim": "Eğitim Botu",
+      "gorsel": "assets/images/consolation/egitim-botu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900212,
+      "isim": "Boş Şarjör",
+      "gorsel": "assets/images/consolation/bos-sarjor.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900213,
+      "isim": "Duvara Flaş",
+      "gorsel": "assets/images/consolation/duvara-flas.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900214,
+      "isim": "Dumanın Dışında",
+      "gorsel": "assets/images/consolation/dumanin-disinda.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900215,
+      "isim": "Spike Nerede?",
+      "gorsel": "assets/images/consolation/spike-nerede.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900216,
+      "isim": "Bıçağı Unutan",
+      "gorsel": "assets/images/consolation/bicagi-unutan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900217,
+      "isim": "Yanlış Kurulum",
+      "gorsel": "assets/images/consolation/yanlis-kurulum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900218,
+      "isim": "Isınma Turisti",
+      "gorsel": "assets/images/consolation/isinma-turisti.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900219,
+      "isim": "Haritayı Açık Unutan",
+      "gorsel": "assets/images/consolation/haritayi-acik-unutan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900220,
+      "isim": "Zıplayan Acemi",
+      "gorsel": "assets/images/consolation/ziplayan-acemi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "lol-sampiyonlari": [
+    {
+      "id": 900221,
+      "isim": "Yakın Dövüş Minyonu",
+      "gorsel": "assets/images/consolation/yakin-dovus-minyonu.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900222,
+      "isim": "Uzakçı Minyon",
+      "gorsel": "assets/images/consolation/uzakci-minyon.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900223,
+      "isim": "Boş Totem",
+      "gorsel": "assets/images/consolation/bos-totem.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900224,
+      "isim": "Nehir Yengeci",
+      "gorsel": "assets/images/consolation/nehir-yengeci.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900225,
+      "isim": "Üsse Dönen Çırak",
+      "gorsel": "assets/images/consolation/usse-donen-cirak.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900226,
+      "isim": "Eksik Altın",
+      "gorsel": "assets/images/consolation/eksik-altin.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900227,
+      "isim": "İksirsiz Maceracı",
+      "gorsel": "assets/images/consolation/iksirsiz-maceraci.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900228,
+      "isim": "Yanlış Rün",
+      "gorsel": "assets/images/consolation/yanlis-run.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900229,
+      "isim": "Uyuyan Ormancı",
+      "gorsel": "assets/images/consolation/uyuyan-ormanci.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900230,
+      "isim": "Tahta Kalkan",
+      "gorsel": "assets/images/consolation/tahta-kalkan.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ],
+  "oyun-evreni": [
+    {
+      "id": 900231,
+      "isim": "Yükleme Ekranı",
+      "gorsel": "assets/images/consolation/yukleme-ekrani.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900232,
+      "isim": "Bitmeyen Eğitim",
+      "gorsel": "assets/images/consolation/bitmeyen-egitim.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900233,
+      "isim": "Bağlantı Bekleniyor",
+      "gorsel": "assets/images/consolation/baglanti-bekleniyor.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900234,
+      "isim": "Tek Tuş Macerası",
+      "gorsel": "assets/images/consolation/tek-tus-macerasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900235,
+      "isim": "Kaydetmeyi Unuttum",
+      "gorsel": "assets/images/consolation/kaydetmeyi-unuttum.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900236,
+      "isim": "Acemi Bot",
+      "gorsel": "assets/images/consolation/acemi-bot.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900237,
+      "isim": "Eğitim Kuklası",
+      "gorsel": "assets/images/consolation/egitim-kuklasi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900238,
+      "isim": "Bir Canlı NPC",
+      "gorsel": "assets/images/consolation/bir-canli-npc.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900239,
+      "isim": "Yavaş Salyangoz",
+      "gorsel": "assets/images/consolation/yavas-salyangoz.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    },
+    {
+      "id": 900240,
+      "isim": "Boş Sandık Bekçisi",
+      "gorsel": "assets/images/consolation/bos-sandik-bekcisi.svg",
+      "etiket": "Teselli",
+      "teselli": true
+    }
+  ]
+}

@@ -26,6 +26,7 @@ import { createMoveFeedback } from './js/move-feedback.js';
 import { createTableManager } from './js/table-manager.js';
 import { auctionJuryBallot, auctionJuryResult } from './js/auction-jury.js';
 import { shuffledTelepathyCriteria } from './js/telepathy-questions.js';
+import { splitCollections, consolationRange } from './js/consolation.js';
 import { ALL_MODES, isPartyMode, roomSeats, createPartyRoom, joinPartyRoom, changePartyRoom, validatePartyRoom,
   capturePartyCursor, withPartyCursor } from './js/party-room-state.js';
 
@@ -49,6 +50,7 @@ const REACTIONS = { get laugh() { return t('runtime.copy.ha_ha'); }, get angry()
 const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); }, get frequency() { return t('runtime.mode.frequency'); }, get 'double-ranking'() { return t('runtime.mode.double-ranking'); } };
 for (const mode of ['sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon']) Object.defineProperty(MODE_NAMES, mode, { get: () => t(`party.mode.${mode}`) });
 let datasets = {};
+let consolationDatasets = {};
 const chosenCollections = {};
 let selectedCategory = $('dataset-select').value;
 let renderedCategory = null;
@@ -346,14 +348,16 @@ function shuffleDeck(datasetId) {
 }
 function gamePayload(config = room) {
   return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) }
-    : { deck: shuffleDeck(config.datasetId), ...(config.mode === 'telepathy' ? { criteria: shuffledTelepathyCriteria(randomIndex) } : {}) };
+    : { deck: shuffleDeck(config.datasetId),
+      ...(config.mode === 'auction' ? { completionDeck: shuffledIds(consolationDatasets[config.datasetId] || []) } : {}),
+      ...(config.mode === 'telepathy' ? { criteria: shuffledTelepathyCriteria(randomIndex) } : {}) };
 }
 function randomIndex(length) { return crypto.getRandomValues(new Uint32Array(1))[0] % length; }
 function changeCurrentRoom(value, uid, revision, kind, payload) {
   return value?.version === 2 ? changePartyRoom(value, uid, revision, kind, payload) : changeRoom(value, uid, revision, kind, payload);
 }
 
-function getCard(id) { return datasets[room.datasetId]?.find(card => card.id === id); }
+function getCard(id) { return datasets[room.datasetId]?.find(card => card.id === id) || consolationDatasets[room.datasetId]?.find(card => card.id === id); }
 function nameFor(seat) { return room?.players?.[seat]?.name || t('runtime.copy.oyuncu_bekleniyor'); }
 function onlineSeat(seat) { return demo || Object.keys(presence[room?.players?.[seat]?.uid] || {}).length > 0; }
 function setScreen(screenId) {
@@ -472,7 +476,7 @@ function resolveDemoCooperative() {
 }
 
 function partyContext() {
-  return { room, seat: mySeat, cards: new Map((datasets[room?.datasetId] || []).map(card => [card.id, card])),
+  return { room, seat: mySeat, cards: new Map([...(datasets[room?.datasetId] || []), ...(consolationDatasets[room?.datasetId] || [])].map(card => [card.id, card])),
     privateState: partyState, juryState, datasets, connected: demo || !!service?.connected, busy, presence,
     nameFor, t, onlineSeat, demo };
 }
@@ -1150,6 +1154,12 @@ function assertRoomContent(value) {
   if (value.version === 2) validatePartyRoom(value);
   if (value.mode === 'bracket' && ![16, 32].includes(value.bracketSize ?? 16)) throw new RoomError('Turnuva 16 veya 32 kartla başlamalı.');
   if (!value.game) return;
+  if (value.game.completionDeck !== undefined) {
+    const pool = consolationDatasets[value.datasetId] || [], range = consolationRange(value.datasetId);
+    if (value.version !== 2 || value.mode !== 'auction' || !Array.isArray(value.game.completionDeck) || value.game.completionDeck.length !== 10
+      || new Set(value.game.completionDeck).size !== 10 || value.game.completionDeck.some(id => id < range.min || id > range.max || !pool.some(card => card.id === id)))
+      throw new RoomError('Odanın teselli kartları bu koleksiyonla uyuşmuyor.');
+  }
   const byId = new Map(datasets[value.datasetId].map(card => [card.id, card]));
   if (value.mode === 'team-draft') {
     const game = normalizeTeamDraft(value.game);
@@ -1606,11 +1616,14 @@ async function boot() {
   try {
     const response = await fetch('./veri.json');
     if (!response.ok) throw new Error(t('runtime.copy.veri_seti_yuklenemedi_sayfayi_bir_web_sunucusu_uzeri'));
-    datasets = await response.json();
+    ({ datasets, consolationDatasets } = splitCollections(await response.json()));
     for (const [key, cards] of Object.entries(datasets)) {
-      if (!Array.isArray(cards) || cards.length < 10 || cards.length > 200 || new Set(cards.map(card => card.id)).size !== cards.length || cards.some(card => !Number.isSafeInteger(card.id) || card.id < 1 || card.id > 1000000 || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) || card.gorsel.includes('..'))) {
+      if (!Array.isArray(cards) || cards.length < 10 || cards.length > 200 || new Set(cards.map(card => card.id)).size !== cards.length || cards.some(card => !Number.isSafeInteger(card.id) || card.id < 1 || card.id > 1000000 || card.id >= 900001 && card.id <= 900240 || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) || card.gorsel.includes('..'))) {
         throw new Error(t('runtime.error.invalid_dataset', { dataset: key }));
       }
+      const pool = consolationDatasets[key], range = consolationRange(key);
+      if (pool.length !== 10 || new Set(pool.map(card => card.id)).size !== 10 || pool.some(card => !Number.isSafeInteger(card.id) || card.id < range.min || card.id > range.max || typeof card.isim !== 'string' || typeof card.etiket !== 'string' || !/^assets\/images\/consolation\/[a-z0-9-]+\.svg$/.test(card.gorsel)))
+        throw new Error(t('runtime.error.invalid_dataset', { dataset: key }));
     }
     if (Object.keys(DATASET_NAMES).some(key => !datasets[key])) throw new Error(t('runtime.copy.efsaneler_super_lig_tatli_ana_yemek_dizi_ve_film_ver'));
     // A category can be selected while veri.json is still loading. Rebuild

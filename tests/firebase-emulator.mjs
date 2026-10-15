@@ -9,12 +9,13 @@ import { readFile } from 'node:fs/promises';
 import { changeRoom, seatFor } from '../js/room-state.js';
 import { captureTeamCursor, isTeamCursorCurrent, assignWithTeamCursor } from '../js/team-command.js';
 import { draftTriplets } from '../js/game-setup.js';
+import { playableCollections } from '../js/consolation.js';
 
 const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const PROJECT = 'demo-iki-kisilik';
 const TEST_CODES = ['918001', '918002', '918003', '918004', '918005', '918006', '918007', '918008', '918009'];
-const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
+const DATASETS = playableCollections(JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8')));
 const DECK = DATASETS.superlig.map(card => card.id);
 const BLIND_DECK = DATASETS.futbol.slice(0, 10).map(card => card.id);
 const BRACKET_DECK = DATASETS.futbol.slice(0, 16).map(card => card.id);

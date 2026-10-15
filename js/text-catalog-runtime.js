@@ -358,7 +358,7 @@ export const RUNTIME_TEXT_CATALOG = {
   "runtime.copy.20_tl_ile_5_kartlik_kadronu_kur_her_kart_sirayla_bir": {
     "group": "Lobi",
     "label": "20 TL bütçeyle 5 kart topla. Her kart bir oyuncunun otomatik 1 TL açılış teklifiyle b…",
-    "value": "Her oyuncu 20 TL bütçeyle 5 kart toplar. Kartlar dönüşümlü 1 TL açılış teklifiyle başlar; açılış teklifi kartı kazandırmaz. Teklif sırası saat yönünde ilerler. Pas dediğinde o kartın ihalesinden çekilirsin. Diğer herkes çekildiğinde kart son teklif sahibine gider. İki oyuncuda 20, üç veya dört oyuncuda 30 kartlık deste kullanılır. Oyun sonunda eksik kartlar sürpriz seçimlerle 5’e tamamlanır."
+    "value": "Her oyuncu 20 TL bütçeyle 5 kart toplar. Kartlar dönüşümlü 1 TL açılış teklifiyle başlar; açılış teklifi kartı kazandırmaz. Teklif sırası saat yönünde ilerler. Pas dediğinde o kartın ihalesinden çekilirsin. Diğer herkes çekildiğinde kart son teklif sahibine gider. İki oyuncuda 20, üç veya dört oyuncuda 30 kartlık deste kullanılır. Bütçesi biten oyuncuların eksik yerleri tur sonunda koleksiyona özel 10 teselli kartından rastgele tamamlanır. Teselli kartları normal ihaleye girmez; aynı oyuncuya aynı kart iki kez verilmez."
   },
   "runtime.copy.rastgele_10_karti_sonraki_karti_gormeden_1_10_arasin": {
     "group": "Lobi",

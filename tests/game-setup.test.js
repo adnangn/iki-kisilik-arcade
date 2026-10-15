@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { shuffledIds, draftTriplets } from '../js/game-setup.js';
-const data = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
+import { playableCollections } from '../js/consolation.js';
+const data = playableCollections(JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8')));
 
 test('all collections supply eleven matching-tag trios without changing source data', () => {
   for (const cards of Object.values(data)) {

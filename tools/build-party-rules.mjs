@@ -6,12 +6,13 @@ import { installPartyShapeGuards } from './party-shape-guards.mjs';
 import { installTableLifecycleRules } from './table-lifecycle-rules.mjs';
 import { installAuctionJuryRules } from './auction-jury-rules.mjs';
 import { compactLiteralAlternatives } from './compact-literal-alternatives.mjs';
+import { CONSOLATION_DATASET_IDS, consolationRange, playableCollections } from '../js/consolation.js';
 
 const source = new URL('./firebase-rules-legacy.json', import.meta.url);
 const output = process.argv.find(arg => arg.startsWith('--output='))?.slice(9) || new URL('../artifacts/party-rules.json', import.meta.url);
 const document = JSON.parse(await readFile(source, 'utf8'));
 const r = document.rules, room = r.rooms.$code;
-const catalog=JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8'));
+const catalog=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8')));
 const legacyMaximum=Math.min(200,Math.max(32,...Object.values(catalog).map(cards=>cards.length)));
 room.game['.validate'] = transformRuleExpression(room.game['.validate'], (node, render) => {
   const text=render(node);
@@ -31,6 +32,7 @@ const rosterIndex = "($index==='0'?0:$index==='1'?1:$index==='2'?2:$index==='3'?
   room.game.rosters={$seat:roster};
 }
 const legacyDeck = room.game.deck;
+const paidId = `newData.val()<${consolationRange(CONSOLATION_DATASET_IDS[0]).min}||newData.val()>${consolationRange(CONSOLATION_DATASET_IDS.at(-1)).max}`;
 legacyDeck['.validate'] = transformRuleExpression(legacyDeck['.validate'], (node, render) => {
   if(node.kind==='or'&&/^!newData\.hasChild\('\d+'\)\|\|newData\.hasChild\('\d+'\)$/.test(render(node)))return {kind:'atom',value:'true'};
   if(node.kind==='atom'){
@@ -42,6 +44,7 @@ legacyDeck['.validate'] = transformRuleExpression(legacyDeck['.validate'], (node
 const legacyPrevious = Array.from({length:legacyMaximum-1},(_,i)=>`$index==='${i+1}'?'${i}':`).join('')+`'${legacyMaximum-2}'`;
 legacyDeck.$index['.validate'] += `&&$index.matches(/^(${Array.from({length:legacyMaximum},(_,i)=>i).join('|')})$/)`;
 legacyDeck.$index['.validate'] += `&&($index==='0'||newData.parent().hasChild(${legacyPrevious}))`;
+legacyDeck.$index['.validate'] += `&&(${paidId})`;
 // Move repeated fixed-round leaf checks into wildcard validators. Presence
 // checks remain at their parent so a removed historical record is rejected.
 const team = room.game.players.$seat;
@@ -166,10 +169,21 @@ pg.deckSize = { '.validate': `${number(1,45)}&&newData.parent().child('deck').ha
 pg.deck['.validate'] = "newData.hasChild('0')&&newData.hasChild((newData.parent().child('deckSize').val()-1)+'')";
 const partyPrevious = Array.from({length:44},(_,i)=>`$index==='${i+1}'?'${i}':`).join('')+"'43'";
 pg.deck.$index['.validate'] += `&&($index==='0'||newData.parent().hasChild(${partyPrevious}))`;
+pg.deck.$index['.validate'] += `&&(${paidId})`;
 const visibleGame='newData.parent().parent()';
 const visibleCount = `(${visibleGame}.child('mode').val()==='telepathy'?4:${visibleGame}.child('mode').val()==='detective'?6:${visibleGame}.child('mode').val()==='chameleon'?9:1)`;
 pg.visibleCards = { '$cardId': { '.validate': `${number(0,8)}&&newData.val()<${visibleCount}&&$cardId===${visibleGame}.child('deck').child(((${visibleGame}.child('roundIndex').val()*${visibleCount}+newData.val())%${visibleGame}.child('deckSize').val())+'').val()+''` } };
 pg.deckIds = { '$cardId': { '.validate': `${number(0,44)}&&$cardId===newData.parent().parent().child('deck').child(newData.val()+'').val()+''` } };
+// The optional reserve is absent in existing rooms. New open auctions keep
+// their ten consolation cards outside the paid deck and freeze their order.
+pg.completionDeck = {
+  '.validate': `newData.parent().child('mode').val()==='auction'&&newData.hasChildren(['0','1','2','3','4','5','6','7','8','9'])`,
+  '$index': { '.validate': `$index.matches(/^[0-9]$/)&&${number(1,1000000)}&&newData.parent().parent().child('completionIds').child(newData.val()+'').val()+''===$index&&!newData.parent().parent().child('deckIds').hasChild(newData.val()+'')&&(${oneOf(value('newData.parent().parent().parent()', 'lastAction/kind'), ['start','rematch','next-game'])}||newData.val()===data.val())` },
+};
+const completionDataset = CONSOLATION_DATASET_IDS.map((id, index) => index === CONSOLATION_DATASET_IDS.length - 1
+  ? `'${id}'` : `newData.val()<=${consolationRange(id).max}?'${id}':`).join('');
+pg.completionDeck.$index['.validate'] += `&&newData.val()>=${consolationRange(CONSOLATION_DATASET_IDS[0]).min}&&newData.val()<=${consolationRange(CONSOLATION_DATASET_IDS.at(-1)).max}&&newData.parent().parent().parent().child('datasetId').val()===(${completionDataset})`;
+pg.completionIds = { '$cardId': { '.validate': `${number(0,9)}&&$cardId===newData.parent().parent().child('completionDeck').child(newData.val()+'').val()+''` } };
 pg.seats = { '.validate': `newData.hasChildren(['0','1'])&&(${oneOf(value('newData.parent().parent()', 'lastAction/kind'),['start','rematch','next-game'])}?newData.hasChild('2')===newData.parent().parent().hasChild('players/p3')&&newData.hasChild('3')===newData.parent().parent().hasChild('players/p4'):newData.hasChild('2')===data.hasChild('2')&&newData.hasChild('3')===data.hasChild('3'))`, '0': { '.validate': "newData.val()==='p1'" }, '1': { '.validate': "newData.val()==='p2'" }, '2': { '.validate': "newData.val()==='p3'" }, '3': { '.validate': "newData.val()==='p4'" }, '$other': { '.validate': false } };
 // A generic leaf guard freezes all match data while players choose/approve the
 // next game. Shape validators below close unknown fields and constrain inputs.
@@ -204,10 +218,12 @@ const rosterGame='newData.parent().parent().parent()', oldRosterGame='data.paren
 const rosterInitial=oneOf(value(`${rosterGame}.parent()`,'lastAction/kind'),['start','rematch','next-game']);
 const paidRoster=`$seat===${rosterGame}.child('lastAward/seat').val()&&newData.child('id').val()===${rosterGame}.child('lastAward/id').val()&&newData.child('price').val()===${rosterGame}.child('lastAward/price').val()&&${rosterGame}.child('lastAward/sequence').val()===${oldRosterGame}.child('roundIndex').val()+1&&!newData.hasChild('source')`;
 const rosterUnique=and(seats.flatMap(seat=>Array.from({length:5},(_,index)=>`($seat==='${seat}'&&$index==='${index}')||newData.child('id').val()!==${rosterGame}.child('rosters/${seat}/${index}/id').val()`)));
+const consolationRoster = `${rosterGame}.hasChild('completionDeck')&&newData.child('source').val()==='completion'`;
+const rosterMember = `(${consolationRoster}?${rosterGame}.child('completionIds').hasChild(newData.child('id').val()+'')&&${rosterGame}.child('budgets').child($seat).val()===0:${rosterGame}.child('deckIds').hasChild(newData.child('id').val()+'')&&${rosterUnique})`;
 pg.rosters={ '$seat':{
   '.validate': `$seat.matches(/^p[1-4]$/)&&newData.parent().parent().child('seats').hasChild($seat==='p1'?'0':$seat==='p2'?'1':$seat==='p3'?'2':'3')&&newData.hasChild('0')&&${and(Array.from({length:5},(_,index)=>`!data.hasChild('${index}')||newData.hasChild('${index}')`))}&&${and(Array.from({length:4},(_,index)=>`!newData.hasChild('${index+1}')||newData.hasChild('${index}')`))}`,
   '$index':{
-    '.validate': `$index.matches(/^[0-4]$/)&&newData.hasChildren(['id','price'])&&${rosterGame}.child('deckIds').hasChild(newData.child('id').val()+'')&&${rosterUnique}&&(${rosterInitial}?true:data.exists()?${and(['id','price','source'].map(field=>`newData.child('${field}').val()===data.child('${field}').val()`))}:(${paidRoster})||(newData.child('price').val()===0&&newData.child('source').val()==='completion'&&${rosterGame}.child('phase').val()==='finished'))`,
+    '.validate': `$index.matches(/^[0-4]$/)&&newData.hasChildren(['id','price'])&&${rosterMember}&&(${rosterInitial}?true:data.exists()?${and(['id','price','source'].map(field=>`newData.child('${field}').val()===data.child('${field}').val()`))}:(${paidRoster})||(newData.child('price').val()===0&&newData.child('source').val()==='completion'&&${rosterGame}.child('phase').val()==='finished'))`,
     id:{'.validate':number(1,1000000)},price:{},source:{},'$other':{'.validate':false},
   },
 } };

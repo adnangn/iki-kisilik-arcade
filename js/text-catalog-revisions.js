@@ -16,5 +16,11 @@ export const REVISION_TEXT_CATALOG = {
   'revision.auction.completion_title': field('Ücretsiz kart açıklaması', 'Kart seçimini bütçeden harcamadan tamamlayan sürpriz kart.'),
   'revision.auction.completion_notice': field('Ücretsiz kadro tamamlama sonucu', '{players} için {count} sürpriz kart eklendi. Her oyuncunun 5 kartı tamamlandı; bütçeler değişmedi.'),
   'revision.auction.exhausted_hint': field('Parası biten oyuncuya açıklama', 'Bütçen bitti. Pas ile devam et; oyun sonunda eksik kartların sürpriz seçimlerle 5’e tamamlanacak.'),
+  'revision.auction.consolation_label': field('Teselli kartı rozeti', 'TESELLİ'),
+  'revision.auction.consolation_price': field('Teselli kartı fiyatı', 'Teselli · 0 TL'),
+  'revision.auction.consolation_title': field('Teselli kartı açıklaması', 'Bütçesi biten oyuncunun eksik kartı özel teselli havuzundan tamamlandı.'),
+  'revision.auction.consolation_wait': field('Teselli kartı bekleme açıklaması', 'Bütçen bitti. Pas ile devam et; turun sonunda eksik yerlerin teselli kartlarıyla dolacak.'),
+  'revision.auction.consolation_reveal': field('Teselli paketi sonuç başlığı', 'TESELLİ PAKETİ AÇILDI'),
+  'revision.auction.consolation_summary': field('Teselli paketi sonuç açıklaması', '{count} teselli kartı dağıtıldı. Eksik yerler doldu; bütçeler değişmedi.'),
   'revision.draft.goalkeeper_note': field('Tek kaleci turu açıklaması', 'Futbol koleksiyonlarında 11 turun yalnız biri kaleci üçlüsüdür. Diğer turlarda saha oyuncuları gelir.'),
 };

@@ -14,6 +14,7 @@ import { normalizeTexts } from '../js/texts.js';
 import { TEXT_CATALOG } from '../js/text-catalog.js';
 import { ALL_MODES } from '../js/party-room-state.js';
 import { ruleLiteralOptions } from './rule-literal-options.mjs';
+import { splitCollections, CONSOLATION_DATASET_IDS, consolationRange } from '../js/consolation.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
 export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'table-manager.css', 'move-feedback.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
@@ -152,19 +153,34 @@ export async function preflight({ online = false, quiet = false } = {}) {
     if (!contents.has(file)) contents.set(file, await readFile(path.join(PROJECT_ROOT, file), 'utf8'));
     return contents.get(file);
   };
-  const datasets = JSON.parse(await read('veri.json'));
+  const rawDatasets = JSON.parse(await read('veri.json'));
+  const { datasets, consolationDatasets } = splitCollections(rawDatasets);
   normalizeTexts(JSON.parse(await read('metinler.json')));
   for (const [key, field] of Object.entries(TEXT_CATALOG)) {
     assert.ok(field.group && field.label && typeof field.value === 'string' && field.value.trim(), `Metin kataloğu alanı geçersiz: ${key}`);
   }
   assert.deepEqual(Object.keys(datasets).sort(), Object.keys(DATASET_NAMES).sort(), 'Koleksiyonlar lobi seçenekleriyle uyuşmuyor.');
   const images = new Set();
+  let consolationCount = 0;
+  for (const datasetId of CONSOLATION_DATASET_IDS) {
+    const cards = consolationDatasets[datasetId], range = consolationRange(datasetId);
+    assert.equal(cards?.length, 10, `${datasetId}: 10 teselli kartı gerekli.`);
+    assert.equal(new Set(cards.map(card => card.id)).size, 10, `${datasetId}: teselli kimlikleri tekrarlanıyor.`);
+    for (const card of cards) {
+      assert.ok(Number.isInteger(card.id) && card.id >= range.min && card.id <= range.max && card.teselli === true, `${datasetId}: teselli kimliği aralık dışında.`);
+      assert.ok(!datasets[datasetId].some(normal => normal.id === card.id), `${datasetId}: teselli kartı normal desteye karıştı.`);
+      for (const key of ['isim','etiket']) assert.ok(typeof card[key] === 'string' && card[key].trim(), `${datasetId}/${card.id}: ${key} boş.`);
+      assert.ok(/^assets\/images\/consolation\/[a-z0-9-]+\.svg$/.test(card.gorsel) && allowed.has(card.gorsel), `${datasetId}/${card.id}: teselli görseli eksik.`);
+      images.add(card.gorsel); consolationCount++;
+    }
+  }
   let cardCount = 0;
   for (const [datasetId, cards] of Object.entries(datasets)) {
     assert.ok(Array.isArray(cards) && cards.length >= 20 && cards.length <= 200, `${datasetId}: tüm oyunlar için 20–200 kart gerekir.`);
     assert.equal(new Set(cards.map(card => card.id)).size, cards.length, `${datasetId}: kart kimlikleri tekrarlanıyor.`);
     for (const card of cards) {
       assert.ok(Number.isSafeInteger(card.id) && card.id >= 1 && card.id <= 1000000, `${datasetId}: geçersiz kart kimliği.`);
+      assert.ok(card.id < 900001 || card.id > 900240, `${datasetId}: teselli kimliği normal koleksiyona karıştı.`);
       for (const key of ['isim', 'etiket']) assert.ok(typeof card[key] === 'string' && card[key].trim(), `${datasetId}/${card.id}: ${key} boş.`);
       assert.ok(typeof card.gorsel === 'string' && /^assets\/images\/[a-zA-Z0-9_./-]+$/.test(card.gorsel) && !card.gorsel.includes('..'), `${datasetId}/${card.id}: yerel görsel yolu gerekli.`);
       assert.ok(allowed.has(card.gorsel), `${datasetId}/${card.id}: görsel eksik veya harf büyüklüğü yanlış: ${card.gorsel}`);
@@ -236,8 +252,8 @@ export async function preflight({ online = false, quiet = false } = {}) {
   for (const datasetId of Object.keys(datasets)) assert.ok(allowedDatasets.has(datasetId), `Firebase koleksiyon izni eksik: ${datasetId}`);
   for (const mode of ALL_MODES) assert.ok(allowedModes.has(mode), `Firebase mod izni eksik: ${mode}`);
   if (online) checkOnlineConfig();
-  const result = { files, datasets, cardCount, imageCount: images.size, referenceCount, modeCount: ALL_MODES.length };
-  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} kart, ${images.size} yerel kart görseli, ${ALL_MODES.length} mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
+  const result = { files, datasets, cardCount: cardCount + consolationCount, playableCardCount: cardCount, consolationCount, imageCount: images.size, referenceCount, modeCount: ALL_MODES.length };
+  if (!quiet) console.log(`Hazırlık kontrolü geçti: ${Object.keys(datasets).length} koleksiyon, ${cardCount} normal + ${consolationCount} teselli kartı, ${images.size} yerel kart görseli, ${ALL_MODES.length} mod, ${referenceCount} göreli başvuru${online ? ', Firebase web ayarları dolu' : ''}.`);
   return result;
 }
 

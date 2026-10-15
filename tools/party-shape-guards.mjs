@@ -24,6 +24,7 @@ export function installPartyShapeGuards(document) {
     chameleon: ['scores'],
   };
   append(game, `newData.hasChildren(['deckSize','deckIds'])&&(${Object.entries(required).map(([id, fields]) => `${mode}==='${id}'&&newData.hasChildren(${JSON.stringify(fields)})`).join('||')})`);
+  append(game, `newData.hasChild('completionDeck')===newData.hasChild('completionIds')&&(${initial}||newData.hasChild('completionDeck')===data.hasChild('completionDeck'))`);
   append(game, `${has('newData', 'currentCardId')}===(${money}&&${phase}==='playing')&&(${mode}==='auction'?${has('newData', 'bidderSeat')}===(${phase}==='playing')&&${has('newData', 'turnSeat')}===(${phase}==='playing'):true)`);
   append(game, `${mode}==='simultaneous-ranking'?${has('newData', 'rankings')}===(${phase}==='finished'):true`);
   append(game, `${mode}==='chameleon'&&${oneOf(value('newData', 'stage'), ['voting', 'last-guess', 'reveal'])}?newData.hasChild('clues')&&(${oneOf(value('newData', 'stage'), ['last-guess', 'reveal'])}?newData.hasChild('votes'):true):true`);

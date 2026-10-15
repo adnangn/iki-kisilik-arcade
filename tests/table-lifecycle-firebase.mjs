@@ -3,9 +3,10 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createPartyRoom,joinPartyRoom,changePartyRoom,encodePartyRoom} from '../js/party-room-state.js';
 import {partySubmission} from '../js/party-online.js';
+import {playableCollections} from '../js/consolation.js';
 const origin=process.env.DB_EMULATOR_URL||'http://127.0.0.1:9000',project='demo-iki-kisilik',code='958001';
 assert.match(origin,/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/);
-const pool=JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8')).futbol;
+const pool=playableCollections(JSON.parse(await readFile(new URL('../veri.json',import.meta.url),'utf8'))).futbol;
 const deck=pool.map(card=>card.id),stamp=Date.now(),encode=value=>Buffer.from(JSON.stringify(value)).toString('base64url');
 function token(uid){const now=Math.floor(Date.now()/1000);return `${encode({alg:'none',typ:'JWT'})}.${encode({iss:`https://securetoken.google.com/${project}`,aud:project,sub:uid,uid,user_id:uid,iat:now,exp:now+3600,auth_time:now,firebase:{identities:{},sign_in_provider:'anonymous'}})}.`;}
 async function request(path,{uid='u1',admin=false,method='GET',value}={}){

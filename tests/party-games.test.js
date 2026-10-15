@@ -119,6 +119,94 @@ test('all four players receive five roster cards even after budgets are exhauste
   assert.equal(Object.values(game.rosters).flat().length, 20); accepted(game);
 });
 
+const completionDeck = Array.from({ length: 10 }, (_, index) => 900001 + index);
+function exhaustAuction(count) {
+  let game = create('auction', count, { completionDeck });
+  let guard = 0;
+  while (game.phase === 'playing') {
+    if (++guard > 200) assert.fail('Consolation auction did not finish');
+    const actor = game.turnSeat;
+    const winners = [...game.seats.slice(1), 'p1'];
+    const target = winners[game.roundIndex];
+    const amount = game.roundIndex === count - 2 ? 18 : 20;
+    game = actor === target && game.highestBid < amount
+      ? changePartyGame(game, actor, 'bid', { amount })
+      : target && game.bidderSeat === target && game.highestBid < 2 && game.budgets[actor] >= 2
+        ? changePartyGame(game, actor, 'bid', { amount: 2 }) : changePartyGame(game, actor, 'pass');
+  }
+  return game;
+}
+
+test('open auctions keep ten consolation cards out of every paid round and fill only exhausted budgets', () => {
+  let game = create('auction', 2, { completionDeck });
+  assert.deepEqual(game.completionDeck, completionDeck);
+  assert.equal(game.deck.length, 20);
+  game = changePartyGame(game, 'p2', 'bid', { amount: 20 });
+  game = changePartyGame(game, 'p1', 'pass');
+  while (game.phase === 'playing') {
+    assert.ok(!completionDeck.includes(game.currentCardId));
+    game = changePartyGame(game, game.turnSeat, 'pass');
+  }
+  assert.equal(game.budgets.p1, 15);
+  assert.ok(game.rosters.p1.every(card => card.price === 1 && !card.source && game.deck.includes(card.id)));
+  assert.deepEqual(game.rosters.p2.slice(1), completionDeck.slice(0, 4).map(id => ({ id, price: 0, source: 'completion' })));
+  assert.ok(!game.deck.includes(game.completionAwards[0].id));
+  accepted(game);
+});
+
+test('two to four exhausted players receive deterministic consolation cards with no own duplicates', () => {
+  for (const count of [2, 3, 4]) {
+    const game = exhaustAuction(count);
+    let cursor = 0;
+    for (const seat of game.seats) {
+      assert.equal(game.budgets[seat], 0);
+      assert.equal(game.rosters[seat].length, 5);
+      assert.equal(new Set(game.rosters[seat].map(card => card.id)).size, 5);
+      const gifts = game.rosters[seat].filter(card => card.source === 'completion');
+      assert.equal(gifts.length, 5 - game.rosters[seat].filter(card => !card.source).length);
+      for (const gift of gifts) assert.deepEqual(gift, { id: completionDeck[cursor++ % 10], price: 0, source: 'completion' });
+    }
+    assert.equal(game.completionAwards.length, count * 4 - 2);
+    assert.deepEqual(game.results.r1.id, 1);
+    assert.ok(Object.values(game.results).every(result => game.deck.includes(result.id)));
+    accepted(game);
+  }
+});
+
+test('consolation setup rejects short, sparse, duplicate, paid-card and foreign-mode reserves', () => {
+  const sparse = [...completionDeck]; delete sparse[2];
+  for (const reserve of [completionDeck.slice(1), [...completionDeck, 910000], sparse,
+    completionDeck.map((id, index) => index === 1 ? completionDeck[0] : id), [1, ...completionDeck.slice(1)]]) {
+    assert.throws(() => create('auction', 2, { completionDeck: reserve }), PartyGameError);
+  }
+  for (const mode of ['sealed-auction', 'telepathy', 'simultaneous-ranking', 'detective', 'chameleon']) {
+    assert.throws(() => create(mode, mode === 'detective' ? 2 : 4, { completionDeck }), PartyGameError);
+  }
+});
+
+test('reserved consolation IDs cannot enter any normal party deck, even without a reserve field', () => {
+  for (const mode of ['auction', 'sealed-auction', 'telepathy', 'simultaneous-ranking', 'detective', 'chameleon']) {
+    for (const id of [900001, 900010, 900011, 900240]) {
+      const paid = [...deck]; paid[0] = id;
+      assert.throws(() => create(mode, mode === 'detective' ? 2 : 4, { deck: paid }), PartyGameError);
+    }
+  }
+});
+
+test('canonical auction replay rejects forged gifts, gift order, exhausted budgets and reserve changes', () => {
+  const game = exhaustAuction(4);
+  for (const revise of [value => value.rosters.p1[1].id = value.deck[12],
+    value => value.rosters.p1[1].id = completionDeck[1],
+    value => value.rosters.p1[1].price = 1,
+    value => value.rosters.p1[1].source = 'paid',
+    value => value.budgets.p1 = 1,
+    value => value.completionDeck.reverse(),
+    value => delete value.completionDeck]) {
+    const forged = structuredClone(game); revise(forged);
+    assert.throws(() => normalizePartyGame(forged), PartyGameError);
+  }
+});
+
 test('forged auction budgets, turn, history or early secret data are rejected', () => {
   const game = create('auction');
   for (const revise of [value => value.budgets.p1 = 19, value => value.turnSeat = 'p4',

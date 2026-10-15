@@ -9,11 +9,12 @@ import { createTeamDraft, assignTeamCard } from '../js/team-draft.js';
 import { createCooperative, revealFrequency, advanceFrequency, revealDoubleRanking } from '../js/cooperative.js';
 import { draftTriplets } from '../js/game-setup.js';
 import { DATASET_GROUPS } from '../js/datasets.js';
+import { playableCollections } from '../js/consolation.js';
 
 const ORIGIN = process.env.DB_EMULATOR_URL || 'http://127.0.0.1:9000', PROJECT = 'demo-iki-kisilik';
 assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(ORIGIN), 'Only a local emulator is permitted.');
 const CODES = ['946001', '946002', '946003'];
-const DATASETS = JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8'));
+const DATASETS = playableCollections(JSON.parse(await readFile(new URL('../veri.json', import.meta.url), 'utf8')));
 const MODES = ['auction', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const DECK = DATASETS.futbol.map(card => card.id);
 const TRIPLETS = draftTriplets(DATASETS.futbol, length => length - 1);

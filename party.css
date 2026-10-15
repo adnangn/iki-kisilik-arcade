@@ -302,3 +302,9 @@ button.party-card:disabled { opacity: .7; }
   .party-telepathy-round-question { font-size: 22px; }
   .party-telepathy-round-choices { grid-template-columns: minmax(0, 1fr); }
 }
+.is-consolation-card { background: #f8e8b8; border-left: 4px solid #b58b3e; padding-left: 8px; }
+.party-consolation-reveal { margin-bottom: 22px; padding: 18px; border: 2px solid #b58b3e; background: #f8e8b8; box-shadow: 4px 4px 0 #dfc888; }
+.party-consolation-reveal h3 { font: 10px/1.8 var(--mono); margin: 0 0 10px; }
+@media (prefers-reduced-motion: no-preference) {
+  .party-consolation-reveal { animation: party-arrive .22s steps(3, end); }
+}
