@@ -1,12 +1,16 @@
 # İKİ KİŞİLİK
 
-HTML, CSS ve Vanilla JavaScript ile geliştirilen, GitHub Pages üzerinde klasör altından çalışabilen nostaljik mini oyun SPA'sı. Yedi ana kategoride 23 seçilebilir koleksiyon ve eski odalar için bir arşiv olmak üzere 24 veri havuzu bulunur. On bir mod, tek oyunculu/izleyicili oyunlardan dört kişilik masalara kadar uzanır. Oyun ana kategorisi Oyunlar, Oyun Karakterleri, Valorant Ajanları ve LoL Şampiyonları olarak dört ayrı havuz sunar. Vol. 1 seçkileri mevcut kartların kopyalarını kullanır; Vol. 2 tam havuzları içerir. Çevrimiçi odalar Firebase Authentication ve Realtime Database kullanır. Kör Sıralama ve O mu, Bu mu? izleyici beklemeden başlayabilir; arkadaş aynı kodla sonradan katılabilir. Uygulama sunucusu veya bir framework gerekmez; geliştirme araçları yayın öncesinde statik paketi hazırlar.
+HTML, CSS ve Vanilla JavaScript ile geliştirilen, GitHub Pages üzerinde klasör altından çalışabilen nostaljik mini oyun SPA'sı. Sekiz ana kategoride 28 seçilebilir koleksiyon ve eski odalar için bir arşiv olmak üzere 29 veri havuzu bulunur. On iki mod, tek oyunculu/izleyicili oyunlardan dört kişilik masalara kadar uzanır. Oyun ana kategorisi Oyunlar, Oyun Karakterleri, Valorant Ajanları ve LoL Şampiyonları olarak dört ayrı havuz sunar. Vol. 1 seçkileri mevcut kartların kopyalarını kullanır; Vol. 2 tam havuzları içerir. Çevrimiçi odalar Firebase Authentication ve Realtime Database kullanır. Kör Sıralama ve O mu, Bu mu? izleyici beklemeden başlayabilir; arkadaş aynı kodla sonradan katılabilir. Uygulama sunucusu veya bir framework gerekmez; geliştirme araçları yayın öncesinde statik paketi hazırlar.
+
+**Kutuda Ne Var?** iki kişilik blöf oyunudur. Her tur kartı bilen oyuncu gizli kartını kendi cihazında çeker; karşı oyuncu kararını kilitleyene kadar kart kimliği herkese açık odaya yazılmaz. Üç hazır damga, al/bırak kararı ve 10 tur boyunca değişen roller kullanılır. Bir koleksiyon 5 karta ulaştığında yalnız diğer oyuncuya kart gönderen karar açık kalır; finalde iki koleksiyon da 5 karttır. Yeniden bağlanma aynı gizli kartı korur, rövanş yeni özel kayıt alanıyla başlar.
+
+Maç sonlarında seçilen kartlar, bütçe veya oyunun gerçek sonuçlarından deterministik bir **Retro Gazete** manşeti oluşturulur. Lobideki **Şansımıza Ne Çıkarsa** düğmesi bir koleksiyon ve uygun oyun seçip kısa, azaltılmış hareket tercihine duyarlı bir animasyonun ardından normal çevrimiçi odayı kurar. Bu özellikler için ek sunucu veya ücretli servis gerekmez.
 
 ## Klasör mimarisi
 
 ```text
 oyun/
-├── index.html             # Lobi, bekleme odası, on bir oyun modu, sonuç ekranları
+├── index.html             # Lobi, bekleme odası, on iki oyun modu, sonuç ekranları
 ├── styles.css             # Retro tema, Grid/Flex, 100dvh, mobil düzen
 ├── cooperative.css        # Frekans ve Çifte Sıralama'nın mobil piksel görünümü
 ├── party.css              # 2–4 kişilik masa, gizli seçimler ve uyum sonuçları
@@ -33,7 +37,7 @@ oyun/
 │   ├── game-view.js       # Turnuva geçmişi, aday kartlar ve takım/saha görünümü
 │   ├── ranking-view.js    # Canlı ve sonuç ekranlarının ortak sıralama görünümü
 │   ├── demo-bot.js        # Yalnız kendi sırasında teklif/pas yapan demo botu
-│   ├── datasets.js        # Yedi kategori, 23 seçim ve eski odalar için arşiv
+│   ├── datasets.js        # Sekiz kategori, 28 seçim ve eski odalar için arşiv
 │   ├── texts.js           # Metin yükleme, güvenli şablonlar ve yerel önizleme
 │   ├── text-catalog.js    # Düzenleyici alanları ve varsayılan metin kataloğu
 │   ├── text-catalog-expansion.js # Kategori/koleksiyonlar ve tek oyuncu akışının 84 metin alanı

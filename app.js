@@ -22,6 +22,9 @@ import { captureNextGameCursor, readyWithNextCursor } from './js/next-game-comma
 import { createPartyView, partyModeLimits } from './js/party-view.js';
 import { partyCards, partyGameSpec } from './js/party-games.js';
 import { partySubmission } from './js/party-online.js';
+import { mysteryChoices, assertMysteryCards } from './js/mystery-box.js';
+import { renderRetroHeadline } from './js/retro-headline.js';
+import { chooseLuckySetup, animateLuckySetup } from './js/lucky-room.js';
 import { createMoveFeedback } from './js/move-feedback.js';
 import { createTableManager } from './js/table-manager.js';
 import { auctionJuryBallot, auctionJuryResult } from './js/auction-jury.js';
@@ -48,6 +51,7 @@ let partyRetryTimer = null, partyRetryCount = 0, partyRetryUnit = null;
 let partyDemoRecords = {}, partyDemoDeals = {};
 const REACTIONS = { get laugh() { return t('runtime.copy.ha_ha'); }, get angry() { return t('runtime.copy.grrr'); }, get womp() { return t('runtime.copy.womp_womp'); }, get heart() { return t('runtime.copy.iyi_hamle'); } };
 const MODE_NAMES = { get auction() { return t('runtime.mode.auction'); }, get 'blind-ranking'() { return t('runtime.mode.blind-ranking'); }, get bracket() { return t('runtime.mode.bracket'); }, get 'team-draft'() { return t('runtime.mode.team-draft'); }, get frequency() { return t('runtime.mode.frequency'); }, get 'double-ranking'() { return t('runtime.mode.double-ranking'); } };
+Object.defineProperty(MODE_NAMES, 'mystery-box', { get: () => t('runtime.mode.mystery-box') });
 for (const mode of ['sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon']) Object.defineProperty(MODE_NAMES, mode, { get: () => t(`party.mode.${mode}`) });
 let datasets = {};
 let consolationDatasets = {};
@@ -163,7 +167,7 @@ function renderModePreview() {
     'double-ranking': t('coop.double.rules'),
     'sealed-auction': t('party.rules.sealed-auction'),
     'simultaneous-ranking': t('party.rules.simultaneous-ranking'),
-    telepathy: t('party.rules.telepathy'), detective: t('party.rules.detective'), chameleon: t('party.rules.chameleon')
+    telepathy: t('party.rules.telepathy'), detective: t('party.rules.detective'), chameleon: t('party.rules.chameleon'), 'mystery-box': t('box.rules')
   };
   $('how-to-content').textContent = rules[mode];
   const notice = $('setup-notice').querySelector('p');
@@ -347,6 +351,7 @@ function shuffleDeck(datasetId) {
   return shuffledIds(datasets[datasetId]);
 }
 function gamePayload(config = room) {
+  if (config.mode === 'mystery-box') return {};
   return config.mode === 'team-draft' ? { triplets: draftTriplets(datasets[config.datasetId]) }
     : { deck: shuffleDeck(config.datasetId),
       ...(config.mode === 'auction' ? { completionDeck: shuffledIds(activeConsolationCards(consolationDatasets[config.datasetId])) } : {}),
@@ -544,7 +549,60 @@ async function submitJury(value) {
   beep('select');
 }
 function partyUnit(value = room) { return `r${value.round}/q${value.game.roundIndex}/${value.game.stage}`; }
+function mysteryDealKey(value = room) { return `r${value.round}/q${value.game.roundIndex}`; }
+function drawMysteryCard(value = room) {
+  const used = new Set(Object.values(value.game.results || {}).map(result => result.cardId));
+  const ordinary = (datasets[value.datasetId] || []).filter(card => !used.has(card.id));
+  const surprises = activeConsolationCards(consolationDatasets[value.datasetId]).filter(card => !used.has(card.id));
+  const pool = surprises.length && (!ordinary.length || randomIndex(4) === 0) ? surprises : ordinary;
+  if (!pool.length) throw new RoomError('Bu koleksiyonda yeni kutu için yeterli kart yok.');
+  return pool[randomIndex(pool.length)].id;
+}
+function demoMysteryState() {
+  const game = room.game, key = mysteryDealKey();
+  partyDemoDeals[key] ||= { cardId: drawMysteryCard() };
+  const decision = partyDemoRecords[partyUnit()] || null, locked = !!decision;
+  return { loaded: true, deal: mySeat === game.giverSeat || locked ? partyDemoDeals[key] : null,
+    mine: mySeat === game.responderSeat && locked ? { ...decision, locked: true } : null,
+    locked, progress: {}, recordsForResolution: locked ? { cardId: partyDemoDeals[key].cardId, decision: decision.decision } : null };
+}
+function reconcileMysteryBox() {
+  if (room.status !== 'playing' || room.game.stage === 'reveal' || !partyState.loaded || !demo && !service?.connected) return;
+  const key = `${lifecycle}:${room.round}:${room.game.roundIndex}:${room.game.stage}:${room.revision}`;
+  if (!demo && room.game.stage === 'stamp' && mySeat === room.game.giverSeat && !partyState.deal && partyDealAttempt !== key) {
+    partyDealAttempt = key;
+    const source = service, snapshot = structuredClone(room), generation = lifecycle, watchKey = partyKey;
+    void source.prepareMysteryDeal(snapshot, { cardId: drawMysteryCard(snapshot) }).catch(error => {
+      if (generation === lifecycle && source === service && watchKey === partyKey) { toast(errorMessage(error)); retryParty(watchKey, generation, source); }
+    });
+  }
+  if (!partyState.recordsForResolution || partyAttempt === key) return;
+  partyAttempt = key;
+  const snapshot = structuredClone(room), payload = { ...partyState.recordsForResolution };
+  if (demo) { room = changePartyRoom(room, 'demo-you', room.revision, 'box-resolve', payload); queueMicrotask(render); return; }
+  const source = service, generation = lifecycle, cursor = capturePartyCursor(snapshot, source.uid, 'box-resolve');
+  void source.mutateRoom(snapshot.code, current => withPartyCursor(current, source.uid, cursor, payload)).catch(error => {
+    if (generation !== lifecycle || source !== service || room?.revision !== snapshot.revision) return;
+    toast(errorMessage(error)); retryParty(partyKey, generation, source);
+  });
+}
+function scheduleMysteryBot() {
+  if (!demo || botTimer || busy || room.status !== 'playing' || room.game.stage === 'reveal') return;
+  const actor = room.game.stage === 'stamp' ? room.game.giverSeat : room.game.responderSeat;
+  if (actor === mySeat || room.game.stage === 'decision' && partyState.locked) return;
+  const snapshot = structuredClone(room), generation = lifecycle;
+  botTimer = setTimeout(() => {
+    botTimer = null;
+    if (generation !== lifecycle || !demo || busy || room?.revision !== snapshot.revision) { render(); return; }
+    if (room.game.stage === 'stamp') room = changePartyRoom(room, room.players[actor].uid, room.revision, 'box-stamp', { stamp: ['gold', 'trash', 'risk'][randomIndex(3)] });
+    else {
+      const choices = mysteryChoices(room.game); partyDemoRecords[partyUnit()] = { decision: choices[randomIndex(choices.length)] };
+    }
+    render();
+  }, 450 + randomIndex(250));
+}
 function demoPartyState() {
+  if (room.mode === 'mystery-box') return demoMysteryState();
   const game = room.game, records = partyDemoRecords[partyUnit()] || {};
   let deal = partyDemoDeals[`r${room.round}/q${game.roundIndex}`];
   if (!deal && ['detective', 'chameleon'].includes(room.mode)) {
@@ -574,7 +632,7 @@ function retryParty(key, generation, source, restart = false) {
   }, Math.min(8000, 750 * 2 ** partyRetryCount++));
 }
 function syncPartyWatch() {
-  const privateMode = room?.version === 2 && isPartyMode(room.mode) && partyGameSpec(room.mode).private;
+  const privateMode = room?.version === 2 && isPartyMode(room.mode) && (room.mode === 'mystery-box' || partyGameSpec(room.mode).private);
   if (!privateMode || room.status !== 'playing' || room.game.stage === 'reveal') {
     clearTimeout(partyRetryTimer); partyRetryTimer = null; partyRetryUnit = null; partyRetryCount = 0;
     partyUnsubscribe?.(); partyUnsubscribe = null; partyKey = null; partyState = { loaded: true, progress: {} }; return;
@@ -591,7 +649,8 @@ function syncPartyWatch() {
   partyState = { loaded: false, mine: null, progress: {} };
   if (!service?.connected) { partyKey = null; return; }
   const source = service, generation = lifecycle;
-  partyUnsubscribe = source.watchParty(structuredClone(room), state => {
+  const watch = room.mode === 'mystery-box' ? source.watchMysteryBox : source.watchParty;
+  partyUnsubscribe = watch(structuredClone(room), state => {
     if (generation !== lifecycle || key !== partyKey || source !== service) return;
     partyState = state; render();
   }, error => {
@@ -603,6 +662,7 @@ function syncPartyWatch() {
   });
 }
 function reconcileParty() {
+  if (room?.mode === 'mystery-box') { reconcileMysteryBox(); return; }
   if (room?.version !== 2 || !isPartyMode(room.mode) || room.status !== 'playing' || room.game.stage === 'reveal' || !partyGameSpec(room.mode).private) return;
   if (!demo && !service?.connected) return;
   const key = demo ? `${lifecycle}:${room.round}:${room.game.roundIndex}:${room.game.stage}:${room.game.turnSeat || ''}:${room.revision}` : `${partyKey}:${room.revision}`;
@@ -641,6 +701,15 @@ function reconcileParty() {
 }
 async function submitParty(value) {
   if (!room || room.version !== 2 || !isPartyMode(room.mode)) return;
+  if (room.mode === 'mystery-box') {
+    if (demo) {
+      if (room.game.stage !== 'decision' || mySeat !== room.game.responderSeat || !mysteryChoices(room.game).includes(value.decision)) throw new RoomError('Bu kutu için karar veremezsin.');
+      const key = partyUnit();
+      if (partyDemoRecords[key]) throw new RoomError('Kararın zaten kilitlendi.');
+      partyDemoRecords[key] = { decision: value.decision }; render();
+    } else await service.submitMysteryDecision(structuredClone(room), value);
+    beep('select'); return;
+  }
   if (demo) {
     const key = partyUnit();
     const previous = room.mode === 'simultaneous-ranking' && room.game.roundIndex > 0
@@ -653,6 +722,7 @@ async function submitParty(value) {
   beep('select');
 }
 function schedulePartyBot() {
+  if (room?.mode === 'mystery-box' && room.status === 'playing') { scheduleMysteryBot(); return; }
   if (!demo || room?.version !== 2 || !isPartyMode(room.mode) || botTimer || busy) return;
   const snapshot = structuredClone(room), generation = lifecycle;
   const candidates = snapshot.status === 'finished' && snapshot.nextGame
@@ -702,6 +772,7 @@ function schedulePartyBot() {
 function render() {
   syncJuryWatch();
   renderApp();
+  renderLegacyHeadline();
   if (room?.version === 2) {
     $('next-game-panel').hidden = true;
     if (!isPartyMode(room.mode) && room.status === 'finished' && partyView) {
@@ -723,6 +794,21 @@ function render() {
   tableManager?.render();
 }
 
+function renderLegacyHeadline() {
+  const existing = $('legacy-retro-headline');
+  if (!room || room.status !== 'finished' || room.version === 2 && isPartyMode(room.mode)) { existing?.remove(); return; }
+  const key = `${room.code}:${room.createdAt}:${room.round}:${room.mode}`;
+  if (existing?.dataset.headlineKey === key) return;
+  const newspaper = renderRetroHeadline(room, { cards: partyContext().cards, nameFor });
+  if (!newspaper) return;
+  newspaper.id = 'legacy-retro-headline'; newspaper.dataset.headlineKey = key;
+  if (existing) existing.replaceWith(newspaper);
+  else {
+    const anchor = $('results-screen').querySelector('.results-header');
+    if (anchor) anchor.after(newspaper); else $('results-screen').prepend(newspaper);
+  }
+}
+
 function renderApp() {
   renderBusyButtons();
   $('session-button').textContent = busy && pendingAction === 'session-button' ? t('runtime.copy.bekle') : !isFirebaseConfigured() ? t('runtime.copy.kaydi_temizle') : signedOut || !service ? t('runtime.copy.oyuncu_oturumu_ac') : t('runtime.copy.oturumu_kapat');
@@ -730,6 +816,7 @@ function renderApp() {
   $('session-caption').textContent = !isFirebaseConfigured() ? t('runtime.copy.bu_cihazdaki_adini_ve_demo_turunu_temizleyebilirsin') : signedOut ? t('runtime.copy.oturum_kapali_demo_oynayabilir_veya_yeni_bir_oyuncu_') : t('runtime.copy.odadan_cikmak_kimligini_korur_oturum_kapatmak_eski_o');
   const available = !busy && !!service?.connected && !demo;
   $('create-room').disabled = !available;
+  $('lucky-room').disabled = !available || !Object.keys(datasets).length;
   $('join-room').disabled = !available;
   $('demo-button').disabled = busy || !Object.keys(datasets).length;
   if (!room) {
@@ -1154,6 +1241,10 @@ function assertRoomContent(value) {
   if (value.version === 2) validatePartyRoom(value);
   if (value.mode === 'bracket' && ![16, 32].includes(value.bracketSize ?? 16)) throw new RoomError('Turnuva 16 veya 32 kartla başlamalı.');
   if (!value.game) return;
+  if (value.mode === 'mystery-box') {
+    assertMysteryCards(value.game, [...datasets[value.datasetId], ...(consolationDatasets[value.datasetId] || [])]);
+    return;
+  }
   if (value.game.completionDeck !== undefined) {
     const pool = consolationDatasets[value.datasetId] || [], range = consolationRange(value.datasetId);
     if (value.version !== 2 || value.mode !== 'auction' || !Array.isArray(value.game.completionDeck) || ![CONSOLATION_POOL_SIZE, CONSOLATION_LEGACY_SIZE].includes(value.game.completionDeck.length)
@@ -1370,15 +1461,32 @@ function playerName() {
   return name.slice(0, 20);
 }
 
+async function createSelectedRoom(name = playerName()) {
+  if (!service) throw new RoomError(t('runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin'));
+  if (!MODE_NAMES[selectedMode()]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
+  const originService = service, epoch = actionEpoch;
+  await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode(), { version: 2, bracketSize: selectedBracketSize() }), originService, epoch);
+}
 $('create-form').addEventListener('submit', event => {
-  event.preventDefault(); void runAction(async () => {
-    const name = playerName();
-    if (!service) throw new RoomError(t('runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin'));
-    if (!MODE_NAMES[selectedMode()]) throw new RoomError(t('runtime.copy.bu_oyun_modu_henuz_oynanabilir_degil'));
-    const originService = service, epoch = actionEpoch;
-    await attach(await originService.createRoom(name, selectedDatasetId(), selectedMode(), { version: 2, bracketSize: selectedBracketSize() }), originService, epoch);
-  }, 'create-room');
+  event.preventDefault(); void runAction(() => createSelectedRoom(), 'create-room');
 });
+$('lucky-room').addEventListener('click', () => void runAction(async () => {
+  const name = playerName(), source = service, generation = lifecycle, epoch = actionEpoch;
+  if (!source?.connected) throw new RoomError(t('runtime.copy.once_firebase_baglanti_ayarlarini_ekleyin'));
+  const choices = Object.entries(DATASET_GROUPS).flatMap(([category, group]) => group.sets.filter(set => datasets[set.id]?.length >= 16).flatMap(set =>
+    ALL_MODES.map(mode => ({ category, groupName: group.label, datasetId: set.id, datasetName: set.title, mode, modeName: MODE_NAMES[mode] }))));
+  const random = () => randomIndex(4294967296) / 4294967296;
+  const finalChoice = chooseLuckySetup(choices, random);
+  $('lucky-reveal').hidden = false;
+  await animateLuckySetup({ element: $('lucky-reveal'), choices, finalChoice, random });
+  if (generation !== lifecycle || source !== service || epoch !== actionEpoch || room) return;
+  selectedCategory = finalChoice.category; chosenCollections[selectedCategory] = finalChoice.datasetId;
+  $('dataset-select').value = selectedCategory; renderedCategory = null; renderedFamily = null;
+  filterModes('all', false);
+  document.querySelector(`input[name="mode"][value="${finalChoice.mode}"]`).checked = true;
+  renderDatasetPreview(); beep('select');
+  await createSelectedRoom(name);
+}, 'lucky-room'));
 $('join-form').addEventListener('submit', event => {
   event.preventDefault(); void runAction(async () => {
     const name = playerName(), code = $('room-code').value.trim();
@@ -1565,7 +1673,7 @@ $('collection-search').addEventListener('input', renderCollection);
 document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventListener('change', renderModePreview));
 function filterModes(filter, choose = true) {
   const groups = { table: ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'chameleon'],
-    duo: ['team-draft', 'frequency', 'double-ranking', 'detective'], solo: ['blind-ranking', 'bracket'] };
+    duo: ['team-draft', 'frequency', 'double-ranking', 'detective', 'mystery-box'], solo: ['blind-ranking', 'bracket'] };
   const visible = filter === 'all' ? ALL_MODES : groups[filter];
   for (const input of document.querySelectorAll('input[name="mode"]')) input.closest('.mode-card').hidden = !visible.includes(input.value);
   document.querySelectorAll('[data-mode-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.modeFilter === filter)));

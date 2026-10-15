@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node tools/serve.mjs",
     "test": "node --test tests/*.test.js",
-    "test:firebase": "node tests/firebase-emulator.mjs && node tests/cooperative-firebase.mjs && node tests/room-cleanup-emulator.mjs && node tests/next-game-emulator.mjs && node tests/party-firebase.mjs && node tests/table-lifecycle-firebase.mjs && node tests/auction-jury-emulator.mjs",
+    "test:firebase": "node tests/firebase-emulator.mjs && node tests/cooperative-firebase.mjs && node tests/room-cleanup-emulator.mjs && node tests/next-game-emulator.mjs && node tests/party-firebase.mjs && node tests/table-lifecycle-firebase.mjs && node tests/auction-jury-emulator.mjs && node tests/mystery-box-firebase.mjs",
     "rules:build": "node tools/build-party-rules.mjs",
     "check": "node tools/preflight.mjs",
     "check:online": "node tools/preflight.mjs --online",

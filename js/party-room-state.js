@@ -5,9 +5,10 @@ import { createBlindRanking, placeBlindCard } from './blind-ranking.js';
 import { createBracket, chooseBracketCard } from './bracket.js';
 import { createTeamDraft, assignTeamCard } from './team-draft.js';
 import { createCooperative, revealFrequency, advanceFrequency, revealDoubleRanking } from './cooperative.js';
+import { createMysteryBox, changeMysteryBox, normalizeMysteryBox } from './mystery-box.js';
 
 export const PARTY_SEATS = ['p1', 'p2', 'p3', 'p4'];
-export const PARTY_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon'];
+export const PARTY_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'mystery-box'];
 export const ALL_MODES = [...PARTY_MODES, 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const selectable = new Set(Object.values(DATASET_GROUPS).flatMap(group => group.sets.map(set => set.id)));
 export const isPartyMode = mode => PARTY_MODES.includes(mode);
@@ -17,7 +18,7 @@ export function modeLimits(mode) {
   if (!ALL_MODES.includes(mode)) throw new RoomError('Bu oyun modu desteklenmiyor.');
   if (['blind-ranking', 'bracket'].includes(mode)) return { min: 1, max: 2 };
   if (mode === 'chameleon') return { min: 3, max: 4 };
-  if (['detective', 'team-draft', 'frequency', 'double-ranking'].includes(mode)) return { min: 2, max: 2 };
+  if (['detective', 'team-draft', 'frequency', 'double-ranking', 'mystery-box'].includes(mode)) return { min: 2, max: 2 };
   return { min: 2, max: 4 };
 }
 export function partyConfig(value) {
@@ -30,6 +31,9 @@ export function partyConfig(value) {
   return result;
 }
 export function encodePartyRoom(room) {
+  if (room?.version === 2 && room.mode === 'mystery-box') {
+    const wire = { ...room }; if (wire.game) { wire.boxGame = wire.game; delete wire.game; } return wire;
+  }
   if (!room || room.version !== 2 || !isPartyMode(room.mode)) return room;
   const wire = { ...room };
   if (wire.game) { wire.partyGame = { ...wire.game, deckSize: wire.game.deck.length,
@@ -45,6 +49,7 @@ export function encodePartyRoom(room) {
   return wire;
 }
 export function decodePartyRoom(room) {
+  if (room?.version === 2 && room.boxGame) { const decoded = { ...room, game: room.boxGame }; delete decoded.boxGame; return decoded; }
   if (!room || room.version !== 2 || !room.partyGame) return room;
   const decoded = { ...room, game: { ...room.partyGame } }; delete decoded.partyGame; delete decoded.game.deckSize; delete decoded.game.visibleCards; delete decoded.game.deckIds; delete decoded.game.resultCount; delete decoded.game.actionCount;
   delete decoded.game.completionIds;
@@ -85,6 +90,7 @@ function requireCount(room, mode = room.mode) {
 }
 function initialGame(room, payload) {
   const seats = roomSeats(room);
+  if (room.mode === 'mystery-box') return createMysteryBox(room.starterSeat);
   if (isPartyMode(room.mode)) return createPartyGame(room.mode, { ...payload, seats, starterSeat: room.starterSeat });
   if (room.mode === 'blind-ranking') return createBlindRanking(payload.deck, room.starterSeat);
   if (room.mode === 'bracket') return createBracket(payload.deck, room.starterSeat, room.bracketSize ?? 16);
@@ -111,7 +117,7 @@ export function changePartyRoom(value, uid, revision, kind, payload = {}) {
     if (config.bracketSize) next.bracketSize = config.bracketSize; else delete next.bracketSize;
     // A new round isolates every former seat's private locks and secret roles.
     // The abandoned game's cards, budgets and results never move to new seats.
-    delete next.game; delete next.partyGame; delete next.nextGame;
+    delete next.game; delete next.partyGame; delete next.boxGame; delete next.nextGame;
     next.status = 'waiting'; next.round++; next.starterSeat = 'p1';
   } else if (kind === 'propose-next') {
     if (room.status !== 'finished') throw new RoomError('Oyun seçmek için bu turun bitmesini bekleyin.');
@@ -141,7 +147,8 @@ export function changePartyRoom(value, uid, revision, kind, payload = {}) {
     next.game = initialGame(next, payload);
   } else {
     if (room.status !== 'playing') throw new RoomError('Bu tur şu an aktif değil.');
-    if (isPartyMode(room.mode)) {
+    if (room.mode === 'mystery-box') next.game = changeMysteryBox(room.game, seat, kind, payload);
+    else if (isPartyMode(room.mode)) {
       next.game = kind === 'party-resolve' ? resolvePartyRound(room.game, payload.records, payload.secrets)
         : changePartyGame(room.game, seat, kind, payload);
     } else if (kind === 'rank' && room.mode === 'blind-ranking') next.game = placeBlindCard(room.game, seat, payload.slot);
@@ -183,6 +190,7 @@ export function validatePartyRoom(room) {
   if (room?.version !== 2 || !roomSeats(room).length || roomSeats(room).length > modeLimits(capacityMode).max || !room.players.p1 || room.players.p1.uid !== room.ownerUid) throw new RoomError('Masa bilgileri geçersiz.');
   partyConfig(room);
   if (new Set(roomSeats(room).map(seat => room.players[seat].uid)).size !== roomSeats(room).length) throw new RoomError('Bir kimlik iki koltuğa oturamaz.');
-  if (room.game && isPartyMode(room.mode)) normalizePartyGame(room.game);
+  if (room.game && room.mode === 'mystery-box') normalizeMysteryBox(room.game);
+  else if (room.game && isPartyMode(room.mode)) normalizePartyGame(room.game);
   return room;
 }

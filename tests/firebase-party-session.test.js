@@ -169,3 +169,16 @@ test('disposal cancels a pending party read before it can write a late choice', 
   assert.equal(f.transactions.filter(item => item.path.startsWith('privateGames/')).length, 0);
   assert.equal(privateListeners(f).length, 0);
 });
+
+test('box service writes only boxGame and decodes the same deckless state after reconnect', async t => {
+  const { f, service } = await open(t, 'host');
+  const waiting = room('mystery-box', 2); f.records.set('rooms/234567', waiting);
+  const warm = service.watchRoom('234567', () => {}); await flush();
+  const playing = await service.mutateRoom('234567', value => changePartyRoom(value, 'host', value.revision, 'start'));
+  warm();
+  assert.ok(f.records.get('rooms/234567').boxGame);
+  assert.equal(f.records.get('rooms/234567').game, undefined); assert.equal(playing.game.deck, undefined);
+  const states = [], stop = service.watchRoom('234567', value => states.push(value)); await flush();
+  assert.deepEqual(states[0], playing); stop();
+  assert.equal(typeof service.prepareMysteryDeal, 'function'); assert.equal(typeof service.watchMysteryBox, 'function');
+});

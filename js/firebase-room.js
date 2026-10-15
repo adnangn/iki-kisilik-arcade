@@ -2,6 +2,7 @@ import { firebaseConfig, emulatorConfig } from '../firebase-config.js';
 import { seatFor, hasOptionalSpectator, RoomError } from './room-state.js';
 import { createCooperativeOnline } from './cooperative-online.js';
 import { createPartyOnline } from './party-online.js';
+import { createMysteryBoxOnline } from './mystery-box-online.js';
 import { createAuctionJury } from './auction-jury.js';
 import { ALL_MODES, createPartyRoom, joinPartyRoom, partySeatFor, encodePartyRoom, decodePartyRoom } from './party-room-state.js';
 import { createRoomLifecycle } from './room-lifecycle.js';
@@ -84,6 +85,7 @@ export async function connectFirebase(onConnection, onSessionEnded = () => {}, l
   return {
     ...createCooperativeOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: cooperativeStops }),
     ...createPartyOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: partyStops }),
+    ...createMysteryBoxOnline({ uid: user.uid, db, ref, get, onValue, transact, assertOnline, stops: partyStops }),
     ...createAuctionJury({ uid: user.uid, db, ref, onValue, transact, assertOnline, stops: juryStops }),
     uid: user.uid,
     get connected() { return connected; },

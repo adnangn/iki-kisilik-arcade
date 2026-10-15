@@ -1,0 +1,38 @@
+/* Local three-reel reveal. No flashing, scrolling page, or moving controls. */
+.lucky-entry { margin-top: 24px; }
+.lucky-entry > .button { width: 100%; min-height: 56px; white-space: normal; line-height: 1.6; gap: 10px; font-size: 10px; }
+#lucky-reveal { margin-top: 18px; }
+.lucky-room { position: relative; min-width: 0; padding: 24px 20px 20px; border: 3px solid var(--ink, #484554); background: var(--paper, #f5edda); box-shadow: 5px 5px 0 #c5b2cf; text-align: center; overflow: hidden; }
+.lucky-room::before, .lucky-room::after { content: ""; position: absolute; top: 10px; width: 6px; height: 6px; background: #b8a172; box-shadow: 0 10px 0 #d8c99f; }
+.lucky-room::before { left: 10px; }
+.lucky-room::after { right: 10px; }
+.lucky-room-badge { display: inline-block; padding: 5px 8px; color: var(--ink, #484554); background: #e8d5a5; border: 2px solid #b8a172; font: 9px/1.6 var(--mono, monospace); letter-spacing: 1px; }
+.lucky-room-title { margin: 13px 0 0; font: 14px/1.8 var(--mono, monospace); color: var(--ink, #484554); overflow-wrap: anywhere; }
+.lucky-room-intro { margin: 8px 0 18px; color: var(--muted, #796e83); font-size: 18px; line-height: 1.25; }
+.lucky-room-reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
+.lucky-room-reel { min-width: 0; min-height: 104px; padding: 12px 8px 10px; background: #e7dfeb; border: 2px solid #897898; box-shadow: inset 0 5px 0 #d1c6d7, inset 0 -5px 0 #f4eef3; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.lucky-room-caption { display: block; margin-bottom: 9px; color: #796e83; font: 8px/1.6 var(--mono, monospace); text-transform: uppercase; letter-spacing: .4px; }
+.lucky-room-value { display: block; width: 100%; color: var(--ink, #484554); font: 10px/1.7 var(--mono, monospace); overflow-wrap: anywhere; }
+.lucky-room[data-state="spinning"] .lucky-room-reel:not([data-locked="true"]) .lucky-room-value { animation: lucky-room-tick .16s steps(2, end) infinite; }
+.lucky-room[data-state="complete"] .lucky-room-reel { background: #e2e9ce; border-color: #82966c; box-shadow: inset 0 5px 0 #cbd8b6, inset 0 -5px 0 #f0f3df; }
+.lucky-room[data-state="complete"] .lucky-room-value { animation: lucky-room-land .22s steps(3, end) 1; }
+.lucky-room-progress { display: flex; justify-content: center; margin: 17px 0 0; min-height: 6px; }
+.lucky-room-progress-pixel { display: block; width: 6px; height: 6px; margin: 0 3px; background: #b8a4c5; }
+.lucky-room[data-state="spinning"] .lucky-room-progress-pixel { animation: lucky-room-pixel .7s steps(2, end) infinite; }
+.lucky-room-progress-pixel:nth-child(3n+2) { animation-delay: .15s !important; }
+.lucky-room-progress-pixel:nth-child(3n) { animation-delay: .3s !important; }
+.lucky-room[data-state="complete"] .lucky-room-progress-pixel { background: #95a77b; }
+.lucky-room-status { min-height: 1.3em; margin: 12px 0 0; color: #63764f; font-size: 16px; line-height: 1.3; overflow-wrap: anywhere; }
+@keyframes lucky-room-tick { 0% { transform: translateY(-2px); opacity: .72; } 100% { transform: translateY(2px); opacity: 1; } }
+@keyframes lucky-room-land { 0% { transform: translateY(-4px); } 60% { transform: translateY(2px); } 100% { transform: translateY(0); } }
+@keyframes lucky-room-pixel { 0%, 100% { background: #c4b4ce; } 50% { background: #8c72a0; } }
+@media (max-width: 420px) {
+  .lucky-room { padding: 22px 10px 16px; }
+  .lucky-room-reels { gap: 6px; }
+  .lucky-room-reel { min-height: 112px; padding-inline: 5px; }
+  .lucky-room-value { font-size: 9px; }
+  .lucky-room-caption { font-size: 7px; letter-spacing: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lucky-room .lucky-room-value, .lucky-room .lucky-room-progress-pixel { animation: none !important; transform: none !important; }
+}

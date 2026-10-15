@@ -49,14 +49,15 @@ function combine(kind, items) {
   const unique = [...new Map(flat.filter(item=>item.kind!=='atom'||item.value!==identity).map(item => [render(item), item])).values()];
   if(!unique.length)return {kind:'atom',value:identity};
   if (unique.length === 1) return unique[0];
-  if (kind === 'or') {
-    const factors = unique.map(item => item.kind === 'and' ? item.items : [item]);
+  if (kind === 'or' || kind === 'and') {
+    const opposite = kind === 'or' ? 'and' : 'or';
+    const factors = unique.map(item => item.kind === opposite ? item.items : [item]);
     const shared = factors[0].filter(item => factors.every(branch => branch.some(candidate => render(candidate) === render(item))));
     if (shared.length) {
       const names = new Set(shared.map(item => render(item)));
       const reduced = factors.map(branch => branch.filter(item => !names.has(render(item))));
-      if (reduced.some(branch => !branch.length)) return combine('and', shared);
-      return combine('and', [...shared, { kind: 'or', items: reduced.map(branch => combine('and', branch)) }]);
+      if (reduced.some(branch => !branch.length)) return combine(opposite, shared);
+      return combine(opposite, [...shared, { kind, items: reduced.map(branch => combine(opposite, branch)) }]);
     }
     // Branches for one game mode often share several long invariants without
     // sharing them with every other mode. Factor that subset as well.
@@ -71,9 +72,9 @@ function combine(kind, items) {
       const selected = new Set(candidate.indices);
       const reduced = candidate.indices.map(index => factors[index].filter(item => render(item) !== render(candidate.item)));
       const grouped = reduced.some(branch => !branch.length) ? candidate.item
-        : combine('and', [candidate.item, combine('or', reduced.map(branch => combine('and', branch)))]);
-      const result = { kind: 'or', items: [...unique.filter((_, index) => !selected.has(index)), grouped] };
-      if (render(result).length < render({ kind, items: unique }).length) return combine('or', result.items);
+        : combine(opposite, [candidate.item, combine(kind, reduced.map(branch => combine(opposite, branch)))]);
+      const result = { kind, items: [...unique.filter((_, index) => !selected.has(index)), grouped] };
+      if (render(result).length < render({ kind, items: unique }).length) return combine(kind, result.items);
     }
   }
   return { kind, items: unique };

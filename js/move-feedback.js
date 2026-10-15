@@ -53,6 +53,8 @@ export function feedbackAction(buttonId, room, explicitKind) {
   if (id === 'vote') return { type: 'vote', private: true };
   if (['sealed', 'guess'].includes(id)) return { type: 'lock', private: true };
   if (id === 'party-lock') return { type: 'lock', private: true };
+  if (id === 'box-decision') return { type: 'lock', private: true };
+  if (id === 'box-stamp') return { type: 'selection' };
   if (id === 'rank' || id === 'choose') {
     const hidden = ['simultaneous-ranking', 'telepathy', 'detective', 'chameleon'].includes(room?.mode);
     return { type: hidden ? 'lock' : 'selection', private: hidden };
@@ -72,7 +74,8 @@ export function nextFeedback(receipt, { room, mySeat, mine, nameFor = seat => ro
   if (game.stage === 'reveal') return { key: 'feedback.next.reveal' };
   const sameDecision = receipt.marker === feedbackMarker(room);
   if (receipt.action.private && sameDecision) return { key: 'feedback.next.locked' };
-  const turn = game.turnSeat || (room.mode === 'detective' ? game.stage === 'clue' ? game.clueGiverSeat : game.guesserSeat : null) || game.activeSeat;
+  const turn = game.turnSeat || (room.mode === 'detective' ? game.stage === 'clue' ? game.clueGiverSeat : game.guesserSeat : null)
+    || (room.mode === 'mystery-box' ? game.stage === 'stamp' ? game.giverSeat : game.responderSeat : null) || game.activeSeat;
   // A public ACK may precede the value listener. The old turn is not the next turn.
   if (!receipt.action.private && sameDecision && ['bid', 'pass'].includes(receipt.action.type) && room.revision === receipt.revision) return { key: 'feedback.next.confirmed' };
   if (turn) return turn === mySeat ? { key: 'feedback.next.your_turn' } : { key: 'feedback.next.player_turn', params: { player: nameFor(turn) } };

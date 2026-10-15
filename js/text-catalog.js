@@ -9,6 +9,7 @@ import { TABLE_TEXT_CATALOG } from './text-catalog-table.js';
 import { FEEDBACK_TEXT_CATALOG } from './text-catalog-feedback.js';
 import { JURY_TEXT_CATALOG } from './text-catalog-jury.js';
 import { LIFESTYLE_TEXT_CATALOG } from './text-catalog-lifestyle.js';
+import { MYSTERY_TEXT_CATALOG } from './text-catalog-mystery.js';
 
 export const TEXT_CATALOG = Object.freeze({
   ...STATIC_TEXT_CATALOG,
@@ -22,5 +23,6 @@ export const TEXT_CATALOG = Object.freeze({
   ...FEEDBACK_TEXT_CATALOG,
   ...JURY_TEXT_CATALOG,
   ...LIFESTYLE_TEXT_CATALOG,
+  ...MYSTERY_TEXT_CATALOG,
   'action.edit-texts': { group: 'Marka ve sayfa', label: 'Metin düzenleyici bağlantısı', value: 'Metin Atölyesi' }
 });

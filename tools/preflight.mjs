@@ -17,8 +17,8 @@ import { ruleLiteralOptions } from './rule-literal-options.mjs';
 import { splitCollections, CONSOLATION_DATASET_IDS, CONSOLATION_POOL_SIZE, activeConsolationCards, isConsolationId, consolationRange } from '../js/consolation.js';
 
 export const PROJECT_ROOT = fileURLToPath(new URL('../', import.meta.url));
-export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'table-manager.css', 'move-feedback.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
-export const RUNTIME_DIRECTORIES = ['js', 'assets'];
+export const RUNTIME_FILES = ['index.html', 'styles.css', 'cooperative.css', 'party.css', 'table-manager.css', 'move-feedback.css', 'mystery-box.css', 'app.js', 'firebase-config.js', 'veri.json', 'metinler.json', 'metin-duzenleyici.html', 'editor.css', '.nojekyll'];
+export const RUNTIME_DIRECTORIES = ['js', 'css', 'assets'];
 
 // Keep exact filename case: Windows accepts case mismatches that Pages rejects.
 export async function listFiles(directory, prefix = '') {

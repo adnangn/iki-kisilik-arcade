@@ -7,6 +7,8 @@ import { installTableLifecycleRules } from './table-lifecycle-rules.mjs';
 import { installAuctionJuryRules } from './auction-jury-rules.mjs';
 import { compactLiteralAlternatives } from './compact-literal-alternatives.mjs';
 import { compactSnapshotPaths } from './compact-snapshot-paths.mjs';
+import { compactArrayGuards } from './compact-array-guards.mjs';
+import { installMysteryBoxRules } from './mystery-box-rules.mjs';
 import { CONSOLATION_DATASET_IDS, consolationRange, playableCollections } from '../js/consolation.js';
 import { DATASET_GROUPS } from '../js/datasets.js';
 
@@ -98,7 +100,7 @@ const currentActor = `${child('data', 'players')}.child(${actorSeat}).child('uid
 const freshRevision = `${n('revision')}===${d('revision')}+1`;
 const setup = oneOf(action, ['start', 'rematch', 'next-game']);
 const freezeAction = oneOf(action, ['join', 'propose-next', 'ready-next']);
-const countLimit = (mode, players = "newData.child('players')") => `((${oneOf(`(${mode})`, ['detective', 'team-draft', 'frequency', 'double-ranking', 'blind-ranking', 'bracket'])})?!${players}.hasChild('p3'):true)`;
+const countLimit = (mode, players = "newData.child('players')") => `((${oneOf(`(${mode})`, ['detective', 'team-draft', 'frequency', 'double-ranking', 'blind-ranking', 'bracket', 'mystery-box'])})?!${players}.hasChild('p3'):true)`;
 const startCount = (mode, players = "newData.child('players')") => `(${oneOf(mode, ['blind-ranking', 'bracket'])}?true:${players}.hasChild('p2'))&&(${mode}==='chameleon'?${players}.hasChild('p3'):true)&&${countLimit(mode, players)}`;
 
 room['.read'] = `(${room['.read']})||(${member('data')})||(auth!==null&&data.child('version').val()===2&&data.child('status').val()!=='playing'&&!data.child('players/p4').exists())`;
@@ -121,9 +123,9 @@ const ready = `${action}==='ready-next'&&${d('status')}==='finished'&&${n('statu
 const next = `${action}==='next-game'&&${d('status')}==='finished'&&data.hasChild('nextGame')&&!newData.hasChild('nextGame')&&data.child('nextGame/ready').child(${actorSeat}).val()===false&&${otherReady}&&${n('status')}==='playing'&&${n('round')}===${d('round')}+1&&${n('datasetId')}===${d('nextGame/datasetId')}&&${n('mode')}===${d('nextGame/mode')}&&${n('bracketSize')}===${d('nextGame/bracketSize')}&&${startCount(n('mode'))}`;
 const start = `${action}==='start'&&auth.uid===${d('ownerUid')}&&${d('status')}==='waiting'&&${n('status')}==='playing'&&${configStable}&&${startCount(n('mode'))}`;
 const rematch = `${action}==='rematch'&&${d('status')}==='finished'&&${n('status')}==='playing'&&!data.hasChild('nextGame')&&!newData.hasChild('nextGame')&&${n('round')}===${d('round')}+1&&${eq('mode')}&&${eq('datasetId')}&&${eq('bracketSize')}&&${startCount(n('mode'))}`;
-const ordinary = `${d('status')}==='playing'&&${isParty(d('mode'))}&&!data.hasChild('nextGame')&&!newData.hasChild('nextGame')&&${configStable}&&${oneOf(action, ['bid','pass','next','party-resolve'])}`;
+const ordinary = `${d('status')}==='playing'&&!data.hasChild('nextGame')&&!newData.hasChild('nextGame')&&${configStable}&&((${isParty(d('mode'))}&&${oneOf(action, ['bid','pass','next','party-resolve'])})||(${d('mode')}==='mystery-box'&&${oneOf(action, ['box-stamp','box-resolve','box-next'])}))`;
 room['.write'] = `((${oldWrite})&&(!newData.exists()||newData.child('version').val()===1||(!data.hasChild('partyGame')&&!newData.hasChild('partyGame')&&!newData.hasChild('players/p3'))))||(${baseWrite}&&((${creation})||(${joinWrite})||(${playersStable}&&${currentActor}&&${freshRevision}&&((${start})||(${rematch})||(${proposal})||(${ready})||(${next})||(${ordinary})))))`;
-room['.validate'] = `${v2}?newData.hasChildren(['version','code','ownerUid','createdAt','datasetId','mode','status','round','starterSeat','revision','players'])&&(${n('status')}==='waiting'?!newData.hasChild('game')&&!newData.hasChild('partyGame'):${isParty(n('mode'))}?newData.hasChild('partyGame')&&!newData.hasChild('game'):newData.hasChild('game')&&!newData.hasChild('partyGame')):(${room['.validate']})`;
+room['.validate'] = `${v2}?newData.hasChildren(['version','code','ownerUid','createdAt','datasetId','mode','status','round','starterSeat','revision','players'])&&(${n('status')}==='waiting'?!newData.hasChild('game')&&!newData.hasChild('partyGame')&&!newData.hasChild('boxGame'):${n('mode')}==='mystery-box'?newData.hasChild('boxGame')&&!newData.hasChild('game')&&!newData.hasChild('partyGame'):!newData.hasChild('boxGame')&&(${isParty(n('mode'))}?newData.hasChild('partyGame')&&!newData.hasChild('game'):newData.hasChild('game')&&!newData.hasChild('partyGame'))):!newData.hasChild('boxGame')&&(${room['.validate']})`;
 room.version['.validate'] = '(newData.val()===1||newData.val()===2)&&(!data.exists()||newData.val()===data.val())';
 room.mode['.validate'] = `(${room.mode['.validate']})||(newData.parent().child('version').val()===2&&${isParty('newData.val()')}&&(!data.exists()||newData.val()===data.val()||newData.parent().child('lastAction/kind').val()==='next-game'))`;
 room.starterSeat['.validate'] = `${oneOf('newData.val()', seats)}&&newData.parent().child('players').hasChild(newData.val())`;
@@ -306,6 +308,8 @@ installPartyGameGuards(document);
 installPartyShapeGuards(document);
 installTableLifecycleRules(document);
 installAuctionJuryRules(document);
+installMysteryBoxRules(document);
+compactArrayGuards(document, legacyMaximum);
 compactLegacyGuards(document);
 compactLiteralAlternatives(document);
 compactRuleTree(document);

@@ -6,12 +6,14 @@ import { partyCards, partyGameSpec } from './party-games.js';
 import { auctionControls, auctionDecisionKey } from './auction-controls.js';
 import { JURY_TEXT_CATALOG } from './text-catalog-jury.js';
 import { partyRematchStarter } from './party-room-state.js';
+import { renderMysteryBox } from './mystery-box-view.js';
+import { renderRetroHeadline } from './retro-headline.js';
 
-export const PARTY_VIEW_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
+export const PARTY_VIEW_MODES = ['auction', 'sealed-auction', 'simultaneous-ranking', 'telepathy', 'detective', 'chameleon', 'mystery-box', 'blind-ranking', 'bracket', 'team-draft', 'frequency', 'double-ranking'];
 const seatsOf = room => Object.keys(room?.players || {}).filter(seat => /^p[1-4]$/.test(seat)).sort();
 export const partyModeLimits = mode => mode === 'chameleon' ? { min: 3, max: 4 }
   : ['blind-ranking', 'bracket'].includes(mode) ? { min: 1, max: 2 }
-  : ['detective', 'team-draft', 'frequency', 'double-ranking'].includes(mode) ? { min: 2, max: 2 } : { min: 2, max: 4 };
+  : ['detective', 'team-draft', 'frequency', 'double-ranking', 'mystery-box'].includes(mode) ? { min: 2, max: 2 } : { min: 2, max: 4 };
 
 /** The maximum distance between two ten-card permutations is 50. */
 export function rankingAgreement(first, second, size = 10) {
@@ -166,7 +168,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     for (let index = 1; index <= (room.status === 'waiting' ? max : seats.length); index++) {
       const seat = `p${index}`, player = room.players?.[seat], own = seat === state.seat;
       const online = onlineSeat(seat);
-      const current = room.status === 'playing' && (game.turnSeat === seat || game.clueGiverSeat === seat && game.stage === 'clue' || game.guesserSeat === seat && game.stage === 'guess');
+      const current = room.status === 'playing' && (game.turnSeat === seat || game.clueGiverSeat === seat && game.stage === 'clue' || game.guesserSeat === seat && game.stage === 'guess' || room.mode === 'mystery-box' && (game.stage === 'stamp' ? game.giverSeat === seat : game.stage === 'decision' && game.responderSeat === seat));
       const tile = el('div', `party-player${own ? ' is-self' : ''}${current ? ' is-turn' : ''}${!player ? ' is-empty' : ''}${player && !online ? ' is-offline' : ''}`);
       const icon = el('span', 'party-player-avatar', String(index)); icon.setAttribute('aria-hidden', 'true');
       const labels = el('div', 'party-player-labels');
@@ -174,12 +176,13 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       const line = el('span', 'party-player-state');
       if (own) line.append(copy('span', 'party-player-you', 'party.you'));
       if (room.ownerUid === player?.uid || room.hostSeat === seat || seat === 'p1') line.append(copy('span', '', 'party.host'));
-      if (player) line.append(copy('span', '', current ? 'party.turn' : !online ? 'party.offline' : game.passed?.[seat] ? 'party.pass_status' : 'party.online'));
+      if (player) line.append(copy('span', '', current ? own ? 'party.turn' : 'party.turn_other' : !online ? 'party.offline' : game.passed?.[seat] ? 'party.pass_status' : 'party.online'));
       labels.append(line); tile.append(icon, labels);
       if (game.budgets?.[seat] !== undefined) {
         const budget = el('div', 'party-player-metrics');
         budget.append(copy('strong', '', 'party.auction.budget', { amount: game.budgets[seat] }), copy('span', '', 'party.auction.roster', { count: game.rosters?.[seat]?.length || 0 })); tile.append(budget);
       } else if (game.scores?.[seat] !== undefined) tile.append(el('strong', 'party-player-score', `${game.scores[seat]} ${tx('party.score')}`));
+      else if (room.mode === 'mystery-box' && game.counts) tile.append(copy('strong', 'party-player-score', 'box.count', { count: game.counts[seat] }));
       tiles.push(tile);
     }
     players.replaceChildren(...tiles);
@@ -725,7 +728,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
     title.textContent = `${DATASET_NAMES[room.datasetId] || room.datasetId} / ${modeName(room.mode)}`;
     if (game?.phase === 'playing') {
       let total;
-      try { total = partyGameSpec(room.mode).rounds; } catch { total = null; }
+      try { total = room.mode === 'mystery-box' ? 10 : partyGameSpec(room.mode).rounds; } catch { total = null; }
       eyebrow.textContent = total ? tx('party.round', { round: game.roundIndex + 1, total }) : tx('party.card_count', { current: (game.deckIndex || 0) + 1, total: game.deck?.length || 0 });
     } else eyebrow.textContent = tx('party.table');
     code.textContent = room.code; invite.disabled = state.busy || !room; leave.disabled = state.busy;
@@ -738,6 +741,7 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       game?.roundIndex, game?.stage, game?.currentCardId, game?.turnSeat, game?.actions?.length || 0]);
     const privateVisual = { mine: state.privateState?.mine, role: state.privateState?.role,
       previousSlots: state.privateState?.previousSlots, loaded: state.privateState?.loaded,
+      deal: state.privateState?.deal, locked: state.privateState?.locked,
       ownProgress: state.privateState?.progress?.[state.seat] };
     // Rival lock notifications update their chips without replacing the
     // player's card buttons or text fields during a pointer/keyboard action.
@@ -749,8 +753,19 @@ export function createPartyView({ root, context, onAction, onSecret, onStart, on
       const focusKey = stage.contains(focused) ? focused?.dataset.partyDraft : null;
       const focusButton = stage.contains(focused) ? focused?.dataset.partyFocus : null;
       const selection = focusKey && focused.selectionStart != null ? [focused.selectionStart, focused.selectionEnd] : null;
-      const builders = { auction: renderAuction, 'sealed-auction': renderSealed, 'simultaneous-ranking': renderRanking, telepathy: renderTelepathy, detective: renderDetective, chameleon: renderChameleon };
-      const node = room.status === 'waiting' ? renderWaiting(state) : room.status === 'finished' ? renderFinished(state) : builders[room.mode]?.(state) || panel('party.spectator');
+      const builders = { auction: renderAuction, 'sealed-auction': renderSealed, 'simultaneous-ranking': renderRanking, telepathy: renderTelepathy, detective: renderDetective, chameleon: renderChameleon,
+        'mystery-box': value => renderMysteryBox(value, { document: doc, card, onAction: publicAction, onSecret: privateAction }) };
+      const node = room.status === 'waiting' ? renderWaiting(state) : room.status === 'finished' ? room.mode === 'mystery-box'
+        ? renderMysteryBox(state, { document: doc, card, finished: true }) : renderFinished(state) : builders[room.mode]?.(state) || panel('party.spectator');
+      if (room.status === 'finished') {
+        const paper = renderRetroHeadline(room, { cards: state.cards, nameFor, document: doc });
+        if (paper) node.prepend(paper);
+        if (room.mode === 'mystery-box') {
+          node.append(note('revision.room.next_starter', { player: nameFor(partyRematchStarter(room)) }));
+          const replay = disabled(button('party.rematch', onRematch)); replay.disabled ||= !!room.nextGame;
+          node.append(replay);
+        }
+      }
       // Busy and private progress redraws must not restart the scene animation.
       if (transition === transitionKey) {
         node.classList.remove('party-enter');

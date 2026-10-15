@@ -89,6 +89,7 @@ try{
       const value=await start(mode,modeLimits(mode).min,CODES[0],mutations,undefined,mode==='auction'?{completionDeck:setup.completionDeck}:{},datasetId);
       assert.equal(value.datasetId,datasetId);assert.equal(value.mode,mode);assert.equal(value.status,'playing');
       if(mode==='team-draft')assert.deepEqual(value.game.triplets,setup.triplets);
+      else if(mode==='mystery-box')assert.equal(value.game.deck,undefined);
       else assert.ok(value.game.deck.every(id=>DATASETS[datasetId].some(card=>card.id===id)));
       if(mode==='auction')assert.deepEqual(value.game.completionDeck,setup.completionDeck);
     }
